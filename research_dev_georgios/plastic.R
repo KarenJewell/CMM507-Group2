@@ -33,7 +33,7 @@ plot(maw, mawc)
 #appox 3 areas have high count but average weight/count
 #appox 2 areas have high weight/count though low count (Black & Yellow sea)
 
-outlier <- subset(plastic1, plastic1$macroWoverC > 2.5)
+outlier <- subset(plastic1, plastic1$macro..Count.Density..counts.km2. > 2000)
 outlier
 
 cor(mac,mawc)
