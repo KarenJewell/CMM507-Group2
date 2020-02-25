@@ -1,0 +1,132 @@
+---
+title: "Plastic Debris"
+output: 
+  html_document: 
+    out.width: "100%"
+    fig.align: "center"
+    code_folding: "hide"
+author: Stuart Watt
+---
+
+# Introduction and Setup
+I'm using the following packages:
+```{r Setup, message=FALSE}
+library(tidyverse)
+library(purrr)
+library(magrittr)
+library(treemap)
+library(mapdata)
+library(viridis)
+```
+Logged marine debris is available for download [here](http://marinedebris.engr.uga.edu/newmap/). I'm importing data from 2010 till Feb 19th 2020. There doesn't seem to be data before 2010. The data is reported marine debris.
+```{r DataImport}
+data <- list.files(path = "data/", full.names = TRUE) %>% 
+  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>% 
+  reduce(rbind)
+```
+A quick look at the data:
+```{r}
+data
+```
+
+# Exploratory Data Analysis
+Let's first check for missing values:
+```{r MissingValues}
+data %>% select_if(function(x) any(is.na(x))) %>% colnames()
+```
+So only these columns contain missing values. We will use an explicit missing value for the location factor:
+```{r}
+data$Location <- data$Location %>% fct_explicit_na()
+```
+Lets see the amount of unique values for each column:
+```{r UniqueValueCount}
+data %>% apply(2, function(x) length(unique(x)))
+```
+Both "ListID" and "ListName" don't give us any information, so we will remove them both.
+```{r}
+data <- data %>% select(-ListID,-ListName)
+```
+
+Lets see if there are any "ItemNames" associated with more than one "Material Descriptions".
+```{r}
+data %>% select(`Material Description`, ItemName) %>%
+  distinct() %$% 
+  table(ItemName) %>% 
+  as_tibble() %>% 
+  filter(n > 1)
+```
+So rubber gloves are associated with two material descriptions, but otherwise a one to many relationship exists between "Material Description" and "ItemName".
+```{r}
+data %>% select(`Material Description`, ItemName, Quantity) %>%
+  filter(ItemName == "Rubber Gloves") %>% 
+  group_by(`Material Description`) %>% 
+  summarise(Quantity = sum(Quantity))
+```
+It seems that most rubber gloves are classified as plastic rather than rubber.
+```{r}
+data %>% select(`Material Description`, ItemName, Description) %>%
+  filter(ItemName == "Rubber Gloves", !is.na(Description)) %>% 
+  distinct()
+```
+All non-missing descriptions of rubber gloves are described as plastic.
+
+Distribution of observed debris:
+```{r MaterialQuantities}
+data %>% select(Quantity,Description,`Material Description`) %>% 
+  group_by(`Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  ggplot(aes(x = reorder(`Material Description`, Quantity), y = Quantity)) +
+    geom_col() +
+    ylab("Total recorded quantity") +
+    xlab("Material class") +
+    coord_flip()
+```
+A tree map of material quantities:
+```{r TreeMap}
+data %>% 
+  select(`Material Description`, ItemName, Quantity) %>% 
+  group_by(`Material Description`, ItemName) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  treemap(index = c("Material Description", "ItemName"),
+          vSize = "Quantity", draw = TRUE)
+```
+Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
+```{r}
+world <- map_data("world")
+data %>% 
+  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
+    scale_fill_viridis() +
+    theme_void()
+```
+```{r}
+data %>% mutate(Location = str_to_lower(Location)) %>% 
+  filter(str_detect(Location, "united kingdom")) %>% 
+  select(Latitude, Longitude) %>% 
+  ggplot(aes(x = Latitude, y = Longitude)) +
+    geom_point()
+```
+```{r}
+data %>% mutate(Location = str_to_lower(Location)) %>% 
+  filter(str_detect(Location, "ocean")) %>% 
+  select(Location) %>% 
+  distinct()
+```
+
+```{r}
+topLocations <- data %>% 
+  group_by(Location) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  arrange(desc(Quantity)) %>% 
+  top_n(5,Quantity)
+
+data %>% 
+  filter(Location %in% topLocations$Location) %>% 
+  group_by(Location, `Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  arrange(desc(Quantity)) %>% 
+  ggplot(aes(x = `Material Description`, y = Quantity, fill = Location)) +
+    geom_col()
+```
