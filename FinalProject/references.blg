@@ -1,5 +1,21 @@
-[1] Config.pm:304> INFO - This is Biber 2.14
-[2] Config.pm:307> INFO - Logfile is 'references.blg'
-[199] biber-MSWIN64:322> INFO - === 
-[1061] Utils.pm:320> ERROR - Cannot find 'references.bcf'!
-[1062] Biber.pm:132> INFO - ERRORS: 1
+[3] Config.pm:304> INFO - This is Biber 2.14
+[4] Config.pm:307> INFO - Logfile is 'Group2Report.blg'
+[401] biber-MSWIN64:322> INFO - === 
+[504] Biber.pm:415> INFO - Reading 'Group2Report.bcf'
+[1274] Biber.pm:943> INFO - Found 4 citekeys in bib section 0
+[1392] Biber.pm:4256> INFO - Processing section 0
+[1393] Utils.pm:75> INFO - Globbing data source 'references.bib'
+[1528] Utils.pm:91> INFO - Globbed data source 'references.bib' to references.bib
+[1632] Biber.pm:4455> INFO - Looking for bibtex format file 'references.bib' for section 0
+[34466] Utils.pm:304> WARN - Data source '' is empty, ignoring
+[34476] Utils.pm:304> WARN - I didn't find a database entry for 'ELYAN2017220' (section 0)
+[34477] Utils.pm:304> WARN - I didn't find a database entry for 'knitr2013' (section 0)
+[34477] Utils.pm:304> WARN - I didn't find a database entry for 'Elyan2016' (section 0)
+[34478] Utils.pm:304> WARN - I didn't find a database entry for '8489087' (section 0)
+[34521] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[34521] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[34521] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[34522] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[34524] bbl.pm:652> INFO - Writing 'Group2Report.bbl' with encoding 'UTF-8'
+[34525] bbl.pm:755> INFO - Output to Group2Report.bbl
+[34545] Biber.pm:128> INFO - WARNINGS: 5

@@ -31,16 +31,10 @@
   linkcolor    = blue, %Colour of internal links
   citecolor   = red %Colour of citations
 }
-%\usepackage[backend=bibtex ,sorting=none]{biblatex}
-\usepackage[backend=biber ,sorting=none]{biblatex}
-\bibliography{references}
-
-\begin{filecontents*}{references.bib}
-
-\end{filecontents*}
-
-%\usepackage[backend=biber]{biblatex}
-%\addbibresource{references.bib}
+\usepackage{biblatex}
+%\usepackage[backend=biber ,sorting=none]{biblatex}
+\bibliography{References}
+\addbibresource{References.bib}
 
 
 %\fancyhf{}
@@ -85,31 +79,26 @@
 
 \section*{Objective}
 
-% Edit here to outline the main objectives of your report
-You need to study carefully the \textcolor{blue}{.rnw} File, and see how this file was generated. This lab should help you understand the followings:
+To understand plastic pollution in oceans.
 
 \begin{itemize}
-\item Gain more understanding of reproducible report using \LaTeX and \textcolor{blue}{R}
-\item You will learn how to insert chunks of code in your document and adapt its settings (options) to generate graphics using R code 
-\item You will learn how to generate tables within your document directly from your excel sheets (interactive reporting)
-\item You will learn how to export BibTex items and cite different papers from within your documents 
-\item This lab document should help you as a starting template for your coursework
-\item Please study carefully the source file and the data files associated with this lab documents (peers, meetings excel sheets)
+\item How much plastic pollution there is
+\item How it is distributed
+\item Where it is coming from
+\item What is it made of
 
 \end{itemize}
 
 \section{Problem Statement}\label{statement}
 
-% The command below is just to generate some text, edit here for your problem statement
-%\blindtext[2]
+There is a lot of plastic in the ocean - it is bad for marine life, and for us humans. Plastics are generally created as waste in macro form, but over time it degenerates into micro-plastic size where it becomes hard to remove from the oceans, but never really decomposes.
 
 \subsection{Overview}\label{over}
 
-%\blindtext[2]
+This report seeks to combine published datasets and peer-reviewed articles to create a comprehensive presentation of the plastic pollutions problem.
 
 \subsection{Motivation}\label{mot}
-%Edit here 
-%\blindtext[2]
+Section by Roshi
 
 \subsection{Objectives }\label{obj}
 %Edit here 
@@ -133,9 +122,7 @@ Knitr package was used in this work\cite{knitr2013}, more details about clusteri
 \subsection{Data Collection}\label{dataset}
 
 
-
-%Edit here 
-%\blindtext[2]
+Using only secondary data. No primary data collection.
 
 
 \subsection{Exploration - Pre-processing}\label{explore}
