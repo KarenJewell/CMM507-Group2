@@ -71,7 +71,7 @@
 \SweaveOpts{concordance=TRUE}
 
 
-\title{\LARGE Coursework  \\ Group 2 Report - CMM507}
+\title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
 
 \author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}}; GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
 %ALEXANDER RITCHIE (1911218) ;GEORGIOS ORFANAKIS (1903446); KAREN JEWELL (1415410); ROSHI SHRESTHA (1903445); STUART WATT (1501869); 
@@ -85,17 +85,11 @@
 
 \section*{Objective}
 
-% Edit here to outline the main objectives of your report
-You need to study carefully the \textcolor{blue}{.rnw} File, and see how this file was generated. This lab should help you understand the followings:
 
 \begin{itemize}
-\item Gain more understanding of reproducible report using \LaTeX and \textcolor{blue}{R}
-\item You will learn how to insert chunks of code in your document and adapt its settings (options) to generate graphics using R code 
-\item You will learn how to generate tables within your document directly from your excel sheets (interactive reporting)
-\item You will learn how to export BibTex items and cite different papers from within your documents 
-\item This lab document should help you as a starting template for your coursework
-\item Please study carefully the source file and the data files associated with this lab documents (peers, meetings excel sheets)
-
+\item To understand the composition of plastic pollutants in the ocean
+\item To understand the sources of plastic pollutants
+\item To understand how plastic pollution gets distributed across the oceans
 \end{itemize}
 
 \section{Problem Statement}\label{statement}
@@ -116,9 +110,7 @@ You need to study carefully the \textcolor{blue}{.rnw} File, and see how this fi
 The main objectives of this project can be outlined as follows: 
 \section{Research}\label{research}
 
-%Your research goes here, Notice how we cited other people work (check the refernces.bib)
-%\blindtext[2] 
-Knitr package was used in this work\cite{knitr2013}, more details about clustering can be found at \cite{ELYAN2017220}. A detailed description of class-decomposition can be found at \cite{Elyan2016}. This method was applied to process Engineering Drawings \cite{8489087}.
+ \cite{8489087}.
 
 
 
