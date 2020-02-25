@@ -81,10 +81,16 @@
   linkcolor    = blue, %Colour of internal links
   citecolor   = red %Colour of citations
 }
-\usepackage{biblatex}
-%\usepackage[backend=biber ,sorting=none]{biblatex}
-\bibliography{References}
-\addbibresource{References.bib}
+%\usepackage[backend=bibtex ,sorting=none]{biblatex}
+\usepackage[backend=biber ,sorting=none]{biblatex}
+\bibliography{references}
+
+\begin{filecontents*}{references.bib}
+
+\end{filecontents*}
+
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{references.bib}
 
 
 %\fancyhf{}
@@ -114,7 +120,7 @@
 \SweaveOpts{concordance=TRUE}
 
 
-\title{\LARGE Coursework  \\ Group 2 Report - CMM507}
+\title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
 
 \author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}}; GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
 %ALEXANDER RITCHIE (1911218) ;GEORGIOS ORFANAKIS (1903446); KAREN JEWELL (1415410); ROSHI SHRESTHA (1903445); STUART WATT (1501869); 
@@ -128,35 +134,32 @@
 
 \section*{Objective}
 
-To understand plastic pollution in oceans.
 
 \begin{itemize}
-\item How much plastic pollution there is
-\item How it is distributed
-\item Where it is coming from
-\item What is it made of
-
+\item To understand the composition of plastic pollutants in the ocean
+\item To understand the sources of plastic pollutants
+\item To understand how plastic pollution gets distributed across the oceans
 \end{itemize}
 
 \section{Problem Statement}\label{statement}
 
-There is a lot of plastic in the ocean - it is bad for marine life, and for us humans. Plastics are generally created as waste in macro form, but over time it degenerates into micro-plastic size where it becomes hard to remove from the oceans, but never really decomposes.
+% The command below is just to generate some text, edit here for your problem statement
+%\blindtext[2]
 
 \subsection{Overview}\label{over}
 
-This report seeks to combine published datasets and peer-reviewed articles to create a comprehensive presentation of the plastic pollutions problem.
+%\blindtext[2]
 
 \subsection{Motivation}\label{mot}
-Section by Roshi
+%Edit here 
+%\blindtext[2]
 
 \subsection{Objectives }\label{obj}
 %Edit here 
 The main objectives of this project can be outlined as follows: 
 \section{Research}\label{research}
 
-%Your research goes here, Notice how we cited other people work (check the refernces.bib)
-%\blindtext[2] 
-Knitr package was used in this work\cite{knitr2013}, more details about clustering can be found at \cite{ELYAN2017220}. A detailed description of class-decomposition can be found at \cite{Elyan2016}. This method was applied to process Engineering Drawings \cite{8489087}.
+ \cite{8489087}.
 
 
 
@@ -171,7 +174,9 @@ Knitr package was used in this work\cite{knitr2013}, more details about clusteri
 \subsection{Data Collection}\label{dataset}
 
 
-Using only secondary data. No primary data collection.
+
+%Edit here 
+%\blindtext[2]
 
 
 \subsection{Exploration - Pre-processing}\label{explore}
@@ -267,7 +272,7 @@ Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
 %\blindtext[2]
 % Pay attention to the code below including the chunk options 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sun Feb 23 22:10:47 2020
+% Tue Feb 25 18:15:58 2020
 \begin{table}[ht]
 \centering
 \caption{Record of Team Meetings} 
@@ -300,7 +305,7 @@ No & Date & Topic & John & Ali & Ann & Mon \\
 Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sun Feb 23 22:10:47 2020
+% Tue Feb 25 18:15:59 2020
 \begin{table}[ht]
 \centering
 \caption{Peer Assessment out of 100} 
