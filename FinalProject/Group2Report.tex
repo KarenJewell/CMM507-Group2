@@ -117,7 +117,8 @@
  %\thispagestyle{empty}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -143,43 +144,173 @@
 
 \section{Problem Statement}\label{statement}
 
-% The command below is just to generate some text, edit here for your problem statement
-%\blindtext[2]
+H1 = The \% of plastic pollution remains constant over time.
+
+H0 = The \% of plastic pollution does not remain constant over time.
+
+
 
 \subsection{Overview}\label{over}
 
-%\blindtext[2]
 
 \subsection{Motivation}\label{mot}
-%Edit here 
-%\blindtext[2]
+
+Plastic pollution is bad because....
+citation example \cite{8489087}.
+
 
 \subsection{Objectives }\label{obj}
-%Edit here 
+
 The main objectives of this project can be outlined as follows: 
+
+
+
+
 \section{Research}\label{research}
 
- \cite{8489087}.
+Things we found
+citation example \cite{8489087}.
 
-
+Sources of pollution: 10 river dataset, 50km2 coastline dataset, pollution density and body of water dataset....
 
 
 \section {Methods}\label{methods}
 
+This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods.
+
+
+\subsection{Dataset Description}\label{dataset}
+
+\begin{itemize}
+\item Where the dataset came from
+\item How it is constructed: multiple csv files by year
+\item A description of what it is, what's in it and what it represents
+\item Problems with the dataset
+  \begin{itemize}
+  \item Missing data
+  \item data anomalies (lat/long values don't match named regions)
+  \item 
+  \end{itemize}
+\end{itemize}
+
+
+\subsection{Dataset Pre-processing}
+
+Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:
+\begin{itemize}
+\item reclassified some labels because variation was too high (there were too many labels)
+\item removed missing values
+\item removed certain subsets
+\item but kept certain subsets
+\end{itemize}
+
+\section{Exploration}
+
+Here we describe the things we found... 
+
+\subsection{Proportion Trends}
+How pollutant proportions change over time.
+
+Cigarette butts proportions and raw counts decrease over time: possibly less people smoking, or moving to vaping
+
+General pollution count going down over time?
+
+Old pollutants fall away (cigarette butts) but new ones are introduced
+
+\subsection{Event-Driven Pollution}
+
+Fireworks found in July and North-America only: possibly 4th July celebrations
+
+\subsection{Location-Driven Pollution}
+
+Rubber found in Indoneasia only: possibly a recording bias.
+
+Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas
+
+
+\section{Predictive Modelling}
+\subsection{Description of Model}
+\subsection{Model Results}
+
+\section{Discussion}
+
+\section{Conclusion and Future Work}\label{cdsmote1}
+
+Our hypothesis stands/does not stand.
+
+
 %Edit here 
 %\blindtext[2]
 
 
 
-\subsection{Data Collection}\label{dataset}
 
 
+\section{Project Management}\label{mgt}
+\subsection{Facilities}
+Group 2 communicated using a dedicated Slack Channel, Github repository and weekly 1 hour meetings before the wednesday lab.
+All project documents used and the final report can be accessed from the \textit{\href{https://github.com/KarenJewell/CMM507Group2}{Public Github Repository}}
 
+\subsection{Project Progress}
 %Edit here 
 %\blindtext[2]
+% Pay attention to the code below including the chunk options 
+% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Wed Mar 04 13:37:13 2020
+\begin{table}[ht]
+\centering
+\caption{Record of Team Meetings} 
+\label{tab:one}
+\begin{tabular}{llp{8cm}llll}
+  \hline
+No & Date & Topic & John & Ali & Ann & Mon \\ 
+  \hline
+1.00 & 2019-02-05 & Team Formation Formation Formation Formation Formation  & yes & yes & yes & yes \\ 
+  2.00 & 2019-02-06 & Team Formation & yes & yes & yes & yes \\ 
+  3.00 & 2019-02-07 & Team Formation & yes & yes & yes & yes \\ 
+  4.00 & 2019-02-08 & Team Formation & yes & yes & yes & yes \\ 
+  5.00 & 2019-02-09 & Team Formation & yes & yes & yes & yes \\ 
+  6.00 & 2019-02-10 & Team Formation & yes & yes & yes & yes \\ 
+  7.00 & 2019-02-11 & Team Formation & yes & yes & yes & yes \\ 
+  8.00 & 2019-02-12 & Final Meeting & yes & yes & yes & yes \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 
-\subsection{Exploration - Pre-processing}\label{explore}
+
+
+
+\subsection{Peer-assessment}
+
+%Edit here 
+%\blindtext[2] \\
+
+Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
+
+% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Wed Mar 04 13:37:13 2020
+\begin{table}[ht]
+\centering
+\caption{Peer Assessment out of 100} 
+\label{tab:two}
+\begin{tabular}{llllll}
+  \hline
+Peer.Review & Alex & Georgios & Karen & Roshi & Stuart \\ 
+  \hline
+Alex & 100 & 100 & 100 & 100 & 100 \\ 
+  Georgios & 100 & 100 & 100 & 100 & 100 \\ 
+  Karen & 100 & 100 & 100 & 100 & 100 \\ 
+  Roshi & 100 & 100 & 100 & 100 & 100 \\ 
+  Stuart & 100 & 100 & 100 & 100 & 100 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\subsection{Section on figure referencing - keep for referencing}\label{explore}
 
 %Edit here 
 %\blindtext[2]
@@ -225,7 +356,7 @@ An easy way to check that our function is doing the right calculation is to plot
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-3-1} 
+\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-5-1} 
 
 \end{knitrout}
 
@@ -246,7 +377,7 @@ Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-4-1} 
+\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-6-1} 
 
 \end{knitrout}
 
@@ -254,77 +385,6 @@ Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
 \label{fig2}
 \end {center}
 \end {figure}
-
-
-\section{Conclusion and Future Work}\label{cdsmote1}
-
-%Edit here 
-%\blindtext[2]
-
-
-
-
-
-\section{Project Management}\label{mgt}
-
-\subsection{Project Progress}
-%Edit here 
-%\blindtext[2]
-% Pay attention to the code below including the chunk options 
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Tue Feb 25 18:15:58 2020
-\begin{table}[ht]
-\centering
-\caption{Record of Team Meetings} 
-\label{tab:one}
-\begin{tabular}{llp{8cm}llll}
-  \hline
-No & Date & Topic & John & Ali & Ann & Mon \\ 
-  \hline
-1.00 & 2019-02-05 & Team Formation Formation Formation Formation Formation  & yes & yes & yes & yes \\ 
-  2.00 & 2019-02-06 & Team Formation & yes & yes & yes & yes \\ 
-  3.00 & 2019-02-07 & Team Formation & yes & yes & yes & yes \\ 
-  4.00 & 2019-02-08 & Team Formation & yes & yes & yes & yes \\ 
-  5.00 & 2019-02-09 & Team Formation & yes & yes & yes & yes \\ 
-  6.00 & 2019-02-10 & Team Formation & yes & yes & yes & yes \\ 
-  7.00 & 2019-02-11 & Team Formation & yes & yes & yes & yes \\ 
-  8.00 & 2019-02-12 & Final Meeting & yes & yes & yes & yes \\ 
-   \hline
-\end{tabular}
-\end{table}
-
-
-
-
-
-\subsection{Peer-assessment}
-
-%Edit here 
-%\blindtext[2] \\
-
-Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
-
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Tue Feb 25 18:15:59 2020
-\begin{table}[ht]
-\centering
-\caption{Peer Assessment out of 100} 
-\label{tab:two}
-\begin{tabular}{llllll}
-  \hline
-Peer.Review & Alex & Georgios & Karen & Roshi & Stuart \\ 
-  \hline
-Alex & 100 & 100 & 100 & 100 & 100 \\ 
-  Georgios & 100 & 100 & 100 & 100 & 100 \\ 
-  Karen & 100 & 100 & 100 & 100 & 100 \\ 
-  Roshi & 100 & 100 & 100 & 100 & 100 \\ 
-  Stuart & 100 & 100 & 100 & 100 & 100 \\ 
-   \hline
-\end{tabular}
-\end{table}
-
-
-
 
 \section*{References}\label{pubs}
 \printbibliography[heading =none]

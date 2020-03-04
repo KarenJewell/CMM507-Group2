@@ -68,7 +68,8 @@
 
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -94,112 +95,100 @@
 
 \section{Problem Statement}\label{statement}
 
-% The command below is just to generate some text, edit here for your problem statement
-%\blindtext[2]
+H1 = The \% of plastic pollution remains constant over time.
+
+H0 = The \% of plastic pollution does not remain constant over time.
+
+
 
 \subsection{Overview}\label{over}
 
-%\blindtext[2]
 
 \subsection{Motivation}\label{mot}
-%Edit here 
-%\blindtext[2]
+
+Plastic pollution is bad because....
+citation example \cite{8489087}.
+
 
 \subsection{Objectives }\label{obj}
-%Edit here 
+
 The main objectives of this project can be outlined as follows: 
+
+
+
+
 \section{Research}\label{research}
 
- \cite{8489087}.
+Things we found
+citation example \cite{8489087}.
 
-
+Sources of pollution: 10 river dataset, 50km2 coastline dataset, pollution density and body of water dataset....
 
 
 \section {Methods}\label{methods}
 
-%Edit here 
-%\blindtext[2]
+This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods.
 
 
+\subsection{Dataset Description}\label{dataset}
 
-\subsection{Data Collection}\label{dataset}
-
-
-
-%Edit here 
-%\blindtext[2]
-
-
-\subsection{Exploration - Pre-processing}\label{explore}
-
-%Edit here 
-%\blindtext[2]
-
-In this project iris was used, the dataset is made of 150 rows and four features. \\
-
-Notice how we generate graphics within the sweave document. Check the following code, we will create a function that either finds $x^2$ or $x^3$ subject to parameters passed in the function
-<<>>=
-# create a vector of doubles
-myNumbers <- seq(from=-1,to=1,by=.1)
-
-# function definition
-toPower <- function (x,p=2) {
-    if (p==2)
-        return (x*x)
-    else if (p==3)
-        return (x*x*x)
-    return (x*x)
-}
-
-# call function
-squared <- toPower(myNumbers)
-cubes <- toPower(myNumbers,3)
+\begin{itemize}
+\item Where the dataset came from
+\item How it is constructed: multiple csv files by year
+\item A description of what it is, what's in it and what it represents
+\item Problems with the dataset
+  \begin{itemize}
+  \item Missing data
+  \item data anomalies (lat/long values don't match named regions)
+  \item 
+  \end{itemize}
+\end{itemize}
 
 
-@
+\subsection{Dataset Pre-processing}
 
-An easy way to check that our function is doing the right calculation is to plot the results. The code below will generate a figure similar to Figure~\ref{fig1}: 
-<<eval=FALSE>>=
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
+Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:
+\begin{itemize}
+\item reclassified some labels because variation was too high (there were too many labels)
+\item removed missing values
+\item removed certain subsets
+\item but kept certain subsets
+\end{itemize}
+
+\section{Exploration}
+
+Here we describe the things we found... 
+
+\subsection{Proportion Trends}
+How pollutant proportions change over time.
+
+Cigarette butts proportions and raw counts decrease over time: possibly less people smoking, or moving to vaping
+
+General pollution count going down over time?
+
+Old pollutants fall away (cigarette butts) but new ones are introduced
+
+\subsection{Event-Driven Pollution}
+
+Fireworks found in July and North-America only: possibly 4th July celebrations
+
+\subsection{Location-Driven Pollution}
+
+Rubber found in Indoneasia only: possibly a recording bias.
+
+Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas
 
 
-% See carefully how we embed the R code within latex here, check captions, and figure labels 
-\begin{figure}[H] %start a figure
-\begin{center}
+\section{Predictive Modelling}
+\subsection{Description of Model}
+\subsection{Model Results}
 
-<<fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE, results='hide',out.width=".47\\linewidth">>=
-
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
-
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig1}
-\end {center}
-\end {figure}
-
-
-
-
-\subsection{Experiments}\label{experiments}
-
-Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
-
-\begin{figure}[H] %start a figure
-\begin{center}
-
-<<fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE, results='hide',out.width=".47\\linewidth">>=
-
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
-
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig2}
-\end {center}
-\end {figure}
-
+\section{Discussion}
 
 \section{Conclusion and Future Work}\label{cdsmote1}
+
+Our hypothesis stands/does not stand.
+
 
 %Edit here 
 %\blindtext[2]
@@ -209,6 +198,9 @@ plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
 
 
 \section{Project Management}\label{mgt}
+\subsection{Facilities}
+Group 2 communicated using a dedicated Slack Channel, Github repository and weekly 1 hour meetings before the wednesday lab.
+All project documents used and the final report can be accessed from the \textit{\href{https://github.com/KarenJewell/CMM507Group2}{Public Github Repository}}
 
 \subsection{Project Progress}
 %Edit here 
@@ -250,7 +242,7 @@ print(xtable(dfs,
 
 Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
 
-<<warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE,results='asis'>>=
+<<warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE, results='asis'>>=
 require(openxlsx);
 require(readxl)
 library(stringr);library(data.table)
@@ -280,6 +272,74 @@ print(xtable(dfs,
 @
 
 
+
+\subsection{Section on figure referencing - keep for referencing}\label{explore}
+
+%Edit here 
+%\blindtext[2]
+
+In this project iris was used, the dataset is made of 150 rows and four features. \\
+
+Notice how we generate graphics within the sweave document. Check the following code, we will create a function that either finds $x^2$ or $x^3$ subject to parameters passed in the function
+<<>>=
+# create a vector of doubles
+myNumbers <- seq(from=-1,to=1,by=.1)
+
+# function definition
+toPower <- function (x,p=2) {
+    if (p==2)
+        return (x*x)
+    else if (p==3)
+        return (x*x*x)
+    return (x*x)
+}
+
+# call function
+squared <- toPower(myNumbers)
+cubes <- toPower(myNumbers,3)
+
+
+@
+
+An easy way to check that our function is doing the right calculation is to plot the results. The code below will generate a figure similar to Figure~\ref{fig1}: 
+<<eval=FALSE>>=
+plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
+@
+
+
+% See carefully how we embed the R code within latex here, check captions, and figure labels 
+\begin{figure}[H] %start a figure
+\begin{center}
+
+<<fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE,out.width=".47\\linewidth">>=
+
+plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
+@
+
+\caption {Simple Plot of $f(x)=x^3$ Function}
+\label{fig1}
+\end {center}
+\end {figure}
+
+
+
+
+\subsection{Experiments}\label{experiments}
+
+Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
+
+\begin{figure}[H] %start a figure
+\begin{center}
+
+<<fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE,out.width=".47\\linewidth">>=
+
+plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
+@
+
+\caption {Simple Plot of $f(x)=x^3$ Function}
+\label{fig2}
+\end {center}
+\end {figure}
 
 \section*{References}\label{pubs}
 \printbibliography[heading =none]
