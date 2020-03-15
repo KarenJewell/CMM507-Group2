@@ -18,6 +18,7 @@ library(treemap)
 library(mapdata)
 library(viridis)
 library(lubridate)
+library(imager)
 ```
 Logged marine debris is available for download [here](http://marinedebris.engr.uga.edu/newmap/). I'm importing data from 2010 till Feb 19th 2020. There doesn't seem to be data before 2010. The data is reported marine debris.
 ```{r DataImport}
@@ -90,12 +91,16 @@ So the most populated material class is Plastic. Note that this does not necessa
 
 A tree map of material quantities:
 ```{r TreeMap}
+png("plots/treemap.png")
 data %>% 
   select(`Material Description`, ItemName, Quantity) %>% 
   group_by(`Material Description`, ItemName) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
   treemap(index = c("Material Description", "ItemName"),
-          vSize = "Quantity", draw = TRUE)
+          vSize = "Quantity", draw = TRUE) -> tm
+tm
+dev.off()
+#save.image(file = "plots/treemap.png")
 ```
 Cigarettes are the most common item recorded. Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
 
@@ -107,8 +112,11 @@ data %>%
   ggplot() +
     geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
     geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
-    scale_fill_viridis() +
-    theme_void()
+    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
+    theme_void() +
+    guides(fill=guide_legend(title="Observations"))
+
+ggsave("plots/map.png", width = 20, height = 10, units = "cm")
 ```
 There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
 ```{r}
@@ -179,14 +187,110 @@ data %>%
     ylab("Proportion of Items")
     #scale_fill_viridis_d(option = "magma")
 
-#ggsave("pastic_debris_plot.png", width = 60, height = 30, units = "cm")
+ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
 ```
 
 
 # 4th July and Firework link? (Karen's Idea)
 ```{r}
 data %>% 
-  filter(`Material Description` == "PLASTIC") %$%
-  unique(ItemName) %>% 
-  print()
+  filter(`Material Description` == "PLASTIC",
+         ItemName %in% c("Fireworks"),
+         year(Time) >= 2012, year(Time) <= 2019) %>% 
+  mutate(month = month(Time, label = TRUE), 
+         year = as.integer(year(Time))) %>% 
+  group_by(month, year) %>% 
+  summarise(quantity = sum(Quantity)) %>% 
+  ggplot() +
+    geom_boxplot(aes(x = month, y = quantity)) +
+    xlab("Month") +
+    ylab("Quantity") +
+    ggtitle("Firework debris 2012-2019")
+
+ggsave("plots/fireworks.png")
+```
+
+```{r}
+data %>% 
+  mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
+         months = floor_date(Time, 'month')) %>% 
+  group_by(months, Type) %>% 
+  summarize(`Number of observations` = n()) %>% 
+  ggplot(aes(x = months, y = `Number of observations`)) +
+    geom_area(aes(fill = Type))
+  # ggplot() +
+  # geom_histogram(aes(x = Time))
+  
+```
+
+```{r}
+data %>% 
+  mutate(year = year(Time)) %>% 
+  filter(year > 2010, year < 2020) %>% 
+  group_by(year) %>% 
+  summarise(quan = sum(Quantity)) %>% 
+  ggplot(aes(x = year, y = quan)) +
+    geom_line() +
+    geom_point() +
+    scale_x_continuous(breaks = 2011:2019) +
+    xlab("Year") +
+    ylab("Quantity") +
+    ggtitle("Quantity of debris per year") +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+
+ggsave("plots/observations.png")
+```
+
+```{r Recategorisation}
+# all cigarette related waste: 1, 4, 6, 22
+# Food related waste: 3, 2,7,9,10, 17, 23, 11
+# Non food related waste: 8, 14, 15, 16, 18, 19, 21, 20
+# Plastic bags and Styrofoam packaging:12, 13
+# Fragments: 5, 23, 24,25
+
+recategorise <- function(x){
+  out = ""
+  if(x %in% c(1,4,6,22)){out = "Cigarette related waste"}
+  if(x %in% c(2,3,7,9,10,17,23,11)) out = "Food related waste"
+  if(x %in% c(8,14,15,16,18,19,21,20)) out = "Other"
+  if(x %in% c(12,13)) out = "Plastic bags and Styrofoam packaging"
+  if(x %in% c(5,23,24,25)) out = "Fragments"
+  if(out == "") stop(paste("Error in recategorise:", x))
+  return(out)
+}
+
+plastic_types <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, ItemID) %>% 
+  distinct() %>% 
+  mutate(label = 1:n()) %>% 
+  mutate(category = purrr::map(label, recategorise)) %>%
+  mutate(category = as_factor(as.character(category))) %>% 
+  select(ItemID, category)
+
+
+plastic <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  full_join(plastic_types, by = "ItemID")
+
+plastic %>% 
+  mutate(month = month(Time, label = FALSE), 
+         year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(month, year, category) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>% 
+  ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    facet_wrap(~year, nrow = 2) +
+    scale_fill_viridis(discrete = TRUE, option = "plasma") +
+    xlab("Month") +
+    ylab("Proportion of Items") +
+    ggtitle("Rel. frequencies of observed plastic waste by category") +
+    scale_x_continuous(breaks = 1:12) +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) +
+    guides(fill=guide_legend(title="Category"))
+
+ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
 ```
