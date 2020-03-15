@@ -1,0 +1,169 @@
+### code for modelling goes under the following part. Please copy_paste it and run. Did so for storing reasons ###
+
+ plastic_ordered <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, Quantity) %>% 
+  group_by(ItemName) %>% 
+  summarise(Total = sum(Quantity)) %>% 
+  arrange(desc(Total))
+
+data$ItemName <- factor(data$ItemName, plastic_ordered$ItemName)
+
+partD <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(month = month(Time, label = TRUE), 
+  year = as.integer(year(Time))) %>% 
+  filter(year < 2018) %>% 
+  group_by(month, year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity))
+  
+  ### Beginning code for modeling of data ###
+
+# making appropriate adjustments to data that will be used on the model
+# df10 for year 2010 was created but eventually nit used due to it not having enough info
+# sort of like an imbalanced class
+
+library(dplyr)
+#plastic
+df10 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2010) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df11 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2011) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df12 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2012) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df13 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2013) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+
+df14 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2014) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df15 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2015) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df16 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2016) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+
+df17 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2017) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df18 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2018) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+df19 <- data %>%
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(year = as.integer(year(Time))) %>%
+  filter(year == 2019) %>% 
+  group_by(year,ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+
+dfTot <- rbind(df11, df12, df13, df14, df15, df16, df17, df18, df19)
+
+
+# plot for observing the data
+(time_plotfr2 <- ggplot(dfTot, aes(x = year, y = freq, color=ItemName, fill = ItemName)) +
+  geom_smooth(method="lm") +
+  geom_point(size=3) +
+  theme_bw() + 
+  xlab("Years") +
+  ylab("freq") +
+  ggtitle("portion of plastic") + 
+  expand_limits(y=0) +
+  scale_y_continuous() + 
+  scale_x_continuous()+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(size=5, face="bold")))
+
+
+
+# create train and test set
+n <- nrow(dfTot)  # Number of observations
+ntrain <- round(n*0.75)  # 75% for training set
+set.seed(314)    # Set seed for reproducible results
+tindex <- sample(n, ntrain)   # Create a random index
+train_dfTot <- dfTot[tindex,]   # Create training set
+test_dfTot <- dfTot[-tindex,]
+
+#  Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. 
+# The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; 
+# when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is no correlation 
+# between frequency and years passing by. Which basically further supports our initial hypothesis in this project. 
+# I have included a prediction on the test set but it is of no worth obviously.
+
+
+# linear model on train set
+print("train model")
+set.seed(1234)
+dfTot_train.model <- lm(freq ~ year, data = train_dfTot)
+summary(dfTot_train.model)
+
+# plotting frequencies according to train data
+ggplot(data = train_dfTot, aes(x = year, y = freq)) +
+geom_point() +
+stat_smooth(method = "lm", col = "dodgerblue3") +
+theme(panel.background = element_rect(fill = "white"),
+axis.line.x=element_line(),
+axis.line.y=element_line()) +
+ggtitle("Linear Model Fitted to Data")
+
+
+print("PREDICTION")
+pred <- predict(dfTot_train.model, test_dfTot)
+summary(pred)
