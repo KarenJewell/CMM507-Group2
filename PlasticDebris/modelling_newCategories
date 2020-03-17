@@ -1,0 +1,125 @@
+
+plasticN <- plastic %>% 
+  mutate(year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(year, category) %>%
+  summarise(`Total Quantity` = sum(Quantity))
+  
+  ####
+library(dplyr)
+df11N <- plasticN  %>%
+  filter(year == 2011) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df12N <- plasticN  %>%
+  filter(year == 2012) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df13N <- plasticN  %>%
+  filter(year == 2013) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df14N <- plasticN  %>%
+  filter(year == 2014) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df15N <- plasticN  %>%
+  filter(year == 2015) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df16N <- plasticN  %>%
+  filter(year == 2016) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+
+df17N <- plasticN  %>%
+  filter(year == 2017) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df18N <- plasticN  %>%
+  filter(year == 2018) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+df19N <- plasticN  %>%
+  filter(year == 2019) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+
+dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+
+# plot for observing the data
+(time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
+  geom_smooth(method="lm") +
+  geom_point(size=3) +
+  theme_bw() + 
+  xlab("Years") +
+  ylab("freq") +
+  ggtitle("portion of plastic") + 
+  expand_limits(y=0) +
+  scale_y_continuous() + 
+  scale_x_continuous()+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(size=5, face="bold")))
+  
+  ### MODELING with new categorisation
+
+
+# create train and test set
+n <- nrow(dfTotN)  # Number of observations
+ntrain <- round(n*0.75)  # 75% for training set
+set.seed(314)    # Set seed for reproducible results
+tindex <- sample(n, ntrain)   # Create a random index
+train_dfTotN <- dfTotN[tindex,]   # Create training set
+test_dfTotN <- dfTotN[-tindex,]
+
+#  Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.
+
+
+# linear model on train set
+print("train model")
+set.seed(1234)
+dfTot_train.modelN <- lm(freq ~ year, data = train_dfTotN)
+summary(dfTot_train.modelN)
+
+# plotting frequencies according to train data
+ggplot(data = train_dfTotN, aes(x = year, y = freq)) +
+geom_point() +
+stat_smooth(method = "lm", col = "dodgerblue3") +
+theme(panel.background = element_rect(fill = "white"),
+axis.line.x=element_line(),
+axis.line.y=element_line()) +
+ggtitle("Linear Model Fitted to Data")
+
+
+print("PREDICTION")
+predN <- predict(dfTot_train.modelN, test_dfTotN)
+summary(predN)
+
+# make actuals_predicteds dataframe
+actuals_preds <- data.frame(cbind(actuals=test_dfTotN$freq, predicteds=predN)) 
+head(actuals_preds)
+# A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
+
+correlation_accuracy <- cor(actuals_preds)  # 5.31%
+min_max_accuracy <- mean(apply(actuals_preds, 1, min) / apply(actuals_preds, 1, max))  
+# => 53.73%, min_max accuracy
+mape <- mean(abs((actuals_preds$predicteds - actuals_preds$actuals))/actuals_preds$actuals)  
+# => 99.4%, mean absolute percentage deviation
+# Intrestingly enough min_max accuracy and mostly mean absolute percentage deviation score quite well
+# but still on a model that can not be trusted.
+  
+  
