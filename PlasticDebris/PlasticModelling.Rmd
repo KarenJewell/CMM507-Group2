@@ -1,0 +1,98 @@
+---
+title: "Plastic Modelling"
+author: "Stuart Watt"
+date: "30/03/2020"
+output: html_document
+---
+
+# Introduction
+Follow up from Georgios' work on modeling. I'm using his idea, but separating the different categories and applying the linear model to them individually.
+
+Plastic is recategorised according to Roshi's labelling before being aggregated by month to find the proportion of plastic they contribute for that month. Note that this does not take into account mass since we don't have this information. This is a limitation in our analysis.
+```{r Setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, messages = FALSE, warnings = FALSE, include = FALSE)
+```
+
+```{r Packages}
+library(tidyverse)
+library(purrr)
+library(lubridate)
+```
+
+```{r DataImport&Tidy}
+data <- list.files(path = "data/", full.names = TRUE) %>% 
+  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>% 
+  reduce(rbind) %>% 
+  mutate(Time = parse_datetime(Timestamp, format = "%Y%m%d%H%M%S")) %>% 
+  select(-c(Timestamp, ListID, ListName))
+```
+
+```{r GetPlastic&Categorise}
+recategorise <- function(x){
+  out = ""
+  if(x %in% c(1,4,6,22)){out = "Cigarette related waste"}
+  if(x %in% c(2,3,7,9,10,17,23,11)) out = "Food related waste"
+  if(x %in% c(8,14,15,16,18,19,21,20)) out = "Other"
+  if(x %in% c(12,13)) out = "Plastic bags and Styrofoam packaging"
+  if(x %in% c(5,23,24,25)) out = "Fragments"
+  if(out == "") stop(paste("Error in recategorise:", x))
+  return(out)
+}
+
+plastic_types <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, ItemID) %>% 
+  distinct() %>% 
+  mutate(label = 1:n()) %>% 
+  mutate(Category = purrr::map(label, recategorise)) %>%
+  mutate(Category = as_factor(as.character(Category))) %>% 
+  select(ItemID, Category)
+
+
+plastic <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  full_join(plastic_types, by = "ItemID")
+
+rm(plastic_types, recategorise)
+```
+
+```{r MakePlasticFreqData}
+# Get plastic category rel. frequencies
+plastic_prop <- plastic %>% 
+  select(Category, Time, Quantity) %>% 
+  mutate(Year = year(Time), Month = month(Time)) %>% 
+  group_by(Year, Month, Category) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  ungroup()
+
+monthly_totals <- plastic_prop %>% 
+  group_by(Year, Month) %>% 
+  summarise(Monthly_Total = sum(Quantity)) %>% 
+  ungroup()
+
+plastic_prop <- plastic_prop %>% 
+  full_join(monthly_totals, by = c("Year", "Month")) %>% 
+  mutate_at(vars(-Category), as.integer) %>% 
+  mutate(Rel_Freq = Quantity/Monthly_Total) %>% 
+  mutate(Month_Year = ymd(paste0(Year, "-", Month, "-", 1))) %>% 
+  select(Month_Year, Year, Month, everything())
+
+rm(monthly_totals)
+```
+
+Since the linear lines of best fit below are non-horizontal this gives evidence against the null hypothesis.
+
+```{r Plot, fig.width=10, fig.asp=0.618, out.width = "90%", fig.align = "center", include = TRUE}
+plastic_prop %>% 
+  ggplot(aes(x = Month_Year, y = Rel_Freq, colour = Category)) +
+    geom_point() + 
+    geom_smooth(method = "lm", level = 0.95) +
+    scale_color_brewer(palette = "Set1") +
+    labs(title = "Monthly Plastic Debris Relative Frequencies",
+         subtitle = "Linear models with 95% confidence region") +
+    xlab("Year-Month") +
+    ylab("Monthly Proportion") +
+    theme(legend.position = c(0.855, 0.85), legend.background = element_blank(), legend.key = element_blank())
+```
+
+Cigarette related plastic clearly decreases in proportion, while food related and fragmented plastic increase. Finding the coefficients in the linear models is a measure of the time invariance.
