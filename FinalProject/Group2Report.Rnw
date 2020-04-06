@@ -68,8 +68,6 @@
 
 
 \begin{document}
-%\SweaveOpts{concordance=TRUE}
-%\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -160,12 +158,28 @@ This paper is conducted using secondary data collection methods only. The author
 \subsection{Dataset Description}\label{dataset}
 
 \begin{itemize}
-\item Where the dataset came from
-\item How it is constructed: multiple csv files by year
-\item A description of what it is, what's in it and what it represents
-\item Problems with the dataset
+%\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
+
+\item The data was taken from marine debris tracker (marinedebris.engr.uga.edu/newmap/) between 2010 till February 19th 2020. The time of 2010 was chosen as there was no data before that time.
+\item The dataset was composed by combining the multiple csv files gathered from the marine debris tracker into a single set after this was done the date data type was renamed "Time". 
+\item The dataset created from the combined csv files contain more than 360000 rows of data and consists of the folowing variables.
   \begin{itemize}
-  \item Missing data
+  \item ListID is the ID code for the list
+  \item ListName is the name of the list
+  \item ItemID is the ID code given to the item of debris
+  \item ItemName is the name we give to item of debris
+  \item LogID is the ID code given to the location of the debris
+  \item Latitude, Longitude and Altitude are the coordinates of the location where the observation was made
+  \item Quantity is the number of pieces of debris in the observation.
+  \item Error radius is the radius around the observation site within the error for reasonable doubt.
+  \item Location is the area the observation of debris was made in.
+  \item Description is the description of the area the debris was found in.
+  \item MaterialID is the ID code of the material that the debris was composed of. 
+  \item Material Description is the description given to the material that composes the debris.
+  \item Time is the time that the observation was made. 
+\item There were a number of problems with the dataset namely;
+  \begin{itemize}
+  \item There were a number of cases of missing data in the dataset. 
   \item data anomalies (lat/long values don't match named regions)
   \item 
   \end{itemize}
@@ -173,13 +187,318 @@ This paper is conducted using secondary data collection methods only. The author
 
 
 \subsection{Dataset Pre-processing}
+%\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
-Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:
+Everything below is from Stuart's RNW file
+<<error= FALSE, warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE,results='asis'>>=
+library(tidyverse)
+library(purrr)
+library(magrittr)
+library(treemap)
+library(mapdata)
+library(viridis)
+library(lubridate)
+library(imager)
+@
+Logged marine debris is available for download \textit{\href{http://marinedebris.engr.uga.edu/newmap/}{here}}. I'm importing data from 2010 till Feb 19th 2020. There doesn't seem to be data before 2010. The data is reported marine debris.
+DataImport
+<<error= FALSE, warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE,results='asis'>>=
+data <- list.files(path = "data/", full.names = TRUE) %>% 
+  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>% 
+  reduce(rbind)
+@
+I'm going to replace the column for time as a date data type, renaming it as simply "Time": 
+DateParsing}
+<<error= FALSE, warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE,results='asis'>>=
+data$Time <- data$Timestamp %>% 
+  parse_datetime(format = "%Y%m%d%H%M%S")
+data$Timestamp <- NULL
+@
+
+Wrangling
+A quick look at the data:
+<<error= FALSE, warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE,results='markup'>>=
+data
+@
+Let's first check for missing values:
+MissingValues
+<<>>=
+data %>% select_if(function(x) any(is.na(x))) %>% colnames()
+@
+So only these columns contain missing values. We will use an explicit missing value for the location factor:
+<<>>=
+data$Location <- data$Location %>% fct_explicit_na()
+@
+Lets see the amount of unique values for each column:
+UniqueValueCount
+<<>>=
+data %>% apply(2, function(x) length(unique(x)))
+@
+Both "ListID" and "ListName" don't give us any information, so we will remove them both.
+<<>>=
+data <- data %>% select(-ListID,-ListName)
+@
+Lets see if there are any "ItemNames" associated with more than one "Material Descriptions".
+<<>>=
+data %>% select(`Material Description`, ItemName) %>%
+  distinct() %$% 
+  table(ItemName) %>% 
+  as_tibble() %>% 
+  filter(n > 1)
+@
+So rubber gloves are associated with two material descriptions, but otherwise a one to many relationship exists between "Material Description" and "ItemName".
+<<>>=
+data %>% select(`Material Description`, ItemName, Quantity) %>%
+  filter(ItemName == "Rubber Gloves") %>% 
+  group_by(`Material Description`) %>% 
+  summarise(Quantity = sum(Quantity))
+@
+It seems that most rubber gloves are classified as plastic rather than rubber. I'm going to search for any extra descriptions given in the observations to try and gain some insight.
+<<>>=
+data %>% select(`Material Description`, ItemName, Description) %>%
+  filter(ItemName == "Rubber Gloves", !is.na(Description))
+@
+All instances of rubber gloves with non-missing descriptions are categorised as plastic. We also see that the descriptions suggest that the categorisation may be innaccurate: the last two instances here have "Balloon" in the extra descriptions... why aren't they categorised as such?
+
+\subsection {Distribution of observed debris:}
+MaterialQuantities
+<<>>=
+data %>% select(Quantity,Description,`Material Description`) %>% 
+  group_by(`Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+@
+
+\begin{figure}[H] %start a figure
+\begin{center}
+<<fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE,out.width=".47\\linewidth">>=
+  ggplot(aes(x = reorder(`Material Description`, Quantity), y = Quantity)) +
+    geom_col() +
+    ylab("Total recorded quantity") +
+    xlab("Material class") +
+    coord_flip()
+@
+\caption {Material Quantities}
+\label{fig1}
+\end {center}
+\end {figure}
+
+So the most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
+
+A tree map of material quantities:
+<<>>=
+png("plots/treemap.png")
+data %>% 
+  select(`Material Description`, ItemName, Quantity) %>% 
+  group_by(`Material Description`, ItemName) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  treemap(index = c("Material Description", "ItemName"),
+          vSize = "Quantity", draw = TRUE) -> tm
+tm
+dev.off()
+#save.image(file = "plots/treemap.png")
+@
+Cigarettes are the most common item recorded. Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
+
+We have locational data, so lets check for any geographical observation bias.
+<<>>=
+world <- map_data("world")
+data %>% 
+  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
+    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
+    theme_void() +
+    guides(fill=guide_legend(title="Observations"))
+
+#ggsave("plots/map.png", width = 20, height = 10, units = "cm")
+@
+There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
+<<>>=
+data %>% 
+  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude, fill = stat(log(count))), bins = 50) +
+    scale_fill_viridis() +
+    theme_void()
+@
+
+We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.
+<<>>=
+data %>% 
+  mutate(Location = str_to_lower(Location)) %>% 
+  filter(str_detect(Location, "united kingdom")) %>% 
+  select(Latitude, Longitude) %>% 
+  ggplot(aes(x = Latitude, y = Longitude)) +
+    geom_point(position = "jitter")
+@
+We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK.
+
+Questions
+Distribution of plastic by location.
+Are the distributions of plastic fairly constant for the locations with the most observations? Let's look:
+<<>>=
+topLocations <- data %>% 
+  group_by(Location) %>% 
+  summarise(sumQuantity = sum(Quantity)) %>% 
+  arrange(desc(sumQuantity)) %>% 
+  top_n(5,sumQuantity)
+
+data %>% 
+  filter(Location %in% topLocations$Location) %>% 
+  group_by(Location, `Material Description`) %>% 
+  summarise(sumQuantity = sum(Quantity)) %>% 
+  arrange(desc(sumQuantity)) %>% 
+  ggplot(aes(x = `Material Description`, y = sumQuantity, fill = Location)) +
+    geom_col()
+@
+We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
+
+Question: Are observed plastic item proportions time invariant?
+
+<<>>=
+plastic_ordered <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, Quantity) %>% 
+  group_by(ItemName) %>% 
+  summarise(Total = sum(Quantity)) %>% 
+  arrange(desc(Total))
+
+data$ItemName <- factor(data$ItemName, plastic_ordered$ItemName)
+
+data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  mutate(month = month(Time, label = TRUE), 
+         year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(month, year, ItemName) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>% 
+  ggplot(aes(x = month, y = `Total Quantity`, fill = ItemName)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    facet_wrap(~year, nrow = 2) +
+    scale_fill_hue(l=50, c=150) +
+    xlab("Month") +
+    ylab("Proportion of Items")
+    #scale_fill_viridis_d(option = "magma")
+
+ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
+@
+
+
+4th July and Firework link? (Karen's Idea)
+<<>>=
+data %>% 
+  filter(`Material Description` == "PLASTIC",
+         ItemName %in% c("Fireworks"),
+         year(Time) >= 2012, year(Time) <= 2019) %>% 
+  mutate(month = month(Time, label = TRUE), 
+         year = as.integer(year(Time))) %>% 
+  group_by(month, year) %>% 
+  summarise(quantity = sum(Quantity)) %>% 
+  ggplot() +
+    geom_boxplot(aes(x = month, y = quantity)) +
+    xlab("Month") +
+    ylab("Quantity") +
+    ggtitle("Firework debris 2012-2019")
+
+ggsave("plots/fireworks.png")
+@
+
+<<>>=
+data %>% 
+  mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
+         months = floor_date(Time, 'month')) %>% 
+  group_by(months, Type) %>% 
+  summarize(`Number of observations` = n()) %>% 
+  ggplot(aes(x = months, y = `Number of observations`)) +
+    geom_area(aes(fill = Type))
+  # ggplot() +
+  # geom_histogram(aes(x = Time))
+  
+@
+
+<<>>=
+data %>% 
+  mutate(year = year(Time)) %>% 
+  filter(year > 2010, year < 2020) %>% 
+  group_by(year) %>% 
+  summarise(quan = sum(Quantity)) %>% 
+  ggplot(aes(x = year, y = quan)) +
+    geom_line() +
+    geom_point() +
+    scale_x_continuous(breaks = 2011:2019) +
+    xlab("Year") +
+    ylab("Quantity") +
+    ggtitle("Quantity of debris per year") +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+
+ggsave("plots/observations.png")
+@
+
+Recategorisation
+<<>>=
+# all cigarette related waste: 1, 4, 6, 22
+# Food related waste: 3, 2,7,9,10, 17, 23, 11
+# Non food related waste: 8, 14, 15, 16, 18, 19, 21, 20
+# Plastic bags and Styrofoam packaging:12, 13
+# Fragments: 5, 23, 24,25
+
+recategorise <- function(x){
+  out = ""
+  if(x %in% c(1,4,6,22)){out = "Cigarette related waste"}
+  if(x %in% c(2,3,7,9,10,17,23,11)) out = "Food related waste"
+  if(x %in% c(8,14,15,16,18,19,21,20)) out = "Other"
+  if(x %in% c(12,13)) out = "Plastic bags and Styrofoam packaging"
+  if(x %in% c(5,23,24,25)) out = "Fragments"
+  if(out == "") stop(paste("Error in recategorise:", x))
+  return(out)
+}
+
+plastic_types <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, ItemID) %>% 
+  distinct() %>% 
+  mutate(label = 1:n()) %>% 
+  mutate(category = purrr::map(label, recategorise)) %>%
+  mutate(category = as_factor(as.character(category))) %>% 
+  select(ItemID, category)
+
+
+plastic <- data %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  full_join(plastic_types, by = "ItemID")
+
+plastic %>% 
+  mutate(month = month(Time, label = FALSE), 
+         year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(month, year, category) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>% 
+  ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    facet_wrap(~year, nrow = 2) +
+    scale_fill_viridis(discrete = TRUE, option = "plasma") +
+    xlab("Month") +
+    ylab("Proportion of Items") +
+    ggtitle("Rel. frequencies of observed plastic waste by category") +
+    scale_x_continuous(breaks = 1:12) +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) +
+    guides(fill=guide_legend(title="Category"))
+
+#ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
+
+@
+
+
+After the issues with the dataset that were identified in the section above, it was decided that it would be best to transform the dataset in the following ways:
 \begin{itemize}
 \item reclassified some labels because variation was too high (there were too many labels)
-\item removed missing values
-\item removed certain subsets
-\item but kept certain subsets
+\item The values of the missing data were removed.
+\item It was decided that subsets that were not needed were removed while retaining the necessary subsets.
+
 \end{itemize}
 
 \section{Exploration}
@@ -206,11 +525,152 @@ Rubber found in Indoneasia only: possibly a recording bias.
 Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas
 
 
+\subsection{Item Pairing} 
+(e.g. are 6-pack beer rings observed at the same time as fireworks? )
+
+
 \section{Predictive Modelling}
+The authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model, given we know that event-driven pollution will determine different pollutants are different times.
+
 \subsection{Description of Model}
+
+Georgios' script
+<<eval=FALSE>>=
+
+plasticN <- plastic %>% 
+  mutate(year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(year, category) %>%
+  summarise(`Total Quantity` = sum(Quantity))
+  
+  ####
+library(dplyr)
+df11N <- plasticN  %>%
+  filter(year == 2011) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df12N <- plasticN  %>%
+  filter(year == 2012) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df13N <- plasticN  %>%
+  filter(year == 2013) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df14N <- plasticN  %>%
+  filter(year == 2014) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+df15N <- plasticN  %>%
+  filter(year == 2015) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df16N <- plasticN  %>%
+  filter(year == 2016) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+
+df17N <- plasticN  %>%
+  filter(year == 2017) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
+
+df18N <- plasticN  %>%
+  filter(year == 2018) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+df19N <- plasticN  %>%
+  filter(year == 2019) %>% 
+  group_by(year) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+
+
+dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+
+# plot for observing the data
+(time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
+  geom_smooth(method="lm") +
+  geom_point(size=3) +
+  theme_bw() + 
+  xlab("Years") +
+  ylab("freq") +
+  ggtitle("portion of plastic") + 
+  expand_limits(y=0) +
+  scale_y_continuous() + 
+  scale_x_continuous()+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(size=5, face="bold")))
+  
+  ### MODELING with new categorisation
+
+
+# create train and test set
+n <- nrow(dfTotN)  # Number of observations
+ntrain <- round(n*0.75)  # 75% for training set
+set.seed(314)    # Set seed for reproducible results
+tindex <- sample(n, ntrain)   # Create a random index
+train_dfTotN <- dfTotN[tindex,]   # Create training set
+test_dfTotN <- dfTotN[-tindex,]
+
+#  Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.
+
+
+# linear model on train set
+print("train model")
+set.seed(1234)
+dfTot_train.modelN <- lm(freq ~ year, data = train_dfTotN)
+summary(dfTot_train.modelN)
+
+# plotting frequencies according to train data
+ggplot(data = train_dfTotN, aes(x = year, y = freq)) +
+geom_point() +
+stat_smooth(method = "lm", col = "dodgerblue3") +
+theme(panel.background = element_rect(fill = "white"),
+axis.line.x=element_line(),
+axis.line.y=element_line()) +
+ggtitle("Linear Model Fitted to Data")
+
+
+print("PREDICTION")
+predN <- predict(dfTot_train.modelN, test_dfTotN)
+summary(predN)
+
+# make actuals_predicteds dataframe
+actuals_preds <- data.frame(cbind(actuals=test_dfTotN$freq, predicteds=predN)) 
+head(actuals_preds)
+# A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
+
+correlation_accuracy <- cor(actuals_preds)  # 5.31%
+min_max_accuracy <- mean(apply(actuals_preds, 1, min) / apply(actuals_preds, 1, max))  
+# => 53.73%, min_max accuracy
+mape <- mean(abs((actuals_preds$predicteds - actuals_preds$actuals))/actuals_preds$actuals)  
+# => 99.4%, mean absolute percentage deviation
+# Intrestingly enough min_max accuracy and mostly mean absolute percentage deviation score quite well
+# but still on a model that can not be trusted.
+
+@
+
+\subsection{Model Evaluation}
+
+
 \subsection{Model Results}
+Time does not impact plastic composition.
 
 \section{Discussion}
+
+
 
 \section{Conclusion and Future Work}\label{cdsmote1}
 
@@ -267,7 +727,6 @@ print(xtable(dfs,
 %Edit here 
 %\blindtext[2] \\
 
-Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
 
 <<warning=FALSE,message=FALSE,eval=TRUE,echo=FALSE, results='asis'>>=
 require(openxlsx);

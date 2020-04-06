@@ -1,54 +1,4 @@
-\documentclass[10pt]{article}\usepackage[]{graphicx}\usepackage[]{color}
-% maxwidth is the original width if it is less than linewidth
-% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
-
-\usepackage{framed}
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[10pt]{article}
 \usepackage{graphicx, verbatim}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -114,11 +64,10 @@
 
 % \pagestyle{fancy}
 % \rfoot{Page \thepage}
- %\thispagestyle{empty}
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+ %\thispagestyle{empty} 
+
+
 \begin{document}
-%\SweaveOpts{concordance=TRUE}
-%\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -209,12 +158,28 @@ This paper is conducted using secondary data collection methods only. The author
 \subsection{Dataset Description}\label{dataset}
 
 \begin{itemize}
-\item Where the dataset came from
-\item How it is constructed: multiple csv files by year
-\item A description of what it is, what's in it and what it represents
-\item Problems with the dataset
+%\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
+
+\item The data was taken from marine debris tracker (marinedebris.engr.uga.edu/newmap/) between 2010 till February 19th 2020. The time of 2010 was chosen as there was no data before that time.
+\item The dataset was composed by combining the multiple csv files gathered from the marine debris tracker into a single set after this was done the date data type was renamed "Time". 
+\item The dataset created from the combined csv files contain more than 360000 rows of data and consists of the folowing variables.
   \begin{itemize}
-  \item Missing data
+  \item ListID is the ID code for the list
+  \item ListName is the name of the list
+  \item ItemID is the ID code given to the item of debris
+  \item ItemName is the name we give to item of debris
+  \item LogID is the ID code given to the location of the debris
+  \item Latitude, Longitude and Altitude are the coordinates of the location where the observation was made
+  \item Quantity is the number of pieces of debris in the observation.
+  \item Error radius is the radius around the observation site within the error for reasonable doubt.
+  \item Location is the area the observation of debris was made in.
+  \item Description is the description of the area the debris was found in.
+  \item MaterialID is the ID code of the material that the debris was composed of. 
+  \item Material Description is the description given to the material that composes the debris.
+  \item Time is the time that the observation was made. 
+\item There were a number of problems with the dataset namely;
+  \begin{itemize}
+  \item There were a number of cases of missing data in the dataset. 
   \item data anomalies (lat/long values don't match named regions)
   \item 
   \end{itemize}
@@ -222,202 +187,67 @@ This paper is conducted using secondary data collection methods only. The author
 
 
 \subsection{Dataset Pre-processing}
+%\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
-Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:
-\begin{itemize}
-\item reclassified some labels because variation was too high (there were too many labels)
-\item removed missing values
-\item removed certain subsets
-\item but kept certain subsets
-\end{itemize}
+Everything below is from Stuart's RNW file
 
-\section{Exploration}
-
-Here we describe the things we found... 
-
-\subsection{Proportion Trends}
-How pollutant proportions change over time.
-
-Cigarette butts proportions and raw counts decrease over time: possibly less people smoking, or moving to vaping
-
-General pollution count going down over time?
-
-Old pollutants fall away (cigarette butts) but new ones are introduced
-
-\subsection{Event-Driven Pollution}
-
-Fireworks found in July and North-America only: possibly 4th July celebrations
-
-\subsection{Location-Driven Pollution}
-
-Rubber found in Indoneasia only: possibly a recording bias.
-
-Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas
-
-
-\section{Predictive Modelling}
-\subsection{Description of Model}
-\subsection{Model Results}
-
-\section{Discussion}
-
-\section{Conclusion and Future Work}\label{cdsmote1}
-
-Our hypothesis stands/does not stand.
-
-
-%Edit here 
-%\blindtext[2]
+Logged marine debris is available for download \textit{\href{http://marinedebris.engr.uga.edu/newmap/}{here}}. I'm importing data from 2010 till Feb 19th 2020. There doesn't seem to be data before 2010. The data is reported marine debris.
+DataImport
 
 
 
 
 
-\section{Project Management}\label{mgt}
-\subsection{Facilities}
-Group 2 communicated using a dedicated Slack Channel, Github repository and weekly 1 hour meetings before the wednesday lab.
-All project documents used and the final report can be accessed from the \textit{\href{https://github.com/KarenJewell/CMM507Group2}{Public Github Repository}}
-
-\subsection{Project Progress}
-%Edit here 
-%\blindtext[2]
-% Pay attention to the code below including the chunk options 
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Wed Mar 11 10:39:56 2020
-\begin{table}[ht]
-\centering
-\caption{Record of Team Meetings} 
-\label{tab:one}
-\begin{tabular}{llp{8cm}lllll}
-  \hline
-No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\ 
-  \hline
-1.00 & 2020-02-05 & Group Formation: set up communication channel in Slack and GitHub repository & yes & yes & yes & yes & yes \\ 
-  2.00 & 2020-02-11 & Agreed topic of "Plastic Pollution", distributed research activity for week & yes & yes & yes & yes & yes \\ 
-  3.00 & 2020-02-18 & Presented inividuals' research findings and discussed hypothesis & yes & yes & yes & yes & yes \\ 
-  4.00 & 2020-02-25 & Decided on final dataset to use and hypothesis of "proportion of marine plastics pollution does not change over time" & yes & yes & yes & yes & yes \\ 
-  5.00 & 2020-03-04 & Presentation draft agreed & yes & yes & yes & yes & yes \\ 
-  6.00 & 2020-03-10 & Distributed section writing activity for week & yes & yes & yes & yes & yes \\ 
-  7.00 & 2020-03-17 &  &  &  &  &  &  \\ 
-  8.00 & 2020-03-24 &  &  &  &  &  &  \\ 
-  9.00 & 2020-03-31 &  &  &  &  &  &  \\ 
-  10.00 & 2020-04-07 &  &  &  &  &  &  \\ 
-  11.00 & 2020-04-14 &  &  &  &  &  &  \\ 
-  12.00 & 2020-04-21 &  &  &  &  &  &  \\ 
-   \hline
-\end{tabular}
-\end{table}
 
 
 
 
 
-\subsection{Peer-assessment}
-
-%Edit here 
-%\blindtext[2] \\
-
-Same as we did with Table~\ref{tab:one}, we can also generate the peer-assessment table providing that we record things in an excel sheet. 
-
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Wed Mar 11 10:39:57 2020
-\begin{table}[ht]
-\centering
-\caption{Peer Assessment out of 100} 
-\label{tab:two}
-\begin{tabular}{llllll}
-  \hline
-Peer.Review & Alex & Georgios & Karen & Roshi & Stuart \\ 
-  \hline
-Alex & 100 & 100 & 100 & 100 & 100 \\ 
-  Georgios & 100 & 100 & 100 & 100 & 100 \\ 
-  Karen & 100 & 100 & 100 & 100 & 100 \\ 
-  Roshi & 100 & 100 & 100 & 100 & 100 \\ 
-  Stuart & 100 & 100 & 100 & 100 & 100 \\ 
-   \hline
-\end{tabular}
-\end{table}
 
 
 
 
-\subsection{Section on figure referencing - keep for referencing}\label{explore}
-
-%Edit here 
-%\blindtext[2]
-
-In this project iris was used, the dataset is made of 150 rows and four features. \\
-
-Notice how we generate graphics within the sweave document. Check the following code, we will create a function that either finds $x^2$ or $x^3$ subject to parameters passed in the function
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# create a vector of doubles}
-\hlstd{myNumbers} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwc{from}\hlstd{=}\hlopt{-}\hlnum{1}\hlstd{,}\hlkwc{to}\hlstd{=}\hlnum{1}\hlstd{,}\hlkwc{by}\hlstd{=}\hlnum{.1}\hlstd{)}
-
-\hlcom{# function definition}
-\hlstd{toPower} \hlkwb{<-} \hlkwa{function} \hlstd{(}\hlkwc{x}\hlstd{,}\hlkwc{p}\hlstd{=}\hlnum{2}\hlstd{) \{}
-    \hlkwa{if} \hlstd{(p}\hlopt{==}\hlnum{2}\hlstd{)}
-        \hlkwd{return} \hlstd{(x}\hlopt{*}\hlstd{x)}
-    \hlkwa{else if} \hlstd{(p}\hlopt{==}\hlnum{3}\hlstd{)}
-        \hlkwd{return} \hlstd{(x}\hlopt{*}\hlstd{x}\hlopt{*}\hlstd{x)}
-    \hlkwd{return} \hlstd{(x}\hlopt{*}\hlstd{x)}
-\hlstd{\}}
-
-\hlcom{# call function}
-\hlstd{squared} \hlkwb{<-} \hlkwd{toPower}\hlstd{(myNumbers)}
-\hlstd{cubes} \hlkwb{<-} \hlkwd{toPower}\hlstd{(myNumbers,}\hlnum{3}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-An easy way to check that our function is doing the right calculation is to plot the results. The code below will generate a figure similar to Figure~\ref{fig1}: 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot}\hlstd{(myNumbers,cubes,}\hlkwc{type}\hlstd{=}\hlstr{'b'}\hlstd{,}\hlkwc{xlab} \hlstd{=} \hlstr{'x'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'x*x'}\hlstd{,}\hlkwc{frame}\hlstd{=}\hlnum{FALSE}\hlstd{,}\hlkwc{col}\hlstd{=}\hlstr{'blue'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-
-% See carefully how we embed the R code within latex here, check captions, and figure labels 
-\begin{figure}[H] %start a figure
-\begin{center}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-5-1} 
-
-\end{knitrout}
-
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig1}
-\end {center}
-\end {figure}
 
 
 
 
-\subsection{Experiments}\label{experiments}
 
-Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
 
-\begin{figure}[H] %start a figure
-\begin{center}
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=.47\linewidth]{figure/unnamed-chunk-6-1} 
 
-\end{knitrout}
 
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig2}
-\end {center}
-\end {figure}
 
-\section*{References}\label{pubs}
-\printbibliography[heading =none]
 
-\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
