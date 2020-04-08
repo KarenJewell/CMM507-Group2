@@ -2182,24 +2182,31 @@
     <bcf:datasource type="file" datatype="bibtex">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">DERRAIK2002842</bcf:citekey>
-    <bcf:citekey order="2">DERRAIK2002842</bcf:citekey>
-    <bcf:citekey order="3">RIOS20071230</bcf:citekey>
-    <bcf:citekey order="4">SIVAN2011</bcf:citekey>
-    <bcf:citekey order="5">Jambeck768</bcf:citekey>
-    <bcf:citekey order="6">RIOS20071230</bcf:citekey>
-    <bcf:citekey order="7">Rochman2015</bcf:citekey>
-    <bcf:citekey order="8">GALL2015170</bcf:citekey>
-    <bcf:citekey order="9">Kuhn2015</bcf:citekey>
-    <bcf:citekey order="10">ROBARDS1995151</bcf:citekey>
-    <bcf:citekey order="11">MOSER1992</bcf:citekey>
-    <bcf:citekey order="12">Kuhn2015</bcf:citekey>
-    <bcf:citekey order="13">GALL2015170</bcf:citekey>
-    <bcf:citekey order="14">WILLIAMS2019</bcf:citekey>
-    <bcf:citekey order="15">Kiessling2015</bcf:citekey>
-    <bcf:citekey order="16">Rochman2015</bcf:citekey>
-    <bcf:citekey order="17">coe1997marine</bcf:citekey>
-    <bcf:citekey order="18">GARRITY1993317</bcf:citekey>
+    <bcf:citekey order="1">DERRAIK2002</bcf:citekey>
+    <bcf:citekey order="2">REISSER2013</bcf:citekey>
+    <bcf:citekey order="3">BARBOZA2020</bcf:citekey>
+    <bcf:citekey order="4">DERRAIK2002</bcf:citekey>
+    <bcf:citekey order="5">RIOS2007</bcf:citekey>
+    <bcf:citekey order="6">BARNES2009</bcf:citekey>
+    <bcf:citekey order="7">SIVAN2011</bcf:citekey>
+    <bcf:citekey order="8">BARNES2009</bcf:citekey>
+    <bcf:citekey order="9">JAMBECK2015</bcf:citekey>
+    <bcf:citekey order="10">RIOS2007</bcf:citekey>
+    <bcf:citekey order="11">ROCHMAN2015</bcf:citekey>
+    <bcf:citekey order="12">GALL2015</bcf:citekey>
+    <bcf:citekey order="13">KUHN2015</bcf:citekey>
+    <bcf:citekey order="14">ROBARDS1995</bcf:citekey>
+    <bcf:citekey order="15">MOSER1992</bcf:citekey>
+    <bcf:citekey order="16">GALL2015</bcf:citekey>
+    <bcf:citekey order="17">KUHN2015</bcf:citekey>
+    <bcf:citekey order="18">RYAN2015</bcf:citekey>
+    <bcf:citekey order="19">WILLIAMS2019</bcf:citekey>
+    <bcf:citekey order="20">GREGORY2009</bcf:citekey>
+    <bcf:citekey order="21">KIESSLING2015</bcf:citekey>
+    <bcf:citekey order="22">ROCHMAN2015</bcf:citekey>
+    <bcf:citekey order="23">MARKIC2020</bcf:citekey>
+    <bcf:citekey order="24">COE1997</bcf:citekey>
+    <bcf:citekey order="25">GARRITY1993</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

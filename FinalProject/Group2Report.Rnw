@@ -68,8 +68,7 @@
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
 
-\author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}}; GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
-%ALEXANDER RITCHIE (1911218) ;GEORGIOS ORFANAKIS (1903446); KAREN JEWELL (1415410); ROSHI SHRESTHA (1903445); STUART WATT (1501869); 
+\author{{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}};\\ GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};\\ KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};\\ ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};\\ STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}}
 
 \maketitle
 % \begin{flushleft} \today \end{flushleft} 
@@ -98,26 +97,37 @@ H0 = The \% of plastic pollution does not remain constant over time.
 
 \subsection{Overview}\label{over}
 
-Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter (\cite{DERRAIK2002842}; Reisser, 2015 \hl{Reisser 2013?}, Barboza et al., 2019 \hl{Barboza 2020?}). 
-
-Synthetic organic polymer derived from polymerisation of monomers extracted from oil and gas make up the plastics \cite{DERRAIK2002842} \cite{RIOS20071230}. The lightweight feature and its durability make it very suitable to make a range of products that we use in our everyday life (Barnes et al., 2009 \hl{not in bib}; \cite{SIVAN2011}). These same features have been a major cause of pollution due to overuse and non-managed waste disposal system worldwide with plastic contributing to the 10\% of the waste generated worldwide (Barnes et al., 2009\hl{not in bib}). Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time. Although, plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently. Jambeck et al., \cite{Jambeck768} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are now everywhere in the marine environment and urgent action is required to mitigate this problem and reduce the harmful impact \cite{RIOS20071230} \cite{Rochman2015}. 
+Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter.\cite{DERRAIK2002} \cite{REISSER2013} \cite{BARBOZA2020}
+\\
+\\
+Synthetic organic polymer derived from polymerisation of monomers extracted from oil and gas make up the plastics.\cite{DERRAIK2002} \cite{RIOS2007} The lightweight feature and its durability make it very suitable to make a range of products that we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features have been a major cause of pollution due to overuse and non-managed waste disposal system worldwide with plastic contributing to the 10\% of the waste generated worldwide.\cite{BARNES2009} Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time. Although, plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently. Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are now everywhere in the marine environment and urgent action is required to mitigate this problem and reduce the harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}
 
 
 
 \subsection{Motivation}\label{mot}
 
 Impact on marine life
+\\
+\\
 Plastics in ocean is one of the many forms of human impact that threatens marine life. There is still very little information available on the impact of plastic pollution on the ocean's ecosystem. Due to the realisation on impact of human on climate and environment, there has been a lot of awareness activities to reduce the impact of pollution. Ban on single use plastic bags are being applied to many countries in order to protect the environment. 
-
-Over 700 marine wildlife species are affected due to entanglement in plastic ropes and materials and ingestion of plastics in the ocean \cite{GALL2015170}. Over 340 species of marine animals were found to be entangled \cite{Kuhn2015}. Reducing plastic waste is a major challenge worldwide. It is almost impossible to estimate the number of marine animals affected by marine pollution globally due to the vastness of the ocean. However, studies carried out on the gut contents of thousands of seabirds, found the significant increase in the ingestion of plastics during the 10-15 years interval \cite{ROBARDS1995151}. This result might correlate to the rapid increase of plastic production and plastic use globally.  In a study carried out over fourteen years, Moser and Lee \cite{MOSER1992} found that more 50\% of the seabird species contained plastic particles in the gut which increased over time. This could be due the increase in plastic availability over time. 
-Entanglement in plastic debris is another cause of marine life suffering. Discarded fishing gear and floating mastic masses in ocean are serious threat to marine animals. Some animals such as seals are attracted to the floating plastics where they get entangled and get suffocated. Harmful effect of litter on marine life has been reviewed extensively (Ryan, 2015 \hl{not in bib}; \cite{Kuhn2015} \cite{GALL2015170} \cite{WILLIAMS2019}). Floating plastics over long distances can disperse alien species as well as some pathogens. Drifting plastic debris are also the source of alien species introduction and thus affecting the native marine biodiversity (Gregory, 2009\hl{not in bib} \cite{Kiessling2015}). 
-
+\\
+\\
+Over 700 marine wildlife species are affected due to entanglement in plastic ropes and materials and ingestion of plastics in the ocean.\cite{GALL2015} Over 340 species of marine animals were found to be entangled.\cite{KUHN2015} Reducing plastic waste is a major challenge worldwide. It is almost impossible to estimate the number of marine animals affected by marine pollution globally due to the vastness of the ocean. However, studies carried out on the gut contents of thousands of seabirds, found the significant increase in the ingestion of plastics during the 10-15 years interval.\cite{ROBARDS1995} This result might correlate to the rapid increase of plastic production and plastic use globally.  In a study carried out over fourteen years, Moser and Lee \cite{MOSER1992} found that more 50\% of the seabird species contained plastic particles in the gut which increased over time. This could be due the increase in plastic availability over time. 
+\\
+\\
+Entanglement in plastic debris is another cause of marine life suffering. Discarded fishing gear and floating mastic masses in ocean are serious threat to marine animals. Some animals such as seals are attracted to the floating plastics where they get entangled and get suffocated. Harmful effect of litter on marine life has been reviewed extensively.\cite{GALL2015} \cite{KUHN2015} \cite{RYAN2015} \cite{WILLIAMS2019} Floating plastics over long distances can disperse alien species as well as some pathogens. Drifting plastic debris are also the source of alien species introduction and thus affecting the native marine biodiversity.\cite{GREGORY2009} \cite{KIESSLING2015} 
+\\
+\\
 Impact on environment and human health
+\\
+\\
 Plastic debris floating in the oceans and the littering the coastal areas are not a pleasant sight. Masses of plastic accumulation and discarded objects made from plastics are found everywhere nowadays. 
-
-Over time plastic disintegrates into small microplastics which are easily consumed by fish and they enter the food chain. Plastics have been found in a third of fish caught in the UK which included the popular fishes such as cod, haddock and mackerel. Impact of plastic entering the human food chain and the effects of it are still to be studied.  Plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply can also be a direct impact on human health in addition to the contamination in seafood (\cite{Rochman2015}; Markic et al., 2019 \hl{Markic 2020?}).
-
-Reducing plastic pollution has recently been a global aim. Research in plastic pollution in marine environment has played a big role in reducing it and raising awareness all over the world. In order to understand the plastic pollution in marine environments and its effect in long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is very essential in order to reduce the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for prevention initiative of marine pollution. Most of the monitoring are done by surveys looking at frequencies of beach litter collected by organisations and volunteers \cite{coe1997marine}. Most abundant litter can be found close to urban areas where beach visitor numbers are higher \cite{GARRITY1993317}. 
+\\
+\\
+Over time plastic disintegrates into small microplastics which are easily consumed by fish and they enter the food chain. Plastics have been found in a third of fish caught in the UK which included the popular fishes such as cod, haddock and mackerel. Impact of plastic entering the human food chain and the effects of it are still to be studied.  Plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply can also be a direct impact on human health in addition to the contamination in seafood.\cite{ROCHMAN2015} \cite{MARKIC2020}
+\\
+\\
+Reducing plastic pollution has recently been a global aim. Research in plastic pollution in marine environment has played a big role in reducing it and raising awareness all over the world. In order to understand the plastic pollution in marine environments and its effect in long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is very essential in order to reduce the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for prevention initiative of marine pollution. Most of the monitoring are done by surveys looking at frequencies of beach litter collected by organisations and volunteers.\cite{COE1997} Most abundant litter can be found close to urban areas where beach visitor numbers are higher.\cite{GARRITY1993} 
 
 
 
@@ -130,7 +140,7 @@ The main objectives of this project can be outlined as follows:
 
 
 
-
+\pagebreak
 \section{Research}\label{research}
 
 Things we found
@@ -178,7 +188,7 @@ This paper is conducted using secondary data collection methods only. The author
 %\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
 Everything below is from Stuart's RNW file
-<<eval=TRUE,echo=TRUE,error= FALSE,warning=FALSE,message=FALSE>>=
+<<eval=TRUE,echo=FALSE,error= FALSE,warning=FALSE,message=FALSE>>=
 library(tidyverse)
 library(purrr)
 library(magrittr)
@@ -187,6 +197,7 @@ library(mapdata)
 library(viridis)
 library(lubridate)
 library(imager)
+
 
 data <- list.files(path = "data/debris/", full.names = TRUE) %>% 
   lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>% 
@@ -226,117 +237,48 @@ data %>% select(`Material Description`, ItemName) %>%
   filter(n > 1)
 @
 So rubber gloves are associated with two material descriptions, but otherwise a one to many relationship exists between "Material Description" and "ItemName".
-<<eval=FALSE,echo=TRUE>>=
+<<eval=TRUE,echo=TRUE>>=
 data %>% select(`Material Description`, ItemName, Quantity) %>%
   filter(ItemName == "Rubber Gloves") %>% 
   group_by(`Material Description`) %>% 
   summarise(Quantity = sum(Quantity))
 @
 It seems that most rubber gloves are classified as plastic rather than rubber. I'm going to search for any extra descriptions given in the observations to try and gain some insight.
-<<eval=FALSE,echo=TRUE>>=
+<<eval=TRUE,echo=TRUE>>=
 data %>% select(`Material Description`, ItemName, Description) %>%
   filter(ItemName == "Rubber Gloves", !is.na(Description))
 @
 All instances of rubber gloves with non-missing descriptions are categorised as plastic. We also see that the descriptions suggest that the categorisation may be innaccurate: the last two instances here have "Balloon" in the extra descriptions... why aren't they categorised as such?
 
-\subsection {Distribution of observed debris:}
-MaterialQuantities
-<<eval=FALSE,echo=TRUE>>=
-data %>% select(Quantity,Description,`Material Description`) %>% 
-  group_by(`Material Description`) %>% 
-  summarise(Quantity = sum(Quantity)) %>% 
-@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Recategorisation}
+
+
+After the issues with the dataset that were identified in the section above, it was decided that it would be best to transform the dataset in the following ways:
+\begin{itemize}
+\item reclassified some labels because variation was too high (there were too many labels)
+\item The values of the missing data were removed.
+\item It was decided that subsets that were not needed were removed while retaining the necessary subsets.
+\end{itemize}
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=FALSE, fig=TRUE,warning=FALSE,message=FALSE,echo=TRUE,out.width=".47\\linewidth">>=
-  ggplot(aes(x = reorder(`Material Description`, Quantity), y = Quantity)) +
-    geom_col() +
-    ylab("Total recorded quantity") +
-    xlab("Material class") +
-    coord_flip()
-@
-\caption {Material Quantities}
-\label{figMQ}
-\end {center}
-\end {figure}
-
-So the most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
-
-A tree map of material quantities:
-<<eval=FALSE,echo=TRUE>>=
-png("plots/treemap.png")
-data %>% 
-  select(`Material Description`, ItemName, Quantity) %>% 
-  group_by(`Material Description`, ItemName) %>% 
-  summarise(Quantity = sum(Quantity)) %>% 
-  treemap(index = c("Material Description", "ItemName"),
-          vSize = "Quantity", draw = TRUE) -> tm
-tm
-dev.off()
-#save.image(file = "plots/treemap.png")
-@
-Cigarettes are the most common item recorded. Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
-
-We have locational data, so lets check for any geographical observation bias.
-<<eval=FALSE,echo=TRUE>>=
-world <- map_data("world")
-data %>% 
-  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
-  ggplot() +
-    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
-    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
-    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
-    theme_void() +
-    guides(fill=guide_legend(title="Observations"))
-
-#ggsave("plots/map.png", width = 20, height = 10, units = "cm")
-@
-There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
-<<eval=FALSE,echo=TRUE>>=
-data %>% 
-  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
-  ggplot() +
-    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
-    geom_hex(aes(x = Longitude, y = Latitude, fill = stat(log(count))), bins = 50) +
-    scale_fill_viridis() +
-    theme_void()
-@
-
-We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.
-<<eval=FALSE,echo=TRUE>>=
-data %>% 
-  mutate(Location = str_to_lower(Location)) %>% 
-  filter(str_detect(Location, "united kingdom")) %>% 
-  select(Latitude, Longitude) %>% 
-  ggplot(aes(x = Latitude, y = Longitude)) +
-    geom_point(position = "jitter")
-@
-We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK.
-
-Questions
-Distribution of plastic by location.
-Are the distributions of plastic fairly constant for the locations with the most observations? Let's look:
-<<eval=FALSE,echo=TRUE>>=
-topLocations <- data %>% 
-  group_by(Location) %>% 
-  summarise(sumQuantity = sum(Quantity)) %>% 
-  arrange(desc(sumQuantity)) %>% 
-  top_n(5,sumQuantity)
-
-data %>% 
-  filter(Location %in% topLocations$Location) %>% 
-  group_by(Location, `Material Description`) %>% 
-  summarise(sumQuantity = sum(Quantity)) %>% 
-  arrange(desc(sumQuantity)) %>% 
-  ggplot(aes(x = `Material Description`, y = sumQuantity, fill = Location)) +
-    geom_col()
-@
-We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
-
-Question: Are observed plastic item proportions time invariant?
-
-<<eval=FALSE,echo=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
 plastic_ordered <- data %>% 
   filter(`Material Description` == "PLASTIC") %>% 
   select(ItemName, Quantity) %>% 
@@ -355,69 +297,27 @@ data %>%
   summarise(`Total Quantity` = sum(Quantity)) %>% 
   ggplot(aes(x = month, y = `Total Quantity`, fill = ItemName)) +
     geom_col(colour = "black", size = 0.2, position = "fill") +
-    facet_wrap(~year, nrow = 2) +
+    facet_wrap(~year, nrow = 4) +
     scale_fill_hue(l=50, c=150) +
     xlab("Month") +
-    ylab("Proportion of Items")
+    ylab("Proportion of Items") +
+    theme(legend.position="top")
     #scale_fill_viridis_d(option = "magma")
 
-ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
+#ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
 @
+\caption {Debris by categorisation}
+\label{figE}
+\end {center}
+\end {figure}
 
 
-4th July and Firework link? (Karen's Idea)
-<<eval=FALSE,echo=TRUE>>=
-data %>% 
-  filter(`Material Description` == "PLASTIC",
-         ItemName %in% c("Fireworks"),
-         year(Time) >= 2012, year(Time) <= 2019) %>% 
-  mutate(month = month(Time, label = TRUE), 
-         year = as.integer(year(Time))) %>% 
-  group_by(month, year) %>% 
-  summarise(quantity = sum(Quantity)) %>% 
-  ggplot() +
-    geom_boxplot(aes(x = month, y = quantity)) +
-    xlab("Month") +
-    ylab("Quantity") +
-    ggtitle("Firework debris 2012-2019")
 
-ggsave("plots/fireworks.png")
-@
 
-<<eval=FALSE,echo=TRUE>>=
-data %>% 
-  mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
-         months = floor_date(Time, 'month')) %>% 
-  group_by(months, Type) %>% 
-  summarize(`Number of observations` = n()) %>% 
-  ggplot(aes(x = months, y = `Number of observations`)) +
-    geom_area(aes(fill = Type))
-  # ggplot() +
-  # geom_histogram(aes(x = Time))
-  
-@
 
-<<eval=FALSE,echo=TRUE>>=
-data %>% 
-  mutate(year = year(Time)) %>% 
-  filter(year > 2010, year < 2020) %>% 
-  group_by(year) %>% 
-  summarise(quan = sum(Quantity)) %>% 
-  ggplot(aes(x = year, y = quan)) +
-    geom_line() +
-    geom_point() +
-    scale_x_continuous(breaks = 2011:2019) +
-    xlab("Year") +
-    ylab("Quantity") +
-    ggtitle("Quantity of debris per year") +
-    theme(panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank())
-
-ggsave("plots/observations.png")
-@
-
-Recategorisation
-<<eval=FALSE,echo=TRUE>>=
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=  
 # all cigarette related waste: 1, 4, 6, 22
 # Food related waste: 3, 2,7,9,10, 17, 23, 11
 # Non food related waste: 8, 14, 15, 16, 18, 19, 21, 20
@@ -455,66 +355,282 @@ plastic %>%
   filter(year > 2010) %>% 
   group_by(month, year, category) %>%
   summarise(`Total Quantity` = sum(Quantity)) %>% 
-  ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
+
+
+#Recategorisation by year
+    ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
     geom_col(colour = "black", size = 0.2, position = "fill") +
-    facet_wrap(~year, nrow = 2) +
+    facet_wrap(~year, nrow = 4) +
     scale_fill_viridis(discrete = TRUE, option = "plasma") +
     xlab("Month") +
     ylab("Proportion of Items") +
     ggtitle("Rel. frequencies of observed plastic waste by category") +
     scale_x_continuous(breaks = 1:12) +
     theme(panel.grid.major.x = element_blank(),
-          panel.grid.minor.x = element_blank()) +
+          panel.grid.minor.x = element_blank(),
+          legend.position="top") +
     guides(fill=guide_legend(title="Category"))
 
 #ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
 
 @
+\caption {Recategorisation by year}
+\label{figB}
+\end {center}
+\end {figure}
 
 
-After the issues with the dataset that were identified in the section above, it was decided that it would be best to transform the dataset in the following ways:
-\begin{itemize}
-\item reclassified some labels because variation was too high (there were too many labels)
-\item The values of the missing data were removed.
-\item It was decided that subsets that were not needed were removed while retaining the necessary subsets.
 
-\end{itemize}
-
+\pagebreak
 \section{Exploration}
 
 Here we describe the things we found... 
 
 \subsection{Proportion Trends}
-How pollutant proportions change over time.
+How pollutant proportions change over time.\\
+\\
+Cigarette butts proportions and raw counts decrease over time: possibly less people smoking, or moving to vaping\\
+\\
+General pollution count going down over time?\\
+\\
+Old pollutants fall away (cigarette butts) but new ones are introduced\\
+\\
+Question: Are observed plastic item proportions time invariant?\\
+\\
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE, fig=TRUE>>=
+#Linechart quantity of debris per year
+data %>% 
+  mutate(year = year(Time)) %>% 
+  filter(year > 2010, year < 2020) %>% 
+  group_by(year) %>% 
+  summarise(quan = sum(Quantity)) %>% 
+  ggplot(aes(x = year, y = quan)) +
+    geom_line() +
+    geom_point() +
+    scale_x_continuous(breaks = 2011:2019) +
+    xlab("Year") +
+    ylab("Quantity") +
+    ggtitle("Quantity of debris per year") +
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
 
-Cigarette butts proportions and raw counts decrease over time: possibly less people smoking, or moving to vaping
+#ggsave("plots/observations.png")
+@
+\caption {Trend of debris observered}
+\label{figD}
+\end {center}
+\end {figure}
+\hl{this chart needs to size down}
 
-General pollution count going down over time?
 
-Old pollutants fall away (cigarette butts) but new ones are introduced
+
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+#Histogram of observations: Total v Plastic
+data %>% 
+  mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
+         months = floor_date(Time, 'month')) %>% 
+  group_by(months, Type) %>% 
+  summarize(`Number of observations` = n()) %>% 
+  ggplot(aes(x = months, y = `Number of observations`)) +
+    geom_area(aes(fill = Type))
+  # ggplot() +
+  # geom_histogram(aes(x = Time))
+  
+@
+\caption {Observations of plastic debris v all debris}
+\label{figF}
+\end {center}
+\end {figure}
+\hl{this chart needs to size down}
+
+
+
+\subsection {Distribution of observed debris:}
+
+MaterialQuantities\\
+
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+data %>% select(Quantity,Description,`Material Description`) %>% 
+  group_by(`Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+
+  ggplot(aes(x = reorder(`Material Description`, Quantity), y = Quantity)) +
+    geom_col() +
+    ylab("Total recorded quantity") +
+    xlab("Material class") +
+    coord_flip()
+@
+\caption {Material Quantities}
+\label{figC}
+\end {center}
+\end {figure}
+
+So the most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
+
+A tree map of material quantities:
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=FALSE,echo=FALSE,fig=TRUE,warning=TRUE,error=TRUE>>=
+#treemap of debris categories
+#png("plots/treemap.png")
+data %>% 
+  select(`Material Description`, ItemName, Quantity) %>% 
+  group_by(`Material Description`, ItemName) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  treemap(index = c("Material Description", "ItemName"),
+          vSize = "Quantity", draw = TRUE) -> tm
+#tm
+#dev.off()
+#save.image(file = "plots/treemap.png")
+@
+\caption {Debris categorisation}
+\label{figI}
+\end {center}
+\end {figure}
+\hl{chart disabled for now. This chart was working for a while (works in RStudio R, not LaTeX) only hint I can see is:\#\# Warning: Factor `ItemName` contains implicit NA, consider using `forcats::fct\_explicit\_na`}
+
+Cigarettes are the most common item recorded as seen in. %Figure~\ref{figI}
+Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
+
+\hl{This is a great chart, but not the best to support the statement that cigarettes is most popular - a column or bar chart here will be much better (area charts are not as effective as charts you can level-compare), potentially use proportions or data labels to further drive the point that it IS the largest. Treemap suggest moving back into pre-processing section.}
+
+
 
 \subsection{Event-Driven Pollution}
 
-Fireworks found in July and North-America only: possibly 4th July celebrations
+Fireworks found in July and North-America only: possibly 4th July celebrations\\
+4th July and Firework link? (Karen's Idea)\\
+
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+#Boxplot of fireworks distribution by month (across all years)
+data %>% 
+  filter(`Material Description` == "PLASTIC",
+         ItemName %in% c("Fireworks"),
+         year(Time) >= 2012, year(Time) <= 2019) %>% 
+  mutate(month = month(Time, label = TRUE), 
+         year = as.integer(year(Time))) %>% 
+  group_by(month, year) %>% 
+  summarise(quantity = sum(Quantity)) %>% 
+  ggplot() +
+    geom_boxplot(aes(x = month, y = quantity)) +
+    xlab("Month") +
+    ylab("Quantity") +
+    ggtitle("Firework debris 2012-2019")
+
+#ggsave("plots/fireworks.png")
+@
+
+\caption {Boxplot of fireworks distribution by month, across all years}
+\label{figA}
+\end {center}
+\end {figure}
+\hl{this chart needs to size down}
+
+
+
+
 
 \subsection{Location-Driven Pollution}
 
-Rubber found in Indoneasia only: possibly a recording bias.
+Rubber found in Indoneasia only: possibly a recording bias.\\
 
-Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas
+Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas\\
+
+We have locational data, so lets check for any geographical observation bias.
+<<eval=TRUE,echo=TRUE>>=
+world <- map_data("world")
+data %>% 
+  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
+    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
+    theme_void() +
+    guides(fill=guide_legend(title="Observations"))
+
+#ggsave("plots/map.png", width = 20, height = 10, units = "cm")
+@
+There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
+<<eval=TRUE,echo=TRUE>>=
+data %>% 
+  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude, fill = stat(log(count))), bins = 50) +
+    scale_fill_viridis() +
+    theme_void()
+@
+
+We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.\\
+
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=TRUE,fig=TRUE>>=
+#Scatterplot of long/lat positions
+data %>% 
+  mutate(Location = str_to_lower(Location)) %>% 
+  filter(str_detect(Location, "united kingdom")) %>% 
+  select(Latitude, Longitude) %>% 
+  ggplot(aes(x = Latitude, y = Longitude)) +
+    geom_point(position = "jitter")
+@
+\caption {Longitude and Latitude discrepancies}
+\label{figH}
+\end {center}
+\end {figure}
+\hl{this chart needs to size down}
+We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK.\\
+
+Questions\\
+Distribution of plastic by location.\\
+Are the distributions of plastic fairly constant for the locations with the most observations?\\
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+#columnchart of debris locations
+topLocations <- data %>% 
+  group_by(Location) %>% 
+  summarise(sumQuantity = sum(Quantity)) %>% 
+  arrange(desc(sumQuantity)) %>% 
+  top_n(5,sumQuantity)
+
+data %>% 
+  filter(Location %in% topLocations$Location) %>% 
+  group_by(Location, `Material Description`) %>% 
+  summarise(sumQuantity = sum(Quantity)) %>% 
+  arrange(desc(sumQuantity)) %>% 
+  ggplot(aes(x = `Material Description`, y = sumQuantity, fill = Location)) +
+    geom_col() + theme(legend.position = 'top')
+@
+\caption {Debris by location}
+\label{figG}
+\end {center}
+\end {figure}
+We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
+\hl{this chart needs to size down}
+
 
 
 \subsection{Item Pairing} 
 (e.g. are 6-pack beer rings observed at the same time as fireworks? )
+\hl{are we going to explore this one?}
 
-
+\pagebreak
 \section{Predictive Modelling}
 The authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model, given we know that event-driven pollution will determine different pollutants are different times.
 
 \subsection{Description of Model}
 
 Georgios' script
-<<eval=FALSE, echo=TRUE>>=
+<<eval=FALSE,echo=TRUE>>=
 
 plasticN <- plastic %>% 
   mutate(year = as.integer(year(Time))) %>% 
@@ -647,6 +763,7 @@ mape <- mean(abs((actuals_preds$predicteds - actuals_preds$actuals))/actuals_pre
 \subsection{Model Results}
 Time does not impact plastic composition.
 
+\pagebreak
 \section{Discussion}
 
 
@@ -662,17 +779,17 @@ Our hypothesis stands/does not stand.
 
 
 
-
+\pagebreak
 \section{Project Management}\label{mgt}
 \subsection{Facilities}
 Group 2 communicated using a dedicated Slack Channel, Github repository and weekly 1 hour meetings before the wednesday lab.
 All project documents used and the final report can be accessed from the \textit{\href{https://github.com/KarenJewell/CMM507Group2}{Public Github Repository}}
+\hl{obviously we need to mention the whole covid-19 thing and how we worked around it.}
 
 \subsection{Project Progress}
-%Edit here 
-%\blindtext[2]
+
 % Pay attention to the code below including the chunk options 
-<<warning=FALSE,message=FALSE,eval=FALSE,echo=TRUE,results='asis'>>=
+<<eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE,results='asis'>>=
 require(openxlsx);
 require(readxl)
 library(stringr);library(data.table)
@@ -703,11 +820,7 @@ print(xtable(dfs,
 
 \subsection{Peer-assessment}
 
-%Edit here 
-%\blindtext[2] \\
-
-
-<<warning=FALSE,message=FALSE,eval=FALSE,echo=TRUE, results='asis'>>=
+<<eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE,results='asis'>>=
 require(openxlsx);
 require(readxl)
 library(stringr);library(data.table)
@@ -737,75 +850,7 @@ print(xtable(dfs,
 @
 
 
-
-\subsection{Section on figure referencing - keep for referencing}\label{explore}
-
-%Edit here 
-%\blindtext[2]
-
-In this project iris was used, the dataset is made of 150 rows and four features. \\
-
-Notice how we generate graphics within the sweave document. Check the following code, we will create a function that either finds $x^2$ or $x^3$ subject to parameters passed in the function
-<<eval=FALSE, echo=FALSE>>=
-# create a vector of doubles
-myNumbers <- seq(from=-1,to=1,by=.1)
-
-# function definition
-toPower <- function (x,p=2) {
-    if (p==2)
-        return (x*x)
-    else if (p==3)
-        return (x*x*x)
-    return (x*x)
-}
-
-# call function
-squared <- toPower(myNumbers)
-cubes <- toPower(myNumbers,3)
-
-
-@
-
-An easy way to check that our function is doing the right calculation is to plot the results. The code below will generate a figure similar to Figure~\ref{fig1}: 
-<<eval=FALSE, echo=FALSE>>=
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
-
-
-% See carefully how we embed the R code within latex here, check captions, and figure labels 
-\begin{figure}[H] %start a figure
-\begin{center}
-
-<<eval=FALSE, fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE,out.width=".47\\linewidth">>=
-
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
-
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig1}
-\end {center}
-\end {figure}
-
-
-
-
-\subsection{Experiments}\label{experiments}
-
-Now we can show how the function $f(x)=x^2$ looks like (Figure~\ref{fig2})
-
-\begin{figure}[H] %start a figure
-\begin{center}
-
-<<eval=FALSE, fig=TRUE,warning=FALSE,message=FALSE,echo=FALSE,out.width=".47\\linewidth">>=
-
-plot(myNumbers,cubes,type='b',xlab = 'x', ylab = 'x*x',frame=FALSE,col='blue')
-@
-
-\caption {Simple Plot of $f(x)=x^3$ Function}
-\label{fig2}
-\end {center}
-\end {figure}
-
+\pagebreak
 \section*{References}\label{pubs}
 \printbibliography[heading =none]
 
