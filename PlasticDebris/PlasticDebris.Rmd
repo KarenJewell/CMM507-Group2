@@ -170,12 +170,11 @@ plastic_ordered <- data %>%
   summarise(Total = sum(Quantity)) %>% 
   arrange(desc(Total))
 
-data$ItemName <- factor(data$ItemName, plastic_ordered$ItemName)
-
 data %>% 
   filter(`Material Description` == "PLASTIC") %>% 
   mutate(month = month(Time, label = TRUE), 
-         year = as.integer(year(Time))) %>% 
+         year = as.integer(year(Time)),
+         ItemName = fct_infreq(ItemName)) %>% 
   filter(year > 2010) %>% 
   group_by(month, year, ItemName) %>%
   summarise(`Total Quantity` = sum(Quantity)) %>% 
@@ -187,7 +186,7 @@ data %>%
     ylab("Proportion of Items")
     #scale_fill_viridis_d(option = "magma")
 
-ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
+#ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
 ```
 
 
@@ -207,7 +206,7 @@ data %>%
     ylab("Quantity") +
     ggtitle("Firework debris 2012-2019")
 
-ggsave("plots/fireworks.png")
+#ggsave("plots/fireworks.png")
 ```
 
 ```{r}
