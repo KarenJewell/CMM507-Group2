@@ -233,9 +233,15 @@ Nulls found in ItemName and Description.\\
 \hl{this means every entry has a material at least? why? could be a required field? that would explain why some entries are rubbish if people are forced to pick a category}
 \hl{it is also worth discussing the merits of dropdown entries: standardises input but forces a value where none might be appropriate, or a default it selected?}
 \\
+\hl{Stuart: Yes, it is a required field. I checked on the mobile app and you select a item type from different material sections. Note however that there is a material type \emph{Other Items} which contains the items \emph{Other} and \emph{Test Item}. Therefore users are able to categorise an item as other if it is not appropriate for any other option on the list.}
+\\
 NAs removed \hl{not sure what is actually happening with the explicit\_na() piece for location?}\\
 \\
+\hl{Stuart: I used explicit\_na to replace missing values with an expliciet level name (like ``Missing'' or something similar). I think it was to remove warnings when I was plotting.}
+\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
+\\
+\hl{I was puzzled by this so I investigated it and found it is not in the source data. I found a coding bug further down in the code, where I make the stacked bar chart with proportions per month. I have fixed this, and now no ItemName values are blank. Sorry!}
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
 <<eval=TRUE,echo=FALSE,results='markup'>>=
@@ -291,12 +297,11 @@ plastic_ordered <- data %>%
   summarise(Total = sum(Quantity)) %>% 
   arrange(desc(Total))
 
-data$ItemName <- factor(data$ItemName, plastic_ordered$ItemName)
-
 data %>% 
   filter(`Material Description` == "PLASTIC") %>% 
   mutate(month = month(Time, label = TRUE), 
-         year = as.integer(year(Time))) %>% 
+         year = as.integer(year(Time)),
+         ItemName = fct_infreq(ItemName)) %>% 
   filter(year > 2010) %>% 
   group_by(month, year, ItemName) %>%
   summarise(`Total Quantity` = sum(Quantity)) %>% 
