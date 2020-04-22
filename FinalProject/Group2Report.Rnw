@@ -593,7 +593,7 @@ data %>%
     geom_point(position = "jitter")
 @
 \caption {Longitude and Latitude discrepancies}
-\label{figH}
+\label{figJ}
 \end {center}
 \end {figure}
 \hl{this chart needs to size down}
@@ -640,7 +640,7 @@ The authors of this report built a model to predict the proportion of plastics g
 \subsection{Description of Model}
 
 Georgios' script
-<<eval=FALSE,echo=TRUE>>=
+<<eval=TRUE,echo=FALSE>>=
 
 plasticN <- plastic %>% 
   mutate(year = as.integer(year(Time))) %>% 
@@ -703,7 +703,11 @@ df19N <- plasticN  %>%
 
 
 dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+@
 
+\begin{figure}[H] %start a figure
+\begin{center}
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
 # plot for observing the data
 (time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
   geom_smooth(method="lm") +
@@ -717,7 +721,13 @@ dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
   scale_x_continuous()+
   theme(legend.position="bottom")+
   theme(legend.text = element_text(size=5, face="bold")))
-  
+@
+\caption {Current Observations}
+\label{figH}
+\end {center}
+\end {figure}
+
+<<eval=TRUE,echo=FALSE>>=
   ### MODELING with new categorisation
 
 
@@ -729,15 +739,16 @@ tindex <- sample(n, ntrain)   # Create a random index
 train_dfTotN <- dfTotN[tindex,]   # Create training set
 test_dfTotN <- dfTotN[-tindex,]
 
-#  Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.
-
-
 # linear model on train set
 print("train model")
 set.seed(1234)
 dfTot_train.modelN <- lm(freq ~ year, data = train_dfTotN)
 summary(dfTot_train.modelN)
+@
 
+Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.\\
+
+<<eval=TRUE,echo=FALSE,fig=TRUE>>=
 # plotting frequencies according to train data
 ggplot(data = train_dfTotN, aes(x = year, y = freq)) +
 geom_point() +
@@ -746,7 +757,17 @@ theme(panel.background = element_rect(fill = "white"),
 axis.line.x=element_line(),
 axis.line.y=element_line()) +
 ggtitle("Linear Model Fitted to Data")
+@
 
+
+
+\subsection{Model Evaluation}
+
+
+\subsection{Model Results}
+
+<<eval=TRUE,echo=FALSE,>>=
+#library(xtable)
 
 print("PREDICTION")
 predN <- predict(dfTot_train.modelN, test_dfTotN)
@@ -754,24 +775,24 @@ summary(predN)
 
 # make actuals_predicteds dataframe
 actuals_preds <- data.frame(cbind(actuals=test_dfTotN$freq, predicteds=predN)) 
-head(actuals_preds)
-# A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
+xtable(head(actuals_preds))
 
 correlation_accuracy <- cor(actuals_preds)  # 5.31%
 min_max_accuracy <- mean(apply(actuals_preds, 1, min) / apply(actuals_preds, 1, max))  
 # => 53.73%, min_max accuracy
 mape <- mean(abs((actuals_preds$predicteds - actuals_preds$actuals))/actuals_preds$actuals)  
-# => 99.4%, mean absolute percentage deviation
-# Intrestingly enough min_max accuracy and mostly mean absolute percentage deviation score quite well
-# but still on a model that can not be trusted.
+
 
 @
 
-\subsection{Model Evaluation}
+A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
 
+equal or greater than 99.4\%, mean absolute percentage deviation.
+Intrestingly enough min/max accuracy and mostly mean absolute percentage deviation score quite well but still on a model that can not be trusted.
 
-\subsection{Model Results}
 Time does not impact plastic composition.
+
+
 
 \pagebreak
 \section{Discussion}

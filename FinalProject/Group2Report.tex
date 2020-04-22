@@ -551,7 +551,7 @@ We need to know how reliable the location data is. I'm going to filter for "unit
 
 \end{knitrout}
 \caption {Longitude and Latitude discrepancies}
-\label{figH}
+\label{figJ}
 \end {center}
 \end {figure}
 \hl{this chart needs to size down}
@@ -587,140 +587,79 @@ The authors of this report built a model to predict the proportion of plastics g
 \subsection{Description of Model}
 
 Georgios' script
+
+
+\begin{figure}[H] %start a figure
+\begin{center}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-19-1} 
+
+\end{knitrout}
+\caption {Current Observations}
+\label{figH}
+\end {center}
+\end {figure}
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{plasticN} \hlkwb{<-} \hlstd{plastic} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year, category)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))}
-
-  \hlcom{####}
-\hlkwd{library}\hlstd{(dplyr)}
-\hlstd{df11N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2011}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-\hlstd{df12N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2012}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-\hlstd{df13N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2013}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-\hlstd{df14N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2014}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-\hlstd{df15N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2015}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-\hlstd{df16N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2016}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-
-\hlstd{df17N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2017}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-\hlstd{df18N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2018}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-\hlstd{df19N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2019}\hlstd{)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
-
-
-\hlstd{dfTotN} \hlkwb{<-} \hlkwd{rbind}\hlstd{(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)}
-
-\hlcom{# plot for observing the data}
-\hlstd{(time_plotfr2N} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(dfTotN,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= freq,} \hlkwc{color}\hlstd{=category,} \hlkwc{fill} \hlstd{= category))} \hlopt{+}
-  \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method}\hlstd{=}\hlstr{"lm"}\hlstd{)} \hlopt{+}
-  \hlkwd{geom_point}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{3}\hlstd{)} \hlopt{+}
-  \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
-  \hlkwd{xlab}\hlstd{(}\hlstr{"Years"}\hlstd{)} \hlopt{+}
-  \hlkwd{ylab}\hlstd{(}\hlstr{"freq"}\hlstd{)} \hlopt{+}
-  \hlkwd{ggtitle}\hlstd{(}\hlstr{"portion of plastic"}\hlstd{)} \hlopt{+}
-  \hlkwd{expand_limits}\hlstd{(}\hlkwc{y}\hlstd{=}\hlnum{0}\hlstd{)} \hlopt{+}
-  \hlkwd{scale_y_continuous}\hlstd{()} \hlopt{+}
-  \hlkwd{scale_x_continuous}\hlstd{()}\hlopt{+}
-  \hlkwd{theme}\hlstd{(}\hlkwc{legend.position}\hlstd{=}\hlstr{"bottom"}\hlstd{)}\hlopt{+}
-  \hlkwd{theme}\hlstd{(}\hlkwc{legend.text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{face}\hlstd{=}\hlstr{"bold"}\hlstd{)))}
-
-  \hlcom{### MODELING with new categorisation}
-
-
-\hlcom{# create train and test set}
-\hlstd{n} \hlkwb{<-} \hlkwd{nrow}\hlstd{(dfTotN)}  \hlcom{# Number of observations}
-\hlstd{ntrain} \hlkwb{<-} \hlkwd{round}\hlstd{(n}\hlopt{*}\hlnum{0.75}\hlstd{)}  \hlcom{# 75% for training set}
-\hlkwd{set.seed}\hlstd{(}\hlnum{314}\hlstd{)}    \hlcom{# Set seed for reproducible results}
-\hlstd{tindex} \hlkwb{<-} \hlkwd{sample}\hlstd{(n, ntrain)}   \hlcom{# Create a random index}
-\hlstd{train_dfTotN} \hlkwb{<-} \hlstd{dfTotN[tindex,]}   \hlcom{# Create training set}
-\hlstd{test_dfTotN} \hlkwb{<-} \hlstd{dfTotN[}\hlopt{-}\hlstd{tindex,]}
-
-\hlcom{#  Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.}
-
-
-\hlcom{# linear model on train set}
-\hlkwd{print}\hlstd{(}\hlstr{"train model"}\hlstd{)}
-\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
-\hlstd{dfTot_train.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_dfTotN)}
-\hlkwd{summary}\hlstd{(dfTot_train.modelN)}
-
-\hlcom{# plotting frequencies according to train data}
-\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= train_dfTotN,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= freq))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()} \hlopt{+}
-\hlkwd{stat_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{"dodgerblue3"}\hlstd{)} \hlopt{+}
-\hlkwd{theme}\hlstd{(}\hlkwc{panel.background} \hlstd{=} \hlkwd{element_rect}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"white"}\hlstd{),}
-\hlkwc{axis.line.x}\hlstd{=}\hlkwd{element_line}\hlstd{(),}
-\hlkwc{axis.line.y}\hlstd{=}\hlkwd{element_line}\hlstd{())} \hlopt{+}
-\hlkwd{ggtitle}\hlstd{(}\hlstr{"Linear Model Fitted to Data"}\hlstd{)}
-
-
-\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
-\hlstd{predN} \hlkwb{<-} \hlkwd{predict}\hlstd{(dfTot_train.modelN, test_dfTotN)}
-\hlkwd{summary}\hlstd{(predN)}
-
-\hlcom{# make actuals_predicteds dataframe}
-\hlstd{actuals_preds} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_dfTotN}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=predN))}
-\hlkwd{head}\hlstd{(actuals_preds)}
-\hlcom{# A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.}
-
-\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_preds)}  \hlcom{# 5.31%}
-\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_preds,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_preds,} \hlnum{1}\hlstd{, max))}
-\hlcom{# => 53.73%, min_max accuracy}
-\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_preds}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_preds}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_preds}\hlopt{$}\hlstd{actuals)}
-\hlcom{# => 99.4%, mean absolute percentage deviation}
-\hlcom{# Intrestingly enough min_max accuracy and mostly mean absolute percentage deviation score quite well}
-\hlcom{# but still on a model that can not be trusted.}
-\end{alltt}
+\begin{verbatim}
+## [1] "train model"
+## 
+## Call:
+## lm(formula = freq ~ year, data = train_dfTotN)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.16902 -0.15595 -0.05901  0.11798  0.58471 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept) -0.5394008 25.0245129  -0.022    0.983
+## year         0.0003635  0.0124198   0.029    0.977
+## 
+## Residual standard error: 0.1954 on 32 degrees of freedom
+## Multiple R-squared:  2.676e-05,	Adjusted R-squared:  -0.03122 
+## F-statistic: 0.0008564 on 1 and 32 DF,  p-value: 0.9768
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
+
+Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.\\
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-21-1} 
+
+\end{knitrout}
+
+
 
 \subsection{Model Evaluation}
 
 
 \subsection{Model Results}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.1919  0.1926  0.1933  0.1931  0.1935  0.1944
+\end{verbatim}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(head(actuals\_preds)): could not find function "{}xtable"{}}}\end{kframe}
+\end{knitrout}
+
+A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
+
+equal or greater than 99.4\%, mean absolute percentage deviation.
+Intrestingly enough min/max accuracy and mostly mean absolute percentage deviation score quite well but still on a model that can not be trusted.
+
 Time does not impact plastic composition.
+
+
 
 \pagebreak
 \section{Discussion}
@@ -749,7 +688,7 @@ All project documents used and the final report can be accessed from the \textit
 
 % Pay attention to the code below including the chunk options 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon Apr 13 21:57:25 2020
+% Wed Apr 22 14:10:54 2020
 \begin{table}[ht]
 \centering
 \caption{Record of Team Meetings} 
@@ -781,7 +720,7 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 \subsection{Peer-assessment}
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon Apr 13 21:57:26 2020
+% Wed Apr 22 14:10:55 2020
 \begin{table}[ht]
 \centering
 \caption{Peer Assessment out of 100} 
