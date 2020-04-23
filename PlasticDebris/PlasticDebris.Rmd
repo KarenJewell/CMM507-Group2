@@ -91,15 +91,15 @@ So the most populated material class is Plastic. Note that this does not necessa
 
 A tree map of material quantities:
 ```{r TreeMap}
-png("plots/treemap.png")
-data %>% 
+#png("plots/treemap.png")
+tm <- data %>% 
   select(`Material Description`, ItemName, Quantity) %>% 
   group_by(`Material Description`, ItemName) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
   treemap(index = c("Material Description", "ItemName"),
-          vSize = "Quantity", draw = TRUE) -> tm
+          vSize = "Quantity", draw = TRUE)
 tm
-dev.off()
+#dev.off()
 #save.image(file = "plots/treemap.png")
 ```
 Cigarettes are the most common item recorded. Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
@@ -116,7 +116,7 @@ data %>%
     theme_void() +
     guides(fill=guide_legend(title="Observations"))
 
-ggsave("plots/map.png", width = 20, height = 10, units = "cm")
+#ggsave("plots/map.png", width = 20, height = 10, units = "cm")
 ```
 There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
 ```{r}
@@ -229,16 +229,16 @@ data %>%
   group_by(year) %>% 
   summarise(quan = sum(Quantity)) %>% 
   ggplot(aes(x = year, y = quan)) +
-    geom_line() +
-    geom_point() +
+    geom_col() +
     scale_x_continuous(breaks = 2011:2019) +
     xlab("Year") +
     ylab("Quantity") +
     ggtitle("Quantity of debris per year") +
-    theme(panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank())
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) +
+    scale_y_continuous(labels = scales::label_number_si(accuracy = 1))
 
-ggsave("plots/observations.png")
+#ggsave("plots/observations.png")
 ```
 
 ```{r Recategorisation}
@@ -273,6 +273,16 @@ plastic <- data %>%
   filter(`Material Description` == "PLASTIC") %>% 
   full_join(plastic_types, by = "ItemID")
 
+ordered_levels <- plastic %>%
+  group_by(category) %>% 
+  summarise(totObs = sum(Quantity)) %>% 
+  ungroup() %>% 
+  arrange(desc(totObs)) %>% 
+  select(category) %$%
+  category
+plastic$category <- factor(plastic$category, levels = ordered_levels)
+rm(ordered_levels)
+
 plastic %>% 
   mutate(month = month(Time, label = FALSE), 
          year = as.integer(year(Time))) %>% 
@@ -291,5 +301,5 @@ plastic %>%
           panel.grid.minor.x = element_blank()) +
     guides(fill=guide_legend(title="Category"))
 
-ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
+# ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
 ```

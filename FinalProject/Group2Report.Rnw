@@ -23,7 +23,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
-\usepackage{soul}
+\usepackage{soul} 
 
 \usepackage{hyperref}
 \hypersetup{
@@ -64,6 +64,7 @@
 
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -289,7 +290,7 @@ After the issues with the dataset that were identified in the section above, it 
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=6>>=
 plastic_ordered <- data %>% 
   filter(`Material Description` == "PLASTIC") %>% 
   select(ItemName, Quantity) %>% 
@@ -311,7 +312,8 @@ data %>%
     scale_fill_hue(l=50, c=150) +
     xlab("Month") +
     ylab("Proportion of Items") +
-    theme(legend.position="top")
+    theme(legend.position="bottom",
+          legend.text=element_text(size=4)) # --- Change legend text size here! ---
     #scale_fill_viridis_d(option = "magma")
 
 #ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")
@@ -324,10 +326,10 @@ data %>%
 
 
 
-
+\hl{Adjust legend text size in annotated code below. - Stuart}
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=  
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=  
 # all cigarette related waste: 1, 4, 6, 22
 # Food related waste: 3, 2,7,9,10, 17, 23, 11
 # Non food related waste: 8, 14, 15, 16, 18, 19, 21, 20
@@ -359,18 +361,26 @@ plastic <- data %>%
   filter(`Material Description` == "PLASTIC") %>% 
   full_join(plastic_types, by = "ItemID")
 
+ordered_levels <- plastic %>%
+  group_by(category) %>% 
+  summarise(totObs = sum(Quantity)) %>% 
+  ungroup() %>% 
+  arrange(desc(totObs)) %>% 
+  select(category) %$%
+  category
+plastic$category <- factor(plastic$category, levels = ordered_levels)
+rm(ordered_levels)
+
+
 plastic %>% 
   mutate(month = month(Time, label = FALSE), 
          year = as.integer(year(Time))) %>% 
   filter(year > 2010) %>% 
   group_by(month, year, category) %>%
   summarise(`Total Quantity` = sum(Quantity)) %>% 
-
-
-#Recategorisation by year
-    ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
+  ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
     geom_col(colour = "black", size = 0.2, position = "fill") +
-    facet_wrap(~year, nrow = 4) +
+    facet_wrap(~year, nrow = 2) +
     scale_fill_viridis(discrete = TRUE, option = "plasma") +
     xlab("Month") +
     ylab("Proportion of Items") +
@@ -378,13 +388,14 @@ plastic %>%
     scale_x_continuous(breaks = 1:12) +
     theme(panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
-          legend.position="top") +
+          legend.position = "bottom",
+          legend.text=element_text(size=5)) + # --- Change legend text size here! ---
     guides(fill=guide_legend(title="Category"))
 
 #ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")
 
 @
-\caption {Recategorisation by year}
+\caption {Recategorisation by year. Colour scale ordered by ranking of total observed quantity.}
 \label{figB}
 \end {center}
 \end {figure}
@@ -407,9 +418,10 @@ Old pollutants fall away (cigarette butts) but new ones are introduced\\
 \\
 Question: Are observed plastic item proportions time invariant?\\
 \\
+\hl{I changed the parameters here to adjust figure size. Change the number in out.width. - Stuart}
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE, fig=TRUE>>=
+<<eval=TRUE,echo=FALSE, fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #Linechart quantity of debris per year
 data %>% 
   mutate(year = year(Time)) %>% 
@@ -417,14 +429,14 @@ data %>%
   group_by(year) %>% 
   summarise(quan = sum(Quantity)) %>% 
   ggplot(aes(x = year, y = quan)) +
-    geom_line() +
-    geom_point() +
+    geom_col() +
     scale_x_continuous(breaks = 2011:2019) +
     xlab("Year") +
     ylab("Quantity") +
     ggtitle("Quantity of debris per year") +
-    theme(panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank())
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) +
+    scale_y_continuous(labels = scales::label_number_si(accuracy = 1))
 
 #ggsave("plots/observations.png")
 @
@@ -438,7 +450,7 @@ data %>%
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #Histogram of observations: Total v Plastic
 data %>% 
   mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
@@ -446,7 +458,8 @@ data %>%
   group_by(months, Type) %>% 
   summarize(`Number of observations` = n()) %>% 
   ggplot(aes(x = months, y = `Number of observations`)) +
-    geom_area(aes(fill = Type))
+    geom_area(aes(fill = Type)) +
+    theme(legend.position = "bottom")
   # ggplot() +
   # geom_histogram(aes(x = Time))
   
@@ -465,7 +478,7 @@ MaterialQuantities\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 data %>% select(Quantity,Description,`Material Description`) %>% 
   group_by(`Material Description`) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
@@ -486,7 +499,7 @@ So the most populated material class is Plastic. Note that this does not necessa
 A tree map of material quantities:
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=FALSE,echo=FALSE,fig=TRUE,warning=TRUE,error=TRUE>>=
+<<eval=FALSE,echo=FALSE,fig=TRUE,warning=TRUE,error=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #treemap of debris categories
 #png("plots/treemap.png")
 data %>% 
@@ -495,6 +508,7 @@ data %>%
   summarise(Quantity = sum(Quantity)) %>% 
   treemap(index = c("Material Description", "ItemName"),
           vSize = "Quantity", draw = TRUE) -> tm
+tm
 #tm
 #dev.off()
 #save.image(file = "plots/treemap.png")
@@ -519,7 +533,7 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #Boxplot of fireworks distribution by month (across all years)
 data %>% 
   filter(`Material Description` == "PLASTIC",
@@ -555,7 +569,7 @@ Rubber found in Indoneasia only: possibly a recording bias.\\
 Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas\\
 
 We have locational data, so lets check for any geographical observation bias.
-<<eval=TRUE,echo=TRUE>>=
+<<eval=TRUE,echo=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 world <- map_data("world")
 data %>% 
   select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
@@ -568,22 +582,12 @@ data %>%
 
 #ggsave("plots/map.png", width = 20, height = 10, units = "cm")
 @
-There seems to be a strong bias towards North America in our dataset. We will try a logarithmic plot to see things more clearly:
-<<eval=TRUE,echo=TRUE>>=
-data %>% 
-  select(Latitude, Longitude, Quantity, Location, `Material Description`) %>% 
-  ggplot() +
-    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
-    geom_hex(aes(x = Longitude, y = Latitude, fill = stat(log(count))), bins = 50) +
-    scale_fill_viridis() +
-    theme_void()
-@
 
 We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=TRUE,fig=TRUE>>=
+<<eval=TRUE,echo=TRUE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #Scatterplot of long/lat positions
 data %>% 
   mutate(Location = str_to_lower(Location)) %>% 
@@ -604,7 +608,7 @@ Distribution of plastic by location.\\
 Are the distributions of plastic fairly constant for the locations with the most observations?\\
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=FALSE,fig=TRUE>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #columnchart of debris locations
 topLocations <- data %>% 
   group_by(Location) %>% 
