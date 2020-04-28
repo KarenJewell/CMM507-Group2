@@ -64,7 +64,6 @@
 
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -191,7 +190,7 @@ This paper is conducted using secondary data collection methods only. The author
 \subsection{Dataset Pre-processing}
 %\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
-Everything below is from Stuart's RNW file
+
 <<eval=TRUE,echo=FALSE,error= FALSE,warning=FALSE,message=FALSE>>=
 library(tidyverse)
 library(purrr)
@@ -201,6 +200,7 @@ library(mapdata)
 library(viridis)
 library(lubridate)
 library(imager)
+library(xtable)
 
 
 data <- list.files(path = "data/debris/", full.names = TRUE) %>% 
@@ -223,12 +223,11 @@ data %>% select_if(function(x) any(is.na(x))) %>% colnames()
 data$Location <- data$Location %>% fct_explicit_na()
 
 #Remove redundant data
-#Both "ListID" and "ListName" don't give us any information, so we will remove them both.
 data <- data %>% select(-ListID,-ListName)
 @
 The following actions were performed on the dataset:
 
-\"ListID\" and \"ListName\" were found to be redundant and removed. \hl{can we remove ItemID and MaterialID also since we have the descriptions?}\\
+'ListID', 'ListName', 'ItemID' \hl {(couldn't delete 'itemid' because it's being used in a chart below)} and 'Material ID' were found to be redundant and removed from the dataset as they all have accompanying textual descriptions which are more meaningul.
 \\
 Nulls found in ItemName and Description.\\ 
 \hl{this means every entry has a material at least? why? could be a required field? that would explain why some entries are rubbish if people are forced to pick a category}
@@ -236,17 +235,13 @@ Nulls found in ItemName and Description.\\
 \\
 \hl{Stuart: Yes, it is a required field. I checked on the mobile app and you select a item type from different material sections. Note however that there is a material type \emph{Other Items} which contains the items \emph{Other} and \emph{Test Item}. Therefore users are able to categorise an item as other if it is not appropriate for any other option on the list.}
 \\
-NAs removed \hl{not sure what is actually happening with the explicit\_na() piece for location?}\\
-\\
-\hl{Stuart: I used explicit\_na to replace missing values with an expliciet level name (like ``Missing'' or something similar). I think it was to remove warnings when I was plotting.}
-\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
-\\
-\hl{I was puzzled by this so I investigated it and found it is not in the source data. I found a coding bug further down in the code, where I make the stacked bar chart with proportions per month. I have fixed this, and now no ItemName values are blank. Sorry!}
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
 <<eval=TRUE,echo=FALSE,results='markup'>>=
 data %>% apply(2, function(x) length(unique(x)))
+
+
 @
 
 \subsection{Data Quality Issues: Classification}
@@ -444,8 +439,6 @@ data %>%
 \label{figD}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
-
 
 
 \begin{figure}[H] %start a figure
@@ -468,7 +461,6 @@ data %>%
 \label{figF}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
 
 
 
@@ -499,7 +491,7 @@ So the most populated material class is Plastic. Note that this does not necessa
 A tree map of material quantities:
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=FALSE,echo=FALSE,fig=TRUE,warning=TRUE,error=TRUE, out.width = "1\\linewidth", fig.height=4>>=
+<<eval=TRUE,echo=FALSE,fig=TRUE,warning=TRUE,error=TRUE, out.width = "1\\linewidth", fig.height=4>>=
 #treemap of debris categories
 #png("plots/treemap.png")
 data %>% 
@@ -508,7 +500,6 @@ data %>%
   summarise(Quantity = sum(Quantity)) %>% 
   treemap(index = c("Material Description", "ItemName"),
           vSize = "Quantity", draw = TRUE) -> tm
-tm
 #tm
 #dev.off()
 #save.image(file = "plots/treemap.png")
@@ -517,7 +508,6 @@ tm
 \label{figI}
 \end {center}
 \end {figure}
-\hl{chart disabled for now. This chart was working for a while (works in RStudio R, not LaTeX) only hint I can see is:\#\# Warning: Factor `ItemName` contains implicit NA, consider using `forcats::fct\_explicit\_na`}
 
 Cigarettes are the most common item recorded as seen in. %Figure~\ref{figI}
 Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
@@ -556,7 +546,6 @@ data %>%
 \label{figA}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
 
 
 
@@ -587,8 +576,10 @@ We need to know how reliable the location data is. I'm going to filter for "unit
 
 \begin{figure}[H] %start a figure
 \begin{center}
-<<eval=TRUE,echo=TRUE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
+<<eval=FALSE,echo=TRUE,fig=TRUE, out.width = "1\\linewidth", fig.height=4>>=
+#Potentially remove
 #Scatterplot of long/lat positions
+#We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK
 data %>% 
   mutate(Location = str_to_lower(Location)) %>% 
   filter(str_detect(Location, "united kingdom")) %>% 
@@ -600,8 +591,7 @@ data %>%
 \label{figJ}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
-We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK.\\
+
 
 Questions\\
 Distribution of plastic by location.\\
@@ -629,7 +619,6 @@ data %>%
 \end {center}
 \end {figure}
 We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
-\hl{this chart needs to size down}
 
 
 
@@ -639,7 +628,7 @@ We see that the Location "unknown" has the most plastic... note that this is dis
 
 \pagebreak
 \section{Predictive Modelling}
-The authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model, given we know that event-driven pollution will determine different pollutants are different times.
+Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model accomodating such time factored
 
 \subsection{Description of Model}
 

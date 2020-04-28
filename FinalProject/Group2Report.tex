@@ -113,7 +113,6 @@
  %\thispagestyle{empty}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 
 
 \title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
@@ -240,7 +239,7 @@ This paper is conducted using secondary data collection methods only. The author
 \subsection{Dataset Pre-processing}
 %\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
-Everything below is from Stuart's RNW file
+
 
 
 
@@ -253,7 +252,7 @@ Everything below is from Stuart's RNW file
 \end{knitrout}
 The following actions were performed on the dataset:
 
-\"ListID\" and \"ListName\" were found to be redundant and removed. \hl{can we remove ItemID and MaterialID also since we have the descriptions?}\\
+'ListID', 'ListName', 'ItemID' \hl {(couldn't delete 'itemid' because it's being used in a chart below)} and 'Material ID' were found to be redundant and removed from the dataset as they all have accompanying textual descriptions which are more meaningul.
 \\
 Nulls found in ItemName and Description.\\ 
 \hl{this means every entry has a material at least? why? could be a required field? that would explain why some entries are rubbish if people are forced to pick a category}
@@ -261,13 +260,7 @@ Nulls found in ItemName and Description.\\
 \\
 \hl{Stuart: Yes, it is a required field. I checked on the mobile app and you select a item type from different material sections. Note however that there is a material type \emph{Other Items} which contains the items \emph{Other} and \emph{Test Item}. Therefore users are able to categorise an item as other if it is not appropriate for any other option on the list.}
 \\
-NAs removed \hl{not sure what is actually happening with the explicit\_na() piece for location?}\\
-\\
-\hl{Stuart: I used explicit\_na to replace missing values with an expliciet level name (like ``Missing'' or something similar). I think it was to remove warnings when I was plotting.}
-\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
-\\
-\hl{I was puzzled by this so I investigated it and found it is not in the source data. I found a coding bug further down in the code, where I make the stacked bar chart with proportions per month. I have fixed this, and now no ItemName values are blank. Sorry!}
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
 \begin{knitrout}
@@ -408,8 +401,6 @@ Question: Are observed plastic item proportions time invariant?\\
 \label{figD}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
-
 
 
 \begin{figure}[H] %start a figure
@@ -423,7 +414,6 @@ Question: Are observed plastic item proportions time invariant?\\
 \label{figF}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
 
 
 
@@ -448,12 +438,15 @@ So the most populated material class is Plastic. Note that this does not necessa
 A tree map of material quantities:
 \begin{figure}[H] %start a figure
 \begin{center}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
 
+\end{knitrout}
 \caption {Debris categorisation}
 \label{figI}
 \end {center}
 \end {figure}
-\hl{chart disabled for now. This chart was working for a while (works in RStudio R, not LaTeX) only hint I can see is:\#\# Warning: Factor `ItemName` contains implicit NA, consider using `forcats::fct\_explicit\_na`}
 
 Cigarettes are the most common item recorded as seen in. %Figure~\ref{figI}
 Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
@@ -479,7 +472,6 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 \label{figA}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
 
 
 
@@ -505,7 +497,9 @@ We have locational data, so lets check for any geographical observation bias.
     \hlkwd{theme_void}\hlstd{()} \hlopt{+}
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Computation failed in `stat\_binhex()`:\\\#\# Package `hexbin` required for `stat\_binhex`.\\\#\# Please install and try again.}}\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#ggsave("plots/map.png", width = 20, height = 10, units = "cm")}
@@ -520,7 +514,9 @@ We need to know how reliable the location data is. I'm going to filter for "unit
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{#Potentially remove}
 \hlcom{#Scatterplot of long/lat positions}
+\hlcom{#We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK}
 \hlstd{data} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{Location} \hlstd{=} \hlkwd{str_to_lower}\hlstd{(Location))} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(}\hlkwd{str_detect}\hlstd{(Location,} \hlstr{"united kingdom"}\hlstd{))} \hlopt{%>%}
@@ -529,15 +525,12 @@ We need to know how reliable the location data is. I'm going to filter for "unit
     \hlkwd{geom_point}\hlstd{(}\hlkwc{position} \hlstd{=} \hlstr{"jitter"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-15-1} 
-
 \end{knitrout}
 \caption {Longitude and Latitude discrepancies}
 \label{figJ}
 \end {center}
 \end {figure}
-\hl{this chart needs to size down}
-We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK.\\
+
 
 Questions\\
 Distribution of plastic by location.\\
@@ -554,7 +547,6 @@ Are the distributions of plastic fairly constant for the locations with the most
 \end {center}
 \end {figure}
 We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
-\hl{this chart needs to size down}
 
 
 
@@ -564,7 +556,7 @@ We see that the Location "unknown" has the most plastic... note that this is dis
 
 \pagebreak
 \section{Predictive Modelling}
-The authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model, given we know that event-driven pollution will determine different pollutants are different times.
+Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to predict the proportion of plastics given Month and Location. This would give more accurate predictions as opposed to a simple linear model accomodating such time factored
 
 \subsection{Description of Model}
 
@@ -574,10 +566,7 @@ Georgios' script
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# `geom\_smooth()` using formula 'y \textasciitilde{} x'}}\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-1} 
 
 \end{knitrout}
@@ -613,10 +602,7 @@ Georgios' script
 Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.\\
 
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# `geom\_smooth()` using formula 'y \textasciitilde{} x'}}\end{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-20-1} 
 
 \end{knitrout}
@@ -634,10 +620,25 @@ Pr(>|t|) is the p-value, defined as the probability of observing any value equal
 ## [1] "PREDICTION"
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1917  0.1931  0.1945  0.1941  0.1948  0.1966
+## % latex table generated in R 3.6.1 by xtable 1.8-4 package
+## % Tue Apr 28 09:09:04 2020
+## \begin{table}[ht]
+## \centering
+## \begin{tabular}{rrr}
+##   \hline
+##  & actuals & predicteds \\ 
+##   \hline
+## 1 & 0.10 & 0.19 \\ 
+##   2 & 0.07 & 0.19 \\ 
+##   3 & 0.63 & 0.19 \\ 
+##   4 & 0.14 & 0.19 \\ 
+##   5 & 0.30 & 0.19 \\ 
+##   6 & 0.33 & 0.19 \\ 
+##    \hline
+## \end{tabular}
+## \end{table}
 \end{verbatim}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(head(actuals\_preds)): could not find function "{}xtable"{}}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
 A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
@@ -675,32 +676,57 @@ All project documents used and the final report can be accessed from the \textit
 \subsection{Project Progress}
 
 % Pay attention to the code below including the chunk options 
-\begin{kframe}
+% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Tue Apr 28 09:09:09 2020
+\begin{table}[ht]
+\centering
+\caption{Record of Team Meetings} 
+\label{tab:one}
+\begin{tabular}{llp{8cm}lllll}
+  \hline
+No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\ 
+  \hline
+1.00 & 2020-02-05 & Group Formation: set up communication channel in Slack and GitHub repository & yes & yes & yes & yes & yes \\ 
+  2.00 & 2020-02-11 & Agreed topic of "Plastic Pollution", distributed research activity for week & yes & yes & yes & yes & yes \\ 
+  3.00 & 2020-02-18 & Presented inividuals' research findings and discussed hypothesis & yes & yes & yes & yes & yes \\ 
+  4.00 & 2020-02-25 & Decided on final dataset to use and hypothesis of "proportion of marine plastics pollution does not change over time" & yes & yes & yes & yes & yes \\ 
+  5.00 & 2020-03-04 & Presentation draft agreed & yes & yes & yes & yes & yes \\ 
+  6.00 & 2020-03-10 & Distributed section writing activity for week & yes & yes & yes & yes & yes \\ 
+  7.00 & 2020-03-17 &  &  &  &  &  &  \\ 
+  8.00 & 2020-03-24 &  &  &  &  &  &  \\ 
+  9.00 & 2020-03-31 &  &  &  &  &  &  \\ 
+  10.00 & 2020-04-07 &  &  &  &  &  &  \\ 
+  11.00 & 2020-04-14 &  &  &  &  &  &  \\ 
+  12.00 & 2020-04-21 &  &  &  &  &  &  \\ 
+   \hline
+\end{tabular}
+\end{table}
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'XLConnect':\\\#\#\ \ .onLoad failed in loadNamespace() for 'rJava', details:\\\#\#\ \  call: fun(libname, pkgname)\\\#\#\ \  error: JAVA\_HOME cannot be determined from the Registry}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in readWorksheet(loadWorkbook("{}data/meetings.xlsx"{}), sheet = 1): could not find function "{}readWorksheet"{}}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'dfs' not found}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(dfs, caption = "{}Record of Team Meetings"{}, label = "{}tab:one"{}, : object 'dfs' not found}}\end{kframe}
 
 
 
 
 \subsection{Peer-assessment}
 
-\begin{kframe}
+% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Tue Apr 28 09:09:10 2020
+\begin{table}[ht]
+\centering
+\caption{Peer Assessment out of 100} 
+\label{tab:two}
+\begin{tabular}{llllll}
+  \hline
+Peer.Review & Alex & Georgios & Karen & Roshi & Stuart \\ 
+  \hline
+Alex & 100 & 100 & 100 & 100 & 100 \\ 
+  Georgios & 100 & 100 & 100 & 100 & 100 \\ 
+  Karen & 100 & 100 & 100 & 100 & 100 \\ 
+  Roshi & 100 & 100 & 100 & 100 & 100 \\ 
+  Stuart & 100 & 100 & 100 & 100 & 100 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'XLConnect':\\\#\#\ \ .onLoad failed in loadNamespace() for 'rJava', details:\\\#\#\ \  call: fun(libname, pkgname)\\\#\#\ \  error: JAVA\_HOME cannot be determined from the Registry}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in readWorksheet(loadWorkbook("{}data/peers.xlsx"{}), sheet = 1): could not find function "{}readWorksheet"{}}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in lapply(dfs[, ], as.character): object 'dfs' not found}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(dfs, caption = "{}Peer Assessment out of 100"{}, label = "{}tab:two"{}, : object 'dfs' not found}}\end{kframe}
 
 
 \pagebreak
