@@ -147,6 +147,49 @@ Things we found
 
 Sources of pollution: 10 river dataset, 50km2 coastline dataset, pollution density and body of water dataset....
 
+Georgios' review below\\
+
+There have been many other studies around the world regarding littering of the shores. A study in Western Japan and eastern coasts of Russia found out that 55\% to 93.4\% of items over the Japanese shores were plastic. The second most abundant item was resin pellet, which is a form of plastic too. For the eastern Russian coast plastic items were also the most abundant~55\% with fragments being the most abundant within the plastics category. The composition of litter was similar in the two countries, although the concentration of plastics was much higher in Japan. (International survey on the distribution of stranded and buried litter on beaches along the Sea of Japan \cite{KUSUI2003}\\
+
+
+
+Further on the Asian upper east, hard plastic and Styrofoam were the dominant plastic types on Korean beaches. On average, hard plastic and Styrofoam comprised 32\% and 48.5\% (by number) of the total debris, respectively. 
+An important aspect put in this survey is the part of the beach from which litter is being collected. As mentioned most studies work on data from the high strandline so they  do not produce representative pollution data for the whole beach environment.  So, considering that the high strandline accounts for a very small proportion of the whole beach area, micro- and mesoplastic abundance expressed in terms of items per area (items/m2) or volume (items/m3) may produce highly biased information on beach plastic pollution.
+Another one is that hard plastic found in high proportion on certain location may have to do with these location being highly urbanized and populated, where as for high Styrofoam accumulation locations it was found that these were places with dense aquaculture fields.
+Characteristics of meso-sized plastic marine debris on 20 beaches in Korea \cite{LEE2017}\\
+
+
+
+In an older study over the region of Caribbean the most common types of debris stranded on the
+Caribbean coast of Panama were plastic and Styrofoam with  plastics being household or consumer related.
+Styrofoam packing materials were also abundant, and may have come from trans-shipment activities of Colon's Free Zone, as well as from household trash or from offshore.( Marine Debris Along the Caribbean Coast of Panama \cite{GARRITY1993}\\
+
+
+
+
+Regarding the Mediterranean two studies conducted at two of each edges, one at Cadiz bay, and the other at an Israeli shore show that plastic is again the major littering component of beaches. In Cadiz, Plastic bottles/containers were the most frequent items followed by plastic bags. This research points out that surveys are heavily affected by clean-ups performed at beaches which the importance this activity offers in the shore staying clean.  \cite{WILLIAMS2016}\\
+
+The study in Israel followed the CCI which is very useful since it allows comparison between different times and places.  plastic is the most ubiquitous beach litter item.  An important contribution of this study has to do with comparing its findings with other Mediterranean beaches showing that plastic might be the dominant pollutant, though non-plastic litter is highly specific to the region and can not be treated universally. \cite{PORTMAN2017}\\
+
+
+
+
+In a study on litter pollution in a region of India, once again the ICC protocol for the categorization of litter was followed. Once again plastic was the main source of litter ~45\%, with plastic bags topping the index at ~\%, followed by food wrappers and then plastic cups. Cigarettes/cigar tips were scarcely found amounting to only 5.5\%. \cite{ANANTHA2016}\\
+
+
+
+A main problem of studying litter accumulation be it over the shore benthic or on top of the sea is comparison between the numbers and elements presented from different studies, even the ones carried with the same country. The problem in assessing changes in accumulation rates and composition, trends over time and the effectiveness of management systems is a hard task without good monitoring methodologies. Although monitoring of marine litter is currently carried out within a number of countries around the world, the methods of survey and monitoring used tend to be very different,
+preventing comparisons and harmonization of data across regions or time-scales. 
+Therefore, an initiative began for a comprehensive litter characterization scheme to be developed that uses both material composition and form.
+This allows Litter Monitoring Repeated surveys of beaches, sea bed and/or surface waters to determine litter quantities such that information can be compared with baseline data to see if changes occur through time and / or in response to management arrangements. Thus, the International Coastal Cleanup (ICC) program was developed. Different protocols are used though one seems to be better than the rest in terms of simplicity and information provided. The CCI protocol is very different from most others having a focus on operational clean up of beaches as opposed to litter surveys. \cite{CHESHIRE2009}\\
+
+
+
+Different ways of counting the data are used around the world. The one that seems most robust seems to be the clean-coast index (CCI) which is suggested as a tool for evaluation of the actual coast cleanliness. It measures plastic debris as a beach cleanliness indicator, in an easy way precluding bias by the assessor. Furthermore, the CCI is the measuring tool of the ''Clean Coast'' program-a new, long-term approach for cleaner beaches by various activities such as an increase in the public awareness. The CCI was proved to be a useful tool for measuring progress and the success of activities such as education campaigns, media coverage and enforcement actions \cite{ALKALAY2007}\\
+
+
+
+
 \pagebreak
 \section {Methods}\label{methods}
 
@@ -876,6 +919,6 @@ print(xtable(dfs,
 
 \pagebreak
 \section*{References}\label{pubs}
-\printbibliography[heading =none]
+\printbibliography[heading=none]
 
 \end{document}

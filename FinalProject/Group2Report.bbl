@@ -846,8 +846,9 @@
            given={Albert\bibnamedelima A.},
            giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {Taylor & Francis}%
+      \list{publisher}{2}{%
+        {Taylor}%
+        {Francis}%
       }
       \strng{namehash}{2e4df524165152d9461d092e298768ec}
       \strng{fullhash}{cdec2e3f1aef6832c3fb83fda039f296}
@@ -955,6 +956,377 @@
       \endverb
       \verb{url}
       \verb http://www.sciencedirect.com/science/article/pii/0025326X93905744
+      \endverb
+    \endentry
+    \entry{KUSUI2003}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8c07a432c4e41cb1fc026352b9447f4d}{%
+           family={Kusui},
+           familyi={K\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c1fb9501b7a58491e5c173d312c3c104}{%
+           family={Noda},
+           familyi={N\bibinitperiod},
+           given={Michio},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{aa8328a600e8834b45af7b7d0838dceb}
+      \strng{fullhash}{aa8328a600e8834b45af7b7d0838dceb}
+      \strng{bibnamehash}{aa8328a600e8834b45af7b7d0838dceb}
+      \strng{authorbibnamehash}{aa8328a600e8834b45af7b7d0838dceb}
+      \strng{authornamehash}{aa8328a600e8834b45af7b7d0838dceb}
+      \strng{authorfullhash}{aa8328a600e8834b45af7b7d0838dceb}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Marine pollution bulletin}
+      \field{month}{02}
+      \field{title}{International survey on the distribution of stranded and buried litter on beaches along the Sea of Japan}
+      \field{volume}{47}
+      \field{year}{2003}
+      \field{pages}{175\bibrangedash 9}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1016/S0025-326X(02)00478-2
+      \endverb
+    \endentry
+    \entry{LEE2017}{article}{}
+      \name{author}{6}{}{%
+        {{hash=248fb448f51c38ea78f9d27693c68309}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jongsu},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a266e1ac5d18865de8a87e1f0d0f5d33}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jongmyoung},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7777d3a70c376e148f088b7fdb4be55d}{%
+           family={Hong},
+           familyi={H\bibinitperiod},
+           given={Sunwook},
+           giveni={S\bibinitperiod}}}%
+        {{hash=40514c5e084b29e34830e7e01add0cac}{%
+           family={Hong},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=24f95d7a28a5b5ca3822144579c7662a}{%
+           family={Shim},
+           familyi={S\bibinitperiod},
+           given={Won},
+           giveni={W\bibinitperiod}}}%
+        {{hash=212307511f3d1c70ed4b8ea19666f2ae}{%
+           family={Eo},
+           familyi={E\bibinitperiod},
+           given={Soeun},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
+      \strng{fullhash}{38150f708727d30ad5d83ffa766fb9ba}
+      \strng{bibnamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
+      \strng{authorbibnamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
+      \strng{authornamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
+      \strng{authorfullhash}{38150f708727d30ad5d83ffa766fb9ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Marine Pollution Bulletin}
+      \field{month}{09}
+      \field{title}{Characteristics of meso-sized plastic marine debris on 20 beaches in Korea}
+      \field{volume}{123}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.marpolbul.2017.09.020
+      \endverb
+    \endentry
+    \entry{WILLIAMS2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=514b84aebdd28d7d9b04f2fed5d22206}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Allan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=04b3eea39cfcbfadf1e395bb961e77b2}{%
+           family={Randerson},
+           familyi={R\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=0e35b407b816072acca8060e5d2826ab}{%
+           family={Giacomo},
+           familyi={G\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1a301eb791a2ab5c3e4ccf708022ed14}{%
+           family={Anfuso},
+           familyi={A\bibinitperiod},
+           given={Giorgio},
+           giveni={G\bibinitperiod}}}%
+        {{hash=b1c0ecc445db69fcb40fd371010e989c}{%
+           family={Macias},
+           familyi={M\bibinitperiod},
+           given={Ana},
+           giveni={A\bibinitperiod}}}%
+        {{hash=621cab883cbc83f54959429447916ab9}{%
+           family={Perales},
+           familyi={P\bibinitperiod},
+           given={Jose},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{fullhash}{053e0b318b88bc1c4f5fd858269fa3df}
+      \strng{bibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authorbibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authornamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authorfullhash}{053e0b318b88bc1c4f5fd858269fa3df}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Marine pollution bulletin}
+      \field{month}{04}
+      \field{title}{Distribution of beach litter along the coastline of Cádiz, Spain}
+      \field{volume}{107}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1016/j.marpolbul.2016.04.015
+      \endverb
+    \endentry
+    \entry{PORTMAN2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bf9b2f97715e05b1446e6b04dd357137}{%
+           family={Portman},
+           familyi={P\bibinitperiod},
+           given={Michelle},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2bd5a542a147f7311797aa196c686dd3}{%
+           family={Brennan},
+           familyi={B\bibinitperiod},
+           given={Ruth},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{fullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{bibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authorbibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authornamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authorfullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Waste Management}
+      \field{month}{08}
+      \field{title}{Marine litter from beach-based sources: Case study of an Eastern Mediterranean coastal town}
+      \field{volume}{69}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.wasman.2017.07.040
+      \endverb
+    \endentry
+    \entry{ANANTHA2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=102b9eea8ba6e8a098fff4dc312b34c4}{%
+           family={Anantha\bibnamedelima Kumar},
+           familyi={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Arun\bibnamedelima Kumar},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=bded5297efa1dec8980222630c8ef596}{%
+           family={Sivakumar},
+           familyi={S\bibinitperiod},
+           given={Ramamoorthy},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c77068e81ebc2f1cd79d9ac0bed8eace}{%
+           family={Yellasiri},
+           familyi={Y\bibinitperiod},
+           given={Sai\bibnamedelimb Rutwik\bibnamedelima Reddy},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=dfdad025638431178747878f31c8d038}{%
+           family={Raja},
+           familyi={R\bibinitperiod},
+           given={M.V.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=72d556d382f03c31803689b2d4c32e37}{%
+           family={Nishanth},
+           familyi={N\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=fa51cb1d315b04030731e22dad9b5a47}{%
+           family={Revanth},
+           familyi={R\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{b4d04e53a9984e8fabaee98b874526af}
+      \strng{fullhash}{4eaed8397f6e425834119c8ccae017f8}
+      \strng{bibnamehash}{b4d04e53a9984e8fabaee98b874526af}
+      \strng{authorbibnamehash}{b4d04e53a9984e8fabaee98b874526af}
+      \strng{authornamehash}{b4d04e53a9984e8fabaee98b874526af}
+      \strng{authorfullhash}{4eaed8397f6e425834119c8ccae017f8}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Regional Studies in Marine Science}
+      \field{month}{01}
+      \field{title}{Preliminary study on marine debris pollution along Marina beach, Chennai, India}
+      \field{volume}{5}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1016/j.rsma.2016.01.002
+      \endverb
+    \endentry
+    \entry{CHESHIRE2009}{book}{}
+      \name{author}{19}{}{%
+        {{hash=b9bd224f4c5c97ac2a20d0fdab9b6b29}{%
+           family={Cheshire},
+           familyi={C\bibinitperiod},
+           given={Anthony},
+           giveni={A\bibinitperiod}}}%
+        {{hash=19ca5c843acb4b3dca6cc725676d2d85}{%
+           family={Adler},
+           familyi={A\bibinitperiod},
+           given={Ellik},
+           giveni={E\bibinitperiod}}}%
+        {{hash=1e0207f774331c604d3dcdefc7f82a9f}{%
+           family={Barbière},
+           familyi={B\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9626554b786daa245fd8b5a20b7ad0f3}{%
+           family={Cohen},
+           familyi={C\bibinitperiod},
+           given={Yuval},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7da3768c194e88062dc198a9e8be65fd}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Sverker},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d8b59c23b1170efd2ebdca0445c0481d}{%
+           family={Jarayabhand},
+           familyi={J\bibinitperiod},
+           given={Srisuda},
+           giveni={S\bibinitperiod}}}%
+        {{hash=37419b4d11acf462b9d685f1e9e59565}{%
+           family={Jeftic},
+           familyi={J\bibinitperiod},
+           given={Ljubomir},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8254122389cf1edd7af59f4408700dad}{%
+           family={Jung},
+           familyi={J\bibinitperiod},
+           given={Rho-Taek},
+           giveni={R\bibinithyphendelim T\bibinitperiod}}}%
+        {{hash=aac40a0bc5ca8e80018efc6805702c20}{%
+           family={Kinsey},
+           familyi={K\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8c07a432c4e41cb1fc026352b9447f4d}{%
+           family={Kusui},
+           familyi={K\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6b62b02982fa6972e6a67e13dafb0797}{%
+           family={Lavine},
+           familyi={L\bibinitperiod},
+           given={Ingrid},
+           giveni={I\bibinitperiod}}}%
+        {{hash=4db95771a2ee993747b7e75b9235ffa4}{%
+           family={Manyara},
+           familyi={M\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8a3b11fe2c3e444d7f0bd6648471f490}{%
+           family={Oosterbaan},
+           familyi={O\bibinitperiod},
+           given={Lex},
+           giveni={L\bibinitperiod}}}%
+        {{hash=aa8ec03820e84e3d46028bc8feeec839}{%
+           family={Pereira},
+           familyi={P\bibinitperiod},
+           given={Marcos},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f948a6481bf5cb23a2d7f2280f4a40b3}{%
+           family={Sheavly},
+           familyi={S\bibinitperiod},
+           given={Seba},
+           giveni={S\bibinitperiod}}}%
+        {{hash=31186d4270719229aa7b0f9f8045a00e}{%
+           family={Tkalin},
+           familyi={T\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ea5aeecbf8de0f56f5d4e6b816ef6bb4}{%
+           family={Varadarajan},
+           familyi={V\bibinitperiod},
+           given={Sampath},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5981b63c5aa4d7d4f41bbef32d6c363b}{%
+           family={Wenneker},
+           familyi={W\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a7699f8d75a8dba4b5ca2844cb088f6e}{%
+           family={Westphalen},
+           familyi={W\bibinitperiod},
+           given={Grant},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{aedc57c4f84b62d329a97321db33bfb7}
+      \strng{fullhash}{a85591ab472537d58ab590694f4548f0}
+      \strng{bibnamehash}{aedc57c4f84b62d329a97321db33bfb7}
+      \strng{authorbibnamehash}{aedc57c4f84b62d329a97321db33bfb7}
+      \strng{authornamehash}{aedc57c4f84b62d329a97321db33bfb7}
+      \strng{authorfullhash}{a85591ab472537d58ab590694f4548f0}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{UNEP/IOC Guidelines on Survey and Monitoring of Marine Litter}
+      \field{year}{2009}
+    \endentry
+    \entry{ALKALAY2007}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ada2b429e6c7c35e68743aebd3acf4aa}{%
+           family={Alkalay},
+           familyi={A\bibinitperiod},
+           given={Ronen},
+           giveni={R\bibinitperiod}}}%
+        {{hash=db306d63cd35002df137d32e5affd8d8}{%
+           family={Pasternak},
+           familyi={P\bibinitperiod},
+           given={Galia},
+           giveni={G\bibinitperiod}}}%
+        {{hash=53cc5b1aac869f5fe574a97039929ddd}{%
+           family={Zask},
+           familyi={Z\bibinitperiod},
+           given={Alon},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \strng{fullhash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \strng{bibnamehash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \strng{authorbibnamehash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \strng{authornamehash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \strng{authorfullhash}{a5069cebb8c41bd8a4285647affa7bb9}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ocean and Coastal Management}
+      \field{month}{12}
+      \field{title}{Clean-coast index—A new approach for beach cleanliness assessment}
+      \field{volume}{50}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1016/j.ocecoaman.2006.10.002
       \endverb
     \endentry
   \enddatalist
