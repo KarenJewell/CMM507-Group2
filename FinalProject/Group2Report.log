@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  1 MAY 2020 19:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  8 MAY 2020 22:47
 entering extended mode
 **./Group2Report.tex
 (Group2Report.tex
@@ -76,6 +76,11 @@ Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks17
 \verbatim@in@stream=\read2
 )
+("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+)
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
 y"
 Package: amsmath 2020/01/20 v2.17e AMS math features
@@ -90,7 +95,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
 "
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks18
+\@emptytoks=\toks20
 \ex@=\dimen141
 ))
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
@@ -122,21 +127,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \dotsspace@=\muskip16
 \c@parentequation=\count182
 \dspbrk@lvl=\count183
-\tag@help=\toks19
+\tag@help=\toks21
 \row@=\count184
 \column@=\count185
 \maxfields@=\count186
-\andhelp@=\toks20
+\andhelp@=\toks22
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
 \tagshift@=\dimen146
 \tagwidth@=\dimen147
 \totwidth@=\dimen148
 \lineht@=\dimen149
-\@envbody=\toks21
+\@envbody=\toks23
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks22
+\mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
@@ -155,7 +160,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amscd.sty"
 Package: amscd 2017/04/14 v2.1 AMS Commutative Diagrams
-\athelp@=\toks23
+\athelp@=\toks25
 \minaw@=\dimen150
 \bigaw@=\dimen151
 \minCDarrowwidth=\dimen152
@@ -227,8 +232,8 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 tex"
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils
 .tex"
-\XKV@toks=\toks24
-\XKV@tempa@toks=\toks25
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
 )
 \XKV@depth=\count276
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
@@ -260,7 +265,7 @@ tikz.sty"
 cs.sty"
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pg
 futil-common.tex"
-\pgfutil@everybye=\toks26
+\pgfutil@everybye=\toks28
 \pgfutil@tempdima=\dimen153
 \pgfutil@tempdimb=\dimen154
 
@@ -291,12 +296,12 @@ Package: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pg
 fkeys.code.tex"
-\pgfkeys@pathtoks=\toks27
-\pgfkeys@temptoks=\toks28
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities\pg
 fkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks29
+\pgfkeys@tmptoks=\toks31
 ))
 \pgf@x=\dimen155
 \pgf@y=\dimen156
@@ -314,9 +319,9 @@ fkeysfiltered.code.tex"
 \c@pgf@countb=\count278
 \c@pgf@countc=\count279
 \c@pgf@countd=\count280
-\t@pgf@toka=\toks30
-\t@pgf@tokb=\toks31
-\t@pgf@tokc=\toks32
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
 \pgf@sys@id@count=\count281
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlayer\
@@ -358,9 +363,9 @@ parser.code.tex"
 \pgfmath@dimen=\dimen165
 \pgfmath@count=\count284
 \pgfmath@box=\box49
-\pgfmath@toks=\toks33
-\pgfmath@stack@operand=\toks34
-\pgfmath@stack@operation=\toks35
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
 )
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfmath
 functions.code.tex"
@@ -522,8 +527,8 @@ Package: pgffor 2020/01/08 v3.1.5b (3.1.5b)
 .code.tex")
 \pgffor@iter=\dimen192
 \pgffor@skip=\dimen193
-\pgffor@stack=\toks36
-\pgffor@toks=\toks37
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
 ))
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendlaye
 r/tikz\tikz.code.tex"
@@ -615,11 +620,6 @@ Package caption Info: Standard document class detected.
 )
 \c@caption@flags=\count302
 \c@continuedfloat=\count303
-)
-("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty"
-Package: inputenc 2018/08/11 v1.3c Input encoding file
-\inpenc@prehook=\toks38
-\inpenc@posthook=\toks39
 )
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/setspace\setspace.
 sty"
@@ -822,7 +822,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip68
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 84.
+Package hyperref Info: Option `colorlinks' set `true' on input line 81.
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\biblatex.
 sty"
@@ -1207,400 +1207,361 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--128
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-33.
+37.
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 149--153
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--180
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 [1
 
 {C:/Users/kalyj/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--209
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 182--186
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 230--234
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+
+ []
+
+
+Overfull \hbox (5.82957pt too wide) in paragraph at lines 206--207
+[]\OT1/lmr/m/n/10 Another study con-ducted at the other side of the Mediter-ran
+ean, in Cadiz, found that plas-tic bot-tles/containers
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 [4]
-
-Package xcolor Warning: Incompatible color definition on input line 290.
-
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-291.
-("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmtt.fd"
-File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-Package xcolor Warning: Incompatible color definition on input line 310.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 298--310
-
- []
-
-[5]
-
-Package xcolor Warning: Incompatible color definition on input line 330.
-
-
-Package xcolor Warning: Incompatible color definition on input line 341.
-
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-344.
-("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-Package xcolor Warning: Incompatible color definition on input line 353.
-
-[6]
-
-Package xcolor Warning: Incompatible color definition on input line 392.
-
-<figure/unnamed-chunk-7-1.pdf, id=235, 505.89pt x 433.62pt>
-File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-7-1.pdf  used on input line 393.
-(pdftex.def)             Requested size: 469.75499pt x 402.65372pt.
-[7]
-
-Package xcolor Warning: Incompatible color definition on input line 408.
-
-<figure/unnamed-chunk-8-1.pdf, id=241, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-8-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 409.
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[8 <./figure/unnamed-chunk-7-1.pdf>] [9 <./figure/unnamed-chunk-8-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 439.
-
-<figure/unnamed-chunk-9-1.pdf, id=262, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 440.
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--446
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--446
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--446
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--446
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 425--446
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 452.
-
-<figure/unnamed-chunk-10-1.pdf, id=263, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 453.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[10 <./figure/unnamed-chunk-9-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 470.
-
-<figure/unnamed-chunk-11-1.pdf, id=274, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-11-1.pdf  used on input line 471.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[11 <./figure/unnamed-chunk-10-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 485.
-
-<figure/unnamed-chunk-12-1.pdf, id=285, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-12-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-12-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-12-1.pdf  used on input line 486.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[12 <./figure/unnamed-chunk-11-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 503--505
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 509.
-
-<figure/unnamed-chunk-13-1.pdf, id=296, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 510.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[13 <./figure/unnamed-chunk-12-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 525--526
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--528
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 531.
-
-LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 533.
-
-Overfull \hbox (112.99332pt too wide) in paragraph at lines 537--537
-[]    []\OT1/lmtt/b/n/10 geom_polygon[][]\OT1/lmtt/m/n/10 ([][]data[] []=[] []\
-OT1/lmtt/b/n/10 map_data[][]\OT1/lmtt/m/n/10 ([][]"world"[][]),[] []\OT1/lmtt/b
-/n/10 aes[][]\OT1/lmtt/m/n/10 ([][]x[] []= long,[] []y[] []= lat,[] []group[] [
-]= group),[] []fill[] []=[] []"grey"[][],[] []alpha[] []=[] []0.5[][])[] []+[][
-] 
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 545.
-
-<figure/unnamed-chunk-14-1.pdf, id=311, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-14-1.pdf  used on input line 546.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-[14 <./figure/unnamed-chunk-13-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 553--554
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 558.
-
-
-Overfull \hbox (282.72894pt too wide) in paragraph at lines 562--562
-[][]\OT1/lmtt/m/it/10 #We have a outliers here. Maybe a difference in standards
- used for Longitude and Latitude? Some systems put the Latitude origin close to
- the UK[][] 
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 584.
-
-<figure/unnamed-chunk-16-1.pdf, id=323, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-16-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-16-1.pdf  used on input line 585.
-
-(pdftex.def)             Requested size: 469.75499pt x 268.43579pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 578--591
-
- []
-
-[15 <./figure/unnamed-chunk-14-1.pdf>] [16 <./figure/unnamed-chunk-16-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 612.
-
-<figure/unnamed-chunk-18-1.pdf, id=344, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-18-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-18-1.pdf  used on input line 613.
-
-(pdftex.def)             Requested size: 469.75499pt x 469.76265pt.
-
-Package xcolor Warning: Incompatible color definition on input line 622.
-
-[17 <./figure/unnamed-chunk-18-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 645--646
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 648.
-
-<figure/unnamed-chunk-20-1.pdf, id=359, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-20-1.pdf  used on input line 649.
-
-(pdftex.def)             Requested size: 469.75499pt x 469.76265pt.
-[18]
-
-Package xcolor Warning: Incompatible color definition on input line 661.
-
-[19 <./figure/unnamed-chunk-20-1.pdf>] [20] [21]
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-28.
-
-("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+32.
+ ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-728.
-
+232.
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-728.
+232.
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 728.
+(Font)              <10> on input line 232.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 728.
+(Font)              <7> on input line 232.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 728.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 728
+(Font)              <5> on input line 232.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 232
 .
 
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 728
+LaTeX Font Info:    Trying to load font information for U+msb on input line 232
 .
 ("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (60.3813pt too wide) in paragraph at lines 728--746
+Overfull \hbox (35.57898pt too wide) in paragraph at lines 232--251
+[][] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 261.
+
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
+262.
+("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmtt.fd"
+File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package xcolor Warning: Incompatible color definition on input line 281.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--281
+
+ []
+
+[5]
+
+Package xcolor Warning: Incompatible color definition on input line 301.
+
+
+Package xcolor Warning: Incompatible color definition on input line 312.
+
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+315.
+("C:\Users\kalyj\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+
+Package xcolor Warning: Incompatible color definition on input line 324.
+
+[6]
+
+Package xcolor Warning: Incompatible color definition on input line 363.
+
+<figure/unnamed-chunk-8-1.pdf, id=231, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 364.
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Package xcolor Warning: Incompatible color definition on input line 379.
+
+<figure/unnamed-chunk-9-1.pdf, id=232, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 380.
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[7 <./figure/unnamed-chunk-8-1.pdf> <./figure/unnamed-chunk-9-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 410.
+
+<figure/unnamed-chunk-10-1.pdf, id=250, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 411.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--417
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--417
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--417
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--417
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--417
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 423.
+
+<figure/unnamed-chunk-11-1.pdf, id=251, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-11-1.pdf  used on input line 424.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[8 <./figure/unnamed-chunk-10-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 441.
+
+<figure/unnamed-chunk-12-1.pdf, id=262, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-12-1.pdf  used on input line 442.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+<figure/unnamed-chunk-13-1.pdf, id=263, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 457.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[9 <./figure/unnamed-chunk-11-1.pdf> <./figure/unnamed-chunk-12-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 474--476
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 480.
+
+<figure/unnamed-chunk-14-1.pdf, id=280, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-14-1.pdf  used on input line 481.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
+
+ []
+
+[10 <./figure/unnamed-chunk-13-1.pdf> <./figure/unnamed-chunk-14-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 502.
+
+<figure/unnamed-chunk-15-1.pdf, id=300, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-15-1.pdf  used on input line 503.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Overfull \hbox (326.54759pt too wide) in paragraph at lines 500--504
+[]\OT1/lmr/m/n/10 We have lo-ca-tional data, so lets check for any ge-o-graph-i
+-cal ob-ser-va-tion bias. [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--508
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 524.
+
+<figure/unnamed-chunk-17-1.pdf, id=301, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-17-1.pdf  used on input line 525.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--531
+
+ []
+
+[11 <./figure/unnamed-chunk-15-1.pdf> <./figure/unnamed-chunk-17-1.pdf>]
+[12]
+
+Package xcolor Warning: Incompatible color definition on input line 548.
+
+<figure/unnamed-chunk-18-1.pdf, id=321, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-18-1.pdf  used on input line 549.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+
+Overfull \hbox (69.68053pt too wide) in paragraph at lines 546--550
+\OT1/lmr/m/n/10 Georgios' script [][] 
+ []
+
+[13 <./figure/unnamed-chunk-18-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 590.
+
+[14] [15] [16] [17]
+Overfull \hbox (60.3813pt too wide) in paragraph at lines 754--772
  [][] 
  []
 
-[22] [23] [24]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 779.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 779.
+[18] [19] [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 805.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 805.
  (Group2Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 779.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 779.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 805.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 805.
 Package rerunfilecheck Info: File `Group2Report.out' has not changed.
-(rerunfilecheck)             Checksum: 7A3F7DB95F716AF01419977C1456652F;1615.
+(rerunfilecheck)             Checksum: 0927F1F113815BBEFE71B5B32F57320A;1677.
 Package logreq Info: Writing requests to 'Group2Report.run.xml'.
 \openout1 = `Group2Report.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 779.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 805.
  ) 
 Here is how much of TeX's memory you used:
- 27192 strings out of 480931
- 527626 string characters out of 2899796
- 1255138 words of memory out of 3000000
- 42443 multiletter control sequences out of 15000+200000
- 575389 words of font info for 55 fonts, out of 3000000 for 9000
+ 27175 strings out of 480931
+ 527166 string characters out of 2899796
+ 1252924 words of memory out of 3000000
+ 42435 multiletter control sequences out of 15000+200000
+ 575080 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,10n,96p,1692b,1338s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmsc.
-enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmt
-t.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-t
+ 68i,10n,96p,1692b,1339s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.
+enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rms
+c.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-t
 s1.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-
 rm.enc}<C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
-lmbx10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/lm/lmbx12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/lm/lmcsc10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmr10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/lm/lmr12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/lm/lmr17.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/lm/lmri10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/lm/lmtk10.pfb><C:/Users/kalyj/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/kalyj/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Group2Report.pdf (24 pages, 917937 bytes).
+lmbx12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/lm/lmcsc10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/lm/lmr10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/lm/lmr12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmr17.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/lm/lmri10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/lm/lmri12.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/lm/lmtt9.pfb>
+Output written on Group2Report.pdf (20 pages, 847525 bytes).
 PDF statistics:
- 529 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
- 372 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 84 named destinations out of 1000 (max. 500000)
+ 375 words of extra memory for PDF output out of 10000 (max. 10000000)
 

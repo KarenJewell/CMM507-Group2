@@ -50,6 +50,7 @@
 
 \usepackage{alltt}
 \usepackage{graphicx, verbatim}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amscd}
@@ -58,8 +59,6 @@
 \usepackage{todonotes}
 \usepackage[tableposition=top]{caption}
 \usepackage{ifthen}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
 \usepackage{caption}
 \setlength{\textwidth}{6.5in} 
 \setlength{\textheight}{9in}
@@ -69,8 +68,6 @@
 \setlength{\parindent}{0cm}
 \usepackage{setspace}
 \usepackage{float}
-\usepackage{amssymb}
-\usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage{soul} 
@@ -110,7 +107,10 @@
 
 % \pagestyle{fancy}
 % \rfoot{Page \thepage}
- %\thispagestyle{empty}
+ %\thispagestyle{empty} 
+
+
+
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -126,67 +126,42 @@
 \ \\
 %\thispagestyle{empty}
 
-\section*{Objective}
+\section{Introduction}
 
 
+
+\subsection{Problem Statement}\label{statement}
+
+Plastic pollution is a serious problem in the marine environment where they have major impact on marine and human health. In order to understand the depth of the problem, it is essential to understand the amount and composition of marine litter. This can help in applying various mitigation strategies. This section will include:
 \begin{itemize}
-\item To understand the composition of plastic pollutants in the ocean
-\item To understand the sources of plastic pollutants
-\item To understand how plastic pollution gets distributed across the oceans
+\item An overview of the marine pollution
+\item Motivation behind this topic
+\item Aim and objectives of this report
 \end{itemize}
-
-\section{Problem Statement}\label{statement}
-
-H1 = The \% of plastic pollution remains constant over time.
-
-H0 = The \% of plastic pollution does not remain constant over time.
-
-
 
 
 \subsection{Overview}\label{over}
 
-Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter.\cite{DERRAIK2002} \cite{REISSER2013} \cite{BARBOZA2020}
-\\
-\\
-Synthetic organic polymer derived from polymerisation of monomers extracted from oil and gas make up the plastics.\cite{DERRAIK2002} \cite{RIOS2007} The lightweight feature and its durability make it very suitable to make a range of products that we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features have been a major cause of pollution due to overuse and non-managed waste disposal system worldwide with plastic contributing to the 10\% of the waste generated worldwide.\cite{BARNES2009} Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time. Although, plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently. Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are now everywhere in the marine environment and urgent action is required to mitigate this problem and reduce the harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}
+Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter. Synthetic organic polymer derived from polymerisation of monomers extracted from oil and gas make up the plastics.\cite{DERRAIK2002} \cite{RIOS2007} The lightweight feature and its durability make it very suitable to make a range of products that we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features have been a major cause of pollution due to overuse and non-managed waste disposal system worldwide with plastic contributing to the 10\% of the waste generated worldwide.\cite{BARNES2009} Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time. Although, plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently. Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are now everywhere in the marine environment and urgent action is required to mitigate this problem and reduce the harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}
 
 
 
 \subsection{Motivation}\label{mot}
 
-Impact on marine life
-\\
-\\
-Plastics in ocean is one of the many forms of human impact that threatens marine life. There is still very little information available on the impact of plastic pollution on the ocean's ecosystem. Due to the realisation on impact of human on climate and environment, there has been a lot of awareness activities to reduce the impact of pollution. Ban on single use plastic bags are being applied to many countries in order to protect the environment. 
-\\
-\\
-Over 700 marine wildlife species are affected due to entanglement in plastic ropes and materials and ingestion of plastics in the ocean.\cite{GALL2015} Over 340 species of marine animals were found to be entangled.\cite{KUHN2015} Reducing plastic waste is a major challenge worldwide. It is almost impossible to estimate the number of marine animals affected by marine pollution globally due to the vastness of the ocean. However, studies carried out on the gut contents of thousands of seabirds, found the significant increase in the ingestion of plastics during the 10-15 years interval.\cite{ROBARDS1995} This result might correlate to the rapid increase of plastic production and plastic use globally.  In a study carried out over fourteen years, Moser and Lee \cite{MOSER1992} found that more 50\% of the seabird species contained plastic particles in the gut which increased over time. This could be due the increase in plastic availability over time. 
-\\
-\\
-Entanglement in plastic debris is another cause of marine life suffering. Discarded fishing gear and floating mastic masses in ocean are serious threat to marine animals. Some animals such as seals are attracted to the floating plastics where they get entangled and get suffocated. Harmful effect of litter on marine life has been reviewed extensively.\cite{GALL2015} \cite{KUHN2015} \cite{RYAN2015} \cite{WILLIAMS2019} Floating plastics over long distances can disperse alien species as well as some pathogens. Drifting plastic debris are also the source of alien species introduction and thus affecting the native marine biodiversity.\cite{GREGORY2009} \cite{KIESSLING2015} 
-\\
-\\
-Impact on environment and human health
-\\
-\\
-Plastic debris floating in the oceans and the littering the coastal areas are not a pleasant sight. Masses of plastic accumulation and discarded objects made from plastics are found everywhere nowadays. 
-\\
-\\
-Over time plastic disintegrates into small microplastics which are easily consumed by fish and they enter the food chain. Plastics have been found in a third of fish caught in the UK which included the popular fishes such as cod, haddock and mackerel. Impact of plastic entering the human food chain and the effects of it are still to be studied.  Plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply can also be a direct impact on human health in addition to the contamination in seafood.\cite{ROCHMAN2015} \cite{MARKIC2020}
-\\
-\\
-Reducing plastic pollution has recently been a global aim. Research in plastic pollution in marine environment has played a big role in reducing it and raising awareness all over the world. In order to understand the plastic pollution in marine environments and its effect in long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is very essential in order to reduce the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for prevention initiative of marine pollution. Most of the monitoring are done by surveys looking at frequencies of beach litter collected by organisations and volunteers.\cite{COE1997} Most abundant litter can be found close to urban areas where beach visitor numbers are higher.\cite{GARRITY1993} 
+Impact of plastic pollution on marine life have been reviewed extensively. \cite{GALL2015} \cite{KUHN2015} \cite{RYAN2015} \cite{WILLIAMS2019} Over 700 marine wildlife species are affected due to entanglement in plastic ropes and materials and in- gestion of plastics in the ocean.\cite{GALL2015} Over 340 species of marine animals were found to be entangled. \cite{KUHN2015} Over time plastic disintegrates into small microplastics which are easily consumed by fish from where they enter the food chain. Plastics have been found in a third of fish caught in the UK which included the popular fishes such as cod, haddock and mackerel (Lusher et al., 2013). Impact of plastic entering the human food chain and the effects are still to be studied. Plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply can also be a direct impact on human health in addition to the contamination in seafood.\cite{ROCHMAN2015} \cite{MARKIC2020} \\
 
-
-
-
+Reducing plastic pollution has recently been a global aim. Research in plastic pollution in marine environment has played a big role in reducing it and raising awareness all over the world. In order to understand the plastic pollution in marine environments and its effect in long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is very essential in order to reduce the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for prevention initiative of marine pollution. Most of the monitoring are done by surveys looking at frequencies of beach litter collected by organisations and volunteers.\cite{COE1997} Most abundant litter can be found close to urban areas where beach visitor numbers are higher.\cite{GARRITY1993}
 
 
 \subsection{Objectives }\label{obj}
 
-The main objectives of this project can be outlined as follows: 
-
+The main objectives of this project are outlined as follows:
+\begin{itemize}	
+\item To research marine plastic problems and their impacts
+\item To find a dataset suitable for this study
+\item	Look at the composition of litter collected 
+\item	Summarise the results that were found
+\end{itemize}
 
 
 \pagebreak
@@ -198,44 +173,39 @@ Sources of pollution: 10 river dataset, 50km2 coastline dataset, pollution densi
 
 Georgios' review below\\
 
-There have been many other studies around the world regarding littering of the shores. A study in Western Japan and eastern coasts of Russia found out that 55\% to 93.4\% of items over the Japanese shores were plastic. The second most abundant item was resin pellet, which is a form of plastic too. For the eastern Russian coast plastic items were also the most abundant~55\% with fragments being the most abundant within the plastics category. The composition of litter was similar in the two countries, although the concentration of plastics was much higher in Japan. (International survey on the distribution of stranded and buried litter on beaches along the Sea of Japan \cite{KUSUI2003}\\
+Our group conducted some literature research in order to identify how researchers have been trying to monitor the problem of coast pollution, what are some basic findings they have had and problems they have encountered in the process.\\
 
+Several studies have reported the abundance of plastic as a coastal litter through survey and citizen science. A 12-year dataset on coastal debris pollution in Taiwan using Citizen science also revealed that most debris items found were plastic. \cite{WALTHER2018} 19 categories of debris items were collected during the clean-up events. The five most commonly recorded debris categories were plastic shopping bags, plastic bottle caps, disposable tablewares, fishing equipment, and plastic drinking straws. \\
 
+There have been many other studies around the world regarding littering of the shores. A study in Western Japan and eastern coasts of Russia found out that 55\% to 93.4\% of items over the Japanese shores were plastic. The second most abundant item was resin pellet, which is a form of plastic too. For the eastern Russian coast plastic items were also the most abundant ~55\% litter, with plastic fragments being the most abundant within the plastics category. The composition of litter was similar in the two countries, although the concentration of plastics was much higher in Japan. \cite{KUSUI2003} \\
 
-Further on the Asian upper east, hard plastic and Styrofoam were the dominant plastic types on Korean beaches. On average, hard plastic and Styrofoam comprised 32\% and 48.5\% (by number) of the total debris, respectively. 
-An important aspect put in this survey is the part of the beach from which litter is being collected. As mentioned most studies work on data from the high strandline so they  do not produce representative pollution data for the whole beach environment.  So, considering that the high strandline accounts for a very small proportion of the whole beach area, micro- and mesoplastic abundance expressed in terms of items per area (items/m2) or volume (items/m3) may produce highly biased information on beach plastic pollution.
-Another one is that hard plastic found in high proportion on certain location may have to do with these location being highly urbanized and populated, where as for high Styrofoam accumulation locations it was found that these were places with dense aquaculture fields.
-Characteristics of meso-sized plastic marine debris on 20 beaches in Korea \cite{LEE2017}\\
+Further on the Asian upper east, hard plastic and Styrofoam were the dominant plastic types on Korean beaches. On average, hard plastic and Styrofoam comprised 32\% and 48.5\% (by number) of the total debris, respectively. \\
+An important aspect put in this survey is the part of the beach from which litter is being collected. As mentioned in the research, most studies work on data from the high strandline so they do not produce representative pollution data for the whole beach environment.  So, considering that the high strandline accounts for a very small proportion of the whole beach area, micro- and mesoplastic abundance expressed in terms of items per area (items/m2) or volume (items/m3) may produce highly biased information on beach plastic pollution.\\
+Another important aspect is that hard plastic found in high proportion on certain location may have to do with these locations being highly urbanized and populated, whereas for high Styrofoam accumulation locations it was found that these were places with dense aquaculture fields.
+\cite{LEE2017} \\
 
+In an older study over the region of Caribbean the most common types of debris stranded on the Caribbean coast of Panama were plastic and Styrofoam, with plastics being household or consumer related. Styrofoam packing materials were also abundant, and may have come from trans-shipment activities of Colon's Free Zone, as well as from household trash or from offshore. \cite{ GARRITY1993} \\
 
+Interestingly, in a study carried out on the beach of Ensenada, Baja California, Mexico reported wood as the most abundant litter. \cite{SILVA2003} However, this study only looked at one season and more data would be required to confirm this result. \\
 
-In an older study over the region of Caribbean the most common types of debris stranded on the
-Caribbean coast of Panama were plastic and Styrofoam with  plastics being household or consumer related.
-Styrofoam packing materials were also abundant, and may have come from trans-shipment activities of Colon's Free Zone, as well as from household trash or from offshore.( Marine Debris Along the Caribbean Coast of Panama \cite{GARRITY1993}\\
+A recent annual study (2016/2017) on 8 beaches in Tenerife in Canary island also found that plastic was the most abundant litter. They also reported that there were more accumulated plastic debris in remote beaches compared to the beaches near the city indicating that more debris were transported by tides. More long term study is required to look at the changes in the results reported over time. \cite{REINOLD2020} \\
 
+As one may easily observe there are quite a few variations in terms of how studies over litter accumulation are conducted. The variation has to do with the time span of the research, the part of the beach from which litter is collected, as well as the categorization of littering. This creates a problem when researchers want to investigate a problem and compare different studies. \\
+The problem basically amounts to assessing changes in accumulation rates and composition, trends over time and the effectiveness of management systems, a hard task without good monitoring methodologies. Although monitoring of marine litter is currently carried out within a number of countries around the world, the methods of survey and monitoring used tend to be very different, preventing comparisons and harmonization of data across regions or time-scales.\\
 
+This is why the scientific community has been trying to create some common ground which has led to some initiatives joined by many countries worldwide. One of them and probably the most important one is the International Clean Coast (ICC) program-a new, long-term approach for cleaner beaches by various activities such as an increase in the public awareness. \cite{ CHESHIRE2009} This initiative aimed at a comprehensive litter characterization scheme to be developed that uses both material composition and form. This allows Litter Monitoring Repeated surveys of beaches, sea bed and/or surface waters to determine litter quantities such that information can be compared with baseline data to see if changes occur through time and / or in response to management arrangements.
 
+The ICC uses some specific developed categorizations of coast litter, with the most accepted one being the Clean Coastal Index (CCI) protocol, which is very useful, in terms of simplicity and information provided, allowing comparison between different times and places. The CCI protocol is very different from most others having a focus on operational clean-up of beaches as. The CCI is suggested as a tool for evaluation of the actual coast cleanliness. It measures plastic debris as a beach cleanliness indicator, in an easy way precluding bias by the assessor. The CCI also proved to be a useful tool for measuring progress and the success of activities such as education campaigns, media coverage and enforcement actions. \cite{ALKALAY2007} \\
 
-Regarding the Mediterranean two studies conducted at two of each edges, one at Cadiz bay, and the other at an Israeli shore show that plastic is again the major littering component of beaches. In Cadiz, Plastic bottles/containers were the most frequent items followed by plastic bags. This research points out that surveys are heavily affected by clean-ups performed at beaches which the importance this activity offers in the shore staying clean.  \cite{WILLIAMS2016}\\
+A study in Israel followed the CCI protocol and found out that plastic is the most ubiquitous beach litter item.  An important contribution of this study has to do with comparing its findings with other Mediterranean beaches showing that plastic might be the dominant pollutant, though non-plastic litter is highly specific to the region and cannot be treated universally. \cite{PORTMAN2017}
 
-The study in Israel followed the CCI which is very useful since it allows comparison between different times and places.  plastic is the most ubiquitous beach litter item.  An important contribution of this study has to do with comparing its findings with other Mediterranean beaches showing that plastic might be the dominant pollutant, though non-plastic litter is highly specific to the region and can not be treated universally. \cite{PORTMAN2017}\\
+In a study on litter pollution in a region of India, once again the CCI protocol for the categorization of litter was followed. Once again plastic was the main source of litter ~45\%, with plastic bags topping the index at ~33\%, followed by food wrappers and then plastic cups. Cigarettes/cigar tips were scarcely found amounting to only 5.5\%. \cite{KUMAR2016} \\
 
+The use of the common protocol in these two studies allows for researchers to compare their findings and create common plastic pollution models, even though the two coasts are continents apart. \\
 
+Another study conducted at the other side of the Mediterranean, in Cadiz, found that plastic bottles/containers were the most frequent items followed by plastic bags. This research points out that surveys are heavily affected by clean-ups performed at beaches which the importance this activity offers in the shore staying clean.  \cite{WILLIAMS2016} So even though this study reaches to some important conclusions even on ways to clean coasts the right way, it cannot be easily compared, or its conclusions easily applied even with the case of the study in Israel, which is also in the Mediterranean.\\
 
-
-In a study on litter pollution in a region of India, once again the ICC protocol for the categorization of litter was followed. Once again plastic was the main source of litter ~45\%, with plastic bags topping the index at ~\%, followed by food wrappers and then plastic cups. Cigarettes/cigar tips were scarcely found amounting to only 5.5\%. \cite{ANANTHA2016}\\
-
-
-
-A main problem of studying litter accumulation be it over the shore benthic or on top of the sea is comparison between the numbers and elements presented from different studies, even the ones carried with the same country. The problem in assessing changes in accumulation rates and composition, trends over time and the effectiveness of management systems is a hard task without good monitoring methodologies. Although monitoring of marine litter is currently carried out within a number of countries around the world, the methods of survey and monitoring used tend to be very different,
-preventing comparisons and harmonization of data across regions or time-scales. 
-Therefore, an initiative began for a comprehensive litter characterization scheme to be developed that uses both material composition and form.
-This allows Litter Monitoring Repeated surveys of beaches, sea bed and/or surface waters to determine litter quantities such that information can be compared with baseline data to see if changes occur through time and / or in response to management arrangements. Thus, the International Coastal Cleanup (ICC) program was developed. Different protocols are used though one seems to be better than the rest in terms of simplicity and information provided. The CCI protocol is very different from most others having a focus on operational clean up of beaches as opposed to litter surveys. \cite{CHESHIRE2009}\\
-
-
-
-Different ways of counting the data are used around the world. The one that seems most robust seems to be the clean-coast index (CCI) which is suggested as a tool for evaluation of the actual coast cleanliness. It measures plastic debris as a beach cleanliness indicator, in an easy way precluding bias by the assessor. Furthermore, the CCI is the measuring tool of the ''Clean Coast'' program-a new, long-term approach for cleaner beaches by various activities such as an increase in the public awareness. The CCI was proved to be a useful tool for measuring progress and the success of activities such as education campaigns, media coverage and enforcement actions \cite{ALKALAY2007}\\
-
+Given the literature above, our group went on to work with a world-wide coastal littering dataset spanning a timeframe of a decade with an interest to see if its findings match the above: be it if plastic is the most abundant litter, within the plastic categories which are the most important subclasses found and could there be a way to computationally monitor the coastal littering problem. For this we followed the CCI categorization of litter.
 
 
 
@@ -246,38 +216,39 @@ This paper is conducted using secondary data collection methods only. The author
 
 
 \subsection{Dataset Description}\label{dataset}
+%\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
 
-\hl{data dictionary is probably better as a table than a list.}
 \hl{Can we also add to this information of how the data is entered e.g. optional/mandatory fields, free-text or dropdown fields. The use of IDs suggest these are option fields with lookup tables somewhere.}
 
 \begin{itemize}
-%\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
 
 \item The data was taken from  \textit{\href{http://marinedebris.engr.uga.edu/newmap/}{marine debris tracker}} between 2010 till February 19th 2020. The time of 2010 was chosen as there was no data before that time.
 \item The dataset was composed by combining the multiple csv files gathered from the marine debris tracker into a single set after this was done the date data type was renamed "Time". 
 \item The dataset created from the combined csv files contain more than 360000 rows of data and consists of the folowing variables. 
-  \begin{itemize}
-  \item ListID is the ID code for the list
-  \item ListName is the name of the list
-  \item ItemID is the ID code given to the item of debris
-  \item ItemName is the name we give to item of debris
-  \item LogID is the ID code given to the location of the debris
-  \item Latitude, Longitude and Altitude are the coordinates of the location where the observation was made
-  \item Quantity is the number of pieces of debris in the observation.
-  \item Error radius is the radius around the observation site within the error for reasonable doubt.
-  \item Location is the area the observation of debris was made in.
-  \item Description is the description of the area the debris was found in.
-  \item MaterialID is the ID code of the material that the debris was composed of. 
-  \item Material Description is the description given to the material that composes the debris.
-  \item Time is the time that the observation was made. 
-\item There were a number of problems with the dataset namely;
-  \begin{itemize}
-  \item There were a number of cases of missing data in the dataset. 
-  \item data anomalies (lat/long values don't match named regions)
-  \item 
-  \end{itemize}
 \end{itemize}
-\end{itemize}
+
+
+\begin{table}[H]
+\begin{tabular}{ l l l }
+Variable & Description & Mandatory \\
+\hline
+ListID  & the ID code for the list & non mandatory \\
+ListName & the name of the list & non mandatory \\
+ItemID & ID code given to the item of debris & non mandatory \\
+ItemName & name we give to item of debris & mandatory \\
+LogID &  ID code given to the location of the debris & non mandatory \\
+Quantity & number of pieces of debris in the observation & mandatory? \\
+Error radius & radius around the observation site within the error for reasonable doubt & mandatory \\
+Latitude & coordinates of the location where the observation was made & mandatory \\
+Longitude & coordinates of the location where the observation was made & mandatory \\
+Altitude & coordinates of the location where the observation was made & mandatory \\
+Location & area the observation of debris was made in & non mandatory \\
+Description & description of the area the debris was found in & non mandatory \\
+MaterialID & ID code of the material that the debris was composed of & non mandatory \\
+MaterialDescription & description of material the debris was composed of & mandatory\\ 
+Time & time of observation & non mandatory \\
+\end{tabular}
+\end{table}
 
 \subsection{Dataset Pre-processing}
 %\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
@@ -286,7 +257,7 @@ This paper is conducted using secondary data collection methods only. The author
 
 
 
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## [1] "Location"    "Description"
@@ -306,7 +277,7 @@ Nulls found in ItemName and Description.\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ##               ItemID             ItemName                LogID 
@@ -326,7 +297,7 @@ Unique values for each column: \hl{can we present these unique counts as a forma
 \subsection{Data Quality Issues: Classification}
 The authors find that there are multiple instances of missclassified items. Where their descriptions appear to not match their material categorisation\\
 Lets see if there are any "ItemNames" associated with more than one "Material Descriptions".
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## # A tibble: 1 x 2
@@ -337,7 +308,7 @@ Lets see if there are any "ItemNames" associated with more than one "Material De
 \end{kframe}
 \end{knitrout}
 So rubber gloves are associated with two material descriptions, but otherwise a one to many relationship exists between "Material Description" and "ItemName".
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## # A tibble: 2 x 2
@@ -349,7 +320,7 @@ So rubber gloves are associated with two material descriptions, but otherwise a 
 \end{kframe}
 \end{knitrout}
 It seems that most rubber gloves are classified as plastic rather than rubber.
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ## # A tibble: 33 x 3
@@ -388,9 +359,9 @@ After the issues with the dataset that were identified in the section above, it 
 
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-7-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-8-1} 
 
 \end{knitrout}
 \caption {Debris by categorisation}
@@ -404,9 +375,9 @@ After the issues with the dataset that were identified in the section above, it 
 \hl{Adjust legend text size in annotated code below. - Stuart}
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-8-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
 
 \end{knitrout}
 \caption {Recategorisation by year. Colour scale ordered by ranking of total observed quantity.}
@@ -435,9 +406,9 @@ Question: Are observed plastic item proportions time invariant?\\
 \hl{I changed the parameters here to adjust figure size. Change the number in out.width. - Stuart}
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-10-1} 
 
 \end{knitrout}
 \caption {Trend of debris observered}
@@ -448,9 +419,9 @@ Question: Are observed plastic item proportions time invariant?\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-10-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-11-1} 
 
 \end{knitrout}
 \caption {Observations of plastic debris v all debris}
@@ -466,9 +437,9 @@ MaterialQuantities\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-11-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
 
 \end{knitrout}
 \caption {Material Quantities}
@@ -481,9 +452,9 @@ So the most populated material class is Plastic. Note that this does not necessa
 A tree map of material quantities:
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-13-1} 
 
 \end{knitrout}
 \caption {Debris categorisation}
@@ -505,9 +476,9 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-13-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
 
 \end{knitrout}
 
@@ -527,48 +498,17 @@ Rubber found in Indoneasia only: possibly a recording bias.\\
 Certain classes are found in certain regions only: not because they don't exist elsewhere but because of recording bias focus in those areas\\
 
 We have locational data, so lets check for any geographical observation bias.
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{world} \hlkwb{<-} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{)}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(Latitude, Longitude, Quantity, Location, `Material Description`)} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{()} \hlopt{+}
-    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
-    \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude),} \hlkwc{bins} \hlstd{=} \hlnum{50}\hlstd{)} \hlopt{+}
-    \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{"log"}\hlstd{,} \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{50}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{5000}\hlstd{,} \hlnum{50000}\hlstd{))} \hlopt{+}
-    \hlkwd{theme_void}\hlstd{()} \hlopt{+}
-    \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))}
-\end{alltt}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-15-1} 
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: Computation failed in `stat\_binhex()`:\\\#\# Package `hexbin` required for `stat\_binhex`.\\\#\# Please install and try again.}}\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
-\begin{kframe}\begin{alltt}
-\hlcom{#ggsave("plots/map.png", width = 20, height = 10, units = "cm")}
-\end{alltt}
-\end{kframe}
 \end{knitrout}
 
 We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.\\
 
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{#Potentially remove}
-\hlcom{#Scatterplot of long/lat positions}
-\hlcom{#We have a outliers here. Maybe a difference in standards used for Longitude and Latitude? Some systems put the Latitude origin close to the UK}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{Location} \hlstd{=} \hlkwd{str_to_lower}\hlstd{(Location))} \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(}\hlkwd{str_detect}\hlstd{(Location,} \hlstr{"united kingdom"}\hlstd{))} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(Latitude, Longitude)} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Latitude,} \hlkwc{y} \hlstd{= Longitude))} \hlopt{+}
-    \hlkwd{geom_point}\hlstd{(}\hlkwc{position} \hlstd{=} \hlstr{"jitter"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+
 \caption {Longitude and Latitude discrepancies}
 \label{figJ}
 \end {center}
@@ -580,9 +520,9 @@ Distribution of plastic by location.\\
 Are the distributions of plastic fairly constant for the locations with the most observations?\\
 \begin{figure}[H] %start a figure
 \begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-16-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-17-1} 
 
 \end{knitrout}
 \caption {Debris by location}
@@ -604,51 +544,170 @@ Given the variability of plastic pollution trends given event-driven and locatio
 \subsection{Description of Model}
 
 Georgios' script
-
-
-\begin{figure}[H] %start a figure
-\begin{center}
-\begin{knitrout}
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-1} 
-
-\end{knitrout}
-\caption {Current Observations}
-\label{figH}
-\end {center}
-\end {figure}
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## [1] "train model"
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-18-1} 
+\begin{kframe}\begin{verbatim}
 ## 
 ## Call:
-## lm(formula = freq ~ year, data = train_dfTotN)
+## lm(formula = freq ~ year, data = train_Cigrel)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.16888 -0.15222 -0.06018  0.11714  0.58484 
+## -0.46091 -0.10273  0.00188  0.09610  0.45471 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -1.1955072 24.9391038  -0.048    0.962
-## year         0.0006895  0.0123774   0.056    0.956
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 111.42444   13.56061   8.217 1.46e-12 ***
+## year         -0.05512    0.00673  -8.191 1.64e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1947 on 32 degrees of freedom
-## Multiple R-squared:  9.696e-05,	Adjusted R-squared:  -0.03115 
-## F-statistic: 0.003103 on 1 and 32 DF,  p-value: 0.9559
+## Residual standard error: 0.1606 on 90 degrees of freedom
+## Multiple R-squared:  0.4271,	Adjusted R-squared:  0.4207 
+## F-statistic: 67.09 on 1 and 90 DF,  p-value: 1.644e-12
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.1310  0.1586  0.3791  0.3437  0.5031  0.5720
+##      actuals predicteds
+## 1 0.61842105  0.5720207
+## 2 0.64354430  0.5168977
+## 3 0.64302022  0.5168977
+## 4 0.51924551  0.5168977
+## 5 0.05152079  0.4617747
+## 6 0.65844243  0.4066516
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
 
-Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0. Here p is pretty big which means that there is statistically significant correlation between relative frequency and years passing by. Which basically further supports our initial hypothesis in this project. I have included a prediction on the test set but it is of no worth obviously.\\
+Pr( greater than |t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0 that there's no difference between the means and conclude that a significant difference does exist. If the p-value is larger than 0.05, we cannot conclude that a significant difference exists.
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-20-1} 
 
+
+time statistically significant
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = freq ~ year, data = train_Foodrel)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.17953 -0.05703  0.00065  0.04975  0.46312 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -61.022903   9.407724  -6.486 7.67e-09 ***
+## year          0.030425   0.004668   6.517 6.72e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1074 on 77 degrees of freedom
+## Multiple R-squared:  0.3555,	Adjusted R-squared:  0.3471 
+## F-statistic: 42.47 on 1 and 77 DF,  p-value: 6.719e-09
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.1619  0.2227  0.2836  0.2768  0.3292  0.4053
+##      actuals predicteds
+## 1 0.55555556  0.1618845
+## 2 0.13713056  0.1618845
+## 3 0.01143473  0.1923095
+## 4 0.20172864  0.1923095
+## 5 0.36359833  0.1923095
+## 6 0.10897269  0.2227346
+## 
+## Call:
+## lm(formula = freq ~ year, data = train_Other)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.044859 -0.016911 -0.005815  0.010215  0.176411 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  3.198673   2.931819   1.091    0.279
+## year        -0.001567   0.001455  -1.077    0.285
+## 
+## Residual standard error: 0.03258 on 79 degrees of freedom
+## Multiple R-squared:  0.01447,	Adjusted R-squared:  0.001998 
+## F-statistic:  1.16 on 1 and 79 DF,  p-value: 0.2847
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.03474 0.03630 0.04257 0.04119 0.04414 0.04727
+##      actuals predicteds
+## 1 0.06521739 0.04727362
+## 2 0.06538462 0.04727362
+## 3 0.04549431 0.04570653
+## 4 0.10383018 0.04570653
+## 5 0.05857741 0.04570653
+## 6 0.02601969 0.04570653
+## 
+## Call:
+## lm(formula = freq ~ year, data = train_Plbag)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.070881 -0.026288 -0.005527  0.015992  0.151417 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)  7.723310   3.428351   2.253   0.0272 *
+## year        -0.003802   0.001701  -2.235   0.0284 *
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.03724 on 74 degrees of freedom
+## Multiple R-squared:  0.06323,	Adjusted R-squared:  0.05057 
+## F-statistic: 4.995 on 1 and 74 DF,  p-value: 0.02844
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.04709 0.05849 0.06610 0.06347 0.06990 0.07750
+##      actuals predicteds
+## 1 0.02796272 0.07750166
+## 2 0.05367089 0.07369967
+## 3 0.02743321 0.07369967
+## 4 0.01901836 0.07369967
+## 5 0.09314421 0.07369967
+## 6 0.07005348 0.07369967
+## 
+## Call:
+## lm(formula = freq ~ year, data = train_Frag)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.22532 -0.08600 -0.01640  0.04217  0.38767 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -62.119891  12.351523  -5.029 3.92e-06 ***
+## year          0.030950   0.006129   5.050 3.63e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1268 on 67 degrees of freedom
+## Multiple R-squared:  0.2757,	Adjusted R-squared:  0.2649 
+## F-statistic:  25.5 on 1 and 67 DF,  p-value: 3.626e-06
+## [1] "PREDICTION"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.1205  0.1824  0.2133  0.2342  0.3062  0.3681
+##      actuals predicteds
+## 1 0.10416667  0.1204722
+## 2 0.05555556  0.1204722
+## 3 0.17842876  0.1204722
+## 4 0.28076923  0.1204722
+## 5 0.12944706  0.1204722
+## 6 0.13873418  0.1514221
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
+
+In total we see that time is statistically significant in the change of proportions of certain categories of plastic waste, cigarette related waste and food related waste. This is not the case for the other 3 categories.This is supported by a paper that I sent to Roshi on Sunday where this situation is discussed. Some plastic waste
+categories are time variant while others aren't and this has to do a  lot with sampling techniques and one-sidedness of datasets. It does not mean that the datasets are wrong it just shows even more that what we have talked about over many group meetings regarding the dataset being biased one way or the other is clearly backed by statistical evidence within this dataset and by referencial evidence too."
+
+"Paper: Spatial and Temporal Patterns of Stranded Intertidal Marine Debris:
+Is There a Picture of Global Change?"
 
 
 
@@ -657,39 +716,6 @@ Pr(>|t|) is the p-value, defined as the probability of observing any value equal
 
 \subsection{Model Results}
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## [1] "PREDICTION"
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1917  0.1931  0.1945  0.1941  0.1948  0.1966
-## % latex table generated in R 3.6.1 by xtable 1.8-4 package
-## % Fri May 01 19:34:49 2020
-## \begin{table}[ht]
-## \centering
-## \begin{tabular}{rrr}
-##   \hline
-##  & actuals & predicteds \\ 
-##   \hline
-## 1 & 0.10 & 0.19 \\ 
-##   2 & 0.07 & 0.19 \\ 
-##   3 & 0.63 & 0.19 \\ 
-##   4 & 0.14 & 0.19 \\ 
-##   5 & 0.30 & 0.19 \\ 
-##   6 & 0.33 & 0.19 \\ 
-##    \hline
-## \end{tabular}
-## \end{table}
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-A simple correlation between the actuals and predicted values can be used as a form of accuracy measure. A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicteds also increase and vice-versa.
-
-equal or greater than 99.4\%, mean absolute percentage deviation.
-Intrestingly enough min/max accuracy and mostly mean absolute percentage deviation score quite well but still on a model that can not be trusted.
-
-Time does not impact plastic composition.
 
 
 
@@ -720,7 +746,7 @@ All project documents used and the final report can be accessed from the \textit
 
 % Pay attention to the code below including the chunk options 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Fri May 01 19:34:54 2020
+% Fri May 08 22:47:22 2020
 \begin{table}[ht]
 \centering
 \caption{Record of Team Meetings} 
@@ -752,7 +778,7 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 \subsection{Peer-assessment}
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Fri May 01 19:34:54 2020
+% Fri May 08 22:47:22 2020
 \begin{table}[ht]
 \centering
 \caption{Peer Assessment out of 100} 

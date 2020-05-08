@@ -57,97 +57,6 @@
       \endverb
       \keyw{Plastic debris,Pollution,Marine environment}
     \endentry
-    \entry{REISSER2013}{article}{}
-      \name{author}{7}{}{%
-        {{hash=eb5b53963e4e2887e3f2800cd8c637aa}{%
-           family={Reisser},
-           familyi={R\bibinitperiod},
-           given={Julia},
-           giveni={J\bibinitperiod}}}%
-        {{hash=9f094ca9369ed4b249713ec3750ce772}{%
-           family={Shaw},
-           familyi={S\bibinitperiod},
-           given={Jeremy},
-           giveni={J\bibinitperiod}}}%
-        {{hash=fa5dc6564d5fbe1e970be61369d9bd5c}{%
-           family={Wilcox},
-           familyi={W\bibinitperiod},
-           given={Chris},
-           giveni={C\bibinitperiod}}}%
-        {{hash=4d3820065649526a27d31e9c795997ba}{%
-           family={Hardesty},
-           familyi={H\bibinitperiod},
-           given={Britta\bibnamedelima Denise},
-           giveni={B\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=71d34d9175dee938ab599352626c6eaf}{%
-           family={Proietti},
-           familyi={P\bibinitperiod},
-           given={Maira},
-           giveni={M\bibinitperiod}}}%
-        {{hash=72622f34c08974feb60647cdeb888f9d}{%
-           family={Thums},
-           familyi={T\bibinitperiod},
-           given={Michele},
-           giveni={M\bibinitperiod}}}%
-        {{hash=a91a060bd124ba67f5025521b0ba2c4f}{%
-           family={Pattiaratchi},
-           familyi={P\bibinitperiod},
-           given={Charitha},
-           giveni={C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Public Library of Science}%
-      }
-      \strng{namehash}{d83eb435f03e3b8c065b867fb2cca21d}
-      \strng{fullhash}{554f7991584129cc4ae34e6c1d04fabe}
-      \strng{bibnamehash}{d83eb435f03e3b8c065b867fb2cca21d}
-      \strng{authorbibnamehash}{d83eb435f03e3b8c065b867fb2cca21d}
-      \strng{authornamehash}{d83eb435f03e3b8c065b867fb2cca21d}
-      \strng{authorfullhash}{554f7991584129cc4ae34e6c1d04fabe}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Plastics represent the vast majority of human-made debris present in the oceans. However, their characteristics, accumulation zones, and transport pathways remain poorly assessed. We characterised and estimated the concentration of marine plastics in waters around Australia using surface net tows, and inferred their potential pathways using particle-tracking models and real drifter trajectories. The 839 marine plastics recorded were predominantly small fragments (“microplastics”, median length = 2.8 mm, mean length = 4.9 mm) resulting from the breakdown of larger objects made of polyethylene and polypropylene (e.g. packaging and fishing items). Mean sea surface plastic concentration was 4256.4 pieces km−2, and after incorporating the effect of vertical wind mixing, this value increased to 8966.3 pieces km−2. These plastics appear to be associated with a wide range of ocean currents that connect the sampled sites to their international and domestic sources, including populated areas of Australia's east coast. This study shows that plastic contamination levels in surface waters of Australia are similar to those in the Caribbean Sea and Gulf of Maine, but considerably lower than those found in the subtropical gyres and Mediterranean Sea. Microplastics such as the ones described here have the potential to affect organisms ranging from megafauna to small fish and zooplankton.}
-      \field{journaltitle}{PLOS ONE}
-      \field{month}{11}
-      \field{number}{11}
-      \field{title}{Marine Plastic Pollution in Waters around Australia: Characteristics, Concentrations, and Pathways}
-      \field{volume}{8}
-      \field{year}{2013}
-      \field{pages}{1\bibrangedash 11}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1371/journal.pone.0080466
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1371/journal.pone.0080466
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1371/journal.pone.0080466
-      \endverb
-    \endentry
-    \entry{BARBOZA2020}{article}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labeltitlesource}{title}
-      \field{issn}{0048-9697}
-      \field{journaltitle}{Science of The Total Environment}
-      \field{title}{Microplastics in wild fish from North East Atlantic Ocean and its potential for causing neurotoxic effects, lipid oxidative damage, and human health risks associated with ingestion exposure}
-      \field{volume}{717}
-      \field{year}{2020}
-      \field{pages}{134625}
-      \range{pages}{1}
-      \verb{doi}
-      \verb https://doi.org/10.1016/j.scitotenv.2019.134625
-      \endverb
-      \verb{urlraw}
-      \verb http://www.sciencedirect.com/science/article/pii/S0048969719346169
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/S0048969719346169
-      \endverb
-    \endentry
     \entry{RIOS2007}{article}{}
       \name{author}{3}{}{%
         {{hash=73f87610341941e3447b4052eff3d7d5}{%
@@ -172,8 +81,8 @@
       \strng{authorbibnamehash}{fc9f59cd2cec230172e49a075aeabc52}
       \strng{authornamehash}{fc9f59cd2cec230172e49a075aeabc52}
       \strng{authorfullhash}{fc9f59cd2cec230172e49a075aeabc52}
-      \field{sortinit}{5}
-      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Thermoplastic resin pellets are melted and formed into an enormous number of inexpensive consumer goods, many of which are discarded after a relatively short period of use, dropped haphazardly onto watersheds and then make their way to the ocean where some get ingested by marine life. In 2003 and 2004 pre-production thermoplastic resin pellets and post-consumer plastic fragments were collected and analyzed for contamination for persistent organic pollutants (POPs). Samples were taken from the North Pacific Gyre, and selected sites in California, Hawaii, and from Guadalupe Island, Mexico. The total concentration of PCBs ranged from 27 to 980ng/g; DDTs from 22 to 7100ng/g and PAHs from 39 to 1200ng/g, and aliphatic hydrocarbons from 1.1 to 8600μg/g. Analytical methods were developed to extract, concentrate and identify POPs that may have accumulated on plastic fragments and plastic pellets. The results of this study confirm that plastic debris is a trap for POPs.}
@@ -225,8 +134,8 @@
       \strng{authorbibnamehash}{8b636852c7a94c1d2183a65bcda313f8}
       \strng{authornamehash}{8b636852c7a94c1d2183a65bcda313f8}
       \strng{authorfullhash}{185e4c779ce503696c8c88525d255558}
-      \field{sortinit}{6}
-      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Philosophical transactions of the Royal Society of London. Series B, Biological sciences}
@@ -254,8 +163,8 @@
       \strng{authorbibnamehash}{5b188b97828cc0113574eb8a4e760cc1}
       \strng{authornamehash}{5b188b97828cc0113574eb8a4e760cc1}
       \strng{authorfullhash}{5b188b97828cc0113574eb8a4e760cc1}
-      \field{sortinit}{7}
-      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0958-1669}
@@ -328,8 +237,8 @@
       \strng{authorbibnamehash}{9f69a2221ccd06079ad918ffa55240cb}
       \strng{authornamehash}{9f69a2221ccd06079ad918ffa55240cb}
       \strng{authorfullhash}{792170e071e35edb5f46472072f71cb5}
-      \field{sortinit}{9}
-      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Considerable progress has been made in determining the amount and location of plastic debris in our seas, but how much plastic actually enters them in the first place is more uncertain. Jambeck et al. combine available data on solid waste with a model that uses population density and economic status to estimate the amount of land-based plastic waste entering the ocean. Unless waste management practices are improved, the flux of plastics to the oceans could increase by an order of magnitude within the next decade.Science, this issue p. 768 Plastic debris in the marine environment is widely documented, but the quantity of plastic entering the ocean from waste generated on land is unknown. By linking worldwide data on solid waste, population density, and economic status, we estimated the mass of land-based plastic waste entering the ocean. We calculate that 275 million metric tons (MT) of plastic waste was generated in 192 coastal countries in 2010, with 4.8 to 12.7 million MT entering the ocean. Population size and the quality of waste management systems largely determine which countries contribute the greatest mass of uncaptured waste available to become plastic marine debris. Without waste management infrastructure improvements, the cumulative quantity of plastic waste available to enter the ocean from land is predicted to increase by an order of magnitude by 2025.}
@@ -394,8 +303,8 @@
       \strng{editorbibnamehash}{699ebace79d0fbf7f0e78e72137216f4}
       \strng{editornamehash}{699ebace79d0fbf7f0e78e72137216f4}
       \strng{editorfullhash}{699ebace79d0fbf7f0e78e72137216f4}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{8}
+      \field{sortinithash}{1b24cab5087933ef0826a7cd3b99e994}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{For decades we have learned about the physical hazards associated with plastic debris in the marine environment, but recently we are beginning to realize the chemical hazards. Assessing hazards associated with plastic in aquatic habitats is not simple, and requires knowledge regarding organisms that may be exposed, the exposure concentrations, the types of polymers comprising the debris, the length of time the debris was present in the aquatic environment (affecting the size, shape and fouling) and the locations and transport of the debris during that time period. Marine plastic debris is associated with a 'cocktail of chemicals', including chemicals added or produced during manufacturing and those present in the marine environment that accumulate onto the debris from surrounding seawater. This raises concerns regarding: (i) the complex mixture of chemical substances associated with marine plastic debris, (ii) the environmental fate of these chemicals to and from plastics in our oceans and (iii) how this mixture affects wildlife, as hundreds of species ingest this material in nature. The focus of this chapter is on the mixture of chemicals associated with marine plastic debris. Specifically, this chapter discusses the diversity of chemical ingredients, byproducts of manufacturing and sorbed chemical contaminants from the marine environment among plastic types, the role of marine plastic debris as a novel medium for environmental partitioning of chemical contaminants in the ocean and the toxic effects that may result from plastic debris in marine animals.}
@@ -434,8 +343,8 @@
       \strng{authorbibnamehash}{17710da7961ce29703944d4fdc2e4ed0}
       \strng{authornamehash}{17710da7961ce29703944d4fdc2e4ed0}
       \strng{authorfullhash}{17710da7961ce29703944d4fdc2e4ed0}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{9}
+      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0025-326X}
@@ -528,93 +437,6 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1007/978-3-319-16510-3_4
-      \endverb
-    \endentry
-    \entry{ROBARDS1995}{article}{}
-      \name{author}{3}{}{%
-        {{hash=62bcbb3193c4e81c44931ffc1ad06172}{%
-           family={Robards},
-           familyi={R\bibinitperiod},
-           given={Martin\bibnamedelima D.},
-           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=293151147b51afa6fd451f25549b1167}{%
-           family={Piatt},
-           familyi={P\bibinitperiod},
-           given={John\bibnamedelima F.},
-           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
-        {{hash=e9010f7e495f5449fd398b00617c0e23}{%
-           family={Wohl},
-           familyi={W\bibinitperiod},
-           given={Kenton\bibnamedelima D.},
-           giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-      }
-      \strng{namehash}{d30b9f04f857f70983e971507251a83b}
-      \strng{fullhash}{d30b9f04f857f70983e971507251a83b}
-      \strng{bibnamehash}{d30b9f04f857f70983e971507251a83b}
-      \strng{authorbibnamehash}{d30b9f04f857f70983e971507251a83b}
-      \strng{authornamehash}{d30b9f04f857f70983e971507251a83b}
-      \strng{authorfullhash}{d30b9f04f857f70983e971507251a83b}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0025-326X}
-      \field{journaltitle}{Marine Pollution Bulletin}
-      \field{number}{2}
-      \field{title}{Increasing frequency of plastic particles ingested by seabirds in the subarctic North Pacific}
-      \field{volume}{30}
-      \field{year}{1995}
-      \field{pages}{151\bibrangedash 157}
-      \range{pages}{7}
-      \verb{doi}
-      \verb https://doi.org/10.1016/0025-326X(94)00121-O
-      \endverb
-      \verb{urlraw}
-      \verb http://www.sciencedirect.com/science/article/pii/0025326X9400121O
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/0025326X9400121O
-      \endverb
-    \endentry
-    \entry{MOSER1992}{article}{}
-      \name{author}{2}{}{%
-        {{hash=a970dbfd8b1da2eb7c5a0a943b8b98b3}{%
-           family={Moser},
-           familyi={M\bibinitperiod},
-           given={Mary\bibnamedelima L.},
-           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=95a248b56768f250923ee04ec474cf6c}{%
-           family={Lee},
-           familyi={L\bibinitperiod},
-           given={David\bibnamedelima S.},
-           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Waterbird Society}%
-      }
-      \strng{namehash}{17b1809012a180419e325cbc9242d74e}
-      \strng{fullhash}{17b1809012a180419e325cbc9242d74e}
-      \strng{bibnamehash}{17b1809012a180419e325cbc9242d74e}
-      \strng{authorbibnamehash}{17b1809012a180419e325cbc9242d74e}
-      \strng{authornamehash}{17b1809012a180419e325cbc9242d74e}
-      \strng{authorfullhash}{17b1809012a180419e325cbc9242d74e}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{07386028}
-      \field{journaltitle}{Colonial Waterbirds}
-      \field{number}{1}
-      \field{title}{A Fourteen-Year Survey of Plastic Ingestion by Western North Atlantic Seabirds}
-      \field{volume}{15}
-      \field{year}{1992}
-      \field{pages}{83\bibrangedash 94}
-      \range{pages}{12}
-      \verb{urlraw}
-      \verb http://www.jstor.org/stable/1521357
-      \endverb
-      \verb{url}
-      \verb http://www.jstor.org/stable/1521357
       \endverb
     \endentry
     \entry{RYAN2015}{inbook}{}
@@ -723,106 +545,6 @@
       \endverb
       \keyw{behaviour change,marine litter,mitigation,prevention}
     \endentry
-    \entry{GREGORY2009}{article}{}
-      \name{author}{1}{}{%
-        {{hash=911e753f64e6e8a62467f3aa8e3bc9a7}{%
-           family={Gregory},
-           familyi={G\bibinitperiod},
-           given={Murray},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \strng{fullhash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \strng{bibnamehash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \strng{authorbibnamehash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \strng{authornamehash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \strng{authorfullhash}{911e753f64e6e8a62467f3aa8e3bc9a7}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Philosophical transactions of the Royal Society of London. Series B, Biological sciences}
-      \field{month}{08}
-      \field{title}{Environmental implications of plastic debris in marine settings—Entanglement, ingestion, smothering, hangers-on, hitch-hiking and alien invasions}
-      \field{volume}{364}
-      \field{year}{2009}
-      \field{pages}{2013\bibrangedash 25}
-      \range{pages}{13}
-      \verb{doi}
-      \verb 10.1098/rstb.2008.0265
-      \endverb
-    \endentry
-    \entry{KIESSLING2015}{inbook}{}
-      \name{author}{3}{}{%
-        {{hash=879e176c2cbd59ac4bcef347e84b175a}{%
-           family={Kiessling},
-           familyi={K\bibinitperiod},
-           given={Tim},
-           giveni={T\bibinitperiod}}}%
-        {{hash=899fb5234a1bf1c6773bc20a6d66d1f1}{%
-           family={Gutow},
-           familyi={G\bibinitperiod},
-           given={Lars},
-           giveni={L\bibinitperiod}}}%
-        {{hash=52c54a8f83674be311ab0e53b3bbff0d}{%
-           family={Thiel},
-           familyi={T\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \name{editor}{3}{}{%
-        {{hash=cc599dc12fc5b4608b6a770db2292475}{%
-           family={Bergmann},
-           familyi={B\bibinitperiod},
-           given={Melanie},
-           giveni={M\bibinitperiod}}}%
-        {{hash=899fb5234a1bf1c6773bc20a6d66d1f1}{%
-           family={Gutow},
-           familyi={G\bibinitperiod},
-           given={Lars},
-           giveni={L\bibinitperiod}}}%
-        {{hash=38b1a253b38d48e9ffe39c62a83a6b72}{%
-           family={Klages},
-           familyi={K\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Cham}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{fullhash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{bibnamehash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{authorbibnamehash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{authornamehash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{authorfullhash}{6ebdb5467daaa08a8fb89fd55f383b23}
-      \strng{editorbibnamehash}{699ebace79d0fbf7f0e78e72137216f4}
-      \strng{editornamehash}{699ebace79d0fbf7f0e78e72137216f4}
-      \strng{editorfullhash}{699ebace79d0fbf7f0e78e72137216f4}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Floating anthropogenic litter provides habitat for a diverse community of marine organisms. A total of 387 taxa, including pro- and eukaryotic micro-organisms, seaweeds and invertebrates, have been found rafting on floating litter in all major oceanic regions. Among the invertebrates, species of bryozoans, crustaceans, molluscs and cnidarians are most frequently reported as rafters on marine litter. Micro-organisms are also ubiquitous on marine litter although the composition of the microbial community seems to depend on specific substratum characteristics such as the polymer type of floating plastic items. Sessile suspension feeders are particularly well-adapted to the limited autochthonous food resources on artificial floating substrata and an extended planktonic larval development seems to facilitate colonization of floating litter at sea. Properties of floating litter, such as size and surface rugosity, are crucial for colonization by marine organisms and the subsequent succession of the rafting community. The rafters themselves affect substratum characteristics such as floating stability, buoyancy, and degradation. Under the influence of currents and winds marine litter can transport associated organisms over extensive distances. Because of the great persistence (especially of plastics) and the vast quantities of litter in the world's oceans, rafting dispersal has become more prevalent in the marine environment, potentially facilitating the spread of invasive species.}
-      \field{booktitle}{Marine Anthropogenic Litter}
-      \field{isbn}{978-3-319-16510-3}
-      \field{title}{Marine Litter as Habitat and Dispersal Vector}
-      \field{year}{2015}
-      \field{pages}{141\bibrangedash 181}
-      \range{pages}{41}
-      \verb{doi}
-      \verb 10.1007/978-3-319-16510-3_6
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/978-3-319-16510-3_6
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-3-319-16510-3_6
-      \endverb
-    \endentry
     \entry{MARKIC2020}{article}{}
       \name{author}{4}{}{%
         {{hash=25587d01bad7e960ef3932838703c8fd}{%
@@ -856,8 +578,8 @@
       \strng{authorbibnamehash}{2e4df524165152d9461d092e298768ec}
       \strng{authornamehash}{2e4df524165152d9461d092e298768ec}
       \strng{authorfullhash}{cdec2e3f1aef6832c3fb83fda039f296}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Critical Reviews in Environmental Science and Technology}
@@ -902,8 +624,8 @@
       \strng{authorbibnamehash}{5ddfd23eafa5d40dae8dde803d0a28a1}
       \strng{authornamehash}{5ddfd23eafa5d40dae8dde803d0a28a1}
       \strng{authorfullhash}{5ddfd23eafa5d40dae8dde803d0a28a1}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9780387947594}
@@ -936,8 +658,8 @@
       \strng{authorbibnamehash}{a73615a23686190ef3757dd81356bfa1}
       \strng{authornamehash}{a73615a23686190ef3757dd81356bfa1}
       \strng{authorfullhash}{a73615a23686190ef3757dd81356bfa1}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0025-326X}
@@ -957,6 +679,52 @@
       \verb{url}
       \verb http://www.sciencedirect.com/science/article/pii/0025326X93905744
       \endverb
+    \endentry
+    \entry{WALTHER2018}{article}{}
+      \name{author}{3}{}{%
+        {{hash=bdbe3c95be06af06a5f38374c2031aa3}{%
+           family={Walther},
+           familyi={W\bibinitperiod},
+           given={Bruno\bibnamedelima A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=c528fe0a643a59a89f87212351f2c3df}{%
+           family={Kunz},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5c9830aa07cf1fd8fa2fa35aff4a63de}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Chieh-Shen},
+           giveni={C\bibinithyphendelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{32365a8c8f738776259b5d550098ff30}
+      \strng{fullhash}{32365a8c8f738776259b5d550098ff30}
+      \strng{bibnamehash}{32365a8c8f738776259b5d550098ff30}
+      \strng{authorbibnamehash}{32365a8c8f738776259b5d550098ff30}
+      \strng{authornamehash}{32365a8c8f738776259b5d550098ff30}
+      \strng{authorfullhash}{32365a8c8f738776259b5d550098ff30}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-326X}
+      \field{journaltitle}{Marine Pollution Bulletin}
+      \field{title}{Type and quantity of coastal debris pollution in Taiwan: A 12-year nationwide assessment using citizen science data}
+      \field{volume}{135}
+      \field{year}{2018}
+      \field{pages}{862\bibrangedash 872}
+      \range{pages}{11}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.marpolbul.2018.08.025
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0025326X18305897
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0025326X18305897
+      \endverb
+      \keyw{Beach cleaning,Citizen science,Coastal conservation,Marine anthropogenic litter,Marine macro-debris,Plastic pollution}
     \endentry
     \entry{KUSUI2003}{article}{}
       \name{author}{2}{}{%
@@ -1044,140 +812,77 @@
       \verb 10.1016/j.marpolbul.2017.09.020
       \endverb
     \endentry
-    \entry{WILLIAMS2016}{article}{}
-      \name{author}{6}{}{%
-        {{hash=514b84aebdd28d7d9b04f2fed5d22206}{%
-           family={Williams},
-           familyi={W\bibinitperiod},
-           given={Allan},
-           giveni={A\bibinitperiod}}}%
-        {{hash=04b3eea39cfcbfadf1e395bb961e77b2}{%
-           family={Randerson},
-           familyi={R\bibinitperiod},
-           given={Peter},
-           giveni={P\bibinitperiod}}}%
-        {{hash=0e35b407b816072acca8060e5d2826ab}{%
-           family={Giacomo},
-           familyi={G\bibinitperiod},
-           given={Carlo},
-           giveni={C\bibinitperiod}}}%
-        {{hash=1a301eb791a2ab5c3e4ccf708022ed14}{%
-           family={Anfuso},
-           familyi={A\bibinitperiod},
-           given={Giorgio},
-           giveni={G\bibinitperiod}}}%
-        {{hash=b1c0ecc445db69fcb40fd371010e989c}{%
-           family={Macias},
-           familyi={M\bibinitperiod},
-           given={Ana},
-           giveni={A\bibinitperiod}}}%
-        {{hash=621cab883cbc83f54959429447916ab9}{%
-           family={Perales},
-           familyi={P\bibinitperiod},
-           given={Jose},
-           giveni={J\bibinitperiod}}}%
+    \entry{SILVA2003}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5edfee2d5974df11e2ce10644f836e69}{%
+           family={Silva-Iñiguez},
+           familyi={S\bibinithyphendelim I\bibinitperiod},
+           given={Lidia},
+           giveni={L\bibinitperiod}}}%
+        {{hash=06b5446a38229b2d8197a40d673c298d}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={David\bibnamedelima W},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
       }
-      \strng{namehash}{38f5f1e025b36109dc1ef0de732fdb0d}
-      \strng{fullhash}{053e0b318b88bc1c4f5fd858269fa3df}
-      \strng{bibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
-      \strng{authorbibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
-      \strng{authornamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
-      \strng{authorfullhash}{053e0b318b88bc1c4f5fd858269fa3df}
+      \strng{namehash}{52d031ba1090068c43d502608c35e5d5}
+      \strng{fullhash}{52d031ba1090068c43d502608c35e5d5}
+      \strng{bibnamehash}{52d031ba1090068c43d502608c35e5d5}
+      \strng{authorbibnamehash}{52d031ba1090068c43d502608c35e5d5}
+      \strng{authornamehash}{52d031ba1090068c43d502608c35e5d5}
+      \strng{authorfullhash}{52d031ba1090068c43d502608c35e5d5}
       \field{sortinit}{2}
       \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{issn}{0025-326X}
       \field{journaltitle}{Marine pollution bulletin}
-      \field{month}{04}
-      \field{title}{Distribution of beach litter along the coastline of Cádiz, Spain}
-      \field{volume}{107}
-      \field{year}{2016}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Quantification and classification of marine litter on the municipal beach of Ensenada, Baja California, Mexico}
+      \field{volume}{46}
+      \field{year}{2003}
+      \field{pages}{132\bibrangedash 138}
+      \range{pages}{7}
       \verb{doi}
-      \verb 10.1016/j.marpolbul.2016.04.015
+      \verb 10.1016/s0025-326x(02)00216-3
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/s0025-326x(02)00216-3
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/s0025-326x(02)00216-3
       \endverb
     \endentry
-    \entry{PORTMAN2017}{article}{}
-      \name{author}{2}{}{%
-        {{hash=bf9b2f97715e05b1446e6b04dd357137}{%
-           family={Portman},
-           familyi={P\bibinitperiod},
-           given={Michelle},
-           giveni={M\bibinitperiod}}}%
-        {{hash=2bd5a542a147f7311797aa196c686dd3}{%
-           family={Brennan},
-           familyi={B\bibinitperiod},
-           given={Ruth},
-           giveni={R\bibinitperiod}}}%
+    \entry{REINOLD2020}{article}{}
+      \name{author}{1}{}{%
+        {{hash=bbbbb955bbafc009c099341b67d8e0bf}{%
+           family={Reinold},
+           familyi={R\bibinitperiod},
+           given={Stefanie},
+           giveni={S\bibinitperiod}}}%
       }
-      \strng{namehash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \strng{fullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \strng{bibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \strng{authorbibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \strng{authornamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \strng{authorfullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \strng{namehash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \strng{fullhash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \strng{bibnamehash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \strng{authorbibnamehash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \strng{authornamehash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \strng{authorfullhash}{bbbbb955bbafc009c099341b67d8e0bf}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Waste Management}
-      \field{month}{08}
-      \field{title}{Marine litter from beach-based sources: Case study of an Eastern Mediterranean coastal town}
-      \field{volume}{69}
-      \field{year}{2017}
+      \field{month}{3}
+      \field{title}{{Plastic pollution on eight beaches of Tenerife (Canary Islands, Spain): An annual study: Wind and Wave parameters}}
+      \field{year}{2020}
       \verb{doi}
-      \verb 10.1016/j.wasman.2017.07.040
+      \verb 10.17632/f7ntbw4rt6.1
       \endverb
-    \endentry
-    \entry{ANANTHA2016}{article}{}
-      \name{author}{6}{}{%
-        {{hash=102b9eea8ba6e8a098fff4dc312b34c4}{%
-           family={Anantha\bibnamedelima Kumar},
-           familyi={A\bibinitperiod\bibinitdelim K\bibinitperiod},
-           given={Arun\bibnamedelima Kumar},
-           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=bded5297efa1dec8980222630c8ef596}{%
-           family={Sivakumar},
-           familyi={S\bibinitperiod},
-           given={Ramamoorthy},
-           giveni={R\bibinitperiod}}}%
-        {{hash=c77068e81ebc2f1cd79d9ac0bed8eace}{%
-           family={Yellasiri},
-           familyi={Y\bibinitperiod},
-           given={Sai\bibnamedelimb Rutwik\bibnamedelima Reddy},
-           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=dfdad025638431178747878f31c8d038}{%
-           family={Raja},
-           familyi={R\bibinitperiod},
-           given={M.V.},
-           giveni={M\bibinitperiod}}}%
-        {{hash=72d556d382f03c31803689b2d4c32e37}{%
-           family={Nishanth},
-           familyi={N\bibinitperiod},
-           given={T.},
-           giveni={T\bibinitperiod}}}%
-        {{hash=fa51cb1d315b04030731e22dad9b5a47}{%
-           family={Revanth},
-           familyi={R\bibinitperiod},
-           given={V.},
-           giveni={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{b4d04e53a9984e8fabaee98b874526af}
-      \strng{fullhash}{4eaed8397f6e425834119c8ccae017f8}
-      \strng{bibnamehash}{b4d04e53a9984e8fabaee98b874526af}
-      \strng{authorbibnamehash}{b4d04e53a9984e8fabaee98b874526af}
-      \strng{authornamehash}{b4d04e53a9984e8fabaee98b874526af}
-      \strng{authorfullhash}{4eaed8397f6e425834119c8ccae017f8}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Regional Studies in Marine Science}
-      \field{month}{01}
-      \field{title}{Preliminary study on marine debris pollution along Marina beach, Chennai, India}
-      \field{volume}{5}
-      \field{year}{2016}
-      \verb{doi}
-      \verb 10.1016/j.rsma.2016.01.002
+      \verb{urlraw}
+      \verb https://mendeley.figshare.com/articles/Plastic_pollution_on_eight_beaches_of_Tenerife_Canary_Islands_Spain_An_annual_study_Wind_and_Wave_parameters/11972994
+      \endverb
+      \verb{url}
+      \verb https://mendeley.figshare.com/articles/Plastic_pollution_on_eight_beaches_of_Tenerife_Canary_Islands_Spain_An_annual_study_Wind_and_Wave_parameters/11972994
       \endverb
     \endentry
     \entry{CHESHIRE2009}{book}{}
@@ -1284,8 +989,8 @@
       \strng{authorbibnamehash}{aedc57c4f84b62d329a97321db33bfb7}
       \strng{authornamehash}{aedc57c4f84b62d329a97321db33bfb7}
       \strng{authorfullhash}{a85591ab472537d58ab590694f4548f0}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{01}
@@ -1316,8 +1021,8 @@
       \strng{authorbibnamehash}{a5069cebb8c41bd8a4285647affa7bb9}
       \strng{authornamehash}{a5069cebb8c41bd8a4285647affa7bb9}
       \strng{authorfullhash}{a5069cebb8c41bd8a4285647affa7bb9}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Ocean and Coastal Management}
@@ -1327,6 +1032,150 @@
       \field{year}{2007}
       \verb{doi}
       \verb 10.1016/j.ocecoaman.2006.10.002
+      \endverb
+    \endentry
+    \entry{PORTMAN2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bf9b2f97715e05b1446e6b04dd357137}{%
+           family={Portman},
+           familyi={P\bibinitperiod},
+           given={Michelle},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2bd5a542a147f7311797aa196c686dd3}{%
+           family={Brennan},
+           familyi={B\bibinitperiod},
+           given={Ruth},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{fullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{bibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authorbibnamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authornamehash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \strng{authorfullhash}{51b6d9f7dd1e23674be0482772ef7cdd}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Waste Management}
+      \field{month}{08}
+      \field{title}{Marine litter from beach-based sources: Case study of an Eastern Mediterranean coastal town}
+      \field{volume}{69}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.wasman.2017.07.040
+      \endverb
+    \endentry
+    \entry{KUMAR2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=51b4792339f541dabd7a7e3205d0977f}{%
+           family={A.},
+           familyi={A\bibinitperiod},
+           given={Arun\bibnamedelima Kumar},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=61a5593aa0be393026c42cef51f38004}{%
+           family={R.},
+           familyi={R\bibinitperiod},
+           given={Sivakumar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c0e3b0646d9c5e80f102f03169f62e76}{%
+           family={Reddy},
+           familyi={R\bibinitperiod},
+           given={Y.\bibnamedelimi Sai\bibnamedelima Rutwik},
+           giveni={Y\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3b6e696e735f4d843328bc6c3139df19}{%
+           family={M.V.},
+           familyi={M\bibinitperiod},
+           given={Bhagya\bibnamedelima Raja},
+           giveni={B\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3955e100aa1ed4a13575ddabbc77e3c7}{%
+           family={T.},
+           familyi={T\bibinitperiod},
+           given={Nishanth},
+           giveni={N\bibinitperiod}}}%
+        {{hash=fa18eaba334a04f4231c24e61cd4d8f6}{%
+           family={V.},
+           familyi={V\bibinitperiod},
+           given={Revanth},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{467b566cad9632945424d954924ce313}
+      \strng{fullhash}{af0e207892f60623b72aaf9aac073779}
+      \strng{bibnamehash}{467b566cad9632945424d954924ce313}
+      \strng{authorbibnamehash}{467b566cad9632945424d954924ce313}
+      \strng{authornamehash}{467b566cad9632945424d954924ce313}
+      \strng{authorfullhash}{af0e207892f60623b72aaf9aac073779}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2352-4855}
+      \field{journaltitle}{Regional Studies in Marine Science}
+      \field{title}{Preliminary study on marine debris pollution along Marina beach, Chennai, India}
+      \field{volume}{5}
+      \field{year}{2016}
+      \field{pages}{35\bibrangedash 40}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.rsma.2016.01.002
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S2352485516300020
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S2352485516300020
+      \endverb
+    \endentry
+    \entry{WILLIAMS2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=514b84aebdd28d7d9b04f2fed5d22206}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Allan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=04b3eea39cfcbfadf1e395bb961e77b2}{%
+           family={Randerson},
+           familyi={R\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=0e35b407b816072acca8060e5d2826ab}{%
+           family={Giacomo},
+           familyi={G\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1a301eb791a2ab5c3e4ccf708022ed14}{%
+           family={Anfuso},
+           familyi={A\bibinitperiod},
+           given={Giorgio},
+           giveni={G\bibinitperiod}}}%
+        {{hash=b1c0ecc445db69fcb40fd371010e989c}{%
+           family={Macias},
+           familyi={M\bibinitperiod},
+           given={Ana},
+           giveni={A\bibinitperiod}}}%
+        {{hash=621cab883cbc83f54959429447916ab9}{%
+           family={Perales},
+           familyi={P\bibinitperiod},
+           given={Jose},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{fullhash}{053e0b318b88bc1c4f5fd858269fa3df}
+      \strng{bibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authorbibnamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authornamehash}{38f5f1e025b36109dc1ef0de732fdb0d}
+      \strng{authorfullhash}{053e0b318b88bc1c4f5fd858269fa3df}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Marine pollution bulletin}
+      \field{month}{04}
+      \field{title}{Distribution of beach litter along the coastline of Cádiz, Spain}
+      \field{volume}{107}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1016/j.marpolbul.2016.04.015
       \endverb
     \endentry
   \enddatalist
