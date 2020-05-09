@@ -853,13 +853,14 @@ Time does not impact plastic composition.
 
 \pagebreak
 \section{Discussion}
-It was noted that the main system for reporting debris was used by large scale clobes. This means that data is not a continuous and even flow so during events such as international beach cleanup day there may be more data in the respective month. Since these events aim mostly to cleanup after big social events extra effort might have been made to retrive entertainment based debris such as fireworks, food packaging and six pack rings.
+It was noted that the main system for reporting debris was used by large scale clobes. This means that data is not a continuous and even flow so during events such as international beach cleanup day there may be more data in the respective month. Since these events aim mostly to cleanup after big social events extra effort might have been made to retrive entertainment based debris such as fireworks, food packaging and six pack rings.The decrease in cigarette waste was observed to be in corelation with a decreesing smoking rate.
 
 
 \section{Conclusion and Future Work}\label{cdsmote1}
 
 Our hypothesis stands/does not stand.
-
+The hypothesis H1 stands. This is no evident as to a change in the percentage of marine debris being plastic in origin that can be observed in results such as in figure 4.  
+Future work might involve continuing to study corelations similar to the fireworks/july corelation.  
 
 %Edit here 
 %\blindtext[2]
