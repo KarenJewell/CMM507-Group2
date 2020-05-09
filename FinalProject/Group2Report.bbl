@@ -760,100 +760,6 @@
       \verb 10.1016/S0025-326X(02)00478-2
       \endverb
     \endentry
-    \entry{LEE2017}{article}{}
-      \name{author}{6}{}{%
-        {{hash=248fb448f51c38ea78f9d27693c68309}{%
-           family={Lee},
-           familyi={L\bibinitperiod},
-           given={Jongsu},
-           giveni={J\bibinitperiod}}}%
-        {{hash=a266e1ac5d18865de8a87e1f0d0f5d33}{%
-           family={Lee},
-           familyi={L\bibinitperiod},
-           given={Jongmyoung},
-           giveni={J\bibinitperiod}}}%
-        {{hash=7777d3a70c376e148f088b7fdb4be55d}{%
-           family={Hong},
-           familyi={H\bibinitperiod},
-           given={Sunwook},
-           giveni={S\bibinitperiod}}}%
-        {{hash=40514c5e084b29e34830e7e01add0cac}{%
-           family={Hong},
-           familyi={H\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=24f95d7a28a5b5ca3822144579c7662a}{%
-           family={Shim},
-           familyi={S\bibinitperiod},
-           given={Won},
-           giveni={W\bibinitperiod}}}%
-        {{hash=212307511f3d1c70ed4b8ea19666f2ae}{%
-           family={Eo},
-           familyi={E\bibinitperiod},
-           given={Soeun},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
-      \strng{fullhash}{38150f708727d30ad5d83ffa766fb9ba}
-      \strng{bibnamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
-      \strng{authorbibnamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
-      \strng{authornamehash}{9615ec20ceb0a7f98e93f524ebf8b44b}
-      \strng{authorfullhash}{38150f708727d30ad5d83ffa766fb9ba}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Marine Pollution Bulletin}
-      \field{month}{09}
-      \field{title}{Characteristics of meso-sized plastic marine debris on 20 beaches in Korea}
-      \field{volume}{123}
-      \field{year}{2017}
-      \verb{doi}
-      \verb 10.1016/j.marpolbul.2017.09.020
-      \endverb
-    \endentry
-    \entry{SILVA2003}{article}{}
-      \name{author}{2}{}{%
-        {{hash=5edfee2d5974df11e2ce10644f836e69}{%
-           family={Silva-Iñiguez},
-           familyi={S\bibinithyphendelim I\bibinitperiod},
-           given={Lidia},
-           giveni={L\bibinitperiod}}}%
-        {{hash=06b5446a38229b2d8197a40d673c298d}{%
-           family={Fischer},
-           familyi={F\bibinitperiod},
-           given={David\bibnamedelima W},
-           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
-      }
-      \strng{namehash}{52d031ba1090068c43d502608c35e5d5}
-      \strng{fullhash}{52d031ba1090068c43d502608c35e5d5}
-      \strng{bibnamehash}{52d031ba1090068c43d502608c35e5d5}
-      \strng{authorbibnamehash}{52d031ba1090068c43d502608c35e5d5}
-      \strng{authornamehash}{52d031ba1090068c43d502608c35e5d5}
-      \strng{authorfullhash}{52d031ba1090068c43d502608c35e5d5}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0025-326X}
-      \field{journaltitle}{Marine pollution bulletin}
-      \field{month}{1}
-      \field{number}{1}
-      \field{title}{Quantification and classification of marine litter on the municipal beach of Ensenada, Baja California, Mexico}
-      \field{volume}{46}
-      \field{year}{2003}
-      \field{pages}{132\bibrangedash 138}
-      \range{pages}{7}
-      \verb{doi}
-      \verb 10.1016/s0025-326x(02)00216-3
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1016/s0025-326x(02)00216-3
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1016/s0025-326x(02)00216-3
-      \endverb
-    \endentry
     \entry{REINOLD2020}{article}{}
       \name{author}{1}{}{%
         {{hash=bbbbb955bbafc009c099341b67d8e0bf}{%
@@ -1177,6 +1083,37 @@
       \verb{doi}
       \verb 10.1016/j.marpolbul.2016.04.015
       \endverb
+    \endentry
+    \entry{JAMBECK2015B}{article}{}
+      \name{author}{2}{}{%
+        {{hash=77fe1e57e87cb839ab4308c55787b5c6}{%
+           family={Jambeck},
+           familyi={J\bibinitperiod},
+           given={J.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=c2f979813cce17aed54842e54bc25605}{%
+           family={Johnsen},
+           familyi={J\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{dd461c4e9d964ff872533870b59a43be}
+      \strng{fullhash}{dd461c4e9d964ff872533870b59a43be}
+      \strng{bibnamehash}{dd461c4e9d964ff872533870b59a43be}
+      \strng{authorbibnamehash}{dd461c4e9d964ff872533870b59a43be}
+      \strng{authornamehash}{dd461c4e9d964ff872533870b59a43be}
+      \strng{authorfullhash}{dd461c4e9d964ff872533870b59a43be}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computing in Science Engineering}
+      \field{number}{4}
+      \field{title}{Citizen-Based Litter and Marine Debris Data Collection and Mapping}
+      \field{volume}{17}
+      \field{year}{2015}
+      \field{pages}{20\bibrangedash 26}
+      \range{pages}{7}
     \endentry
   \enddatalist
 \endrefsection
