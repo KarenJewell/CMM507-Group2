@@ -63,7 +63,7 @@
 # Setting global chunk options
 opts_chunk$set(
   eval = TRUE, 
-  echo = FALSE, 
+  echo = TRUE, 
   message = FALSE, 
   warning = FALSE, 
   results='markup', 
@@ -79,7 +79,7 @@ opts_chunk$set(
 \begin{document}
 
 
-\title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
+\title{\LARGE Professional Development and Research Skills - CMM507 Coursework  \\ Group 2: Plastic Pollution in Oceans}
 
 \author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}};\\ GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};\\ KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};\\ ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};\\ STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
 
@@ -176,21 +176,14 @@ Given the literature above, our group went on to work with a world-wide coastal 
 \pagebreak
 \section {Methods}\label{methods}
 
-This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods.
-
-
 \subsection{Dataset Description}\label{dataset}
 %\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
 
+This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods. Data was obtained by downloading from Marine Debris Tracker website (www.marinedebris.engr.uga.edu). It is a citizen science project where individuals or organisation can record the marine debris observations through the mobile application known as Marine Debris Tracker (MDT)(SAMDI, 2010) (Tablada, 2018). The users can choose the category from the list provided to record the observations. Observations in the website can be found as different lists as specific users can make their own group to list the records. For this study "Marine Debris Items" was chosen in order to download the data from 2010 to Feb 2020. The dataset was composed by combining the multiple csv files gathered from here into a single set after which the  "date" data type was renamed as "Time".
+
 \hl{Can we also add to this information of how the data is entered e.g. optional/mandatory fields, free-text or dropdown fields. The use of IDs suggest these are option fields with lookup tables somewhere.}
 
-\begin{itemize}
-
-\item The data was taken from  \textit{\href{http://marinedebris.engr.uga.edu/newmap/}{marine debris tracker}} between 2010 till February 19th 2020. The time of 2010 was chosen as there was no data before that time.
-\item The dataset was composed by combining the multiple csv files gathered from the marine debris tracker into a single set after this was done the date data type was renamed "Time". 
-\item The dataset created from the combined csv files contain more than 360000 rows of data and consists of the folowing variables. 
-\end{itemize}
-
+\hl{need to mention that we downloaded 2010-2020 but decided to keep only 2012-2019 inclusive and why. This may belong in the cleaning section}
 
 \begin{table}[H]
 \begin{tabular}{ l l l }
@@ -756,7 +749,11 @@ df19N <- plasticN  %>%
 
 
 dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+@
 
+\begin{figure}[H] %start a figure
+\begin{center}
+<<>>=
 # plot for observing the data
 (time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
   geom_smooth(method="lm", level=0.95) +
@@ -769,8 +766,13 @@ dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
   scale_x_continuous()+
   theme(legend.position="bottom")+
   theme(legend.text = element_text(size=5, face="bold")))
+@
+\caption {Some sort of caption here}
+\label{figG1}
+\end {center}
+\end {figure}
 
-
+<<>>=
 #1/4/20
 ### MODELING with new categorisation
 

@@ -115,7 +115,7 @@
 \begin{document}
 
 
-\title{\LARGE Plastic Pollution in Oceans  \\ Group 2 Report - CMM507}
+\title{\LARGE Professional Development and Research Skills - CMM507 Coursework  \\ Group 2: Plastic Pollution in Oceans}
 
 \author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}};\\ GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};\\ KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};\\ ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};\\ STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
 
@@ -212,21 +212,14 @@ Given the literature above, our group went on to work with a world-wide coastal 
 \pagebreak
 \section {Methods}\label{methods}
 
-This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods.
-
-
 \subsection{Dataset Description}\label{dataset}
 %\Where the dataset came from; How it is constructed: multiple csv files by year; A description of what it is, what's in it and what it represents; Problems with the dataset: Missing data; data anomalies (lat/long values don't match named regions)
 
+This paper is conducted using secondary data collection methods only. The authors did not collect or create any new data using primary methods. Data was obtained by downloading from Marine Debris Tracker website (www.marinedebris.engr.uga.edu). It is a citizen science project where individuals or organisation can record the marine debris observations through the mobile application known as Marine Debris Tracker (MDT)(SAMDI, 2010) (Tablada, 2018). The users can choose the category from the list provided to record the observations. Observations in the website can be found as different lists as specific users can make their own group to list the records. For this study "Marine Debris Items" was chosen in order to download the data from 2010 to Feb 2020. The dataset was composed by combining the multiple csv files gathered from here into a single set after which the  "date" data type was renamed as "Time".
+
 \hl{Can we also add to this information of how the data is entered e.g. optional/mandatory fields, free-text or dropdown fields. The use of IDs suggest these are option fields with lookup tables somewhere.}
 
-\begin{itemize}
-
-\item The data was taken from  \textit{\href{http://marinedebris.engr.uga.edu/newmap/}{marine debris tracker}} between 2010 till February 19th 2020. The time of 2010 was chosen as there was no data before that time.
-\item The dataset was composed by combining the multiple csv files gathered from the marine debris tracker into a single set after this was done the date data type was renamed "Time". 
-\item The dataset created from the combined csv files contain more than 360000 rows of data and consists of the folowing variables. 
-\end{itemize}
-
+\hl{need to mention that we downloaded 2010-2020 but decided to keep only 2012-2019 inclusive and why. This may belong in the cleaning section}
 
 \begin{table}[H]
 \begin{tabular}{ l l l }
@@ -259,9 +252,27 @@ Time & time of observation & non mandatory \\
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Data wrangling}
+
+\hlcom{#replace the column for time as a date data type, renaming it "Time" }
+\hlstd{data}\hlopt{$}\hlstd{Time} \hlkwb{<-} \hlstd{data}\hlopt{$}\hlstd{Timestamp} \hlopt{%>%}
+  \hlkwd{parse_datetime}\hlstd{(}\hlkwc{format} \hlstd{=} \hlstr{"%Y%m%d%H%M%S"}\hlstd{)}
+\hlstd{data}\hlopt{$}\hlstd{Timestamp} \hlkwb{<-} \hlkwa{NULL}
+
+\hlcom{#MissingValues}
+\hlstd{data} \hlopt{%>%} \hlkwd{select_if}\hlstd{(}\hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{any}\hlstd{(}\hlkwd{is.na}\hlstd{(x)))} \hlopt{%>%} \hlkwd{colnames}\hlstd{()}
+\end{alltt}
 \begin{verbatim}
 ## [1] "Location"    "Description"
 \end{verbatim}
+\begin{alltt}
+\hlcom{#explicit missing value for the location factor}
+\hlstd{data}\hlopt{$}\hlstd{Location} \hlkwb{<-} \hlstd{data}\hlopt{$}\hlstd{Location} \hlopt{%>%} \hlkwd{fct_explicit_na}\hlstd{()}
+
+\hlcom{#Remove redundant data}
+\hlstd{data} \hlkwb{<-} \hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlopt{-}\hlstd{ListID,}\hlopt{-}\hlstd{ListName)}
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 The following actions were performed on the dataset:
@@ -279,6 +290,9 @@ Nulls found in ItemName and Description.\\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlopt{%>%} \hlkwd{apply}\hlstd{(}\hlnum{2}\hlstd{,} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(x)))}
+\end{alltt}
 \begin{verbatim}
 ##               ItemID             ItemName                LogID 
 ##                   55                   55               363368 
@@ -299,6 +313,13 @@ The authors find that there are multiple instances of missclassified items. Wher
 Lets see if there are any "ItemNames" associated with more than one "Material Descriptions".
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
+  \hlkwd{distinct}\hlstd{()} \hlopt{%$%}
+  \hlkwd{table}\hlstd{(ItemName)} \hlopt{%>%}
+  \hlkwd{as_tibble}\hlstd{()} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(n} \hlopt{>} \hlnum{1}\hlstd{)}
+\end{alltt}
 \begin{verbatim}
 ## # A tibble: 1 x 2
 ##   ItemName          n
@@ -310,6 +331,12 @@ Lets see if there are any "ItemNames" associated with more than one "Material De
 So rubber gloves are associated with two material descriptions, but otherwise a one to many relationship exists between "Material Description" and "ItemName".
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(`Material Description`, ItemName, Quantity)} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(`Material Description`)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))}
+\end{alltt}
 \begin{verbatim}
 ## # A tibble: 2 x 2
 ##   `Material Description` Quantity
@@ -322,6 +349,10 @@ So rubber gloves are associated with two material descriptions, but otherwise a 
 It seems that most rubber gloves are classified as plastic rather than rubber.
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(`Material Description`, ItemName, Description)} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{,} \hlopt{!}\hlkwd{is.na}\hlstd{(Description))}
+\end{alltt}
 \begin{verbatim}
 ## # A tibble: 33 x 3
 ##    `Material Description` ItemName     Description                              
@@ -360,9 +391,40 @@ After the issues with the dataset that were identified in the section above, it 
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-8-1} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{plastic_ordered} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(ItemName, Quantity)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(ItemName)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{Total} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(Total))}
 
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{TRUE}\hlstd{),}
+         \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)),}
+         \hlkwc{ItemName} \hlstd{=} \hlkwd{fct_infreq}\hlstd{(ItemName))} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(month, year, ItemName)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= month,} \hlkwc{y} \hlstd{= `Total Quantity`,} \hlkwc{fill} \hlstd{= ItemName))} \hlopt{+}
+    \hlkwd{geom_col}\hlstd{(}\hlkwc{colour} \hlstd{=} \hlstr{"black"}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{0.2}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"fill"}\hlstd{)} \hlopt{+}
+    \hlkwd{facet_wrap}\hlstd{(}\hlopt{~}\hlstd{year,} \hlkwc{nrow} \hlstd{=} \hlnum{4}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_fill_hue}\hlstd{(}\hlkwc{l}\hlstd{=}\hlnum{50}\hlstd{,} \hlkwc{c}\hlstd{=}\hlnum{150}\hlstd{)} \hlopt{+}
+    \hlkwd{xlab}\hlstd{(}\hlstr{"Month"}\hlstd{)} \hlopt{+}
+    \hlkwd{ylab}\hlstd{(}\hlstr{"Proportion of Items"}\hlstd{)} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{legend.position}\hlstd{=}\hlstr{"bottom"}\hlstd{,}
+          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{4}\hlstd{))} \hlcom{# --- Change legend text size here! ---}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-8-1} 
+\begin{kframe}\begin{alltt}
+    \hlcom{#scale_fill_viridis_d(option = "magma")}
+
+\hlcom{#ggsave("plots/pastic_debris_plot.png", width = 40, height = 20, units = "cm")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Debris by categorisation}
 \label{figE}
@@ -376,9 +438,76 @@ After the issues with the dataset that were identified in the section above, it 
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# all cigarette related waste: 1, 4, 6, 22}
+\hlcom{# Food related waste: 3, 2,7,9,10, 17, 23, 11}
+\hlcom{# Non food related waste: 8, 14, 15, 16, 18, 19, 21, 20}
+\hlcom{# Plastic bags and Styrofoam packaging:12, 13}
+\hlcom{# Fragments: 5, 23, 24,25}
 
+\hlstd{recategorise} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
+  \hlstd{out} \hlkwb{=} \hlstr{""}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{6}\hlstd{,}\hlnum{22}\hlstd{))\{out} \hlkwb{=} \hlstr{"Cigarette related waste"}\hlstd{\}}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{7}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{10}\hlstd{,}\hlnum{17}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{11}\hlstd{)) out} \hlkwb{=} \hlstr{"Food related waste"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{8}\hlstd{,}\hlnum{14}\hlstd{,}\hlnum{15}\hlstd{,}\hlnum{16}\hlstd{,}\hlnum{18}\hlstd{,}\hlnum{19}\hlstd{,}\hlnum{21}\hlstd{,}\hlnum{20}\hlstd{)) out} \hlkwb{=} \hlstr{"Other"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{13}\hlstd{)) out} \hlkwb{=} \hlstr{"Plastic bags and Styrofoam packaging"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{24}\hlstd{,}\hlnum{25}\hlstd{)) out} \hlkwb{=} \hlstr{"Fragments"}
+  \hlkwa{if}\hlstd{(out} \hlopt{==} \hlstr{""}\hlstd{)} \hlkwd{stop}\hlstd{(}\hlkwd{paste}\hlstd{(}\hlstr{"Error in recategorise:"}\hlstd{, x))}
+  \hlkwd{return}\hlstd{(out)}
+\hlstd{\}}
+
+\hlstd{plastic_types} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(ItemName, ItemID)} \hlopt{%>%}
+  \hlkwd{distinct}\hlstd{()} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{label} \hlstd{=} \hlnum{1}\hlopt{:}\hlkwd{n}\hlstd{())} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{category} \hlstd{= purrr}\hlopt{::}\hlkwd{map}\hlstd{(label, recategorise))} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{category} \hlstd{=} \hlkwd{as_factor}\hlstd{(}\hlkwd{as.character}\hlstd{(category)))} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(ItemID, category)}
+
+
+\hlstd{plastic} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{full_join}\hlstd{(plastic_types,} \hlkwc{by} \hlstd{=} \hlstr{"ItemID"}\hlstd{)}
+
+\hlstd{ordered_levels} \hlkwb{<-} \hlstd{plastic} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(category)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{totObs} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ungroup}\hlstd{()} \hlopt{%>%}
+  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(totObs))} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(category)} \hlopt{%$%}
+  \hlstd{category}
+\hlstd{plastic}\hlopt{$}\hlstd{category} \hlkwb{<-} \hlkwd{factor}\hlstd{(plastic}\hlopt{$}\hlstd{category,} \hlkwc{levels} \hlstd{= ordered_levels)}
+\hlkwd{rm}\hlstd{(ordered_levels)}
+
+
+\hlstd{plastic} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{FALSE}\hlstd{),}
+         \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(month, year, category)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= month,} \hlkwc{y} \hlstd{= `Total Quantity`,} \hlkwc{fill} \hlstd{= category))} \hlopt{+}
+    \hlkwd{geom_col}\hlstd{(}\hlkwc{colour} \hlstd{=} \hlstr{"black"}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{0.2}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"fill"}\hlstd{)} \hlopt{+}
+    \hlkwd{facet_wrap}\hlstd{(}\hlopt{~}\hlstd{year,} \hlkwc{nrow} \hlstd{=} \hlnum{2}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{discrete} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{option} \hlstd{=} \hlstr{"plasma"}\hlstd{)} \hlopt{+}
+    \hlkwd{xlab}\hlstd{(}\hlstr{"Month"}\hlstd{)} \hlopt{+}
+    \hlkwd{ylab}\hlstd{(}\hlstr{"Proportion of Items"}\hlstd{)} \hlopt{+}
+    \hlkwd{ggtitle}\hlstd{(}\hlstr{"Rel. frequencies of observed plastic waste by category"}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{breaks} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{12}\hlstd{)} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+          \hlkwc{panel.grid.minor.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+          \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{,}
+          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{))} \hlopt{+} \hlcom{# --- Change legend text size here! ---}
+    \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Category"}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+\begin{kframe}\begin{alltt}
+\hlcom{#ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Recategorisation by year. Colour scale ordered by ranking of total observed quantity.}
 \label{figB}
@@ -407,9 +536,30 @@ Question: Are observed plastic item proportions time invariant?\\
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#Linechart quantity of debris per year}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{year} \hlstd{=} \hlkwd{year}\hlstd{(Time))} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{, year} \hlopt{<} \hlnum{2020}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{quan} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= quan))} \hlopt{+}
+    \hlkwd{geom_col}\hlstd{()} \hlopt{+}
+    \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{breaks} \hlstd{=} \hlnum{2011}\hlopt{:}\hlnum{2019}\hlstd{)} \hlopt{+}
+    \hlkwd{xlab}\hlstd{(}\hlstr{"Year"}\hlstd{)} \hlopt{+}
+    \hlkwd{ylab}\hlstd{(}\hlstr{"Quantity"}\hlstd{)} \hlopt{+}
+    \hlkwd{ggtitle}\hlstd{(}\hlstr{"Quantity of debris per year"}\hlstd{)} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+          \hlkwc{panel.grid.minor.x} \hlstd{=} \hlkwd{element_blank}\hlstd{())} \hlopt{+}
+    \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= scales}\hlopt{::}\hlkwd{label_number_si}\hlstd{(}\hlkwc{accuracy} \hlstd{=} \hlnum{1}\hlstd{))}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-10-1} 
-
+\begin{kframe}\begin{alltt}
+\hlcom{#ggsave("plots/observations.png")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Trend of debris observered}
 \label{figD}
@@ -420,9 +570,25 @@ Question: Are observed plastic item proportions time invariant?\\
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#Histogram of observations: Total v Plastic}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{Type} \hlstd{=} \hlkwd{if_else}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{,} \hlstr{"Plastic"}\hlstd{,} \hlstr{"Other"}\hlstd{),}
+         \hlkwc{months} \hlstd{=} \hlkwd{floor_date}\hlstd{(Time,} \hlstr{'month'}\hlstd{))} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(months, Type)} \hlopt{%>%}
+  \hlkwd{summarize}\hlstd{(}\hlkwc{`Number of observations`} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= months,} \hlkwc{y} \hlstd{= `Number of observations`))} \hlopt{+}
+    \hlkwd{geom_area}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{fill} \hlstd{= Type))} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-11-1} 
-
+\begin{kframe}\begin{alltt}
+  \hlcom{# ggplot() +}
+  \hlcom{# geom_histogram(aes(x = Time))}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Observations of plastic debris v all debris}
 \label{figF}
@@ -437,7 +603,19 @@ MaterialQuantities\\
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(Quantity,Description,`Material Description`)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(`Material Description`)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{reorder}\hlstd{(`Material Description`, Quantity),} \hlkwc{y} \hlstd{= Quantity))} \hlopt{+}
+    \hlkwd{geom_col}\hlstd{()} \hlopt{+}
+    \hlkwd{ylab}\hlstd{(}\hlstr{"Total recorded quantity"}\hlstd{)} \hlopt{+}
+    \hlkwd{xlab}\hlstd{(}\hlstr{"Material class"}\hlstd{)} \hlopt{+}
+    \hlkwd{coord_flip}\hlstd{()}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
 
 \end{knitrout}
@@ -452,9 +630,25 @@ A tree map of material quantities:
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#treemap of debris categories}
+\hlcom{#png("plots/treemap.png")}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(`Material Description`, ItemName, Quantity)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{treemap}\hlstd{(}\hlkwc{index} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"Material Description"}\hlstd{,} \hlstr{"ItemName"}\hlstd{),}
+          \hlkwc{vSize} \hlstd{=} \hlstr{"Quantity"}\hlstd{,} \hlkwc{draw} \hlstd{=} \hlnum{TRUE}\hlstd{)} \hlkwb{->} \hlstd{tm}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-13-1} 
-
+\begin{kframe}\begin{alltt}
+\hlcom{#tm}
+\hlcom{#dev.off()}
+\hlcom{#save.image(file = "plots/treemap.png")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Debris categorisation}
 \label{figI}
@@ -470,9 +664,32 @@ Perhaps some of the debris is not actually from the sea, but rather from people 
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#bar of debris categories}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(`Material Description`, ItemName, Quantity)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=}\hlkwd{reorder}\hlstd{(`ItemName`,} \hlopt{-}\hlstd{Quantity),} \hlkwc{y}\hlstd{=Quantity,} \hlkwc{fill}\hlstd{=`Material Description`))} \hlopt{+}
+  \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat}\hlstd{=}\hlstr{"identity"}\hlstd{)} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"Debris Categorisation"}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"Debris"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{""}\hlstd{)} \hlopt{+}
+  \hlcom{#coord_flip() +}
+  \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
+        \hlkwc{axis.text.x}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{angle}\hlstd{=}\hlnum{90}\hlstd{,} \hlkwc{hjust}\hlstd{=}\hlnum{1}\hlstd{),}
+        \hlkwc{plot.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{10}\hlstd{),}
+        \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{),}
+        \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
-
+\begin{kframe}\begin{alltt}
+  \hlcom{#treemap(index = c("Material Description", "ItemName"),}
+  \hlcom{#        vSize = "Quantity", draw = TRUE) -> tm}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 \caption {Debris categorisation}
 \label{figI2}
@@ -490,9 +707,29 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#Boxplot of fireworks distribution by month (across all years)}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{,}
+         \hlstd{ItemName} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlstr{"Fireworks"}\hlstd{),}
+         \hlkwd{year}\hlstd{(Time)} \hlopt{>=} \hlnum{2012}\hlstd{,} \hlkwd{year}\hlstd{(Time)} \hlopt{<=} \hlnum{2019}\hlstd{)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{TRUE}\hlstd{),}
+         \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(month, year)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{()} \hlopt{+}
+    \hlkwd{geom_boxplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= month,} \hlkwc{y} \hlstd{= quantity))} \hlopt{+}
+    \hlkwd{xlab}\hlstd{(}\hlstr{"Month"}\hlstd{)} \hlopt{+}
+    \hlkwd{ylab}\hlstd{(}\hlstr{"Quantity"}\hlstd{)} \hlopt{+}
+    \hlkwd{ggtitle}\hlstd{(}\hlstr{"Firework debris 2012-2019"}\hlstd{)}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-15-1} 
-
+\begin{kframe}\begin{alltt}
+\hlcom{#ggsave("plots/fireworks.png")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 
 \caption {Boxplot of fireworks distribution by month, across all years}
@@ -512,9 +749,24 @@ Certain classes are found in certain regions only: not because they don't exist 
 
 We have locational data, so lets check for any geographical observation bias.
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{world} \hlkwb{<-} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{)}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(Latitude, Longitude, Quantity, Location, `Material Description`)} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{()} \hlopt{+}
+    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude),} \hlkwc{bins} \hlstd{=} \hlnum{50}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{"log"}\hlstd{,} \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{50}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{5000}\hlstd{,} \hlnum{50000}\hlstd{))} \hlopt{+}
+    \hlkwd{theme_void}\hlstd{()} \hlopt{+}
+    \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-16-1} 
-
+\begin{kframe}\begin{alltt}
+\hlcom{#ggsave("plots/map.png", width = 20, height = 10, units = "cm")}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 
 We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.\\
@@ -534,7 +786,24 @@ Are the distributions of plastic fairly constant for the locations with the most
 \begin{figure}[H] %start a figure
 \begin{center}
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#columnchart of debris locations}
+\hlstd{topLocations} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(Location)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{sumQuantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(sumQuantity))} \hlopt{%>%}
+  \hlkwd{top_n}\hlstd{(}\hlnum{5}\hlstd{,sumQuantity)}
+
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(Location} \hlopt{%in%} \hlstd{topLocations}\hlopt{$}\hlstd{Location)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(Location, `Material Description`)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{sumQuantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
+  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(sumQuantity))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= `Material Description`,} \hlkwc{y} \hlstd{= sumQuantity,} \hlkwc{fill} \hlstd{= Location))} \hlopt{+}
+    \hlkwd{geom_col}\hlstd{()} \hlopt{+} \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{'top'}\hlstd{)}
+\end{alltt}
+\end{kframe}
 \includegraphics[width=1\linewidth]{figure/unnamed-chunk-18-1} 
 
 \end{knitrout}
@@ -558,9 +827,133 @@ Given the variability of plastic pollution trends given event-driven and locatio
 
 Georgios' script
 \begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-19-1} 
-\begin{kframe}\begin{verbatim}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{plasticN} \hlkwb{<-} \hlstd{plastic} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{FALSE}\hlstd{),} \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, category, month)} \hlopt{%>%}
+  \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))}
+
+
+
+\hlcom{####}
+
+
+\hlstd{df11N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2011}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+\hlstd{df12N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2012}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+\hlstd{df13N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2013}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+\hlstd{df14N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2014}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+\hlstd{df15N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2015}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+\hlstd{df16N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2016}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+
+\hlstd{df17N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2017}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+\hlstd{df18N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2018}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+\hlstd{df19N} \hlkwb{<-} \hlstd{plasticN}  \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(year} \hlopt{==} \hlnum{2019}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{freq} \hlstd{= `Total Quantity`} \hlopt{/} \hlkwd{sum}\hlstd{(`Total Quantity`))}
+
+
+\hlstd{dfTotN} \hlkwb{<-} \hlkwd{rbind}\hlstd{(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{figure}[H] %start a figure
+\begin{center}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# plot for observing the data}
+\hlstd{(time_plotfr2N} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(dfTotN,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= freq,} \hlkwc{color}\hlstd{=category,} \hlkwc{fill} \hlstd{= category))} \hlopt{+}
+  \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method}\hlstd{=}\hlstr{"lm"}\hlstd{,} \hlkwc{level}\hlstd{=}\hlnum{0.95}\hlstd{)} \hlopt{+}
+  \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"Years"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"relative frequency"}\hlstd{)} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"portion of plastic"}\hlstd{)} \hlopt{+}
+  \hlkwd{expand_limits}\hlstd{(}\hlkwc{y}\hlstd{=}\hlnum{0}\hlstd{)} \hlopt{+}
+  \hlkwd{scale_y_continuous}\hlstd{()} \hlopt{+}
+  \hlkwd{scale_x_continuous}\hlstd{()}\hlopt{+}
+  \hlkwd{theme}\hlstd{(}\hlkwc{legend.position}\hlstd{=}\hlstr{"bottom"}\hlstd{)}\hlopt{+}
+  \hlkwd{theme}\hlstd{(}\hlkwc{legend.text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{face}\hlstd{=}\hlstr{"bold"}\hlstd{)))}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
+
+\end{knitrout}
+\caption {Some sort of caption here}
+\label{figG1}
+\end {center}
+\end {figure}
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#1/4/20}
+\hlcom{### MODELING with new categorisation}
+
+
+\hlcom{# create train and test set}
+\hlstd{n} \hlkwb{<-} \hlkwd{nrow}\hlstd{(dfTotN)}  \hlcom{# Number of observations}
+\hlstd{ntrain} \hlkwb{<-} \hlkwd{round}\hlstd{(n}\hlopt{*}\hlnum{0.75}\hlstd{)}  \hlcom{# 75% for training set}
+\hlkwd{set.seed}\hlstd{(}\hlnum{314}\hlstd{)}    \hlcom{# Set seed for reproducible results}
+\hlstd{tindex} \hlkwb{<-} \hlkwd{sample}\hlstd{(n, ntrain)}   \hlcom{# Create a random index}
+\hlstd{train_dfTotN} \hlkwb{<-} \hlstd{dfTotN[tindex,]}   \hlcom{# Create training set}
+\hlstd{test_dfTotN} \hlkwb{<-} \hlstd{dfTotN[}\hlopt{-}\hlstd{tindex,]}
+
+\hlcom{# modelling for category "Cigarette related waste"}
+
+\hlstd{train_Cigrel} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Cigarette related waste"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlstd{test_Cigrel} \hlkwb{<-} \hlstd{test_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Cigarette related waste"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
+\hlstd{train_Cigrel.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_Cigrel)}
+\hlkwd{summary}\hlstd{(train_Cigrel.modelN)}
+\end{alltt}
+\begin{verbatim}
 ## 
 ## Call:
 ## lm(formula = freq ~ year, data = train_Cigrel)
@@ -579,9 +972,26 @@ Georgios' script
 ## Residual standard error: 0.1606 on 90 degrees of freedom
 ## Multiple R-squared:  0.4271,	Adjusted R-squared:  0.4207 
 ## F-statistic: 67.09 on 1 and 90 DF,  p-value: 1.644e-12
+\end{verbatim}
+\begin{alltt}
+\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
 ## [1] "PREDICTION"
+\end{verbatim}
+\begin{alltt}
+\hlstd{pred_Cigrel} \hlkwb{<-} \hlkwd{predict}\hlstd{(train_Cigrel.modelN, test_Cigrel)}
+\hlkwd{summary}\hlstd{(pred_Cigrel)}
+\end{alltt}
+\begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1310  0.1586  0.3791  0.3437  0.5031  0.5720
+\end{verbatim}
+\begin{alltt}
+\hlstd{actuals_predsCigrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Cigrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Cigrel))}
+\hlkwd{head}\hlstd{(actuals_predsCigrel)}
+\end{alltt}
+\begin{verbatim}
 ##      actuals predicteds
 ## 1 0.61842105  0.5720207
 ## 2 0.64354430  0.5168977
@@ -590,6 +1000,12 @@ Georgios' script
 ## 5 0.05152079  0.4617747
 ## 6 0.65844243  0.4066516
 \end{verbatim}
+\begin{alltt}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsCigrel)}
+\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsCigrel,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsCigrel,} \hlnum{1}\hlstd{, max))}
+\hlcom{# => 53.73%, min_max accuracy}
+\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsCigrel}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsCigrel}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsCigrel}\hlopt{$}\hlstd{actuals)}
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -601,6 +1017,21 @@ time statistically significant
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{#1/4/20}
+\hlcom{# modelling for category "Food realted waste"}
+\hlstd{train_Foodrel} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Food related waste"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlstd{test_Foodrel} \hlkwb{<-} \hlstd{test_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Food related waste"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
+\hlstd{train_Foodrel.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_Foodrel)}
+\hlkwd{summary}\hlstd{(train_Foodrel.modelN)}
+\end{alltt}
 \begin{verbatim}
 ## 
 ## Call:
@@ -620,9 +1051,26 @@ time statistically significant
 ## Residual standard error: 0.1074 on 77 degrees of freedom
 ## Multiple R-squared:  0.3555,	Adjusted R-squared:  0.3471 
 ## F-statistic: 42.47 on 1 and 77 DF,  p-value: 6.719e-09
+\end{verbatim}
+\begin{alltt}
+\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
 ## [1] "PREDICTION"
+\end{verbatim}
+\begin{alltt}
+\hlstd{pred_Foodrel} \hlkwb{<-} \hlkwd{predict}\hlstd{(train_Foodrel.modelN, test_Foodrel)}
+\hlkwd{summary}\hlstd{(pred_Foodrel)}
+\end{alltt}
+\begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1619  0.2227  0.2836  0.2768  0.3292  0.4053
+\end{verbatim}
+\begin{alltt}
+\hlstd{actuals_predsFoodrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Foodrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Foodrel))}
+\hlkwd{head}\hlstd{(actuals_predsFoodrel)}
+\end{alltt}
+\begin{verbatim}
 ##      actuals predicteds
 ## 1 0.55555556  0.1618845
 ## 2 0.13713056  0.1618845
@@ -630,6 +1078,30 @@ time statistically significant
 ## 4 0.20172864  0.1923095
 ## 5 0.36359833  0.1923095
 ## 6 0.10897269  0.2227346
+\end{verbatim}
+\begin{alltt}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFoodrel)}  \hlcom{# 5.31%}
+\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsFoodrel,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsFoodrel,} \hlnum{1}\hlstd{, max))}
+\hlcom{# => 53.73%, min_max accuracy}
+\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsFoodrel}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsFoodrel}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsFoodrel}\hlopt{$}\hlstd{actuals)}
+
+\hlcom{# time statistically significant}
+
+\hlcom{#1/4/20}
+\hlcom{# modelling for category "Other"}
+\hlstd{train_Other} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Other"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlstd{test_Other} \hlkwb{<-} \hlstd{test_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Other"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
+\hlstd{train_Other.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_Other)}
+\hlkwd{summary}\hlstd{(train_Other.modelN)}
+\end{alltt}
+\begin{verbatim}
 ## 
 ## Call:
 ## lm(formula = freq ~ year, data = train_Other)
@@ -646,9 +1118,26 @@ time statistically significant
 ## Residual standard error: 0.03258 on 79 degrees of freedom
 ## Multiple R-squared:  0.01447,	Adjusted R-squared:  0.001998 
 ## F-statistic:  1.16 on 1 and 79 DF,  p-value: 0.2847
+\end{verbatim}
+\begin{alltt}
+\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
 ## [1] "PREDICTION"
+\end{verbatim}
+\begin{alltt}
+\hlstd{pred_Other} \hlkwb{<-} \hlkwd{predict}\hlstd{(train_Other.modelN, test_Other)}
+\hlkwd{summary}\hlstd{(pred_Other)}
+\end{alltt}
+\begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.03474 0.03630 0.04257 0.04119 0.04414 0.04727
+\end{verbatim}
+\begin{alltt}
+\hlstd{actuals_predsOther} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Other}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Other))}
+\hlkwd{head}\hlstd{(actuals_predsOther)}
+\end{alltt}
+\begin{verbatim}
 ##      actuals predicteds
 ## 1 0.06521739 0.04727362
 ## 2 0.06538462 0.04727362
@@ -656,6 +1145,30 @@ time statistically significant
 ## 4 0.10383018 0.04570653
 ## 5 0.05857741 0.04570653
 ## 6 0.02601969 0.04570653
+\end{verbatim}
+\begin{alltt}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsOther)}  \hlcom{# 5.31%}
+\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsOther,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsOther,} \hlnum{1}\hlstd{, max))}
+\hlcom{# => 53.73%, min_max accuracy}
+\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsOther}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsOther}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsOther}\hlopt{$}\hlstd{actuals)}
+
+\hlcom{# Time statistically not significant-pvalue too high}
+
+\hlcom{#1/4/20}
+\hlcom{# modelling for category "Plastic bags and Styrofoam packaging"}
+\hlstd{train_Plbag} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Plastic bags and Styrofoam packaging"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlstd{test_Plbag} \hlkwb{<-} \hlstd{test_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Plastic bags and Styrofoam packaging"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
+\hlstd{train_Plbag.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_Plbag)}
+\hlkwd{summary}\hlstd{(train_Plbag.modelN)}
+\end{alltt}
+\begin{verbatim}
 ## 
 ## Call:
 ## lm(formula = freq ~ year, data = train_Plbag)
@@ -674,9 +1187,26 @@ time statistically significant
 ## Residual standard error: 0.03724 on 74 degrees of freedom
 ## Multiple R-squared:  0.06323,	Adjusted R-squared:  0.05057 
 ## F-statistic: 4.995 on 1 and 74 DF,  p-value: 0.02844
+\end{verbatim}
+\begin{alltt}
+\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
 ## [1] "PREDICTION"
+\end{verbatim}
+\begin{alltt}
+\hlstd{pred_Plbag} \hlkwb{<-} \hlkwd{predict}\hlstd{(train_Plbag.modelN, test_Plbag)}
+\hlkwd{summary}\hlstd{(pred_Plbag)}
+\end{alltt}
+\begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.04709 0.05849 0.06610 0.06347 0.06990 0.07750
+\end{verbatim}
+\begin{alltt}
+\hlstd{actuals_predsPlbag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Plbag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Plbag))}
+\hlkwd{head}\hlstd{(actuals_predsPlbag)}
+\end{alltt}
+\begin{verbatim}
 ##      actuals predicteds
 ## 1 0.02796272 0.07750166
 ## 2 0.05367089 0.07369967
@@ -684,6 +1214,32 @@ time statistically significant
 ## 4 0.01901836 0.07369967
 ## 5 0.09314421 0.07369967
 ## 6 0.07005348 0.07369967
+\end{verbatim}
+\begin{alltt}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsPlbag)}  \hlcom{# 5.31%}
+\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsPlbag,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsPlbag,} \hlnum{1}\hlstd{, max))}
+\hlcom{# => 53.73%, min_max accuracy}
+\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsPlbag}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsPlbag}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsPlbag}\hlopt{$}\hlstd{actuals)}
+
+
+\hlcom{# Time statistically not significant-pvalue too high}
+
+
+\hlcom{#1/4/20}
+\hlcom{# modelling for category "Fragments"}
+\hlstd{train_Frag} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Fragments"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlstd{test_Frag} \hlkwb{<-} \hlstd{test_dfTotN} \hlopt{%>%}
+  \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Fragments"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year)}
+
+\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
+\hlstd{train_Frag.modelN} \hlkwb{<-} \hlkwd{lm}\hlstd{(freq} \hlopt{~} \hlstd{year,} \hlkwc{data} \hlstd{= train_Frag)}
+\hlkwd{summary}\hlstd{(train_Frag.modelN)}
+\end{alltt}
+\begin{verbatim}
 ## 
 ## Call:
 ## lm(formula = freq ~ year, data = train_Frag)
@@ -702,9 +1258,26 @@ time statistically significant
 ## Residual standard error: 0.1268 on 67 degrees of freedom
 ## Multiple R-squared:  0.2757,	Adjusted R-squared:  0.2649 
 ## F-statistic:  25.5 on 1 and 67 DF,  p-value: 3.626e-06
+\end{verbatim}
+\begin{alltt}
+\hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
 ## [1] "PREDICTION"
+\end{verbatim}
+\begin{alltt}
+\hlstd{pred_Frag} \hlkwb{<-} \hlkwd{predict}\hlstd{(train_Frag.modelN, test_Frag)}
+\hlkwd{summary}\hlstd{(pred_Frag)}
+\end{alltt}
+\begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.1205  0.1824  0.2133  0.2342  0.3062  0.3681
+\end{verbatim}
+\begin{alltt}
+\hlstd{actuals_predsFrag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Frag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Frag))}
+\hlkwd{head}\hlstd{(actuals_predsFrag)}
+\end{alltt}
+\begin{verbatim}
 ##      actuals predicteds
 ## 1 0.10416667  0.1204722
 ## 2 0.05555556  0.1204722
@@ -713,6 +1286,15 @@ time statistically significant
 ## 5 0.12944706  0.1204722
 ## 6 0.13873418  0.1514221
 \end{verbatim}
+\begin{alltt}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFrag)}  \hlcom{# 5.31%}
+\hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsFrag,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsFrag,} \hlnum{1}\hlstd{, max))}
+\hlcom{# => 53.73%, min_max accuracy}
+\hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsFrag}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsFrag}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsFrag}\hlopt{$}\hlstd{actuals)}
+
+
+\hlcom{# Time statistically not significant-pvalue too high}
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -762,8 +1344,32 @@ All project documents used and the final report can be accessed from the \textit
 \subsection{Project Progress}
 
 % Pay attention to the code below including the chunk options 
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 11:26:56 2020
+\begin{kframe}
+\begin{alltt}
+\hlkwd{require}\hlstd{(openxlsx);}
+\hlkwd{require}\hlstd{(readxl)}
+\hlkwd{library}\hlstd{(stringr);}\hlkwd{library}\hlstd{(data.table)}
+\hlkwd{library}\hlstd{(XLConnect)}
+\hlkwd{library}\hlstd{(xtable)}
+
+\hlcom{# Sheets names }
+\hlstd{fileName} \hlkwb{<-} \hlstr{'data/meetings.xlsx'}
+\hlstd{sheets} \hlkwb{<-} \hlstd{readxl}\hlopt{::}\hlkwd{excel_sheets}\hlstd{(fileName)}
+\hlcom{#length(sheets)}
+\hlcom{# Read 1st sheet (you shouldn't have more than one sheet for this task)}
+\hlcom{# read sheet into dataframe, and rbind}
+\hlstd{dfs} \hlkwb{<-} \hlkwd{readWorksheet}\hlstd{(}\hlkwd{loadWorkbook}\hlstd{(}\hlstr{"data/meetings.xlsx"}\hlstd{),}\hlkwc{sheet}\hlstd{=}\hlnum{1}\hlstd{)}
+\hlstd{dfs}\hlopt{$}\hlstd{Date} \hlkwb{<-}\hlkwd{as.character}\hlstd{(dfs}\hlopt{$}\hlstd{Date)}
+\hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(dfs,}
+                    \hlkwc{caption} \hlstd{=} \hlstr{"Record of Team Meetings"}\hlstd{,}
+                    \hlkwc{label} \hlstd{=} \hlstr{"tab:one"}\hlstd{,}
+                    \hlkwc{table.placement} \hlstd{=} \hlstr{""}\hlstd{,}
+                    \hlcom{# align changes subject to number of columns }
+                    \hlkwc{align} \hlstd{=} \hlstr{"lllp\{8cm\}lllll"}\hlstd{),}\hlkwc{include.rownames}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+                    \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
+\end{alltt}
+\end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Sat May 09 12:47:17 2020
 \begin{table}[ht]
 \centering
 \caption{Record of Team Meetings} 
@@ -794,8 +1400,35 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 
 \subsection{Peer-assessment}
 
-% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 11:26:56 2020
+\begin{kframe}
+\begin{alltt}
+\hlkwd{require}\hlstd{(openxlsx);}
+\hlkwd{require}\hlstd{(readxl)}
+\hlkwd{library}\hlstd{(stringr);}\hlkwd{library}\hlstd{(data.table)}
+\hlkwd{library}\hlstd{(XLConnect)}
+\hlkwd{library}\hlstd{(xtable)}
+
+\hlcom{# Sheets names }
+\hlstd{fileName} \hlkwb{<-} \hlstr{'data/peers.xlsx'}
+\hlstd{sheets} \hlkwb{<-} \hlstd{readxl}\hlopt{::}\hlkwd{excel_sheets}\hlstd{(fileName)}
+\hlcom{#length(sheets)}
+\hlcom{# Read 1st sheet (you shouldn't have more than one sheet for this task)}
+\hlcom{# read sheet into dataframe, and rbind}
+\hlstd{dfs} \hlkwb{<-} \hlkwd{readWorksheet}\hlstd{(}\hlkwd{loadWorkbook}\hlstd{(}\hlstr{"data/peers.xlsx"}\hlstd{),}\hlkwc{sheet}\hlstd{=}\hlnum{1}\hlstd{)}
+
+\hlcom{# convert fields into chars}
+\hlstd{dfs[, ]} \hlkwb{<-} \hlkwd{lapply}\hlstd{(dfs[, ], as.character)}
+
+\hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(dfs,}
+                    \hlkwc{caption} \hlstd{=} \hlstr{"Peer Assessment out of 100"}\hlstd{,}
+                    \hlkwc{label} \hlstd{=} \hlstr{"tab:two"}\hlstd{,}
+                    \hlkwc{table.placement} \hlstd{=} \hlstr{""}\hlstd{,}
+                    \hlcom{# align changes subject to number of columns }
+                    \hlkwc{align} \hlstd{=} \hlstr{"lllllll"}\hlstd{),}\hlkwc{include.rownames}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+                    \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
+\end{alltt}
+\end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Sat May 09 12:47:18 2020
 \begin{table}[ht]
 \centering
 \caption{Peer Assessment out of 100} 
