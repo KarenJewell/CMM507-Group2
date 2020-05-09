@@ -272,6 +272,9 @@ Time & time of observation & non mandatory \\
 
 \hlcom{#Remove redundant data}
 \hlstd{data} \hlkwb{<-} \hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlopt{-}\hlstd{ListID,}\hlopt{-}\hlstd{ListName)}
+
+\hlcom{# Filter for observations occuring between the years 2012-2019 inclusive}
+\hlstd{data} \hlkwb{<-} \hlstd{data} \hlopt{%>%} \hlkwd{filter}\hlstd{(}\hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time))} \hlopt{%in%} \hlnum{2012}\hlopt{:}\hlnum{2019}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -288,25 +291,39 @@ Nulls found in ItemName and Description.\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{kframe}
 \begin{alltt}
-\hlstd{data} \hlopt{%>%} \hlkwd{apply}\hlstd{(}\hlnum{2}\hlstd{,} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(x)))}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{summarise_all}\hlstd{(}\hlopt{~}\hlkwd{length}\hlstd{(}\hlkwd{unique}\hlstd{(.)))} \hlopt{%>%}
+  \hlkwd{pivot_longer}\hlstd{(}\hlkwc{cols} \hlstd{=} \hlkwd{everything}\hlstd{(),} \hlkwc{names_to} \hlstd{=} \hlstr{"Column Name"}\hlstd{,} \hlkwc{values_to} \hlstd{=} \hlstr{"Unique Values"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(`Unique Values`))} \hlopt{%>%}
+  \hlkwd{xtable}\hlstd{()}
 \end{alltt}
-\begin{verbatim}
-##               ItemID             ItemName                LogID 
-##                   55                   55               363368 
-##             Latitude            Longitude             Altitude 
-##               142707               136490               135214 
-##             Quantity         Error Radius             Location 
-##                  496                18374                 1458 
-##          Description          Material ID Material Description 
-##                 8494                    8                    8 
-##                 Time 
-##               248436
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+\end{kframe}% latex table generated in R 3.6.3 by xtable 1.8-4 package
+% Sat May 09 16:59:24 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlr}
+  \hline
+ & Column Name & Unique Values \\ 
+  \hline
+1 & LogID & 349556 \\ 
+  2 & Time & 237066 \\ 
+  3 & Latitude & 144820 \\ 
+  4 & Altitude & 133174 \\ 
+  5 & Longitude & 132316 \\ 
+  6 & Error Radius & 16930 \\ 
+  7 & Description & 7982 \\ 
+  8 & Location & 1352 \\ 
+  9 & Quantity & 494 \\ 
+  10 & ItemID &  55 \\ 
+  11 & ItemName &  55 \\ 
+  12 & Material ID &   8 \\ 
+  13 & Material Description &   8 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
 
 \subsection{Data Quality Issues: Classification}
 The authors find that there are multiple instances of missclassified items. Where their descriptions appear to not match their material categorisation\\
@@ -341,8 +358,8 @@ So rubber gloves are associated with two material descriptions, but otherwise a 
 ## # A tibble: 2 x 2
 ##   `Material Description` Quantity
 ##   <fct>                     <dbl>
-## 1 PLASTIC                    2114
-## 2 RUBBER                      155
+## 1 PLASTIC                    2092
+## 2 RUBBER                       89
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -354,20 +371,20 @@ It seems that most rubber gloves are classified as plastic rather than rubber.
   \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{,} \hlopt{!}\hlkwd{is.na}\hlstd{(Description))}
 \end{alltt}
 \begin{verbatim}
-## # A tibble: 33 x 3
-##    `Material Description` ItemName     Description                              
-##    <fct>                  <fct>        <chr>                                    
-##  1 PLASTIC                Rubber Glov~ Found on wassaw island Oct. 21 with beac~
-##  2 PLASTIC                Rubber Glov~ undefined                                
-##  3 PLASTIC                Rubber Glov~ undefined                                
-##  4 PLASTIC                Rubber Glov~ thermal                                  
-##  5 PLASTIC                Rubber Glov~ Near water                               
-##  6 PLASTIC                Rubber Glov~ Taste of Omaha Cleanup                   
-##  7 PLASTIC                Rubber Glov~ Taste of Omaha Cleanup                   
-##  8 PLASTIC                Rubber Glov~ 2 diff kinds                             
-##  9 PLASTIC                Rubber Glov~ undefined                                
-## 10 PLASTIC                Rubber Glov~ Latex                                    
-## # ... with 23 more rows
+## # A tibble: 30 x 3
+##    `Material Description` ItemName      Description           
+##    <fct>                  <fct>         <chr>                 
+##  1 PLASTIC                Rubber Gloves thermal               
+##  2 PLASTIC                Rubber Gloves Near water            
+##  3 PLASTIC                Rubber Gloves Taste of Omaha Cleanup
+##  4 PLASTIC                Rubber Gloves Taste of Omaha Cleanup
+##  5 PLASTIC                Rubber Gloves 2 diff kinds          
+##  6 PLASTIC                Rubber Gloves undefined             
+##  7 PLASTIC                Rubber Gloves Latex                 
+##  8 PLASTIC                Rubber Gloves Hose                  
+##  9 PLASTIC                Rubber Gloves Cap                   
+## 10 PLASTIC                Rubber Gloves Vial                  
+## # ... with 20 more rows
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -960,18 +977,18 @@ Georgios' script
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.46091 -0.10273  0.00188  0.09610  0.45471 
+## -0.06059 -0.02546 -0.00721  0.01012  0.20490 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 111.42444   13.56061   8.217 1.46e-12 ***
-## year         -0.05512    0.00673  -8.191 1.64e-12 ***
+##               Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -15.866832   4.775446  -3.323  0.00146 **
+## year          0.007910   0.002369   3.338  0.00139 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1606 on 90 degrees of freedom
-## Multiple R-squared:  0.4271,	Adjusted R-squared:  0.4207 
-## F-statistic: 67.09 on 1 and 90 DF,  p-value: 1.644e-12
+## Residual standard error: 0.04331 on 66 degrees of freedom
+## Multiple R-squared:  0.1444,	Adjusted R-squared:  0.1315 
+## F-statistic: 11.14 on 1 and 66 DF,  p-value: 0.00139
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -985,7 +1002,7 @@ Georgios' script
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1310  0.1586  0.3791  0.3437  0.5031  0.5720
+## 0.04720 0.06301 0.07092 0.07714 0.09465 0.10256
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsCigrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Cigrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Cigrel))}
@@ -993,12 +1010,12 @@ Georgios' script
 \end{alltt}
 \begin{verbatim}
 ##      actuals predicteds
-## 1 0.61842105  0.5720207
-## 2 0.64354430  0.5168977
-## 3 0.64302022  0.5168977
-## 4 0.51924551  0.5168977
-## 5 0.05152079  0.4617747
-## 6 0.65844243  0.4066516
+## 1 0.05109361 0.04719559
+## 2 0.05814490 0.04719559
+## 3 0.03971631 0.04719559
+## 4 0.03750621 0.05510514
+## 5 0.01202405 0.05510514
+## 6 0.05699357 0.05510514
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsCigrel)}
@@ -1039,18 +1056,18 @@ time statistically significant
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.17953 -0.05703  0.00065  0.04975  0.46312 
+## -0.50287 -0.07168 -0.00561  0.10218  0.34829 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -61.022903   9.407724  -6.486 7.67e-09 ***
-## year          0.030425   0.004668   6.517 6.72e-09 ***
+## (Intercept) 118.166588  15.395217   7.676 5.31e-11 ***
+## year         -0.058414   0.007638  -7.647 6.00e-11 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1074 on 77 degrees of freedom
-## Multiple R-squared:  0.3555,	Adjusted R-squared:  0.3471 
-## F-statistic: 42.47 on 1 and 77 DF,  p-value: 6.719e-09
+## Residual standard error: 0.1541 on 74 degrees of freedom
+## Multiple R-squared:  0.4414,	Adjusted R-squared:  0.4339 
+## F-statistic: 58.48 on 1 and 74 DF,  p-value: 5.998e-11
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1064,20 +1081,20 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1619  0.2227  0.2836  0.2768  0.3292  0.4053
+##  0.2292  0.3314  0.4921  0.4395  0.5213  0.6381
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsFoodrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Foodrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Foodrel))}
 \hlkwd{head}\hlstd{(actuals_predsFoodrel)}
 \end{alltt}
 \begin{verbatim}
-##      actuals predicteds
-## 1 0.55555556  0.1618845
-## 2 0.13713056  0.1618845
-## 3 0.01143473  0.1923095
-## 4 0.20172864  0.1923095
-## 5 0.36359833  0.1923095
-## 6 0.10897269  0.2227346
+##     actuals predicteds
+## 1 0.9761681  0.6381043
+## 2 0.6351528  0.5796905
+## 3 0.5822665  0.5796905
+## 4 0.7911040  0.5796905
+## 5 0.4837153  0.5212767
+## 6 0.5395366  0.5212767
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFoodrel)}  \hlcom{# 5.31%}
@@ -1108,16 +1125,18 @@ time statistically significant
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.044859 -0.016911 -0.005815  0.010215  0.176411 
+## -0.131735 -0.041328 -0.005655  0.035206  0.134108 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  3.198673   2.931819   1.091    0.279
-## year        -0.001567   0.001455  -1.077    0.285
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -33.991092   6.112772  -5.561 4.73e-07 ***
+## year          0.016938   0.003033   5.585 4.30e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.03258 on 79 degrees of freedom
-## Multiple R-squared:  0.01447,	Adjusted R-squared:  0.001998 
-## F-statistic:  1.16 on 1 and 79 DF,  p-value: 0.2847
+## Residual standard error: 0.06088 on 69 degrees of freedom
+## Multiple R-squared:  0.3113,	Adjusted R-squared:  0.3013 
+## F-statistic: 31.19 on 1 and 69 DF,  p-value: 4.296e-07
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1131,7 +1150,7 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.03474 0.03630 0.04257 0.04119 0.04414 0.04727
+## 0.08807 0.12195 0.13889 0.14228 0.17276 0.20664
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsOther} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Other}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Other))}
@@ -1139,12 +1158,12 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##      actuals predicteds
-## 1 0.06521739 0.04727362
-## 2 0.06538462 0.04727362
-## 3 0.04549431 0.04570653
-## 4 0.10383018 0.04570653
-## 5 0.05857741 0.04570653
-## 6 0.02601969 0.04570653
+## 1 0.05367366 0.08807451
+## 2 0.13682008 0.08807451
+## 3 0.26636312 0.10501246
+## 4 0.10336403 0.10501246
+## 5 0.05515197 0.10501246
+## 6 0.14156627 0.10501246
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsOther)}  \hlcom{# 5.31%}
@@ -1174,19 +1193,19 @@ time statistically significant
 ## lm(formula = freq ~ year, data = train_Plbag)
 ## 
 ## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.070881 -0.026288 -0.005527  0.015992  0.151417 
+##      Min       1Q   Median       3Q      Max 
+## -0.31838 -0.09726 -0.02112  0.05326  0.66454 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)  7.723310   3.428351   2.253   0.0272 *
-## year        -0.003802   0.001701  -2.235   0.0284 *
+##               Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -53.792345  16.802490  -3.201  0.00204 **
+## year          0.026822   0.008336   3.217  0.00194 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.03724 on 74 degrees of freedom
-## Multiple R-squared:  0.06323,	Adjusted R-squared:  0.05057 
-## F-statistic: 4.995 on 1 and 74 DF,  p-value: 0.02844
+## Residual standard error: 0.1608 on 72 degrees of freedom
+## Multiple R-squared:  0.1257,	Adjusted R-squared:  0.1136 
+## F-statistic: 10.35 on 1 and 72 DF,  p-value: 0.001939
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1200,7 +1219,7 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.04709 0.05849 0.06610 0.06347 0.06990 0.07750
+##  0.1732  0.2000  0.2536  0.2609  0.3341  0.3609
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsPlbag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Plbag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Plbag))}
@@ -1208,12 +1227,12 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##      actuals predicteds
-## 1 0.02796272 0.07750166
-## 2 0.05367089 0.07369967
-## 3 0.02743321 0.07369967
-## 4 0.01901836 0.07369967
-## 5 0.09314421 0.07369967
-## 6 0.07005348 0.07369967
+## 1 0.12998318  0.1731621
+## 2 0.14728033  0.1731621
+## 3 0.08181818  0.1731621
+## 4 0.13607595  0.1731621
+## 5 0.28635887  0.1999839
+## 6 0.06939979  0.1999839
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsPlbag)}  \hlcom{# 5.31%}
@@ -1246,18 +1265,18 @@ time statistically significant
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.22532 -0.08600 -0.01640  0.04217  0.38767 
+## -0.07328 -0.03075 -0.01469  0.01405  0.36377 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -62.119891  12.351523  -5.029 3.92e-06 ***
-## year          0.030950   0.006129   5.050 3.63e-06 ***
+##               Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -21.074627   6.678746  -3.155  0.00237 **
+## year          0.010490   0.003314   3.165  0.00230 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1268 on 67 degrees of freedom
-## Multiple R-squared:  0.2757,	Adjusted R-squared:  0.2649 
-## F-statistic:  25.5 on 1 and 67 DF,  p-value: 3.626e-06
+## Residual standard error: 0.06143 on 69 degrees of freedom
+## Multiple R-squared:  0.1268,	Adjusted R-squared:  0.1142 
+## F-statistic: 10.02 on 1 and 69 DF,  p-value: 0.002305
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1271,20 +1290,20 @@ time statistically significant
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1205  0.1824  0.2133  0.2342  0.3062  0.3681
+## 0.03035 0.05133 0.07231 0.06812 0.09329 0.10378
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsFrag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Frag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Frag))}
 \hlkwd{head}\hlstd{(actuals_predsFrag)}
 \end{alltt}
 \begin{verbatim}
-##      actuals predicteds
-## 1 0.10416667  0.1204722
-## 2 0.05555556  0.1204722
-## 3 0.17842876  0.1204722
-## 4 0.28076923  0.1204722
-## 5 0.12944706  0.1204722
-## 6 0.13873418  0.1514221
+##        actuals predicteds
+## 1 0.0006645432 0.03035393
+## 2 0.0365704287 0.03035393
+## 3 0.0420180954 0.03035393
+## 4 0.0553760960 0.03035393
+## 5 0.0240641711 0.03035393
+## 6 0.0239271782 0.04084348
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFrag)}  \hlcom{# 5.31%}
@@ -1350,6 +1369,10 @@ All project documents used and the final report can be accessed from the \textit
 \hlkwd{require}\hlstd{(readxl)}
 \hlkwd{library}\hlstd{(stringr);}\hlkwd{library}\hlstd{(data.table)}
 \hlkwd{library}\hlstd{(XLConnect)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'XLConnect':\\\#\#\ \ .onLoad failed in loadNamespace() for 'rJava', details:\\\#\#\ \  call: fun(libname, pkgname)\\\#\#\ \  error: JAVA\_HOME cannot be determined from the Registry}}\begin{alltt}
 \hlkwd{library}\hlstd{(xtable)}
 
 \hlcom{# Sheets names }
@@ -1359,7 +1382,15 @@ All project documents used and the final report can be accessed from the \textit
 \hlcom{# Read 1st sheet (you shouldn't have more than one sheet for this task)}
 \hlcom{# read sheet into dataframe, and rbind}
 \hlstd{dfs} \hlkwb{<-} \hlkwd{readWorksheet}\hlstd{(}\hlkwd{loadWorkbook}\hlstd{(}\hlstr{"data/meetings.xlsx"}\hlstd{),}\hlkwc{sheet}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in readWorksheet(loadWorkbook("{}data/meetings.xlsx"{}), sheet = 1): could not find function "{}readWorksheet"{}}}\begin{alltt}
 \hlstd{dfs}\hlopt{$}\hlstd{Date} \hlkwb{<-}\hlkwd{as.character}\hlstd{(dfs}\hlopt{$}\hlstd{Date)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'dfs' not found}}\begin{alltt}
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(dfs,}
                     \hlkwc{caption} \hlstd{=} \hlstr{"Record of Team Meetings"}\hlstd{,}
                     \hlkwc{label} \hlstd{=} \hlstr{"tab:one"}\hlstd{,}
@@ -1368,32 +1399,9 @@ All project documents used and the final report can be accessed from the \textit
                     \hlkwc{align} \hlstd{=} \hlstr{"lllp\{8cm\}lllll"}\hlstd{),}\hlkwc{include.rownames}\hlstd{=}\hlnum{FALSE}\hlstd{,}
                     \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 12:47:17 2020
-\begin{table}[ht]
-\centering
-\caption{Record of Team Meetings} 
-\label{tab:one}
-\begin{tabular}{llp{8cm}lllll}
-  \hline
-No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\ 
-  \hline
-1.00 & 2020-02-05 & Group Formation: set up communication channel in Slack and GitHub repository & yes & yes & yes & yes & yes \\ 
-  2.00 & 2020-02-11 & Agreed topic of "Plastic Pollution", distributed research activity for week & yes & yes & yes & yes & yes \\ 
-  3.00 & 2020-02-18 & Presented inividuals' research findings and discussed hypothesis & yes & yes & yes & yes & yes \\ 
-  4.00 & 2020-02-25 & Decided on final dataset to use and hypothesis of "proportion of marine plastics pollution does not change over time" & yes & yes & yes & yes & yes \\ 
-  5.00 & 2020-03-04 & Presentation draft agreed & yes & yes & yes & yes & yes \\ 
-  6.00 & 2020-03-10 & Distributed section writing activity for week & yes & yes & yes & yes & yes \\ 
-  7.00 & 2020-03-17 &  &  &  &  &  &  \\ 
-  8.00 & 2020-03-24 &  &  &  &  &  &  \\ 
-  9.00 & 2020-03-31 &  &  &  &  &  &  \\ 
-  10.00 & 2020-04-07 &  &  &  &  &  &  \\ 
-  11.00 & 2020-04-14 &  &  &  &  &  &  \\ 
-  12.00 & 2020-04-21 &  &  &  &  &  &  \\ 
-   \hline
-\end{tabular}
-\end{table}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(dfs, caption = "{}Record of Team Meetings"{}, label = "{}tab:one"{}, : object 'dfs' not found}}\end{kframe}
 
 
 
@@ -1406,6 +1414,10 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 \hlkwd{require}\hlstd{(readxl)}
 \hlkwd{library}\hlstd{(stringr);}\hlkwd{library}\hlstd{(data.table)}
 \hlkwd{library}\hlstd{(XLConnect)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'XLConnect':\\\#\#\ \ .onLoad failed in loadNamespace() for 'rJava', details:\\\#\#\ \  call: fun(libname, pkgname)\\\#\#\ \  error: JAVA\_HOME cannot be determined from the Registry}}\begin{alltt}
 \hlkwd{library}\hlstd{(xtable)}
 
 \hlcom{# Sheets names }
@@ -1415,10 +1427,16 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 \hlcom{# Read 1st sheet (you shouldn't have more than one sheet for this task)}
 \hlcom{# read sheet into dataframe, and rbind}
 \hlstd{dfs} \hlkwb{<-} \hlkwd{readWorksheet}\hlstd{(}\hlkwd{loadWorkbook}\hlstd{(}\hlstr{"data/peers.xlsx"}\hlstd{),}\hlkwc{sheet}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in readWorksheet(loadWorkbook("{}data/peers.xlsx"{}), sheet = 1): could not find function "{}readWorksheet"{}}}\begin{alltt}
 \hlcom{# convert fields into chars}
 \hlstd{dfs[, ]} \hlkwb{<-} \hlkwd{lapply}\hlstd{(dfs[, ], as.character)}
+\end{alltt}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in lapply(dfs[, ], as.character): object 'dfs' not found}}\begin{alltt}
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(dfs,}
                     \hlkwc{caption} \hlstd{=} \hlstr{"Peer Assessment out of 100"}\hlstd{,}
                     \hlkwc{label} \hlstd{=} \hlstr{"tab:two"}\hlstd{,}
@@ -1427,25 +1445,9 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
                     \hlkwc{align} \hlstd{=} \hlstr{"lllllll"}\hlstd{),}\hlkwc{include.rownames}\hlstd{=}\hlnum{FALSE}\hlstd{,}
                     \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 12:47:18 2020
-\begin{table}[ht]
-\centering
-\caption{Peer Assessment out of 100} 
-\label{tab:two}
-\begin{tabular}{llllll}
-  \hline
-Peer.Review & Alex & Georgios & Karen & Roshi & Stuart \\ 
-  \hline
-Alex & 100 & 100 & 100 & 100 & 100 \\ 
-  Georgios & 100 & 100 & 100 & 100 & 100 \\ 
-  Karen & 100 & 100 & 100 & 100 & 100 \\ 
-  Roshi & 100 & 100 & 100 & 100 & 100 \\ 
-  Stuart & 100 & 100 & 100 & 100 & 100 \\ 
-   \hline
-\end{tabular}
-\end{table}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in xtable(dfs, caption = "{}Peer Assessment out of 100"{}, label = "{}tab:two"{}, : object 'dfs' not found}}\end{kframe}
 
 
 \pagebreak
