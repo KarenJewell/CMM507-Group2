@@ -114,21 +114,15 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
-
-\title{\LARGE Professional Development and Research Skills - CMM507 Coursework  \\ Group 2: Plastic Pollution in Oceans}
+\title{\LARGE Professional Development and Research Skills \\ CMM507 Coursework  \\ Group 2: Plastic Pollution in Oceans}
 
 \author{ALEXANDER RITCHIE, \textit{\href{1911218@rgu.ac.uk}{1911218@rgu.ac.uk}};\\ GEORGIOS ORFANAKIS, \textit{\href{1903446@rgu.ac.uk}{1903446@rgu.ac.uk}};\\ KAREN JEWELL, \textit{\href{1415410@rgu.ac.uk}{1415410@rgu.ac.uk}};\\ ROSHI SHRESTHA, \textit{\href{1903445@rgu.ac.uk}{1903445@rgu.ac.uk}};\\ STUART WATT, \textit{\href{1501869@rgu.ac.uk}{1501869@rgu.ac.uk}}}
 
 \maketitle
-% \begin{flushleft} \today \end{flushleft} 
 \noindent\rule{16cm}{0.4pt}
-%\underline{\hspace{3cm}
-\ \\
-%\thispagestyle{empty}
+
 
 \section{Introduction}
-
-
 
 \subsection{Problem Statement}\label{statement}
 
@@ -143,7 +137,6 @@ Plastic pollution is a serious problem in the marine environment where they have
 \subsection{Overview}\label{over}
 
 Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter. Synthetic organic polymer derived from polymerisation of monomers extracted from oil and gas make up the plastics.\cite{DERRAIK2002} \cite{RIOS2007} The lightweight feature and its durability make it very suitable to make a range of products that we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features have been a major cause of pollution due to overuse and non-managed waste disposal system worldwide with plastic contributing to the 10\% of the waste generated worldwide.\cite{BARNES2009} Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time. Although, plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently. Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are now everywhere in the marine environment and urgent action is required to mitigate this problem and reduce the harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}
-
 
 
 \subsection{Motivation}\label{mot}
@@ -162,6 +155,29 @@ The main objectives of this project are outlined as follows:
 \item	Look at the composition of litter collected 
 \item	Summarise the results that were found
 \end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \pagebreak
@@ -209,6 +225,19 @@ Given the literature above, our group went on to work with a world-wide coastal 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \pagebreak
 \section {Methods}\label{methods}
 
@@ -247,7 +276,27 @@ Time & time of observation & non mandatory \\
 %\Because of the features and concerns identified in the section above, we chose to transform the dataset in the following ways:reclassified some labels because variation was too high (there were too many labels); removed missing values; removed certain subsets; but kept certain subsets
 
 
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(tidyverse)}
+\hlkwd{library}\hlstd{(purrr)}
+\hlkwd{library}\hlstd{(magrittr)}
+\hlkwd{library}\hlstd{(treemap)}
+\hlkwd{library}\hlstd{(mapdata)}
+\hlkwd{library}\hlstd{(viridis)}
+\hlkwd{library}\hlstd{(lubridate)}
+\hlkwd{library}\hlstd{(imager)}
+\hlkwd{library}\hlstd{(xtable)}
+\hlkwd{library}\hlstd{(dplyr)}
 
+
+\hlstd{data} \hlkwb{<-} \hlkwd{list.files}\hlstd{(}\hlkwc{path} \hlstd{=} \hlstr{"data/debris/"}\hlstd{,} \hlkwc{full.names} \hlstd{=} \hlnum{TRUE}\hlstd{)} \hlopt{%>%}
+  \hlkwd{lapply}\hlstd{(}\hlkwc{FUN} \hlstd{= read_csv,} \hlkwc{col_types} \hlstd{=} \hlstr{"ififidddddcfcif"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{reduce}\hlstd{(rbind)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 
 \begin{knitrout}\small
@@ -255,22 +304,22 @@ Time & time of observation & non mandatory \\
 \begin{alltt}
 \hlcom{# Data wrangling}
 
-\hlcom{#replace the column for time as a date data type, renaming it "Time" }
+\hlcom{# replace the column for time as a date data type, renaming it "Time" }
 \hlstd{data}\hlopt{$}\hlstd{Time} \hlkwb{<-} \hlstd{data}\hlopt{$}\hlstd{Timestamp} \hlopt{%>%}
   \hlkwd{parse_datetime}\hlstd{(}\hlkwc{format} \hlstd{=} \hlstr{"%Y%m%d%H%M%S"}\hlstd{)}
 \hlstd{data}\hlopt{$}\hlstd{Timestamp} \hlkwb{<-} \hlkwa{NULL}
 
-\hlcom{#MissingValues}
+\hlcom{# MissingValues}
 \hlstd{data} \hlopt{%>%} \hlkwd{select_if}\hlstd{(}\hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)} \hlkwd{any}\hlstd{(}\hlkwd{is.na}\hlstd{(x)))} \hlopt{%>%} \hlkwd{colnames}\hlstd{()}
 \end{alltt}
 \begin{verbatim}
 ## [1] "Location"    "Description"
 \end{verbatim}
 \begin{alltt}
-\hlcom{#explicit missing value for the location factor}
+\hlcom{# explicit missing value for the location factor}
 \hlstd{data}\hlopt{$}\hlstd{Location} \hlkwb{<-} \hlstd{data}\hlopt{$}\hlstd{Location} \hlopt{%>%} \hlkwd{fct_explicit_na}\hlstd{()}
 
-\hlcom{#Remove redundant data}
+\hlcom{# Remove redundant data}
 \hlstd{data} \hlkwb{<-} \hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlopt{-}\hlstd{ListID,}\hlopt{-}\hlstd{ListName)}
 \end{alltt}
 \end{kframe}
@@ -308,9 +357,12 @@ Unique values for each column: \hl{can we present these unique counts as a forma
 \end{kframe}
 \end{knitrout}
 
+
 \subsection{Data Quality Issues: Classification}
+
 The authors find that there are multiple instances of missclassified items. Where their descriptions appear to not match their material categorisation\\
 Lets see if there are any "ItemNames" associated with more than one "Material Descriptions".
+
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -375,11 +427,7 @@ All instances of rubber gloves with non-missing descriptions are categorised as 
 \hl{another thing maybe worth looking at: all MATERIALS!=Plastic yet have the term "plastic" in the description. could further expand this to descriptions which have any of the material terms in them, but is not its own material. further explores the point about missclassified data.}
 
 
-
-
-
 \subsection{Recategorisation}
-
 
 After the issues with the dataset that were identified in the section above, it was decided that it would be best to transform the dataset in the following ways:
 \begin{itemize}
@@ -388,8 +436,7 @@ After the issues with the dataset that were identified in the section above, it 
 \item It was decided that subsets that were not needed were removed while retaining the necessary subsets.
 \end{itemize}
 
-\begin{figure}[H] %start a figure
-\begin{center}
+
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -399,7 +446,16 @@ After the issues with the dataset that were identified in the section above, it 
   \hlkwd{group_by}\hlstd{(ItemName)} \hlopt{%>%}
   \hlkwd{summarise}\hlstd{(}\hlkwc{Total} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
   \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(Total))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
+
+\begin{figure}[H] 
+\begin{center}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
 \hlstd{data} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{TRUE}\hlstd{),}
@@ -415,10 +471,10 @@ After the issues with the dataset that were identified in the section above, it 
     \hlkwd{xlab}\hlstd{(}\hlstr{"Month"}\hlstd{)} \hlopt{+}
     \hlkwd{ylab}\hlstd{(}\hlstr{"Proportion of Items"}\hlstd{)} \hlopt{+}
     \hlkwd{theme}\hlstd{(}\hlkwc{legend.position}\hlstd{=}\hlstr{"bottom"}\hlstd{,}
-          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{4}\hlstd{))} \hlcom{# --- Change legend text size here! ---}
+          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{4}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-8-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
 \begin{kframe}\begin{alltt}
     \hlcom{#scale_fill_viridis_d(option = "magma")}
 
@@ -432,11 +488,6 @@ After the issues with the dataset that were identified in the section above, it 
 \end {figure}
 
 
-
-
-\hl{Adjust legend text size in annotated code below. - Stuart}
-\begin{figure}[H] %start a figure
-\begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -480,8 +531,15 @@ After the issues with the dataset that were identified in the section above, it 
   \hlstd{category}
 \hlstd{plastic}\hlopt{$}\hlstd{category} \hlkwb{<-} \hlkwd{factor}\hlstd{(plastic}\hlopt{$}\hlstd{category,} \hlkwc{levels} \hlstd{= ordered_levels)}
 \hlkwd{rm}\hlstd{(ordered_levels)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
-
+\begin{figure}[H]
+\begin{center}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
 \hlstd{plastic} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{FALSE}\hlstd{),}
          \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
@@ -499,11 +557,11 @@ After the issues with the dataset that were identified in the section above, it 
     \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
           \hlkwc{panel.grid.minor.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
           \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{,}
-          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{))} \hlopt{+} \hlcom{# --- Change legend text size here! ---}
+          \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{))} \hlopt{+}
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Category"}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-11-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#ggsave("plots/pastic_debris_plot_recategorised.png", width = 40, height = 20, units = "cm")}
 \end{alltt}
@@ -513,6 +571,21 @@ After the issues with the dataset that were identified in the section above, it 
 \label{figB}
 \end {center}
 \end {figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -533,7 +606,7 @@ Old pollutants fall away (cigarette butts) but new ones are introduced\\
 Question: Are observed plastic item proportions time invariant?\\
 \\
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -555,7 +628,7 @@ Question: Are observed plastic item proportions time invariant?\\
     \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= scales}\hlopt{::}\hlkwd{label_number_si}\hlstd{(}\hlkwc{accuracy} \hlstd{=} \hlnum{1}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-10-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#ggsave("plots/observations.png")}
 \end{alltt}
@@ -567,7 +640,7 @@ Question: Are observed plastic item proportions time invariant?\\
 \end {figure}
 
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -583,7 +656,7 @@ Question: Are observed plastic item proportions time invariant?\\
     \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-11-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-13-1} 
 \begin{kframe}\begin{alltt}
   \hlcom{# ggplot() +}
   \hlcom{# geom_histogram(aes(x = Time))}
@@ -600,7 +673,7 @@ Question: Are observed plastic item proportions time invariant?\\
 
 MaterialQuantities\\
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -616,7 +689,7 @@ MaterialQuantities\\
     \hlkwd{coord_flip}\hlstd{()}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-12-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
 
 \end{knitrout}
 \caption {Material Quantities}
@@ -627,7 +700,7 @@ MaterialQuantities\\
 So the most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
 
 A tree map of material quantities:
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -642,7 +715,7 @@ A tree map of material quantities:
           \hlkwc{vSize} \hlstd{=} \hlstr{"Quantity"}\hlstd{,} \hlkwc{draw} \hlstd{=} \hlnum{TRUE}\hlstd{)} \hlkwb{->} \hlstd{tm}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-13-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-15-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#tm}
 \hlcom{#dev.off()}
@@ -661,7 +734,7 @@ Perhaps some of the debris is not actually from the sea, but rather from people 
 \hl{This is a great chart, but not the best to support the statement that cigarettes is most popular - a column or bar chart here will be much better (area charts are not as effective as charts you can level-compare), potentially use proportions or data labels to further drive the point that it IS the largest. Treemap suggest moving back into pre-processing section.}
 
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -684,7 +757,7 @@ Perhaps some of the debris is not actually from the sea, but rather from people 
         \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-16-1} 
 \begin{kframe}\begin{alltt}
   \hlcom{#treemap(index = c("Material Description", "ItemName"),}
   \hlcom{#        vSize = "Quantity", draw = TRUE) -> tm}
@@ -704,7 +777,7 @@ Perhaps some of the debris is not actually from the sea, but rather from people 
 Fireworks found in July and North-America only: possibly 4th July celebrations\\
 4th July and Firework link? (Karen's Idea)\\
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -725,7 +798,7 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
     \hlkwd{ggtitle}\hlstd{(}\hlstr{"Firework debris 2012-2019"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-15-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-17-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#ggsave("plots/fireworks.png")}
 \end{alltt}
@@ -736,9 +809,6 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 \label{figA}
 \end {center}
 \end {figure}
-
-
-
 
 
 \subsection{Location-Driven Pollution}
@@ -762,7 +832,7 @@ We have locational data, so lets check for any geographical observation bias.
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-16-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-18-1} 
 \begin{kframe}\begin{alltt}
 \hlcom{#ggsave("plots/map.png", width = 20, height = 10, units = "cm")}
 \end{alltt}
@@ -771,7 +841,7 @@ We have locational data, so lets check for any geographical observation bias.
 
 We need to know how reliable the location data is. I'm going to filter for "united kingdom" in the location field and plot the raw coordinates.\\
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 
 \caption {Longitude and Latitude discrepancies}
@@ -783,7 +853,7 @@ We need to know how reliable the location data is. I'm going to filter for "unit
 Questions\\
 Distribution of plastic by location.\\
 Are the distributions of plastic fairly constant for the locations with the most observations?\\
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -804,7 +874,7 @@ Are the distributions of plastic fairly constant for the locations with the most
     \hlkwd{geom_col}\hlstd{()} \hlopt{+} \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{'top'}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-18-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
 
 \end{knitrout}
 \caption {Debris by location}
@@ -813,11 +883,28 @@ Are the distributions of plastic fairly constant for the locations with the most
 \end {figure}
 We see that the Location "unknown" has the most plastic... note that this is distinct from "(Missing)", which was our original NA values. Maybe we should merge these.
 
-
-
 \subsection{Item Pairing} 
+
 (e.g. are 6-pack beer rings observed at the same time as fireworks? )
 \hl{are we going to explore this one?}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \pagebreak
 \section{Predictive Modelling}
@@ -825,7 +912,6 @@ Given the variability of plastic pollution trends given event-driven and locatio
 
 \subsection{Description of Model}
 
-Georgios' script
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -834,8 +920,6 @@ Georgios' script
   \hlkwd{filter}\hlstd{(year} \hlopt{>} \hlnum{2010}\hlstd{)} \hlopt{%>%}
   \hlkwd{group_by}\hlstd{(year, category, month)} \hlopt{%>%}
   \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))}
-
-
 
 \hlcom{####}
 
@@ -897,7 +981,7 @@ Georgios' script
 \end{kframe}
 \end{knitrout}
 
-\begin{figure}[H] %start a figure
+\begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -916,13 +1000,17 @@ Georgios' script
   \hlkwd{theme}\hlstd{(}\hlkwc{legend.text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{face}\hlstd{=}\hlstr{"bold"}\hlstd{)))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-22-1} 
 
 \end{knitrout}
 \caption {Some sort of caption here}
 \label{figG1}
 \end {center}
 \end {figure}
+
+
+We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see if what is the actual case.
+
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1003,23 +1091,37 @@ Georgios' script
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsCigrel)}
 \hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsCigrel,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsCigrel,} \hlnum{1}\hlstd{, max))}
-\hlcom{# => 53.73%, min_max accuracy}
+
 \hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsCigrel}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsCigrel}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsCigrel}\hlopt{$}\hlstd{actuals)}
+
+\hlstd{correlation_accuracy}
 \end{alltt}
+\begin{verbatim}
+##              actuals predicteds
+## actuals    1.0000000  0.6191759
+## predicteds 0.6191759  1.0000000
+\end{verbatim}
+\begin{alltt}
+\hlstd{min_max_accuracy}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6700689
+\end{verbatim}
+\begin{alltt}
+\hlstd{mape}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9940953
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
-Pr( greater than |t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance; when p-values are smaller than 0.05, we reject H0 that there's no difference between the means and conclude that a significant difference does exist. If the p-value is larger than 0.05, we cannot conclude that a significant difference exists.
-
-
-
-time statistically significant
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{#1/4/20}
-\hlcom{# modelling for category "Food realted waste"}
+\hlcom{# modelling for category "Food related waste"}
+
 \hlstd{train_Foodrel} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Food related waste"}\hlstd{)} \hlopt{%>%}
   \hlkwd{group_by}\hlstd{(year)}
@@ -1080,14 +1182,31 @@ time statistically significant
 ## 6 0.10897269  0.2227346
 \end{verbatim}
 \begin{alltt}
-\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFoodrel)}  \hlcom{# 5.31%}
+\hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFoodrel)}
 \hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsFoodrel,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsFoodrel,} \hlnum{1}\hlstd{, max))}
 \hlcom{# => 53.73%, min_max accuracy}
 \hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsFoodrel}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsFoodrel}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsFoodrel}\hlopt{$}\hlstd{actuals)}
 
-\hlcom{# time statistically significant}
-
-\hlcom{#1/4/20}
+\hlstd{correlation_accuracy}
+\end{alltt}
+\begin{verbatim}
+##              actuals predicteds
+## actuals    1.0000000  0.3458006
+## predicteds 0.3458006  1.0000000
+\end{verbatim}
+\begin{alltt}
+\hlstd{min_max_accuracy}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7162637
+\end{verbatim}
+\begin{alltt}
+\hlstd{mape}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9139587
+\end{verbatim}
+\begin{alltt}
 \hlcom{# modelling for category "Other"}
 \hlstd{train_Other} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Other"}\hlstd{)} \hlopt{%>%}
@@ -1149,12 +1268,28 @@ time statistically significant
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsOther)}  \hlcom{# 5.31%}
 \hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsOther,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsOther,} \hlnum{1}\hlstd{, max))}
-\hlcom{# => 53.73%, min_max accuracy}
 \hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsOther}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsOther}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsOther}\hlopt{$}\hlstd{actuals)}
 
-\hlcom{# Time statistically not significant-pvalue too high}
-
-\hlcom{#1/4/20}
+\hlstd{correlation_accuracy}
+\end{alltt}
+\begin{verbatim}
+##              actuals predicteds
+## actuals    1.0000000  0.4210413
+## predicteds 0.4210413  1.0000000
+\end{verbatim}
+\begin{alltt}
+\hlstd{min_max_accuracy}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7465301
+\end{verbatim}
+\begin{alltt}
+\hlstd{mape}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.3183526
+\end{verbatim}
+\begin{alltt}
 \hlcom{# modelling for category "Plastic bags and Styrofoam packaging"}
 \hlstd{train_Plbag} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Plastic bags and Styrofoam packaging"}\hlstd{)} \hlopt{%>%}
@@ -1218,14 +1353,28 @@ time statistically significant
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsPlbag)}  \hlcom{# 5.31%}
 \hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsPlbag,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsPlbag,} \hlnum{1}\hlstd{, max))}
-\hlcom{# => 53.73%, min_max accuracy}
 \hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsPlbag}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsPlbag}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsPlbag}\hlopt{$}\hlstd{actuals)}
 
-
-\hlcom{# Time statistically not significant-pvalue too high}
-
-
-\hlcom{#1/4/20}
+\hlstd{correlation_accuracy}
+\end{alltt}
+\begin{verbatim}
+##                actuals  predicteds
+## actuals     1.00000000 -0.04582542
+## predicteds -0.04582542  1.00000000
+\end{verbatim}
+\begin{alltt}
+\hlstd{min_max_accuracy}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6159263
+\end{verbatim}
+\begin{alltt}
+\hlstd{mape}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7749937
+\end{verbatim}
+\begin{alltt}
 \hlcom{# modelling for category "Fragments"}
 \hlstd{train_Frag} \hlkwb{<-} \hlstd{train_dfTotN} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(category}\hlopt{==}\hlstr{"Fragments"}\hlstd{)} \hlopt{%>%}
@@ -1289,20 +1438,73 @@ time statistically significant
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFrag)}  \hlcom{# 5.31%}
 \hlstd{min_max_accuracy} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{apply}\hlstd{(actuals_predsFrag,} \hlnum{1}\hlstd{, min)} \hlopt{/} \hlkwd{apply}\hlstd{(actuals_predsFrag,} \hlnum{1}\hlstd{, max))}
-\hlcom{# => 53.73%, min_max accuracy}
 \hlstd{mape} \hlkwb{<-} \hlkwd{mean}\hlstd{(}\hlkwd{abs}\hlstd{((actuals_predsFrag}\hlopt{$}\hlstd{predicteds} \hlopt{-} \hlstd{actuals_predsFrag}\hlopt{$}\hlstd{actuals))}\hlopt{/}\hlstd{actuals_predsFrag}\hlopt{$}\hlstd{actuals)}
 
+\hlstd{correlation_accuracy}
+\end{alltt}
+\begin{verbatim}
+##              actuals predicteds
+## actuals    1.0000000  0.4781323
+## predicteds 0.4781323  1.0000000
+\end{verbatim}
+\begin{alltt}
+\hlstd{min_max_accuracy}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6709607
+\end{verbatim}
+\begin{alltt}
+\hlstd{mape}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.5374668
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
-\hlcom{# Time statistically not significant-pvalue too high}
+In total we see that time is statistically significant in the change of proportions of certain categories
+of plastic waste: "cigarette related waste", "food related waste", "fragments". This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" .
+Some plastic waste categories are time variant while others aren't and this has to do a  lot with sampling techniques and one-sidedness of datasets. It does not mean that the datasets are wrong it just shows even more that what we have talked about over many group meetings regarding the dataset being biased one way or the other is clearly backed by statistical evidence within this dataset and by referencial evidence too."
+
+"Paper: Spatial and Temporal Patterns of Stranded Intertidal Marine Debris:
+Is There a Picture of Global Change?"
+
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{plastic_category} \hlkwb{<-}\hlstd{(}\hlkwd{c}\hlstd{(}\hlstr{"cigarette related waste"}\hlstd{,} \hlstr{"food related waste"}\hlstd{,}\hlstr{"Fragments"}\hlstd{,} \hlstr{"Other"}\hlstd{,}\hlstr{"Plastic bags and Styrofoam packaging"} \hlstd{))}
+\hlstd{slope_scores} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{0.05512}\hlstd{,}\hlnum{0.030425}\hlstd{,} \hlnum{0.030950}\hlstd{,}\hlopt{-}\hlnum{0.002428}\hlstd{,}\hlopt{-}\hlnum{0.001151}\hlstd{)}
+\hlstd{slope_interpretation} \hlkwb{<-}\hlkwd{c}\hlstd{(}\hlstr{"downward"}\hlstd{,} \hlstr{"upward"}\hlstd{,} \hlstr{"upward"}\hlstd{,} \hlstr{"relatively steady"}\hlstd{,} \hlstr{"relatively steady"}\hlstd{)}
+\hlstd{p_value}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlstr{"<0.05"}\hlstd{,}\hlstr{"<0.05"}\hlstd{,}\hlstr{"<0.05"}\hlstd{,} \hlstr{">0.05"}\hlstd{,}\hlstr{">0.05"}\hlstd{)}
+\hlstd{corr_accuracy}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.62}\hlstd{,} \hlnum{0.35}\hlstd{,}\hlnum{0.48}\hlstd{,} \hlnum{0.27}\hlstd{,}\hlnum{0.38}\hlstd{)}
+\hlstd{min_max_Acc}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.67}\hlstd{,}\hlnum{0.72}\hlstd{,}\hlnum{0.67}\hlstd{,} \hlnum{0.65} \hlstd{,}\hlnum{0.67}\hlstd{)}
+\hlstd{MAPE_scores}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.99}\hlstd{,}\hlnum{0.91}\hlstd{,}\hlnum{0.54}\hlstd{,} \hlnum{0.89}\hlstd{,} \hlnum{0.43}\hlstd{)}
+\hlstd{score_table} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(plastic_category, p_value,slope_scores, slope_interpretation, corr_accuracy,min_max_Acc, MAPE_scores)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 
-In total we see that time is statistically significant in the change of proportions of certain categories of plastic waste, cigarette related waste and food related waste. This is not the case for the other 3 categories.This is supported by a paper that I sent to Roshi on Sunday where this situation is discussed. Some plastic waste
-categories are time variant while others aren't and this has to do a  lot with sampling techniques and one-sidedness of datasets. It does not mean that the datasets are wrong it just shows even more that what we have talked about over many group meetings regarding the dataset being biased one way or the other is clearly backed by statistical evidence within this dataset and by referencial evidence too."
+On metrics used:
+$Pr(>|t|)$ is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance. When p-values are smaller than 0.05, we reject H0 that there's no difference between the means and conclude that a significant difference does exist. If the p-value is larger than 0.05, we cannot conclude that a significant difference exists. P-value<0.05 means that there is statistical significance in the results presented. If p-value>0.05 we can not conclude on the statistical significance. 
 
-"Paper: Spatial and Temporal Patterns of Stranded Intertidal Marine Debris:
-Is There a Picture of Global Change?"
+Correlation accuracy:
+A simple correlation between the actuals and predicted values can be used as a form of accuracy measure.
+A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicted values also increase and vice-versa.
+
+MinMax Accuracy:
+MinMax tells you how far the model's prediction is off. For a perfect model, this measure is 1.0. The lower the measure, the worse the model, based on out-of-sample performance.
+min\_max\_accuracy
+
+MAPE:
+The mean absolute percentage error (MAPE) is a statistical measure of how accurate a forecast system is. It measures this accuracy as a percentage, and can be calculated as the average absolute percent error for each time period minus actual values divided by actual values. 
+eg a MAPE value of 0.99 states that our model's predictions are, on average, 0.99\% off from actual value.
+
+On values of metrics used:
+MinMax Accuracy is generally above 65\% but never exceeds 72\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time.
+The correlation accuracy is not that good which implies that the predicted values do not always follow the true values observed. The best value is for the model predicting on "cigarette related waste".
+MAPE scores are pretty good for all models showing that no model's predictions are on average more than 1\% off from actual value. 
+
 
 
 
@@ -1369,7 +1571,7 @@ All project documents used and the final report can be accessed from the \textit
                     \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 12:47:17 2020
+% Sat May 09 17:18:09 2020
 \begin{table}[ht]
 \centering
 \caption{Record of Team Meetings} 
@@ -1428,7 +1630,7 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
                     \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Sat May 09 12:47:18 2020
+% Sat May 09 17:18:10 2020
 \begin{table}[ht]
 \centering
 \caption{Peer Assessment out of 100} 
