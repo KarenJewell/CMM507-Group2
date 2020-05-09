@@ -347,7 +347,7 @@ corr_accuracy<-c(0.62, 0.35,0.48, 0.27,0.38)
 min_max_Acc<-c(0.67,0.72,0.67, 0.65 ,0.67)
 MAPE_scores<-c(0.99,0.91,0.54, 0.89, 0.43)
 score_table <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, corr_accuracy,min_max_Acc, MAPE_scores)
-
+score_table
 ```
 
 On metrics used:
