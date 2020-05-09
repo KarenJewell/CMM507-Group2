@@ -245,6 +245,9 @@ data$Location <- data$Location %>% fct_explicit_na()
 
 #Remove redundant data
 data <- data %>% select(-ListID,-ListName)
+
+# Filter for observations occuring between the years 2012-2019 inclusive
+data <- data %>% filter(as.integer(year(Time)) %in% 2012:2019)
 @
 The following actions were performed on the dataset:
 
@@ -259,10 +262,12 @@ Nulls found in ItemName and Description.\\
 \hl{also maybe worth looking at: what's the significance of some of these itemIDs where the itemname is blank? It could be an item once that was then deleted or categorised retrospectively. Do a groupby ItemID and see if more than one material or item name turns up.}\\
 \\
 Unique values for each column: \hl{can we present these unique counts as a formatted table? I think it's interesting that 55 unique items can have \~8k descriptions}
-<<>>=
-data %>% apply(2, function(x) length(unique(x)))
-
-
+<<results='asis'>>=
+data %>% 
+  summarise_all(~length(unique(.))) %>% 
+  pivot_longer(cols = everything(), names_to = "Column Name", values_to = "Unique Values") %>% 
+  arrange(desc(`Unique Values`)) %>% 
+  xtable()
 @
 
 \subsection{Data Quality Issues: Classification}
