@@ -524,7 +524,16 @@ As we see in the chart above, an increase in the number of average observations 
 
 \hl{insert: proportion changes of MATERIAL TYPES over years. Line or column. We want to prove that plastic is the dominant pollutant and possibly the only increasing one }
 <<>>=
- 
+data %>% 
+  mutate(Year = lubridate::year(Time)) %>% 
+  group_by(Year, `Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = Year, y = Quantity, fill = `Material Description`)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    scale_fill_hue(l=50, c=150) +
+    scale_x_continuous(breaks = 2012:2019) +
+    ylab("Proportion of Quantity")
 @
 
 Analysis of the poportions of pollutant materials suggests that not only is plastic the dominant marine pollutant material, its proportion of total debris is increasingly observed year on year. This could be due to an increase in new plastic pollution entering marine environments from source, not helped by the fact it is durable and doesn't decompose, as discussed in the introduction of this report, or that the other pollutant materials are decreasing. Of all the pollutant materials listed here - plastic is the most longlife \hl{can we support this statement?}. This analysis therefore is in agreement with the studies discussed in section 2 of this report that plastic is indeed the biggest problem in marine pollution. 
