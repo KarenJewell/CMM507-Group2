@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  10 MAY 2020 10:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  10 MAY 2020 16:42
 entering extended mode
 **./Group2Report.tex
 (Group2Report.tex
@@ -1559,7 +1559,7 @@ Package xcolor Warning: Incompatible color definition on input line 998.
 
 Package xcolor Warning: Incompatible color definition on input line 1069.
 
-<figure/unnamed-chunk-25-1.pdf, id=385, 433.62pt x 180.675pt>
+<figure/unnamed-chunk-25-1.pdf, id=388, 433.62pt x 180.675pt>
 File: figure/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-25-1.pdf>
 Package pdftex.def Info: figure/unnamed-chunk-25-1.pdf  used on input line 1085
@@ -1726,9 +1726,9 @@ fb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt
 10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
 lmtt9.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 lm/lmtti10.pfb>
-Output written on Group2Report.pdf (37 pages, 1019109 bytes).
+Output written on Group2Report.pdf (37 pages, 1018885 bytes).
 PDF statistics:
- 615 PDF objects out of 1000 (max. 8388607)
+ 618 PDF objects out of 1000 (max. 8388607)
  109 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 
