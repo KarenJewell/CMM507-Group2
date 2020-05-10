@@ -513,7 +513,8 @@ data %>%
   ggplot(aes(x = Year, y = Average_Daily_Observations)) +
     geom_col() +
     xlab("Year") +
-    ylab("Average Daily Observations")
+    ylab("Average Daily Observations") +
+    scale_x_continuous(breaks = 2012:2019)
 @
 
 As we see in the chart above, an increase in the number of average observations per day lends support to the theory that the increase in observations is factored by increase in citizen science monitoring activity. That's not to say pollution hasn't also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
@@ -522,6 +523,10 @@ As we see in the chart above, an increase in the number of average observations 
 
 
 \hl{insert: proportion changes of MATERIAL TYPES over years. Line or column. We want to prove that plastic is the dominant pollutant and possibly the only increasing one }
+<<>>=
+
+@
+
 Analysis of the poportions of pollutant materials suggests that not only is plastic the dominant marine pollutant material, its proportion of total debris is increasingly observed year on year. This could be due to an increase in new plastic pollution entering marine environments from source, not helped by the fact it is durable and doesn't decompose, as discussed in the introduction of this report, or that the other pollutant materials are decreasing. Of all the pollutant materials listed here - plastic is the most longlife \hl{can we support this statement?}. This analysis therefore is in agreement with the studies discussed in section 2 of this report that plastic is indeed the biggest problem in marine pollution. 
 
 
