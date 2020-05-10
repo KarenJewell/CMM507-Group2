@@ -86,38 +86,34 @@ opts_chunk$set(
 \noindent\rule{16cm}{0.4pt}
 
 
-\section{Introduction}
-
-\subsection{Problem Statement}\label{statement}
-
-Plastic pollution is a serious problem in the marine environment which has major impact on marine and human health. To understand the depth of the problem, it is essential to understand the amount and composition of marine litter. This can help in applying various mitigation strategies. This section will include: \hl{should this talk about the section or the report? Do we need the problem statement???}
-\begin{itemize}
-\item An overview of marine pollution
-\item Motivation behind this topic
-\item Aim and objectives of this report
-\end{itemize}
-
+\section{Problem Statement}
 
 \subsection{Overview}\label{over}
 
-Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter. \hl{reference?} Plastic is made from synthetic organic polymer derived from polymerisation of monomers extracted from oil \hl{I think plastics is just a oil product, not gas - confirm}.\cite{DERRAIK2002} \cite{RIOS2007} Its lightweight feature and durability make it very suitable to make a range of products we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features are what makes plastic a major component of pollution, due to overuse and non-managed waste disposal systems internationally, contributing to 10\% of the waste generated worldwide.\cite{BARNES2009} Due to its buoyancy, plastic debris can be dispersed over long distances and they can persist for a long time \hl{and never decompose?}. Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are everywhere in the marine environment and urgent action is required to mitigate this problem and reduce its harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}
+Marine pollution is a major global issue which impacts on environment, economy and human health. Although marine pollution is caused by many different materials, plastics consist of 60-80\% of the marine litter. \cite{DERRAIK2002} \cite{SMITH2013} \cite{KUO2014} \cite{ZHOU2011} \cite{JANG2014} Plastics are synthetic organic polymers and their lightweight feature and durability make it very suitable to make a range of products we use in our everyday life.\cite{BARNES2009} \cite{SIVAN2011} These same features are what makes plastic a major component of pollution, due to overuse and non-managed waste disposal systems internationally, contributing to 10\% of the waste generated worldwide.\cite{BARNES2009} As the global production of plastic is increasing every year, the problem in the marine environment is also getting bigger. Due to its buoyancy, plastic debris can be dispersed over long distances and accumulate on the shorelines, even polluting the most remote areas (Lavers and Bond, 2017). Jambeck et al.,\cite{JAMBECK2015} reported that in 2010 alone, between 4.8 million to 12.7 million metric tons of plastics entered the ocean. Plastics are everywhere in the marine environment and urgent action is required to mitigate this problem and reduce its harmful impact.\cite{RIOS2007} \cite{ROCHMAN2015}. \\
+
 
 
 \subsection{Motivation}\label{mot}
 
-The impact of plastic pollution on marine life has been reviewed extensively. \cite{GALL2015} \cite{KUHN2015} \cite{RYAN2015} \cite{WILLIAMS2019} Over 700 marine wildlife species are affected due to entanglement in plastic ropes or materials, and from ingestion of plastics in the ocean.\cite{GALL2015} Over 340 species of marine animals were found to be entangled. \cite{KUHN2015} \hl{what's the difference between the 700 and the 340?} Over time, plastic disintegrates into microplastics and nanoplastics which are easily consumed by fish and enter the human food chain. Plastics have been found in a third of fish caught in the UK which included popular fish such as cod, haddock, and mackerel. \cite{LUSHER2013} The impact and effects of plastic entering the human food chain are still being studied, but plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply also directly impacts human health, in addition to the contamination of seafood.\cite{ROCHMAN2015} \cite{MARKIC2020} \\
+The impact of plastic pollution on marine life has been reviewed extensively. \cite{GALL2015} \cite{KUHN2015} \cite{RYAN2015} \cite{WILLIAMS2019} Over 700 marine wildlife species are affected due to entanglement in plastic ropes or materials, and from ingestion of plastics in the ocean.\cite{GALL2015} Over time, plastic disintegrates into microplastics and nanoplastics which are easily consumed by fish and enter the human food chain. Plastics have been found in a third of fish caught in the UK which included popular fish such as cod, haddock, and mackerel. \cite{LUSHER2013} The impact and effects of plastic entering the human food chain are still being studied, but plastic toxicity and the occurrence of microplastics and nanoplastics in the water supply also directly impacts human health, in addition to the contamination of seafood.\cite{ROCHMAN2015} \cite{MARKIC2020} \\
 
-Although plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently and reducing plastic pollution has become a global aim. Research on plastic pollution in marine environments has played a big role in efforts to reduce it as well as in raising awareness globally. In order to understand plastic pollution in marine environments and its effects in the long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is essential to reducing the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for marine pollution prevention initiatives. Most monitoring is done by survey, where organisations and volunteers record the types and frequencies of litter observed on the shoreline.\cite{COE1997} Litter is most abundant close to urban areas where beach visitor numbers are high.\cite{GARRITY1993}
-
+Although plastic litter has been a major cause of marine pollution for a while, its seriousness has only been realised recently and reducing plastic pollution has become a global aim. Research on plastic pollution in marine environments has played a big role in efforts to reduce it as well as in raising awareness globally. In order to understand plastic pollution in marine environments and its effects in the long term, it is essential to keep collecting data on patterns of marine debris around the world. Effective monitoring of plastic debris is essential to reducing the abundance of plastic debris everywhere. In addition, monitoring the type, frequency and the source of the litter is also important for marine pollution prevention initiatives. Most monitoring is done by survey, where organisations and volunteers record the types and frequencies of litter observed on the shoreline.\cite{COE1997} To understand the depth of the problem, it is essential to understand the amount and composition of marine litter. This can help in applying various mitigation strategies.\\
 
 \subsection{Objectives }\label{obj}
 
 The main objectives of this project is outlined as follows:
 \begin{itemize}	
 \item To review available literature on marine plastic problems and their impacts
-\item	To look at a suitable dataset to understand the composition of plastic pollution 
-\item	To present the derived results and conclusions 
+\item To look at a suitable dataset to understand the composition of plastic pollution 
+\item To create a linear regression model to predict the relevant frequency of distinct plastic debris categories over time
+\item To present the derived results and conclusions 
+
 \end{itemize}
+
+
+
+
 
 
 
@@ -146,29 +142,24 @@ The main objectives of this project is outlined as follows:
 \pagebreak
 \section{Research}\label{research}
 
-An integral part of this report required that the authors conducted a literature search to identify how researchers have been trying to monitor coastal pollution and find the problems associated with it. Several studies have reported the abundance of plastic as a coastal litter through scientific survey and citizen science methods. A 12-year observation of coastal debris pollution using citizen science in Taiwan revealed that most debris items found were plastic. \cite{WALTHER2018} 19 categories of debris items were collected during the clean-up events and the five most commonly recorded debris categories were: plastic shopping bags, plastic bottle caps, disposable tablewares, fishing equipment, and plastic drinking straws. There have been many other studies around the world regarding littering of the shores. In a study covering western Japan and the eastern coasts of Russia \cite{KUSUI2003}, it found that 55\% to 93.4\% of items over the Japanese shores were plastic, and the second most abundant item was resin pellet which is also a form of plastic. On the eastern Russian coast, plastic items were also the most abundant, contributing to approximately 55\% of all litter, mostly of plastic fragments. The composition of litter was similar in the two countries, although the concentration \hl{proportion?} of plastics was much higher in Japan. \cite{KUSUI2003} Further along the Asian upper east coast, hard plastic and styrofoam were the dominant plastic types found on Korean beaches. On average, hard plastic and styrofoam comprised 32\% and 48.5\% of the total debris count respectively. \\
+An integral part of this report required that the authors conducted a literature search to identify how researchers have been trying to monitor coastal pollution and find the problems associated with it. Several studies have reported the abundance of plastic as a coastal litter through scientific survey and citizen science methods. A 12-year observation of coastal debris pollution using citizen science in Taiwan revealed that most debris items found were plastic. \cite{WALTHER2018} 19 categories of debris items were collected during the clean-up events and the five most commonly recorded debris categories were: plastic shopping bags, plastic bottle caps, disposable tablewares, fishing equipment, and plastic drinking straws. There have been many other studies around the world regarding littering of the shores. In a study covering western Japan and the eastern coasts of Russia \cite{KUSUI2003}, it found that 55\% to 93.4\% of items over the Japanese shores were plastic, and the second most abundant item was resin pellet which is also a form of plastic. On the eastern Russian coast, plastic items were also the most abundant, contributing to approximately 55\% of all litter, mostly of plastic fragments. The composition of litter was similar in the two countries, although the proportion of plastics was much higher in Japan. \cite{KUSUI2003} Further along the Asian upper east coast, hard plastic and styrofoam were the dominant plastic types found on Korean beaches. On average, hard plastic and styrofoam comprised 32\% and 48.5\% of the total debris count respectively. \\
 
-In an older study over the Caribbean region, the most common types of debris found on the Caribbean coast of Panama were plastic and styrofoam, with the plastics being household or consumer related. Styrofoam packing materials were also abundant and may have come from trans-shipment activities of Colon's Free Zone, household waste, or offshore activity \cite{GARRITY1993}. A 2016/2017 annual study of 8 beaches in Tenerife in the Canary Islands also found that plastic was the most abundant litter there. They also reported that there was more accumulated plastic debris in remote beaches compared to the beaches near the city \hl{ which contradicts (or if supported by) the GARRITY1993 study "Litter is most abundant close to urban areas where beach visitor numbers are high"}, indicating that more debris were transported by tides. More long term study is required to understand the changes in the results reported over time. \cite{REINOLD2020} \\
+In an older study over the Caribbean region, the most common types of debris found on the Caribbean coast of Panama were plastic and styrofoam, with the plastics being household or consumer related. Styrofoam packing materials were also abundant and may have come from trans-shipment activities of Colon's Free Zone, household waste, or offshore activity \cite{GARRITY1993}. A 2016/2017 annual study of 8 beaches in Tenerife in the Canary Islands also found that plastic was the most abundant litter there. They also reported that there was more accumulated plastic debris in remote beaches compared to the beaches near the city indicating the movement of debris. However, more long term study is required to understand the changes in the results reported over time. \cite{REINOLD2020} \\
 
 It was observed by the authors of this report, that there are variations in how studies of litter accumulation have been conducted. The variations are present in the time span of the research, the parts of the coast from which litter was collected, as well as in the categorisation of litter, which creates difficulty when researchers want to compare different studies. The plastic pollution problem essentially requires the ability to assess changes in accumulation rates and composition, trends over time and the effectiveness of management systems, which is a hard task without good monitoring methodologies. Although monitoring of marine litter is currently carried out within a number of countries around the world, the methods of survey and monitoring used tend to be very different, preventing comparisons and harmonisation of data across regions or time. \\
 
-This is why the scientific community has been trying to create some common ground, which has led to initiatives joined by many countries worldwide. One of these initiatives, and probably the most important, is the International Clean Coast (ICC) program which is a new, long term approach to cleaner beaches by using various activities to increase public awareness. \cite{ CHESHIRE2009} This initiative aims to develop a comprehensive litter characterisation scheme that uses both material composition and form. This allows Litter Monitoring Repeated \hl{os LMR a name? should it be encased in ""?} surveys of beaches, sea bed and/or surface waters to determine litter quantities such that information can be compared with baseline data to identify if changes occur over time or in response to management arrangements. \\
+This is why the scientific community has been trying to create some common ground, which has led to initiatives joined by many countries worldwide. One of these initiatives, and probably the most important, is the International Clean Coast (ICC) program which is a new, long term approach to cleaner beaches by using various activities to increase public awareness. \cite{ CHESHIRE2009} This initiative aims to develop a comprehensive litter characterisation scheme that uses both material composition and form. This allows Litter Monitoring Repeated (LMR) surveys of beaches, sea bed and/or surface waters to determine litter quantities such that information can be compared with baseline data to identify if changes occur over time or in response to management arrangements. \\
 
-The ICC uses specifically developed categorisations of coast litter, with the most accepted being the Clean Coastal Index (CCI) protocol, which is useful for its simplicity and information provided, allowing comparisons between different times and places. The CCI protocol is different from most others \hl{other....protocols, systems?} having a focus on operational clean-up of beaches as well. The CCI is the recommended tool for evaluation of actual coast cleanliness, measuring plastic debris as an indicator of beach cleanliness, in an easy way \hl{easy for volunteers?} which precludes bias by the assessor. The CCI also proved to be a useful tool for measuring progress and the success of activities in raising awareness among the general public. \cite{ALKALAY2007} \\
+The ICC uses specifically developed categorisations of coast litter, with the most accepted being the Clean Coastal Index (CCI) protocol, which is useful for its simplicity and information provided, allowing comparisons between different times and places. The CCI protocol is specific to operational clean-up of beaches as well. The CCI is the recommended tool for evaluation of actual coast cleanliness, measuring plastic debris as an indicator of beach cleanliness which precludes bias by the assessor. The CCI also proved to be a useful tool for measuring progress and the success of activities in raising awareness among the general public. \cite{ALKALAY2007} \\
 
-A study in Israel followed the CCI protocol and found that plastic was the most ubiquitous \hl{prevalent, common?} beach litter item. An important contribution to this study was the ability to compare its findings to other Mediterranean beaches, showing that plastic might be \hl{is/was?} the dominant pollutant in the region, and non-plastic litter being highly specific to the region and cannot be treated universally. \cite{PORTMAN2017} In another study on litter pollution in a region of India, once again following the CCI protocol for the categorisation of litter, found that plastic was the main form of litter at approximately 45\% of total litter. Plastic bags topped the index at 33\%, followed by food wrappers, then plastic cups, and cigarette/cigar tips amounting to 5.5\%. \cite{KUMAR2016} The use of the common protocol in these two studies allows for researchers to compare their findings and create common plastic pollution models, even though the two coasts are continents apart. \\
+A study in Israel using the CCI protocol for categorisation found that plastic was the most ubiquitous beach litter item. An important contribution to this study was the ability to compare its findings to other Mediterranean beaches, showing that plastic was the dominant pollutant in the region, and non-plastic litter being highly specific to the region and cannot be treated universally. \cite{PORTMAN2017} In another study on litter pollution in a region of India, once again following the CCI protocol for the categorisation of litter, found that plastic was the main form of litter at approximately 45\% of total litter. Plastic bags topped the index at 33\%, followed by food wrappers, then plastic cups, and cigarette/cigar tips amounting to 5.5\%. \cite{KUMAR2016} The use of the common protocol in these two studies allows for researchers to compare their findings and create common plastic pollution models, even though the two coasts are continents apart. \\
 
-Another study conducted in Cadiz, on the other side of the Mediterranean from Israel, found that plastic bottles and containers were the most frequent littered items, followed by plastic bags. This research also pointed out that surveys are heavily affected by clean-ups performed at beaches. \cite{WILLIAMS2016} Even though this study reaches important conclusions on ways to clean coasts the correct way, it cannot be easily compared, or its conclusions easily applied even with the case of the study in Israel sharing the Mediterranean Sea. \hl{because it is not using the CCI?}  \\
+Another study conducted in Cadiz, on the other side of the Mediterranean from Israel, found that plastic bottles and containers were the most frequent littered items, followed by plastic bags. This research also pointed out that surveys are heavily affected by clean-ups performed at beaches. \cite{WILLIAMS2016} Even though this study reaches important conclusions on ways to clean coasts the correct way, it cannot be easily compared, or its conclusions easily applied without any standardised protocol. \\
 
-From this review, it is evident that there have been many studies conducted to monitor marine pollution in varying ways. One of the cost effective and easy method \hl{is it not the most cost-effective and easiest?} is the use of citizen science in which the public records any observations of marine litter. As discussed before, observations not following a standard protocol with proper guidance could be uncomparable and rendered ineffective. The Marine Debris Tracker (MDT) initiative \hl{can we mention who created/sponsored it?} was started in 2010 in North America and continues to operate today. The MDT allows anyone to record the marine debris observed, using an application on a mobile phone. The only report using data from this application is a web-based report by Tablada in 2018 \cite{JAMBECK2015B}, where data analysis was performed on 8 years of the data, mainly focused on North America. The study also concluded that plastic was the main type of debris recorded, with cigarettes being the top identified littered item. The subsequent sections of this report will aim to contribute to this body of knowledge, using the worldwide coastal littering dataset from the MDT, with an interest in identifying if plastic is indeed the most abundant litter of the worldwide dataset, which would be in agreement with the various studies discussed in this review. Following which, this report will analyse the distribution of subclasses within the plastics found, and explore if there could be a way to computationally monitor and assess the coastal littering problem, using the established CCI categorisation of litter. \\
-
-
+From this review, it is evident that there have been many studies conducted to monitor marine pollution in various different ways. One of the most cost effective and efficient way is the use of citizen science where the general public can record any observations of marine litter \cite{EARP2019}. Citizen science approach has been successfully used in many studies. \hl{Roy et al., 2012} \cite{FORRESTER2015} This method is also gaining popularity in marine pollution monitoring \cite{BRAVO2009} \cite{CARSON2012} \cite{HIDALGORUZ2017} \cite{BAUERCIVIELLO2018} and has also been assessed as tool to increase awareness on marine litter problem. \cite{LOCRITANI2019} \\
 
 
-
-
-
-
+As discussed before, observations not following a standard protocol with proper guidance could be incomparable and rendered ineffective. The Marine Debris Tracker (MDT) is a joint initiative between National Oceanic and Atmospheric Administration (NOAA) Marine Debris Program (MDP) and Universities of Georgia, North Carolina and South Carolina (Jambeck and Johnsen, 2015). The MDT allows anyone to record the marine debris observed, using an application on a mobile phone. The only report using data from this application is a web-based report by Tablada in 2018 \cite{JAMBECK2015B}, where data analysis was performed on 8 years of the data, mainly focused on North America. The study also concluded that plastic was the main type of debris recorded, with cigarettes being the top identified littered item. The subsequent sections of this report will aim to contribute to this body of knowledge, using the worldwide coastal littering dataset from the MDT, with an interest in identifying if plastic is indeed the most abundant litter of the worldwide dataset, which would be in agreement with the various studies discussed in this review. Following which, this report will analyse the distribution of subclasses within the plastics found, and explore if there could be a way to computationally monitor and assess the coastal littering problem, using the established CCI categorisation of litter. \\
 
 
 
@@ -184,7 +175,7 @@ From this review, it is evident that there have been many studies conducted to m
 
 The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (www.marinedebris.engr.uga.edu) on \hl{what was the date of download?}. The dataset is composed of global observations from the start of the program in 2010 to the latest available date in February 2020. \\
 
-As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided, but there are also multiple available fields to populate including non-mandatory fields, and some allowing free text entry. An example of a non-mandatory field are "Lists"  which are user customisable groupings for listing their own collection of records.The table below describes the structure of the data. 
+As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided, but there are also multiple available fields to populate including non-mandatory fields, and some allowing free text entry. An example of a non-mandatory field are "Lists" which are user customisable groupings for listing their own collection of records.The table below describes the structure of the data. 
 
 \begin{table}[H]
 \begin{tabular}{ l l l }
@@ -207,6 +198,7 @@ MaterialID & ID for MaterialDescription & Mandatory \\
 Time & the date and time of observation & Non-mandatory \\
 \end{tabular}
 \end{table}
+
 
 
 \pagebreak
@@ -277,6 +269,43 @@ data %>%
 It is difficult to determine exactly how many locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. 
 
 
+\subsection{The Quantity Issue}
+
+<<>>=
+data %>% 
+  select(Quantity) %>%
+  ggplot(aes(y=Quantity)) + 
+    geom_boxplot() +
+    ggtitle("Quantities Distribution") + 
+    theme(plot.title = element_text(size=10))
+
+data %>% 
+  select(Quantity) %>%
+  filter(Quantity < 10000) %>%
+  ggplot(aes(y=Quantity)) + 
+    geom_boxplot() +
+    ggtitle("Quantities Distribution excl QTY>10,000") + 
+    theme(plot.title = element_text(size=10))
+
+format(summary(data$Quantity), scientific=FALSE) %>%
+  xtable()
+
+# Distribution of unique quantities
+data %>%
+  select(Quantity) %>%
+  unique() %>%
+  arrange(desc(Quantity)) %>%
+  summary()
+  xtable()
+
+data %>%
+  filter(Quantity > 10000) %>%
+  xtable()
+
+
+@
+There are 5 observations with quantities of >10,000, 3 of them are cigarettes in 2012, 2013 and 2015. We can't use statistical outliers to remove all outliers as with so many individual entries the IQR is 4.5 and excluding everything above that would exclude all the entries made by organised groups. 
+
 \pagebreak
 \subsection{Data Quality Issues: Classification}
 
@@ -309,6 +338,7 @@ data %>% select(`Material Description`, ItemName, Quantity) %>%
   group_by(`Material Description`) %>% 
   summarise(Quantity = as.integer(sum(Quantity))) %>%
   xtable()
+
 
 # Checking the descriptions of Rubber Glove items
 data %>% select(`Material Description`, ItemName, Description) %>%
@@ -699,11 +729,11 @@ This observation does not agree with the India study which found cigarettes was 
 
 \begin{figure}[H] 
 \begin{center}
-<<fig=TRUE>>=
-#Boxplot of fireworks distribution by month (across all years)
+<<>>=
+# Boxplot of fireworks distribution by month (across all years)
 data %>% 
   filter(`Material Description` == "PLASTIC",
-         ItemName %in% c("Fireworks"))
+         ItemName %in% c("Fireworks")) %>%
   mutate(month = month(Time, label = TRUE), 
          year = as.integer(year(Time))) %>% 
   group_by(month, year) %>% 
@@ -713,16 +743,15 @@ data %>%
     xlab("Month") +
     ylab("Quantity") +
     ggtitle("Firework debris 2012-2019")
-  
-  
-data %>% 
-  filter(ItemName == "Fireworks") %>%
-  select(Location) %>%
-  distinct() %>%
-  #arrange(`Material Description`) %>%
-  xtable()  
+@
+\caption {Boxplot of fireworks distribution by month, across all years}
+\label{figA1}
+\end {center}
+\end {figure}
 
-
+\begin{figure}[H] 
+\begin{center}    
+<<>>=
 world <- map_data("world")
 data %>% 
   filter(ItemName == "Fireworks") %>%
@@ -736,10 +765,19 @@ data %>%
 @
 
 \caption {Boxplot of fireworks distribution by month, across all years}
-\label{figA}
+\label{figA2}
 \end {center}
 \end {figure}
+ <<>>=
+  
+data %>% 
+  filter(ItemName == "Fireworks") %>%
+  select(Location) %>%
+  distinct() %>%
+  #arrange(`Material Description`) %>%
+  xtable()
 
+@
 
 
 
@@ -931,7 +969,7 @@ dfTotN <- rbind(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
 
 We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and "Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see what is the actual case.
 
-<<>>=
+<<results='markup'>>=
 
 
 
@@ -967,15 +1005,15 @@ correlation_accuracy <- cor(actuals_predsCigrel)
 min_max_accuracy <- mean(apply(actuals_predsCigrel, 1, min) / apply(actuals_predsCigrel, 1, max))  
 
 
-correlation_accuracy
+xtable(correlation_accuracy)
 
-min_max_accuracy
+xtable(min_max_accuracy)
 
 
 @
 
 
-<<>>=
+<<results='markup'>>=
 # modelling for category "Food related waste"
 
 train_Foodrel <- train_dfTotN %>% 
@@ -1110,7 +1148,7 @@ A higher correlation accuracy implies that the actuals and predicted values have
 MinMax Accuracy:\\
 MinMax tells you how far the model's prediction is off. For a perfect model, this measure is 1.0. The lower the measure, the worse the model, based on out-of-sample performance.\\
 <<>>=
-min_max_accuracy
+xtable(min_max_accuracy)
 @
 
 Adjusted R squared:\\
