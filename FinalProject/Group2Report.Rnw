@@ -550,8 +550,8 @@ data %>%
          months = floor_date(Time, 'month')) %>% 
   group_by(months, Type) %>% 
   summarize(`Number of observations` = n()) %>% 
-  ggplot(aes(x = months, y = `Number of observations`)) +
-    geom_area(aes(fill = Type)) +
+  ggplot(aes(x = months, y = `Number of observations`, colour = Type)) +
+    geom_line() +
     theme(legend.position = "bottom")
   # ggplot() +
   # geom_histogram(aes(x = Time))
