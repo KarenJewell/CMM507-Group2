@@ -66,7 +66,7 @@ opts_chunk$set(
   echo = TRUE, 
   message = FALSE, 
   warning = FALSE, 
-  results='markup', 
+  results='asis', 
   fig.width=6, 
   fig.height=2.5, 
   size="small", 
@@ -217,6 +217,7 @@ library(tidyverse)
 library(purrr)
 library(magrittr)
 library(treemap)
+library(hexbin)
 library(mapdata)
 library(viridis)
 library(lubridate)
@@ -300,7 +301,7 @@ data %>% select(`Material Description`, ItemName) %>%
   xtable()
 @
 
-Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate anyway as the last two instances here have "Balloon" in the extra descriptions. This raises the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, perhaps reflective of the inconsistencies and unreliability of citizen science data gathering. Yet some data may be better than no data at all. \hl{we should probably change make them consistent or explain why we didn't}
+Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate anyway as the last two instances here have "Balloon" in the extra descriptions. This raises the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, perhaps reflective of the inconsistencies and unreliability of citizen science data gathering. Yet some data may be better than no data at all. 
 <<results='asis'>>=
 # Checking material categorisation of Rubber Gloves
 data %>% select(`Material Description`, ItemName, Quantity) %>%
@@ -314,8 +315,35 @@ data %>% select(`Material Description`, ItemName, Description) %>%
   filter(ItemName == "Rubber Gloves", !is.na(Description)) %>%
   distinct() %>%
   xtable()
+
+# Checking the time of Rubber Glove items
+data %>% 
+  mutate(year = as.integer(year(Time))) %>% 
+  select(`Material Description`, ItemName, Time) %>%
+  filter(ItemName == "Rubber Gloves") %>%
+  distinct() %>%
+  xtable()
 @
 
+\begin{figure}[H] 
+\begin{center}
+<<>>=
+# Line chart showing categorisation of Rubber Glover over time  
+data %>% 
+  filter(ItemName == "Rubber Gloves") %>%
+  mutate(months = floor_date(Time, 'month')) %>% 
+  group_by(months, ItemName,`Material Description`) %>% 
+  summarize(`Number of observations` = n()) %>% 
+  ggplot(aes(x = months, y = `Number of observations`)) +
+    geom_line(aes(color=`Material Description`)) +
+    theme(legend.position = "bottom")
+@
+\caption {some caption here}
+\label{figE1}
+\end {center}
+\end {figure}
+
+Further analysis finds that the use of "Rubber" to classify Rubber Gloves only appears in September 2019 and the last categorisation as "Plastic" also at the same time, this suggests that the classification was actually changed around this time, and perhaps suggests to us that we should reclassify all historic Rubber Glove items as Rubber. \hl{we should probably change it to make them consistent or explain why we didn't} \\
 
 \hl{Potential section:} multiple instances of missclassified items. Where their descriptions appear to not match their material categorisation\\
 where MATERIALS!=Plastic yet have the term "plastic" in the description. could further expand this to descriptions which have any of the material terms in them, but is not its own material.
@@ -520,6 +548,7 @@ data %>%
   summarize(`Number of observations` = n()) %>% 
   ggplot(aes(x = months, y = `Number of observations`)) +
     geom_area(aes(fill = Type)) +
+    #geom_line(aes(color=Type))
     theme(legend.position = "bottom")
   # ggplot() +
   # geom_histogram(aes(x = Time))
@@ -531,70 +560,70 @@ data %>%
 \end {figure}
 \hl{minor edit: can we take away the area fill but keep the coloured lines?}\\
 
-\hl{insert: line chart of just the \% plastic over years}
+\hl{insert: line chart of just the \% plastic over years}\\
 
 When we consider the charts above, we can determine that it is not only the plastic proportion of total pollutant materials that increases, but it's total observation counts too (not quanitities). This means that even as more debris are observed, plastics remain a consistently common feature of the observed derbis.\\
 
 In this chart we also see peaks and troughs in the number of observations - this is indicative of an increase in user activity. Seeing the peak in 2013 - that's not to say pollution suddenly increased in one period and disappeared, but monitoring activity spiked in that period. \hl{do we know why?} We see more of these spikes in 2017, 2018 and 2019 but generally it is an increasing trend in monitoring activity.\\
 
 
-\hl{insert: proportion changes of RECATEGORISED plastic over years. stacked lines or columns}
-When considering the subcategories within plastic we see..... \hl{can we link this to decreasing cigarettes?}
+\hl{insert: proportion changes of RECATEGORISED plastic over years. stacked lines or columns}\\
+When considering the subcategories within plastic we see..... \hl{can we link this to decreasing cigarettes?}\\
 
-\hl{insert: table of \% change in ItemNames 2012 to 2019. return top 10 or 15 ABSOLUTE value changes. If you really want to do this properly you'll take the averaged change in \% year on year and compare it to the end-to-end \% change.}
+\hl{insert: table of \% change in ItemNames 2012 to 2019. return top 10 or 15 ABSOLUTE value changes. If you really want to do this properly you'll take the averaged change in \% year on year and compare it to the end-to-end \% change.}\\
 
-An interesting observation was that as Old pollutants fall away (cigarette butts) but new ones are introduced. Cigarette butts proportions and raw counts decrease over time which is possibly indicative of less people smoking, or moving to vaping \hl{source this, or don't bother?}\\
+An interesting observation was that as old pollutants fall away (cigarette butts), new ones are introduced. Cigarette butts proportions and raw counts decrease over time which is possibly indicative of less people smoking, or moving to vaping \hl{source this, or don't bother?}\\
 
 
+\pagebreak
 \subsection {Distribution of observed debris:}
-
-MaterialQuantities\\
+% The key variable in this section is PROPORTIONS %
 
 \begin{figure}[H] 
 \begin{center}
 <<>>=
+# Column chart of Debris Quantity by Material Type
 data %>% select(Quantity,Description,`Material Description`) %>% 
   group_by(`Material Description`) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
-
-  ggplot(aes(x = reorder(`Material Description`, Quantity), y = Quantity)) +
+  ggplot(aes(x = reorder(`Material Description`, -Quantity), y = Quantity)) +
     geom_col() +
     ylab("Total recorded quantity") +
     xlab("Material class") +
-    coord_flip()
+    theme(text = element_text(size=8),
+        axis.text.x=element_text(angle=45, hjust=1),
+        plot.title = element_text(size=10))
+    #coord_flip()
 @
 \caption {Material Quantities}
 \label{figC}
 \end {center}
 \end {figure}
 
-So the most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
+The most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
 
 A tree map of material quantities:
 \begin{figure}[H] 
 \begin{center}
 <<>>=
-#treemap of debris categories
-#png("plots/treemap.png")
+# Treemap of debris categories
 data %>% 
   select(`Material Description`, ItemName, Quantity) %>% 
   group_by(`Material Description`, ItemName) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
   treemap(index = c("Material Description", "ItemName"),
           vSize = "Quantity", draw = TRUE) -> tm
-#tm
-#dev.off()
-#save.image(file = "plots/treemap.png")
+
 @
 \caption {Debris categorisation}
 \label{figI}
 \end {center}
 \end {figure}
 
-Cigarettes are the most common item recorded as seen in. %Figure~\ref{figI}
-Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans?
+\hl{Treemap maybe move back into pre-processing section.}
 
-\hl{This is a great chart, but not the best to support the statement that cigarettes is most popular - a column or bar chart here will be much better (area charts are not as effective as charts you can level-compare), potentially use proportions or data labels to further drive the point that it IS the largest. Treemap suggest moving back into pre-processing section.}
+
+
 
 
 \begin{figure}[H] 
@@ -605,19 +634,19 @@ data %>%
   select(`Material Description`, ItemName, Quantity) %>% 
   group_by(`Material Description`, ItemName) %>% 
   summarise(Quantity = sum(Quantity)) %>% 
+  arrange(desc(Quantity)) %>%
+  head(15) %>%
   ggplot(aes(x=reorder(`ItemName`, -Quantity), y=Quantity, fill=`Material Description`)) +
   geom_bar(stat="identity") +
-  ggtitle("Debris Categorisation") +
+  ggtitle("Top 15 Debris Item Counts between 2012 and 2019 by Material Type") +
   xlab("Debris") + 
   ylab("") +
   #coord_flip() +
   theme(text = element_text(size=8),
-        axis.text.x=element_text(angle=90, hjust=1),
+        axis.text.x=element_text(angle=45, hjust=1),
         plot.title = element_text(size=10),
         legend.text=element_text(size=5),
         legend.position = "bottom")
-  #treemap(index = c("Material Description", "ItemName"),
-  #        vSize = "Quantity", draw = TRUE) -> tm
 
 @
 \caption {Debris categorisation}
@@ -625,14 +654,16 @@ data %>%
 \end {center}
 \end {figure}
 
-\hl{maybe make this top 10 or 15 items.}
+\hl{remove scientific scale}
+
+Cigarettes are the most common item recorded as seen in. %Figure~\ref{figI}
+This observation does not agree with the India study which found cigarettes was actually their smallest pollutant at 5.5\% \cite{KUMAR2016}. Perhaps some of the debris is not actually from the sea, but rather from people littering by the coastline? Does debris littered on the coastline end up in the oceans? \hl{can we find out more here? smoking rates?}
+
 
 
 \pagebreak
 \subsection{Event-Driven Pollution}
 
-Fireworks found in July and North-America only: possibly 4th July celebrations\\
-4th July and Firework link? (Karen's Idea)\\
 
 \begin{figure}[H] 
 \begin{center}
@@ -640,8 +671,7 @@ Fireworks found in July and North-America only: possibly 4th July celebrations\\
 #Boxplot of fireworks distribution by month (across all years)
 data %>% 
   filter(`Material Description` == "PLASTIC",
-         ItemName %in% c("Fireworks"),
-         year(Time) >= 2012, year(Time) <= 2019) %>% 
+         ItemName %in% c("Fireworks"))
   mutate(month = month(Time, label = TRUE), 
          year = as.integer(year(Time))) %>% 
   group_by(month, year) %>% 
@@ -651,14 +681,37 @@ data %>%
     xlab("Month") +
     ylab("Quantity") +
     ggtitle("Firework debris 2012-2019")
+  
+  
+data %>% 
+  filter(ItemName == "Fireworks") %>%
+  select(Location) %>%
+  distinct() %>%
+  #arrange(`Material Description`) %>%
+  xtable()  
 
-#ggsave("plots/fireworks.png")
+
+world <- map_data("world")
+data %>% 
+  filter(ItemName == "Fireworks") %>%
+  select(Latitude, Longitude, Quantity, Location) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude)) +
+    #scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
+    theme_void() +
+    guides(fill=guide_legend(title="Quantity"))
 @
 
 \caption {Boxplot of fireworks distribution by month, across all years}
 \label{figA}
 \end {center}
 \end {figure}
+
+
+
+
+
 
 
 \pagebreak
@@ -764,18 +817,13 @@ Given the variability of plastic pollution trends given event-driven and locatio
 <<>>=
 
 plasticN <- plastic %>% 
-  mutate(month = month(Time, label = FALSE), year = as.integer(year(Time))) %>% 
-  filter(year > 2010) %>% 
-  group_by(year, category, month) %>%
+  mutate(month = month(Time, label = FALSE), year = as.integer(year(Time))) %>%  group_by(year, category, month) %>%
   summarise(`Total Quantity` = sum(Quantity))
 
 ####
 
 
-df11N <- plasticN  %>%
-  filter(year == 2011) %>% 
-  group_by(year, month) %>%
-  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+
 
 df12N <- plasticN  %>%
   filter(year == 2012) %>% 
@@ -824,7 +872,7 @@ df19N <- plasticN  %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
 
 
-dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+dfTotN <- rbind(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
 @
 
 \begin{figure}[H] 
@@ -849,12 +897,10 @@ dfTotN <- rbind(df11N, df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
 \end {figure}
 
 
-We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see if what is the actual case.
-
+We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and "Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see what is the actual case.
 
 <<>>=
-#1/4/20
-### MODELING with new categorisation
+
 
 
 # create train and test set
@@ -888,13 +934,12 @@ head(actuals_predsCigrel)
 correlation_accuracy <- cor(actuals_predsCigrel)
 min_max_accuracy <- mean(apply(actuals_predsCigrel, 1, min) / apply(actuals_predsCigrel, 1, max))  
 
-mape <- mean(abs((actuals_predsCigrel$predicteds - actuals_predsCigrel$actuals))/actuals_predsCigrel$actuals)
 
 correlation_accuracy
 
 min_max_accuracy
 
-mape
+
 @
 
 
@@ -921,69 +966,9 @@ actuals_predsFoodrel <- data.frame(cbind(actuals=test_Foodrel$freq, predicteds=p
 head(actuals_predsFoodrel)
 correlation_accuracy <- cor(actuals_predsFoodrel)  
 min_max_accuracy <- mean(apply(actuals_predsFoodrel, 1, min) / apply(actuals_predsFoodrel, 1, max))  
-# => 53.73%, min_max accuracy
-mape <- mean(abs((actuals_predsFoodrel$predicteds - actuals_predsFoodrel$actuals))/actuals_predsFoodrel$actuals)
 
 correlation_accuracy
 min_max_accuracy
-mape
-
-
-# modelling for category "Other"
-train_Other <- train_dfTotN %>% 
-  filter(category=="Other") %>% 
-  group_by(year)
-
-test_Other <- test_dfTotN %>% 
-  filter(category=="Other") %>% 
-  group_by(year)
-
-set.seed(1234)
-train_Other.modelN <- lm(freq ~ year, data = train_Other)
-summary(train_Other.modelN)
-
-print("PREDICTION")
-pred_Other <- predict(train_Other.modelN, test_Other)
-summary(pred_Other)
-
-actuals_predsOther <- data.frame(cbind(actuals=test_Other$freq, predicteds=pred_Other)) 
-head(actuals_predsOther)
-correlation_accuracy <- cor(actuals_predsOther)  # 5.31%
-min_max_accuracy <- mean(apply(actuals_predsOther, 1, min) / apply(actuals_predsOther, 1, max))  
-mape <- mean(abs((actuals_predsOther$predicteds - actuals_predsOther$actuals))/actuals_predsOther$actuals)
-
-correlation_accuracy
-min_max_accuracy
-mape
-
-
-# modelling for category "Plastic bags and Styrofoam packaging"
-train_Plbag <- train_dfTotN %>% 
-  filter(category=="Plastic bags and Styrofoam packaging") %>% 
-  group_by(year)
-
-test_Plbag <- test_dfTotN %>% 
-  filter(category=="Plastic bags and Styrofoam packaging") %>% 
-  group_by(year)
-
-set.seed(1234)
-train_Plbag.modelN <- lm(freq ~ year, data = train_Plbag)
-summary(train_Plbag.modelN)
-
-print("PREDICTION")
-pred_Plbag <- predict(train_Plbag.modelN, test_Plbag)
-summary(pred_Plbag)
-
-actuals_predsPlbag <- data.frame(cbind(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
-head(actuals_predsPlbag)
-correlation_accuracy <- cor(actuals_predsPlbag)  # 5.31%
-min_max_accuracy <- mean(apply(actuals_predsPlbag, 1, min) / apply(actuals_predsPlbag, 1, max))  
-mape <- mean(abs((actuals_predsPlbag$predicteds - actuals_predsPlbag$actuals))/actuals_predsPlbag$actuals)
-
-correlation_accuracy
-min_max_accuracy
-mape
-
 
 
 # modelling for category "Fragments"
@@ -1005,56 +990,109 @@ summary(pred_Frag)
 
 actuals_predsFrag <- data.frame(cbind(actuals=test_Frag$freq, predicteds=pred_Frag)) 
 head(actuals_predsFrag)
-correlation_accuracy <- cor(actuals_predsFrag)  # 5.31%
+correlation_accuracy <- cor(actuals_predsFrag)  
 min_max_accuracy <- mean(apply(actuals_predsFrag, 1, min) / apply(actuals_predsFrag, 1, max))  
-mape <- mean(abs((actuals_predsFrag$predicteds - actuals_predsFrag$actuals))/actuals_predsFrag$actuals)
 
 correlation_accuracy
 min_max_accuracy
-mape
+# modelling for category "Other"
+train_Other <- train_dfTotN %>% 
+  filter(category=="Other") %>% 
+  group_by(year)
+
+test_Other <- test_dfTotN %>% 
+  filter(category=="Other") %>% 
+  group_by(year)
+
+set.seed(1234)
+train_Other.modelN <- lm(freq ~ year, data = train_Other)
+summary(train_Other.modelN)
+
+print("PREDICTION")
+pred_Other <- predict(train_Other.modelN, test_Other)
+summary(pred_Other)
+
+actuals_predsOther <- data.frame(cbind(actuals=test_Other$freq, predicteds=pred_Other)) 
+head(actuals_predsOther)
+correlation_accuracy <- cor(actuals_predsOther)  # 5.31%
+min_max_accuracy <- mean(apply(actuals_predsOther, 1, min) / apply(actuals_predsOther, 1, max))  
+
+correlation_accuracy
+min_max_accuracy
+
+
+
+# modelling for category "Plastic bags and Styrofoam packaging"
+train_Plbag <- train_dfTotN %>% 
+  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+  group_by(year)
+
+test_Plbag <- test_dfTotN %>% 
+  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+  group_by(year)
+
+set.seed(1234)
+train_Plbag.modelN <- lm(freq ~ year, data = train_Plbag)
+summary(train_Plbag.modelN)
+
+print("PREDICTION")
+pred_Plbag <- predict(train_Plbag.modelN, test_Plbag)
+summary(pred_Plbag)
+
+actuals_predsPlbag <- data.frame(cbind(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
+head(actuals_predsPlbag)
+correlation_accuracy <- cor(actuals_predsPlbag) 
+min_max_accuracy <- mean(apply(actuals_predsPlbag, 1, min) / apply(actuals_predsPlbag, 1, max))  
+
+xtable(correlation_accuracy)
+xtable(min_max_accuracy)
+
+
+
+
+plastic_category <-c("cigarette related waste", "food related waste","Fragments", 
+                      "Other","Plastic bags and Styrofoam packaging" )
+
+slope_scores <- c(-0.063,0.038, 0.034, 0.000, 0.001)
+slope_interpretation <-c("downward", "upward", "upward", "steady", "steady")
+p_value<-c("<0.05","<0.05","<0.05", ">0.05",">0.05")
+adjRsquared <- c(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
+corr_accuracy<-c(0.83, 0.50, 0.41, -0.36,-0.12)
+min_max_Acc<-c(0.78,0.77,0.69, 0.64 ,0.61)
+
+score_table <- data.frame(plastic_category, p_value,slope_scores, 
+                          slope_interpretation, adjRsquared, corr_accuracy,min_max_Acc)
+
+
+xtable(score_table)
 
 @
+On metrics presented on table:\\
+
+Pr(>|t|) is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance. When p-values are smaller than 0.05, we reject H0 that there's no difference between the means and conclude that a significant difference does exist. If the p-value is larger than 0.05, we cannot conclude that a significant difference exists. P-value<0.05 means that there is statistical significance in the results presented. If p-value>0.05 we can not conclude on the statistical significance. \\
+
+Correlation accuracy:\\
+A simple correlation between the actuals and predicted values can be used as a form of accuracy measure.\\
+A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicted values also increase and vice-versa.\\
+
+MinMax Accuracy:\\
+MinMax tells you how far the model's prediction is off. For a perfect model, this measure is 1.0. The lower the measure, the worse the model, based on out-of-sample performance.\\
+<<>>=
+min_max_accuracy
+@
+
+Adjusted R squared:\\
+R-Squared gives the proportion of variation in the dependent (response) variable that has been explained by this model. Adjusted R-Squared is formulated such that it penalises the number of terms of the model.\\
+
+
+On scores of metrics:\\
+
+MinMax Accuracy is generally above 60\%, but never exceeds 78\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time. The correlation accuracy is really good for "cigarette related waste" category, but not that good for "food related waste" and "Fragments" categories, which implies that the predicted values do not always follow the true values observed in the same proportion. The categories "Other" and "Plastic bags and Styrofoam packaging", where p-value is worse, score negative values which is troublesome. The higher the adjusted R squared metric the better. What is alarming here regarding this metric measure is the model created to predict for the last two categories, since it receives negative values.\\
 
 In total we see that time is statistically significant in the change of proportions of certain categories
-of plastic waste: "cigarette related waste", "food related waste", "fragments". This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" .
-Some plastic waste categories are time variant while others aren't and this has to do a  lot with sampling techniques and one-sidedness of datasets. It does not mean that the datasets are wrong it just shows even more that what we have talked about over many group meetings regarding the dataset being biased one way or the other is clearly backed by statistical evidence within this dataset and by referencial evidence too."
+of plastic waste: "cigarette related waste", "food related waste", "fragments", causing a downward, upward and upward movement respectively. This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" categories, where though the models predicts a stagnation, there does not seem to be enough statistical evidence backing the credibility of the predictions of these two models.\\
 
-"Paper: Spatial and Temporal Patterns of Stranded Intertidal Marine Debris:
-Is There a Picture of Global Change?"
-
-
-<<>>=
-plastic_category <-(c("cigarette related waste", "food related waste","Fragments", "Other","Plastic bags and Styrofoam packaging" ))
-slope_scores <- c(-0.05512,0.030425, 0.030950,-0.002428,-0.001151)
-slope_interpretation <-c("downward", "upward", "upward", "relatively steady", "relatively steady")
-p_value<-c("<0.05","<0.05","<0.05", ">0.05",">0.05")
-corr_accuracy<-c(0.62, 0.35,0.48, 0.27,0.38)
-min_max_Acc<-c(0.67,0.72,0.67, 0.65 ,0.67)
-MAPE_scores<-c(0.99,0.91,0.54, 0.89, 0.43)
-score_table <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, corr_accuracy,min_max_Acc, MAPE_scores)
-score_table
-@
-
-On metrics used:
-$Pr(>|t|)$ is the p-value, defined as the probability of observing any value equal or larger than t if H0 is true. The larger the t statistic, the smaller the p-value. Generally, we use 0.05 as the cutoff for significance. When p-values are smaller than 0.05, we reject H0 that there's no difference between the means and conclude that a significant difference does exist. If the p-value is larger than 0.05, we cannot conclude that a significant difference exists. P-value<0.05 means that there is statistical significance in the results presented. If p-value>0.05 we can not conclude on the statistical significance. 
-
-Correlation accuracy:
-A simple correlation between the actuals and predicted values can be used as a form of accuracy measure.
-A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, i.e. when the actuals values increase the predicted values also increase and vice-versa.
-
-MinMax Accuracy:
-MinMax tells you how far the model's prediction is off. For a perfect model, this measure is 1.0. The lower the measure, the worse the model, based on out-of-sample performance.
-min\_max\_accuracy
-
-MAPE:
-The mean absolute percentage error (MAPE) is a statistical measure of how accurate a forecast system is. It measures this accuracy as a percentage, and can be calculated as the average absolute percent error for each time period minus actual values divided by actual values. 
-eg a MAPE value of 0.99 states that our model's predictions are, on average, 0.99\% off from actual value.
-
-On values of metrics used:
-MinMax Accuracy is generally above 65\% but never exceeds 72\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time.
-The correlation accuracy is not that good which implies that the predicted values do not always follow the true values observed. The best value is for the model predicting on "cigarette related waste".
-MAPE scores are pretty good for all models showing that no model's predictions are on average more than 1\% off from actual value. 
-
+It is important to notice that since it is a linear regression model, there exist no hyper-parameters for tuning, therefore no cross-validation comes in play. Since, only one predictor is used any kind of stepwise elimination is redundant. So, evaluation relies on metrics used.\\
 
 
 
@@ -1063,9 +1101,12 @@ MAPE scores are pretty good for all models showing that no model's predictions a
 
 \subsection{Model Discussion}
 
+
 As seen in the study of debris in a Eastern Mediterranean coastal town \cite{PORTMAN2017} the variability of non-plastic litter composition should make us aware that the local context must be taken into account. Perhaps, given that non-plastic litter is a hugely varying category, this way of thinking could be expanded into the plastic debris category of "Other", given that it is inherently varied let alone in a dataset that gathers information over the entire world. In fact, this could in reverse explain the higher p-value, since high variation within the category studied would yield results of insufficient trustworthiness. 
 
-As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is Northamerican centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorization biase in the data, since there is no proof of a single sampling protocol followed. We have already spotted one such occasion, rubber gloves, and taken care of it, but further study on it is needed. 
+As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over
+time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is Northamerican centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorization biase in the data, since there is no proof of a single sampling protocol followed. We have already spotted one such occasion, rubber gloves, and taken care of it, but further study on it is needed.
+
 
 
 \pagebreak
