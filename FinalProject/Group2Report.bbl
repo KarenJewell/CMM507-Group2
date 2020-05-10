@@ -545,6 +545,22 @@
       \endverb
       \keyw{behaviour change,marine litter,mitigation,prevention}
     \endentry
+    \entry{LUSHER2013}{article}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-326X}
+      \field{journaltitle}{Marine Pollution Bulletin}
+      \field{number}{1}
+      \field{title}{Occurrence of microplastics in the gastrointestinal tract of pelagic and demersal fish from the English Channel}
+      \field{volume}{67}
+      \field{year}{2013}
+      \field{pages}{94\bibrangedash 99}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.marpolbul.2012.11.028
+      \endverb
+    \endentry
     \entry{MARKIC2020}{article}{}
       \name{author}{4}{}{%
         {{hash=25587d01bad7e960ef3932838703c8fd}{%
@@ -704,8 +720,8 @@
       \strng{authorbibnamehash}{32365a8c8f738776259b5d550098ff30}
       \strng{authornamehash}{32365a8c8f738776259b5d550098ff30}
       \strng{authorfullhash}{32365a8c8f738776259b5d550098ff30}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0025-326X}
@@ -1103,8 +1119,8 @@
       \strng{authorbibnamehash}{dd461c4e9d964ff872533870b59a43be}
       \strng{authornamehash}{dd461c4e9d964ff872533870b59a43be}
       \strng{authorfullhash}{dd461c4e9d964ff872533870b59a43be}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Computing in Science Engineering}
@@ -1114,6 +1130,58 @@
       \field{year}{2015}
       \field{pages}{20\bibrangedash 26}
       \range{pages}{7}
+    \endentry
+    \entry{BROWNE2015}{article}{}
+      \name{author}{6}{}{%
+        {{hash=e0919328e86b850b7a0310feebd9d6af}{%
+           family={Browne},
+           familyi={B\bibinitperiod},
+           given={Mark\bibnamedelima Anthony},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=c6e1b6ada287326d815cad21aecfb752}{%
+           family={Chapman},
+           familyi={C\bibinitperiod},
+           given={M.G.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=38e8b9291102fa60625ad2a82f093f41}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=dcb26b1411fc8e478e38cbbd8007587a}{%
+           family={Amaral-Zettler},
+           familyi={A\bibinithyphendelim Z\bibinitperiod},
+           given={Linda},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c7e5b7acd72996657f2b1f3df5dee85f}{%
+           family={Jambeck},
+           familyi={J\bibinitperiod},
+           given={Jenna},
+           giveni={J\bibinitperiod}}}%
+        {{hash=522d20ed852a1d93f8c281c9980c2a5c}{%
+           family={Mallos},
+           familyi={M\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{b627e233e0a99bcf4a55498652b7a8ac}
+      \strng{fullhash}{c9d3216d61eeddad931e7bb85d34be07}
+      \strng{bibnamehash}{b627e233e0a99bcf4a55498652b7a8ac}
+      \strng{authorbibnamehash}{b627e233e0a99bcf4a55498652b7a8ac}
+      \strng{authornamehash}{b627e233e0a99bcf4a55498652b7a8ac}
+      \strng{authorfullhash}{c9d3216d61eeddad931e7bb85d34be07}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmental Science and Technology}
+      \field{month}{05}
+      \field{title}{Spatial and Temporal Patterns of Stranded Intertidal Marine Debris: Is There a Picture of Global Change?}
+      \field{volume}{49}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1021/es5060572
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
