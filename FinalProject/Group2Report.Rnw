@@ -306,7 +306,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
 data %>% select(`Material Description`, ItemName, Quantity) %>%
   filter(ItemName == "Rubber Gloves") %>% 
   group_by(`Material Description`) %>% 
-  summarise(Quantity = sum(Quantity)) %>%
+  summarise(Quantity = as.integer(sum(Quantity))) %>%
   xtable()
 
 # Checking the descriptions of Rubber Glove items
@@ -498,6 +498,24 @@ data %>%
 
 
 \hl{insert: count of unique observations, maybe grouped by average number of observation entries per day? - we want to try and identify increase in user activity}\\
+
+<<>>=
+data %>%
+  mutate(Date = date(Time)) %>% 
+  full_join(tibble(Date = full_seq(c(min(date(data$Time)), max(date(data$Time))), period = 1)), by = "Date") %>% # Check for any missing days
+  group_by(Date) %>% 
+  summarise(Observations = length(LogID)) %>% 
+  ungroup() %>% 
+  mutate(Year = lubridate::year(Date)) %>%
+  group_by(Year) %>% 
+  summarise(Average_Daily_Observations = mean(Observations)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = Year, y = Average_Daily_Observations)) +
+    geom_col() +
+    xlab("Year") +
+    ylab("Average Daily Observations")
+@
+
 As we see in the chart above, an increase in the number of average observations per day lends support to the theory that the increase in observations is factored by increase in citizen science monitoring activity. That's not to say pollution hasn't also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
 
 
