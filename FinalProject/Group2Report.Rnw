@@ -307,7 +307,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
 data %>% select(`Material Description`, ItemName, Quantity) %>%
   filter(ItemName == "Rubber Gloves") %>% 
   group_by(`Material Description`) %>% 
-  summarise(Quantity = sum(Quantity)) %>%
+  summarise(Quantity = as.integer(sum(Quantity))) %>%
   xtable()
 
 # Checking the descriptions of Rubber Glove items
@@ -526,12 +526,44 @@ data %>%
 
 
 \hl{insert: count of unique observations, maybe grouped by average number of observation entries per day? - we want to try and identify increase in user activity}\\
+
+<<>>=
+data %>%
+  mutate(Date = date(Time)) %>% 
+  full_join(tibble(Date = full_seq(c(min(date(data$Time)), max(date(data$Time))), period = 1)), by = "Date") %>% # Check for any missing days
+  group_by(Date) %>% 
+  summarise(Observations = length(LogID)) %>% 
+  ungroup() %>% 
+  mutate(Year = lubridate::year(Date)) %>%
+  group_by(Year) %>% 
+  summarise(Average_Daily_Observations = mean(Observations)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = Year, y = Average_Daily_Observations)) +
+    geom_col() +
+    xlab("Year") +
+    ylab("Average Daily Observations") +
+    scale_x_continuous(breaks = 2012:2019)
+@
+
 As we see in the chart above, an increase in the number of average observations per day lends support to the theory that the increase in observations is factored by increase in citizen science monitoring activity. That's not to say pollution hasn't also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
 
 
 
 
 \hl{insert: proportion changes of MATERIAL TYPES over years. Line or column. We want to prove that plastic is the dominant pollutant and possibly the only increasing one }
+<<>>=
+data %>% 
+  mutate(Year = lubridate::year(Time)) %>% 
+  group_by(Year, `Material Description`) %>% 
+  summarise(Quantity = sum(Quantity)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = Year, y = Quantity, fill = `Material Description`)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    scale_fill_hue(l=50, c=150) +
+    scale_x_continuous(breaks = 2012:2019) +
+    ylab("Proportion of Quantity")
+@
+
 Analysis of the poportions of pollutant materials suggests that not only is plastic the dominant marine pollutant material, its proportion of total debris is increasingly observed year on year. This could be due to an increase in new plastic pollution entering marine environments from source, not helped by the fact it is durable and doesn't decompose, as discussed in the introduction of this report, or that the other pollutant materials are decreasing. Of all the pollutant materials listed here - plastic is the most longlife \hl{can we support this statement?}. This analysis therefore is in agreement with the studies discussed in section 2 of this report that plastic is indeed the biggest problem in marine pollution. 
 
 
@@ -546,9 +578,9 @@ data %>%
          months = floor_date(Time, 'month')) %>% 
   group_by(months, Type) %>% 
   summarize(`Number of observations` = n()) %>% 
-  ggplot(aes(x = months, y = `Number of observations`)) +
-    geom_area(aes(fill = Type)) +
-    #geom_line(aes(color=Type))
+  ggplot(aes(x = months, y = `Number of observations`, colour = Type)) +
+    geom_line() +
+
     theme(legend.position = "bottom")
   # ggplot() +
   # geom_histogram(aes(x = Time))
