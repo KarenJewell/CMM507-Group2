@@ -1,0 +1,3 @@
+For this project I have searched over initial datasets to be used. 
+I have reviewed literature and contributed in writing down the “Research” part of the report 
+and in creating and assessing the linear regression models.
