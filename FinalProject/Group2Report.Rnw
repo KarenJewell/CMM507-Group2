@@ -10,9 +10,9 @@
 \usepackage[tableposition=top]{caption}
 \usepackage{ifthen}
 \usepackage{caption}
-\setlength{\textwidth}{6.5in} 
+\setlength{\textwidth}{6.5in}
 \setlength{\textheight}{9in}
-\setlength{\oddsidemargin}{0in} 
+\setlength{\oddsidemargin}{0in}
 \setlength{\evensidemargin}{0in}
 \setlength{\topmargin}{-1.5cm}
 \setlength{\parindent}{0cm}
@@ -20,7 +20,7 @@
 \usepackage{float}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
-\usepackage{soul} 
+\usepackage{soul}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -39,7 +39,7 @@
 %\fancyhf{}
 \rfoot{Group 2 \thepage}
 \singlespacing
-\usepackage[affil-it]{authblk} 
+\usepackage[affil-it]{authblk}
 \usepackage{etoolbox}
 \usepackage{lmodern}
 
@@ -47,7 +47,7 @@
 % \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{16pt}
 % \begin{flushleft}
 %   \textbf{\@title}
-% 
+%
 %   \@author
 % \end{flushleft}\egroup
 % }
@@ -57,21 +57,21 @@
 
 % \pagestyle{fancy}
 % \rfoot{Page \thepage}
- %\thispagestyle{empty} 
+ %\thispagestyle{empty}
 
 <<include=FALSE>>=
 # Setting global chunk options
 opts_chunk$set(
-  eval = TRUE, 
-  echo = TRUE, 
-  message = FALSE, 
-  warning = FALSE, 
-  results='markup', 
-  fig.width=6, 
-  fig.height=2.5, 
-  size="small", 
-  out.width = "1\\linewidth", 
-  tidy.opts=list(width.cutoff=60), 
+  eval = TRUE,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  results='markup',
+  fig.width=6,
+  fig.height=2.5,
+  size="small",
+  out.width = "1\\linewidth",
+  tidy.opts=list(width.cutoff=60),
   tidy=TRUE)
 
 options(scipen=999)
@@ -106,11 +106,11 @@ Although plastic litter has been a major cause of marine pollution for a while, 
 \subsection{Objectives }\label{obj}
 
 The main objectives of this project is outlined as follows:
-\begin{itemize}	
+\begin{itemize}
 \item To review available literature on marine plastic problems and their impacts
-\item To look at a suitable dataset to understand the composition of marine plastic pollution 
+\item To look at a suitable dataset to understand the composition of marine plastic pollution
 \item To create a linear regression model to predict the relevant frequency of distinct plastic debris categories over time
-\item To present the derived results and conclusions 
+\item To present the derived results and conclusions
 
 \end{itemize}
 
@@ -178,7 +178,7 @@ As discussed before, observations not following a standard protocol with proper 
 
 The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (\url{www.marinedebris.engr.uga.edu}) on 19 February 2020. The dataset is composed of 363,368 global observations from the start of the program in 2010, to the latest available date at the time of download. \\
 
-As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided but there are also multiple available fields to populate, including non-mandatory fields and some allowing free text entry. An example of a non-mandatory field are "Lists" which are customisable groupings usually for organisations to group their own collection of records.The table below describes the structure of the data. 
+As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided but there are also multiple available fields to populate, including non-mandatory fields and some allowing free text entry. An example of a non-mandatory field are "Lists" which are customisable groupings usually for organisations to group their own collection of records.The table below describes the structure of the data.
 
 \begin{table}[H]
 \begin{tabular}{ l l l }
@@ -222,8 +222,8 @@ library(xtable)
 library(dplyr)
 
 # Loading the data
-data <- list.files(path = "data/debris/", full.names = TRUE) %>% 
-  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>% 
+data <- list.files(path = "data/debris/", full.names = TRUE) %>%
+  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>%
   reduce(rbind)
 
 # Checking the size of the data
@@ -235,14 +235,14 @@ cat("rows: ", nrow(data),"; columns: ", ncol(data))
 From download, the data was cleaned to prepare it for analysis. First, the \textbf{Timestamp} datetime information was converted into a date type format and renamed as variable \textbf{Time}
 
 <<>>=
-# Replacing the column for time as a date data type, renaming it "Time" 
-data$Time <- data$Timestamp %>% 
+# Replacing the column for time as a date data type, renaming it "Time"
+data$Time <- data$Timestamp %>%
   parse_datetime(format = "%Y%m%d%H%M%S")
 data$Timestamp <- NULL
 @
 
 
-The dataset was then inspected for missing values which were observed in the \textbf{Location} and \textbf{Description} fields, but as these are non-mandatory and open text fields it is to be expected, and all other fields are complete.\\ 
+The dataset was then inspected for missing values which were observed in the \textbf{Location} and \textbf{Description} fields, but as these are non-mandatory and open text fields it is to be expected, and all other fields are complete.\\
 <<>>=
 # Identifying missing values
 data %>% select_if(function(x) any(is.na(x))) %>% colnames()
@@ -251,12 +251,12 @@ data %>% select_if(function(x) any(is.na(x))) %>% colnames()
 It was observed that observations were incomplete for years 2010, 2011 and 2020, and so it was decided to retain only complete years of information for fair and standard comparisons.
 <<>>=
 # Count the number of months in each year
-data %>% 
+data %>%
   mutate(year = year(Time),
-         months = month(Time)) %>% 
+         months = month(Time)) %>%
   select(year, months) %>%
   unique() %>%
-  group_by(year) %>% 
+  group_by(year) %>%
   summarize(nmonths = n())
 @
 
@@ -270,17 +270,17 @@ data <- data %>% filter(as.integer(year(Time)) %in% 2012:2019)
 cat("rows: ", nrow(data),"; columns: ", ncol(data))
 @
 
-Assessing the dataset for unique items it was observed that there are 8 material categories containing 55 different item subcategories and with them 7982 unique descriptions across the 349,556 observations. 
+Assessing the dataset for unique items it was observed that there are 8 material categories containing 55 different item subcategories and with them 7982 unique descriptions across the 349,556 observations.
 <<results='asis'>>=
 # Counting unique values in fields
-data %>% 
-  summarise_all(~length(unique(.))) %>% 
-  pivot_longer(cols = everything(), 
-               names_to = "Field", 
-               values_to = "Unique Values") %>% 
-  arrange(desc(`Unique Values`)) %>% 
-  xtable(caption = "The count of unique values in fields", 
-         label = "tab:unique", 
+data %>%
+  summarise_all(~length(unique(.))) %>%
+  pivot_longer(cols = everything(),
+               names_to = "Field",
+               values_to = "Unique Values") %>%
+  arrange(desc(`Unique Values`)) %>%
+  xtable(caption = "The count of unique values in fields",
+         label = "tab:unique",
          caption.placement = "top",
          floating=TRUE,
          type="latex",
@@ -289,16 +289,16 @@ data %>%
 
 It is difficult to determine exactly how many global locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. Yet in \hyperref[fig1]{Figure 1} it is evident that the dataset is global, yet with a heavy influence of observations recorded in North America. It is also possible to identify that while most observed locations are on the coastline, some make reference to the middle of oceans and some are inland, which would account for pollution also observed in rivers and freshwater marine environments like lakes and natural reservoirs.
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<fig.height=3>>=
 # Map of all observed locations
 world <- map_data("world")
-data %>% 
-  select(Latitude, Longitude) %>% 
+data %>%
+  select(Latitude, Longitude) %>%
   ggplot() +
-    geom_polygon(data = map_data("world"), 
-                 aes(x = long, y = lat, group = group), 
+    geom_polygon(data = map_data("world"),
+                 aes(x = long, y = lat, group = group),
                  fill = "grey", alpha = 0.5) +
     geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
     scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
@@ -306,7 +306,7 @@ data %>%
     guides(fill=guide_legend(title="Observations")) +
     theme(plot.title = element_text(size=10),
       text = element_text(size=8),
-      panel.grid.major = element_blank(), 
+      panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
       legend.position = "bottom")
 @
@@ -321,22 +321,22 @@ data %>%
 
 In exploring the dataset, it was noted that there was a highly skewed distribution of \textbf{Quantities} recorded per observation.
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Scatter plot showing distribution of observation quantities
-data %>% 
+data %>%
   mutate(Year = as.integer(year(Time))) %>%
   select(Quantity, Year) %>%
   group_by(Quantity, Year) %>%
   summarise(density = n()) %>%
-  ggplot(aes(x=Quantity, y=density)) + 
+  ggplot(aes(x=Quantity, y=density)) +
     geom_point() +
     scale_x_continuous(trans = 'log10', name='Quantity Recorded in Observation') +
     scale_y_continuous(name='Number of Observations') +
     theme_bw() +
     theme(text = element_text(size=8),
-          panel.grid.major = element_blank(), 
+          panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
 @
 \caption {Distribution of quantities recorded by number of observations recording them}
@@ -353,31 +353,31 @@ data %>%
   select(`Material Description`,ItemName,Year,Description,Quantity) %>%
   arrange(desc(Quantity)) %>%
   head(10)%>%
-  xtable(caption = "Observations with the 10 largest quantities", 
-         label = "tab:top10quantities", 
+  xtable(caption = "Observations with the 10 largest quantities",
+         label = "tab:top10quantities",
          caption.placement = "top",
          align = "lp{1.5cm}p{2.5cm}lp{7cm}l",
-         floating=TRUE, 
-         type="latex", 
+         floating=TRUE,
+         type="latex",
          table.placement="H")
 @
 
 <<results='asis'>>=
 # Identifying quantity percentiles
-percent_quantity <- 
+percent_quantity <-
   function(x){paste0(signif(length(data$Quantity[data$Quantity<=x])
                             /length(data$Quantity)*100, digits = 4), "%")}
 
-tibble(Quantity = c("<=1","<=10","<=100"), 
+tibble(Quantity = c("<=1","<=10","<=100"),
        ObservationProportion = c(percent_quantity(1),
                                  percent_quantity(10),
                                  percent_quantity(100))) %>%
-  xtable(caption = 
-           "Proportion of observation having equal or less than the stated Quantity", 
-         label = "tab:pquantities", 
+  xtable(caption =
+           "Proportion of observation having equal or less than the stated Quantity",
+         label = "tab:pquantities",
          caption.placement = "top",
-         floating=TRUE, 
-         type="latex", 
+         floating=TRUE,
+         type="latex",
          table.placement="H")
 @
 
@@ -393,11 +393,11 @@ It is worth noting that of the 8 material categories, one is an "Other" category
 data %>% select(`Material Description`) %>%
   unique() %>%
   arrange(`Material Description`) %>%
-  xtable(caption = "Listing of Material Descriptions", 
-         label = "tab:materials", 
+  xtable(caption = "Listing of Material Descriptions",
+         label = "tab:materials",
          caption.placement = "top",
-         floating=TRUE, 
-         type="latex", 
+         floating=TRUE,
+         type="latex",
          table.placement="H")
 @
 
@@ -406,28 +406,28 @@ A data quality check performed on assessing the debris subcategories were unique
 
 <<>>=
 # Checking for subcategory uniqueness
-data %>% 
+data %>%
   select(`Material Description`, ItemName) %>%
-  distinct() %$% 
-  table(ItemName) %>% 
-  as_tibble() %>% 
+  distinct() %$%
+  table(ItemName) %>%
+  as_tibble() %>%
   filter(n > 1)
 @
 
 
-Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate, for example where an observation had "Balloon" recorded in the description which is quite clearly not a glove. This raised the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, which is perhaps a downside and reflective of the inconsistencies which can occur in citizen science data gathering. 
+Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate, for example where an observation had "Balloon" recorded in the description which is quite clearly not a glove. This raised the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, which is perhaps a downside and reflective of the inconsistencies which can occur in citizen science data gathering.
 
 <<results='asis'>>=
 # Checking material categorisation of Rubber Gloves
 data %>% select(`Material Description`, ItemName, Quantity) %>%
-  filter(ItemName == "Rubber Gloves") %>% 
-  group_by(`Material Description`) %>% 
+  filter(ItemName == "Rubber Gloves") %>%
+  group_by(`Material Description`) %>%
   summarise(Quantity = as.integer(sum(Quantity))) %>%
-  xtable(caption = "Material categorisation of Rubber Gloves", 
-         label = "tab:2", 
+  xtable(caption = "Material categorisation of Rubber Gloves",
+         label = "tab:2",
          caption.placement = "top",
-         floating=TRUE, 
-         type="latex", 
+         floating=TRUE,
+         type="latex",
          table.placement="h")
 
 
@@ -435,28 +435,28 @@ data %>% select(`Material Description`, ItemName, Quantity) %>%
 data %>% select(`Material Description`, ItemName, Description) %>%
   filter(ItemName == "Rubber Gloves", !is.na(Description)) %>%
   distinct() %>%
-  xtable(caption = "Descriptions of Rubber Glove items", 
-         label = "tab:3", 
+  xtable(caption = "Descriptions of Rubber Glove items",
+         label = "tab:3",
          caption.placement = "top",
-         floating=TRUE, 
-         type="latex", 
+         floating=TRUE,
+         type="latex",
          table.placement="h")
 @
 
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
-# Line chart showing categorisation of Rubber Gloves over time  
-data %>% 
+# Line chart showing categorisation of Rubber Gloves over time
+data %>%
   filter(ItemName == "Rubber Gloves") %>%
-  mutate(months = floor_date(Time, 'month')) %>% 
-  group_by(months, ItemName,`Material Description`) %>% 
-  summarize(`Number of observations` = n()) %>% 
+  mutate(months = floor_date(Time, 'month')) %>%
+  group_by(months, ItemName,`Material Description`) %>%
+  summarize(`Number of observations` = n()) %>%
   ggplot(aes(x = months, y = `Number of observations`)) +
     geom_line(aes(color=`Material Description`)) +
     theme_bw() +
-    theme(panel.grid.major = element_blank(), 
+    theme(panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
           legend.position = "bottom")
 @
@@ -485,16 +485,16 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 
 <<eval=FALSE, echo=FALSE>>=
 # Probably remove
-plastic_ordered <- data %>% 
-  filter(`Material Description` == "PLASTIC") %>% 
-  select(ItemName, Quantity) %>% 
-  group_by(ItemName) %>% 
-  summarise(Total = sum(Quantity)) %>% 
+plastic_ordered <- data %>%
+  filter(`Material Description` == "PLASTIC") %>%
+  select(ItemName, Quantity) %>%
+  group_by(ItemName) %>%
+  summarise(Total = sum(Quantity)) %>%
   arrange(desc(Total))
 @
 
 
-<<>>=  
+<<>>=
 # Recategorisation of all plastic items by CCI categories
 
 # all cigarette related waste: 1, 4, 6, 22
@@ -514,18 +514,18 @@ recategorise <- function(x){
   return(out)
 }
 
-plastic_types <- data %>% 
-  filter(`Material Description` == "PLASTIC") %>% 
-  select(ItemName, ItemID) %>% 
-  distinct() %>% 
-  mutate(label = 1:n()) %>% 
+plastic_types <- data %>%
+  filter(`Material Description` == "PLASTIC") %>%
+  select(ItemName, ItemID) %>%
+  distinct() %>%
+  mutate(label = 1:n()) %>%
   mutate(category = purrr::map(label, recategorise)) %>%
-  mutate(category = as_factor(as.character(category))) %>% 
+  mutate(category = as_factor(as.character(category))) %>%
   select(ItemID, category)
 
 
-plastic <- data %>% 
-  filter(`Material Description` == "PLASTIC") %>% 
+plastic <- data %>%
+  filter(`Material Description` == "PLASTIC") %>%
   full_join(plastic_types, by = "ItemID")
 
 @
@@ -533,11 +533,11 @@ plastic <- data %>%
 \begin{figure}[H]
 \begin{center}
 <<fig.height=4>>=
-plastic %>% 
-  mutate(month = month(Time, label = FALSE), 
-         year = as.integer(year(Time))) %>% 
+plastic %>%
+  mutate(month = month(Time, label = FALSE),
+         year = as.integer(year(Time))) %>%
   group_by(month, year, category) %>%
-  summarise(`Total Quantity` = sum(Quantity)) %>% 
+  summarise(`Total Quantity` = sum(Quantity)) %>%
   ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
     geom_col(colour = "black", size = 0.2, position = "fill") +
     facet_wrap(~year, nrow = 2) +
@@ -548,7 +548,7 @@ plastic %>%
     theme(panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
           legend.position = "bottom",
-          legend.text=element_text(size=5)) + 
+          legend.text=element_text(size=5)) +
     guides(fill=guide_legend(title="Category"))
 @
 \caption {Relative frequencies of observed plastic waste by category}
@@ -586,19 +586,19 @@ After cleaning and recategorisation of the data, it was analysed to determine ho
 
 Per the data, an increase can be seen in debris observed over time. However, caution must be exercised in interpreting this information, as this increase may be reflective indeed of increased pollution levels, but it could also be because of increased activity in the citizen science project as it matures and gains a larger user base.\\
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Line chart of observations: Total v Plastic
-data %>% 
+data %>%
   mutate(Type = if_else(`Material Description` == "PLASTIC", "Plastic", "Other"),
-         months = floor_date(Time, 'month')) %>% 
-  group_by(months, Type) %>% 
-  summarize(`Number of observations` = n()) %>% 
+         months = floor_date(Time, 'month')) %>%
+  group_by(months, Type) %>%
+  summarize(`Number of observations` = n()) %>%
   ggplot(aes(x = months, y = `Number of observations`, colour = Type)) +
     geom_line() +
     theme(legend.position = "bottom")
-  
+
 @
 \caption {Observations of plastic debris v all debris}
 \label{figF}
@@ -608,22 +608,22 @@ data %>%
 In this chart we see peaks and troughs in the number of observations which is indicative of change in the rate of user activity. Seeing the peak in 2013 and more of these spikes in 2017, 2018 and 2019, but generally it is an increasing trend in monitoring activity.\\
 
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Column plot of average daily observations by year
 data %>%
-  mutate(Date = date(Time)) %>% 
-  full_join(tibble(Date = full_seq(c(min(date(data$Time)), 
-                                     max(date(data$Time))), 
-                                   period = 1)), by = "Date") %>% 
-  group_by(Date) %>% 
-  summarise(Observations = length(LogID)) %>% 
-  ungroup() %>% 
+  mutate(Date = date(Time)) %>%
+  full_join(tibble(Date = full_seq(c(min(date(data$Time)),
+                                     max(date(data$Time))),
+                                   period = 1)), by = "Date") %>%
+  group_by(Date) %>%
+  summarise(Observations = length(LogID)) %>%
+  ungroup() %>%
   mutate(Year = lubridate::year(Date)) %>%
-  group_by(Year) %>% 
-  summarise(Average_Daily_Observations = mean(Observations)) %>% 
-  ungroup() %>% 
+  group_by(Year) %>%
+  summarise(Average_Daily_Observations = mean(Observations)) %>%
+  ungroup() %>%
   ggplot(aes(x = Year, y = Average_Daily_Observations)) +
     geom_col() +
     xlab("Year") +
@@ -631,7 +631,7 @@ data %>%
     scale_x_continuous(breaks = 2012:2019) +
     theme_bw() +
     theme(text = element_text(size=8),
-          panel.grid.major = element_blank(), 
+          panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
 @
 \caption {Average Daily Observations by Year}
@@ -642,15 +642,15 @@ data %>%
 Looking at the increasing number of average observations per day lends support to the theory that the increase in quantity observations is factored by increase in citizen science monitoring activity. That's not to say pollution has not also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
 
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Column chart showing % distribution of material types
-data %>% 
-  mutate(Year = lubridate::year(Time)) %>% 
-  group_by(Year, `Material Description`) %>% 
-  summarise(Counts = n()) %>% 
-  ungroup() %>% 
+data %>%
+  mutate(Year = lubridate::year(Time)) %>%
+  group_by(Year, `Material Description`) %>%
+  summarise(Counts = n()) %>%
+  ungroup() %>%
   ggplot(aes(x = Year, y = Counts, fill = `Material Description`)) +
     geom_col(colour = "black", size = 0.2, position = "fill") +
     scale_fill_hue(l=50, c=150) +
@@ -658,7 +658,7 @@ data %>%
     scale_y_continuous(labels=scales::percent, name="") +
     theme_bw() +
     theme(text = element_text(size=8),
-          panel.grid.major = element_blank(), 
+          panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
           legend.position = "bottom")
 
@@ -668,29 +668,29 @@ data %>%
 \end {center}
 \end {figure}
 
-Analysis of the poportions of pollutant materials identifies that plastic is the dominant marine pollutant material, and its majority proportion of total debris is relatively consistent year on year. This could be due to an increase in new plastic pollution entering marine environments from source, not helped by the fact it is durable and does not decompose quickly, or that the other pollutant materials are decreasing. This analysis therefore is in agreement with the studies discussed in \hyperref[research]{Section 2} that plastic is indeed the biggest problem in marine pollution accounting for approximately 70\% of all marine pollution. 
+Analysis of the poportions of pollutant materials identifies that plastic is the dominant marine pollutant material, and its majority proportion of total debris is relatively consistent year on year. This could be due to an increase in new plastic pollution entering marine environments from source, not helped by the fact it is durable and does not decompose quickly, or that the other pollutant materials are decreasing. This analysis therefore is in agreement with the studies discussed in \hyperref[research]{Section 2} that plastic is indeed the biggest problem in marine pollution accounting for approximately 70\% of all marine pollution.
 
 
 
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Line of just Plastic
-data %>% 
-  mutate(Year = lubridate::year(Time)) %>% 
-  group_by(Year, `Material Description`) %>% 
+data %>%
+  mutate(Year = lubridate::year(Time)) %>%
+  group_by(Year, `Material Description`) %>%
   summarise(total = n()) %>%
   mutate(prop = total / sum(total),lab=scales::percent(prop)) %>%
   filter(`Material Description`=="PLASTIC") %>%
   ggplot(aes(x = Year, y = prop, label = lab))+
-  geom_text(nudge_y = 0.05, color = "black") + 
+  geom_text(nudge_y = 0.05, color = "black") +
   geom_line(aes(x = Year, y = prop))+
   geom_point(aes(x = Year, y = prop)) +
   scale_y_continuous(labels=scales::percent, name="", limits = c(0, 1)) +
   theme_bw() +
   theme(text = element_text(size=8),
-        panel.grid.major = element_blank(), 
+        panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         legend.position = "bottom")
 
@@ -702,14 +702,14 @@ data %>%
 
 When considering the charts above, it can be determined that even as total debris observations increase, so do plastic observations which means plastics remain a consistently common feature of the observed derbis over time.\\
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<fig.height=6>>=
-data %>% 
-  filter(`Material Description` == "PLASTIC") %>% 
-  mutate(year = as.integer(year(Time))) %>% 
+data %>%
+  filter(`Material Description` == "PLASTIC") %>%
+  mutate(year = as.integer(year(Time))) %>%
   group_by(year, ItemName) %>%
-  summarise(total = n()) %>% 
+  summarise(total = n()) %>%
   mutate(prop = total / sum(total),lab=scales::percent(prop)) %>%
   ggplot(aes(x = year, y = prop)) +
     geom_line() +
@@ -727,31 +727,31 @@ data %>%
 \end {figure}
 
 
-As these charts consider the proportion of the subcategory item of total plastics, it is important to note that the increase in Plastic or Foam fragments and Food Wrappers might be attributed actually to a decrease in other subcategories such as Cigarettes. Essentially, not that these items are becoming increasingly common, but that the share between them is levelling. Considering the discussions above, it should be recalled that all debris and plastic are being increasingly observed, so a decrease in a subcategory item is welcomed yet more must be done. To explain the decrease, it is possible that better waste management practices for cigarettes have been put into place, for example the introduction of penalties for literring cigarette butts or installing better cigarette butt collection points in high activity areas, resulting the decrease of observations witnessed here. It could however also be influenced by changes in social patterns such as persons smoking less or moving to reusable portable vaping devices which result is the lower consumption of single-use cigarettes and the resulting debris. Eitherway, being able to view key subcategories like this allows researchers to identify where to focus their efforts to ultimately achieve the aim of reducing pollution. 
+As these charts consider the proportion of the subcategory item of total plastics, it is important to note that the increase in Plastic or Foam fragments and Food Wrappers might be attributed actually to a decrease in other subcategories such as Cigarettes. Essentially, not that these items are becoming increasingly common, but that the share between them is levelling. Considering the discussions above, it should be recalled that all debris and plastic are being increasingly observed, so a decrease in a subcategory item is welcomed yet more must be done. To explain the decrease, it is possible that better waste management practices for cigarettes have been put into place, for example the introduction of penalties for literring cigarette butts or installing better cigarette butt collection points in high activity areas, resulting the decrease of observations witnessed here. It could however also be influenced by changes in social patterns such as persons smoking less or moving to reusable portable vaping devices which result is the lower consumption of single-use cigarettes and the resulting debris. Eitherway, being able to view key subcategories like this allows researchers to identify where to focus their efforts to ultimately achieve the aim of reducing pollution.
 
 \pagebreak
 \subsection{Event-Driven Pollution}
 
 An interesting pattern which emerged when conducting exploratory analysis on the data, were peaks in the observations of debris classified as Fireworks consistently in July.\\
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # Boxplot of fireworks distribution by month (across all years)
-data %>% 
+data %>%
   filter(`Material Description` == "PLASTIC",
          ItemName %in% c("Fireworks")) %>%
-  mutate(month = month(Time, label = TRUE), 
-         year = as.integer(year(Time))) %>% 
-  group_by(month, year) %>% 
-  summarise(Observed = n()) %>% 
+  mutate(month = month(Time, label = TRUE),
+         year = as.integer(year(Time))) %>%
+  group_by(month, year) %>%
+  summarise(Observed = n()) %>%
   ggplot() +
     geom_boxplot(aes(x = month, y = Observed)) +
     xlab("Month") +
     ylab("Observed") +
     theme_bw() +
     theme(text = element_text(size=8),
-      panel.grid.major = element_blank(), 
+      panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
       legend.position = "bottom")
 @
@@ -765,23 +765,23 @@ Given that it is known the dataset carries a heavy North American influence, a t
 This gives rise to the idea that plastic pollution while sometimes blamed to be the effect of manufacturing processes, can also be largely driven by the disposable behaviours which humans encourage in these one off-events. Where the items are not intended for repeated use, used once and discarded, and eventually becoming pollutants in marine environments.
 
 
-\begin{figure}[H] 
-\begin{center}    
+\begin{figure}[H]
+\begin{center}
 <<fig.height=3>>=
 # Map of locations having observed firework debris
-data %>% 
+data %>%
   filter(ItemName == "Fireworks") %>%
-  select(Latitude, Longitude) %>% 
+  select(Latitude, Longitude) %>%
   ggplot() +
-    geom_polygon(data = map_data("world"), 
-                 aes(x = long, y = lat, group = group), 
+    geom_polygon(data = map_data("world"),
+                 aes(x = long, y = lat, group = group),
                  fill = "grey", alpha = 0.5) +
     geom_hex(aes(x = Longitude, y = Latitude)) +
     theme_void() +
     guides(fill=guide_legend(title="Observed")) +
     theme(plot.title = element_text(size=10),
       text = element_text(size=8),
-      panel.grid.major = element_blank(), 
+      panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
       legend.position = "bottom")
 @
@@ -801,68 +801,68 @@ Given the variability of plastic pollution trends given event-driven and locatio
 
 <<>>=
 
-plasticN <- plastic %>% 
-  mutate(month = month(Time, label = FALSE), 
-         year = as.integer(year(Time))) %>%  
+plasticN <- plastic %>%
+  mutate(month = month(Time, label = FALSE),
+         year = as.integer(year(Time))) %>%
   group_by(year, category, month) %>%
   summarise(`Total Quantity` = sum(Quantity))
 
 ####
 
 df12N <- plasticN  %>%
-  filter(year == 2012) %>% 
+  filter(year == 2012) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df13N <- plasticN  %>%
-  filter(year == 2013) %>% 
+  filter(year == 2013) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df14N <- plasticN  %>%
-  filter(year == 2014) %>% 
+  filter(year == 2014) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df15N <- plasticN  %>%
-  filter(year == 2015) %>% 
+  filter(year == 2015) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df16N <- plasticN  %>%
-  filter(year == 2016) %>% 
+  filter(year == 2016) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df17N <- plasticN  %>%
-  filter(year == 2017) %>% 
+  filter(year == 2017) %>%
   group_by(year, month) %>%
   mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df18N <- plasticN  %>%
-  filter(year == 2018) %>% 
+  filter(year == 2018) %>%
   group_by(year, month) %>%
-  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 df19N <- plasticN  %>%
-  filter(year == 2019) %>% 
+  filter(year == 2019) %>%
   group_by(year, month) %>%
-  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
 
 dfTotN <- rbind(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
 @
 
-\begin{figure}[H] 
+\begin{figure}[H]
 \begin{center}
 <<>>=
 # plot for observing the data
 (time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
   geom_smooth(method="lm", level=0.95) +
-  theme_bw() + 
+  theme_bw() +
   xlab("Years") +
   ylab("relative frequency") +
   expand_limits(y=0) +
-  scale_y_continuous() + 
+  scale_y_continuous() +
   scale_x_continuous()+
   theme(legend.position="bottom")+
   theme(legend.text = element_text(size=5, face="bold")))
@@ -888,12 +888,12 @@ test_dfTotN <- dfTotN[-tindex,]
 <<>>=
 # modelling for category "Cigarette related waste"
 
-train_Cigrel <- train_dfTotN %>% 
-  filter(category=="Cigarette related waste") %>% 
+train_Cigrel <- train_dfTotN %>%
+  filter(category=="Cigarette related waste") %>%
   group_by(year)
 
-test_Cigrel <- test_dfTotN %>% 
-  filter(category=="Cigarette related waste") %>% 
+test_Cigrel <- test_dfTotN %>%
+  filter(category=="Cigarette related waste") %>%
   group_by(year)
 
 set.seed(1234)
@@ -904,10 +904,10 @@ print("PREDICTION")
 pred_Cigrel <- predict(train_Cigrel.modelN, test_Cigrel)
 summary(pred_Cigrel)
 
-actuals_predsCigrel <- data.frame(cbind(actuals=test_Cigrel$freq, predicteds=pred_Cigrel)) 
+actuals_predsCigrel <- data.frame(cbind(actuals=test_Cigrel$freq, predicteds=pred_Cigrel))
 head(actuals_predsCigrel)
 correlation_accuracy <- cor(actuals_predsCigrel)
-min_max_accuracy <- mean(apply(actuals_predsCigrel, 1, min) / apply(actuals_predsCigrel, 1, max))  
+min_max_accuracy <- mean(apply(actuals_predsCigrel, 1, min) / apply(actuals_predsCigrel, 1, max))
 @
 
 
@@ -922,12 +922,12 @@ min_max_accuracy
 <<>>=
 # modelling for category "Food related waste"
 
-train_Foodrel <- train_dfTotN %>% 
-  filter(category=="Food related waste") %>% 
+train_Foodrel <- train_dfTotN %>%
+  filter(category=="Food related waste") %>%
   group_by(year)
 
-test_Foodrel <- test_dfTotN %>% 
-  filter(category=="Food related waste") %>% 
+test_Foodrel <- test_dfTotN %>%
+  filter(category=="Food related waste") %>%
   group_by(year)
 
 set.seed(1234)
@@ -938,10 +938,10 @@ print("PREDICTION")
 pred_Foodrel <- predict(train_Foodrel.modelN, test_Foodrel)
 summary(pred_Foodrel)
 
-actuals_predsFoodrel <- data.frame(cbind(actuals=test_Foodrel$freq, predicteds=pred_Foodrel)) 
+actuals_predsFoodrel <- data.frame(cbind(actuals=test_Foodrel$freq, predicteds=pred_Foodrel))
 head(actuals_predsFoodrel)
-correlation_accuracy <- cor(actuals_predsFoodrel)  
-min_max_accuracy <- mean(apply(actuals_predsFoodrel, 1, min) / apply(actuals_predsFoodrel, 1, max))  
+correlation_accuracy <- cor(actuals_predsFoodrel)
+min_max_accuracy <- mean(apply(actuals_predsFoodrel, 1, min) / apply(actuals_predsFoodrel, 1, max))
 @
 
 
@@ -953,12 +953,12 @@ print(min_max_accuracy)
 
 <<>>=
 # modelling for category "Fragments"
-train_Frag <- train_dfTotN %>% 
-  filter(category=="Fragments") %>% 
+train_Frag <- train_dfTotN %>%
+  filter(category=="Fragments") %>%
   group_by(year)
 
-test_Frag <- test_dfTotN %>% 
-  filter(category=="Fragments") %>% 
+test_Frag <- test_dfTotN %>%
+  filter(category=="Fragments") %>%
   group_by(year)
 
 set.seed(1234)
@@ -969,10 +969,10 @@ print("PREDICTION")
 pred_Frag <- predict(train_Frag.modelN, test_Frag)
 summary(pred_Frag)
 
-actuals_predsFrag <- data.frame(cbind(actuals=test_Frag$freq, predicteds=pred_Frag)) 
+actuals_predsFrag <- data.frame(cbind(actuals=test_Frag$freq, predicteds=pred_Frag))
 head(actuals_predsFrag)
-correlation_accuracy <- cor(actuals_predsFrag)  
-min_max_accuracy <- mean(apply(actuals_predsFrag, 1, min) / apply(actuals_predsFrag, 1, max))  
+correlation_accuracy <- cor(actuals_predsFrag)
+min_max_accuracy <- mean(apply(actuals_predsFrag, 1, min) / apply(actuals_predsFrag, 1, max))
 @
 
 
@@ -984,12 +984,12 @@ print(min_max_accuracy)
 
 <<>>=
 # modelling for category "Other"
-train_Other <- train_dfTotN %>% 
-  filter(category=="Other") %>% 
+train_Other <- train_dfTotN %>%
+  filter(category=="Other") %>%
   group_by(year)
 
-test_Other <- test_dfTotN %>% 
-  filter(category=="Other") %>% 
+test_Other <- test_dfTotN %>%
+  filter(category=="Other") %>%
   group_by(year)
 
 set.seed(1234)
@@ -1000,10 +1000,10 @@ print("PREDICTION")
 pred_Other <- predict(train_Other.modelN, test_Other)
 summary(pred_Other)
 
-actuals_predsOther <- data.frame(cbind(actuals=test_Other$freq, predicteds=pred_Other)) 
+actuals_predsOther <- data.frame(cbind(actuals=test_Other$freq, predicteds=pred_Other))
 head(actuals_predsOther)
 correlation_accuracy <- cor(actuals_predsOther)  # 5.31%
-min_max_accuracy <- mean(apply(actuals_predsOther, 1, min) / apply(actuals_predsOther, 1, max))  
+min_max_accuracy <- mean(apply(actuals_predsOther, 1, min) / apply(actuals_predsOther, 1, max))
 @
 
 
@@ -1015,12 +1015,12 @@ print(min_max_accuracy)
 
 <<>>=
 # modelling for category "Plastic bags and Styrofoam packaging"
-train_Plbag <- train_dfTotN %>% 
-  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+train_Plbag <- train_dfTotN %>%
+  filter(category=="Plastic bags and Styrofoam packaging") %>%
   group_by(year)
 
-test_Plbag <- test_dfTotN %>% 
-  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+test_Plbag <- test_dfTotN %>%
+  filter(category=="Plastic bags and Styrofoam packaging") %>%
   group_by(year)
 
 set.seed(1234)
@@ -1031,10 +1031,10 @@ print("PREDICTION")
 pred_Plbag <- predict(train_Plbag.modelN, test_Plbag)
 summary(pred_Plbag)
 
-actuals_predsPlbag <- data.frame(cbind(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
+actuals_predsPlbag <- data.frame(cbind(actuals=test_Plbag$freq, predicteds=pred_Plbag))
 head(actuals_predsPlbag)
-correlation_accuracy <- cor(actuals_predsPlbag) 
-min_max_accuracy <- mean(apply(actuals_predsPlbag, 1, min) / apply(actuals_predsPlbag, 1, max))  
+correlation_accuracy <- cor(actuals_predsPlbag)
+min_max_accuracy <- mean(apply(actuals_predsPlbag, 1, min) / apply(actuals_predsPlbag, 1, max))
 @
 
 
@@ -1045,7 +1045,7 @@ print(min_max_accuracy)
 
 
 <<>>=
-plastic_category <-c("cigarette related waste", "food related waste","Fragments", 
+plastic_category <-c("cigarette related waste", "food related waste","Fragments",
                       "Other","Plastic bags and Styrofoam packaging" )
 
 slope_scores <- c(-0.065,0.036, 0.030, -0.001, 0.001)
@@ -1054,7 +1054,6 @@ p_value<-c("<0.05","<0.05","<0.05", ">0.05",">0.05")
 adjRsquared <- c(0.51, 0.38, 0.16,  -0.004, -0.013)
 corr_accuracy<-c(0.64, 0.62, 0.57, 0.14,-0.14)
 min_max_Acc<-c(0.61,0.78,0.64, 0.73 ,0.69)
-
 score_table1 <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
 score_table2 <- data.frame(plastic_category, corr_accuracy, min_max_Acc)
 @
@@ -1102,9 +1101,9 @@ It is important to notice that since it is a linear regression model, there exis
 \subsection{Model Discussion}
 
 
-As seen in the study of debris in a Eastern Mediterranean coastal town \cite{PORTMAN2017} the variability of non-plastic litter composition should make us aware that the local context must be taken into account. Perhaps, given that non-plastic litter is a hugely varying category, this way of thinking could be expanded into the plastic debris category of "Other", given that it is inherently varied let alone in a dataset that gathers information over the entire world. In fact, this could in reverse explain the higher p-value, since high variation within the category studied would yield results of insufficient trustworthiness. 
+As seen in the study of debris in a Eastern Mediterranean coastal town \cite{PORTMAN2017} the variability of non-plastic litter composition should make us aware that the local context must be taken into account. Perhaps, given that non-plastic litter is a hugely varying category, this way of thinking could be expanded into the plastic debris category of "Other", given that it is inherently varied let alone in a dataset that gathers information over the entire world. In fact, this could in reverse explain the higher p-value, since high variation within the category studied would yield results of insufficient trustworthiness.
 
-As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is North American centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorisation bias in the data, since there is no proof of a single sampling protocol followed. 
+As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is North American centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorisation bias in the data, since there is no proof of a single sampling protocol followed.
 
 
 
@@ -1117,7 +1116,7 @@ The results in this report confirm the fact that plastic is the most abundant li
 
 Future work can include looking at the marine pollution debris in smaller scale by regions. Each region is different and there are various factors that can affect the data observations such as the frequency of data submissions are not at the same time everywhere.  Since MDT is more focused on North America, this opportunity might be used to educate about it in other regions of the world. Although we will never be able to identify the real sources of pollution, it can help in raising awareness of the damage done by plastic pollution in the marine environment and make the public more environmentally conscious. Regulations to discourage single use plastic items and smoking in public places have been enforced in many countries. It would be interesting to look at the effect these are having on the marine debris pollution worldwide. However, more time and data will be required to see the change at a global scale. \\
 
-Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection, in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\  
+Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection, in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\
 
 Lots of beach clean ups and litter collections are done in the beaches worldwide to estimate the marine pollution. However, the majority (70\%) of the marine debris are not on the surface but on the seafloor. More research and studies are needed to accurately estimate the pollution in our oceans. Although marine pollution is a global issue, more needs to be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are essential for efficient management of marine plastic pollution. \\
 
@@ -1144,7 +1143,7 @@ library(stringr);library(data.table)
 library(XLConnect)
 library(xtable)
 
-# Sheets names 
+# Sheets names
 fileName <- 'data/meetings.xlsx'
 sheets <- readxl::excel_sheets(fileName)
 #length(sheets)
@@ -1152,9 +1151,9 @@ sheets <- readxl::excel_sheets(fileName)
 dfs <- readWorksheet(loadWorkbook("data/meetings.xlsx"),sheet=1)
 dfs$Date <-as.character(dfs$Date)
 print(xtable(dfs,
-                    caption = "Record of Team Meetings", 
-                    label = "tab:one", 
-                    # align changes subject to number of columns 
+                    caption = "Record of Team Meetings",
+                    label = "tab:one",
+                    # align changes subject to number of columns
                     align = "lllp{7cm}lllll"),include.rownames=FALSE,
                     caption.placement = "top",
                     floating=TRUE,
@@ -1176,7 +1175,7 @@ library(stringr);library(data.table)
 library(XLConnect)
 library(xtable)
 
-# Sheets names 
+# Sheets names
 fileName <- 'data/peers.xlsx'
 sheets <- readxl::excel_sheets(fileName)
 #length(sheets)
@@ -1187,16 +1186,16 @@ dfs <- readWorksheet(loadWorkbook("data/peers.xlsx"),sheet=1)
 dfs[, ] <- lapply(dfs[, ], as.character)
 
 print(xtable(dfs,
-                    caption = "Peer Assessment out of 100", 
-                    label = "tab:two", 
-                    # align changes subject to number of columns 
+                    caption = "Peer Assessment out of 100",
+                    label = "tab:two",
+                    # align changes subject to number of columns
                     align = "lllllll"),include.rownames=FALSE,
                     caption.placement = "top",
                     floating=TRUE,
                     type="latex",
                     table.placement = "H" )
 
-    
+
 @
 
 
