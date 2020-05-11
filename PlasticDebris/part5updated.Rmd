@@ -249,11 +249,12 @@ adjRsquared <- c(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
 corr_accuracy<-c(0.83, 0.50, 0.41, -0.36,-0.12)
 min_max_Acc<-c(0.78,0.77,0.69, 0.64 ,0.61)
 
-score_table <- data.frame(plastic_category, p_value,slope_scores, 
-                          slope_interpretation, adjRsquared, corr_accuracy,min_max_Acc)
 
+score_table1 <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
+score_table2 <- data.frame(plastic_category, corr_accuracy, min_max_Acc)
 
-score_table
+score_table1
+score_table2
 ```
 
 On metrics presented on table:
