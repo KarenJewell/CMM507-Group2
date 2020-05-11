@@ -1182,12 +1182,13 @@ print(min_max_accuracy)
 plastic_category <-c("cigarette related waste", "food related waste","Fragments", 
                       "Other","Plastic bags and Styrofoam packaging" )
 
-slope_scores <- c(-0.063,0.038, 0.034, 0.000, 0.001)
+slope_scores <- c(-0.065,0.036, 0.030, -0.001, 0.001)
 slope_interpretation <-c("downward", "upward", "upward", "steady", "steady")
 p_value<-c("<0.05","<0.05","<0.05", ">0.05",">0.05")
-adjRsquared <- c(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
-corr_accuracy<-c(0.83, 0.50, 0.41, -0.36,-0.12)
-min_max_Acc<-c(0.78,0.77,0.69, 0.64 ,0.61)
+adjRsquared <- c(0.51, 0.38, 0.16,  -0.004, -0.013)
+corr_accuracy<-c(0.64, 0.62, 0.57, 0.14,-0.14)
+min_max_Acc<-c(0.61,0.78,0.64, 0.73 ,0.69)
+
 
 score_table1 <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
 score_table2 <- data.frame(plastic_category, corr_accuracy, min_max_Acc)
@@ -1225,7 +1226,7 @@ R-Squared gives the proportion of variation in the dependent (response) variable
 
 On scores of metrics:\\
 
-MinMax Accuracy is generally above 60\%, but never exceeds 78\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time. The correlation accuracy is really good for "cigarette related waste" category, but not that good for "food related waste" and "Fragments" categories, which implies that the predicted values do not always follow the true values observed in the same proportion. The categories "Other" and "Plastic bags and Styrofoam packaging", where p-value is worse, score negative values which is troublesome. The higher the adjusted R squared metric the better. What is alarming here regarding this metric measure is the model created to predict for the last two categories, since it receives negative values.\\
+MinMax Accuracy is generally above 60\%, but never exceeds 78\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time. The correlation accuracy is really good for "cigarette related waste" category, but not that good for "food related waste" and "Fragments" categories, which implies that the predicted values do not always follow the true values observed in the same proportion. The categories "Other" and "Plastic bags and Styrofoam packaging", where p-value is worse, score extremely low and negative values, respectively, which is troublesome. The higher the adjusted R squared metric the better. What is alarming here regarding this metric measure is the model created to predict for the last two categories, since it receives negative values.\\
 
 In total we see that time is statistically significant in the change of proportions of certain categories
 of plastic waste: "cigarette related waste", "food related waste", "fragments", causing a downward, upward and upward movement respectively. This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" categories, where though the models predicts a stagnation, there does not seem to be enough statistical evidence backing the credibility of the predictions of these two models.\\
