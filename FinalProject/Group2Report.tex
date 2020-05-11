@@ -209,7 +209,7 @@ As discussed before, observations not following a standard protocol with proper 
 
 \subsection{Data Description}\label{dataset}
 
-The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (\url{www.marinedebris.engr.uga.edu}) on \hl{what was the date of download?}. The dataset is composed of 363,368 global observations from the start of the program in 2010, to the latest available date at the time of download. \\
+The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (\url{www.marinedebris.engr.uga.edu}) on 19 February 2020. The dataset is composed of 363,368 global observations from the start of the program in 2010, to the latest available date at the time of download. \\
 
 As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided but there are also multiple available fields to populate, including non-mandatory fields and some allowing free text entry. An example of a non-mandatory field are "Lists" which are customisable groupings usually for organisations to group their own collection of records.The table below describes the structure of the data. 
 
@@ -370,7 +370,7 @@ Assessing the dataset for unique items it was observed that there are 8 material
          \hlkwc{table.placement} \hlstd{=} \hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 11:58:33 2020
+% Mon May 11 14:29:34 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlr}
@@ -399,7 +399,37 @@ Assessing the dataset for unique items it was observed that there are 8 material
 \end{table}
 
 
-It is difficult to determine exactly how many global locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. 
+It is difficult to determine exactly how many global locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. Yet in \hyperref[fig1]{Figure 1} it is evident that the dataset is global, yet with a heavy influence of observations recorded in North America. It is also possible to identify that while most observed locations are on the coastline, some make reference to the middle of oceans and some are inland, which would account for pollution also observed in rivers and freshwater marine environments like lakes and natural reservoirs.
+
+\begin{figure}[H] 
+\begin{center}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Map of all observed locations}
+\hlstd{world} \hlkwb{<-} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{)}
+\hlstd{data} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(Latitude, Longitude)} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{()} \hlopt{+}
+    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude),} \hlkwc{bins} \hlstd{=} \hlnum{50}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{"log"}\hlstd{,} \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{50}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{5000}\hlstd{,} \hlnum{50000}\hlstd{))} \hlopt{+}
+    \hlkwd{theme_void}\hlstd{()} \hlopt{+}
+    \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{plot.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{10}\hlstd{),}
+      \hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
+      \hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+      \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+      \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+
+\end{knitrout}
+\caption {Observations by location}
+\label{figG}
+\end {center}
+\end {figure}
 
 
 \pagebreak
@@ -420,35 +450,26 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
   \hlkwd{summarise}\hlstd{(}\hlkwc{density} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
   \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=Quantity,} \hlkwc{y}\hlstd{=density))} \hlopt{+}
     \hlkwd{geom_point}\hlstd{()} \hlopt{+}
-    \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{'log10'}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{'log10'}\hlstd{,} \hlkwc{name}\hlstd{=}\hlstr{'Quantity Recorded in Observation'}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{name}\hlstd{=}\hlstr{'Number of Observations'}\hlstd{)} \hlopt{+}
     \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+    \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
+          \hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
           \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-9-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-10-1} 
 
 \end{knitrout}
-\caption {Quantities Distribution}
-\label{figE1}
+\caption {Distribution of quantities recorded by number of observations recording them}
+\label{fig2}
 \end {center}
 \end {figure}
 
+\hyperref[fig2]{Figure 2} demonstrates the variance in the quantities by each observation in the dataset, and the frequency at which those quantities were recorded. It is easy to see the right-skew which indicates that the vast majority of the 300 thousand observations recorded quantities of  0 to 10, yet the minority record quantities varying between 10 and 100,000.\\
+
 \begin{kframe}
 \begin{alltt}
-\hlcom{# Distribution of Quantities}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(Quantity)} \hlopt{%>%}
-  \hlkwd{summary}\hlstd{()}
-\end{alltt}
-\end{kframe}    Quantity        
- Min.   :     0.00  
- 1st Qu.:     1.00  
- Median :     1.00  
- Mean   :     4.17  
- 3rd Qu.:     1.00  
- Max.   :100000.00  
-\begin{kframe}\begin{alltt}
 \hlcom{# Identifying observations with the largest 10 quantities}
 \hlstd{data} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{Year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
@@ -458,16 +479,16 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
   \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"Observations with the 10 largest quantities"}\hlstd{,}
          \hlkwc{label} \hlstd{=} \hlstr{"tab:top10quantities"}\hlstd{,}
          \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{,}
-         \hlkwc{align} \hlstd{=} \hlstr{"lp\{2cm\}p\{2cm\}lp\{7cm\}l"}\hlstd{,}
+         \hlkwc{align} \hlstd{=} \hlstr{"lp\{1.5cm\}p\{2.5cm\}lp\{7cm\}l"}\hlstd{,}
          \hlkwc{floating}\hlstd{=}\hlnum{TRUE}\hlstd{,}
          \hlkwc{type}\hlstd{=}\hlstr{"latex"}\hlstd{,}
          \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 11:58:38 2020
+% Mon May 11 14:29:58 2020
 \begin{table}[ht]
 \centering
-\begin{tabular}{lp{2cm}p{2cm}lp{7cm}l}
+\begin{tabular}{lp{1.5cm}p{2.5cm}lp{7cm}l}
   \hline
  & Material Description & ItemName & Year & Description & Quantity \\ 
   \hline
@@ -486,21 +507,43 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
 \caption{Observations with the 10 largest quantities} 
 \label{tab:top10quantities}
 \end{table}
-\begin{kframe}\begin{alltt}
-\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity[data}\hlopt{$}\hlstd{Quantity}\hlopt{<=}\hlnum{100}\hlstd{])}\hlopt{/}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity)}
-\end{alltt}
-\end{kframe}[1] 0.9967559
-\begin{kframe}\begin{alltt}
-\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity[data}\hlopt{$}\hlstd{Quantity}\hlopt{<=}\hlnum{10}\hlstd{])}\hlopt{/}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity)}
-\end{alltt}
-\end{kframe}[1] 0.9618373
-\begin{kframe}\begin{alltt}
-\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity[data}\hlopt{$}\hlstd{Quantity}\hlopt{<=}\hlnum{1}\hlstd{])}\hlopt{/}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity)}
-\end{alltt}
-\end{kframe}[1] 0.761692
 
 
-\hl{any ideas how to present the above \% a bit better?} 99.6\% of all entries have observed quantities below 100, 96\% as 10 or fewer and 76\% as 1 item observed, suggesting that the vast majority of entries are citizen science entries. Interestingly some quantities are marked as 0, and there are a few observations with large quantities observed, possibly as a result of organised or research activity. In particular there are 5 observations with quantities of $>10,000$ recorded in 2012, 2013, 2015 and 2019. It was decided not to exclude these high quantity observations as it would exclude a wealth of information gathered by organised groups or studies. Instead for the majority of this report, the count of observations is deemed to be a fairer indicator of density, rather than the quantity which is influenced heavily by the high quantity counts.
+\begin{kframe}
+\begin{alltt}
+\hlcom{# Identifying quantity percentiles}
+\hlstd{percent_quantity} \hlkwb{<-}
+  \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}\hlkwd{paste0}\hlstd{(}\hlkwd{signif}\hlstd{(}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity[data}\hlopt{$}\hlstd{Quantity}\hlopt{<=}\hlstd{x])}
+                            \hlopt{/}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity)}\hlopt{*}\hlnum{100}\hlstd{,} \hlkwc{digits} \hlstd{=} \hlnum{4}\hlstd{),} \hlstr{"%"}\hlstd{)\}}
+
+\hlkwd{tibble}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"<=1"}\hlstd{,}\hlstr{"<=10"}\hlstd{,}\hlstr{"<=100"}\hlstd{),}
+       \hlkwc{ObservationProportion} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{percent_quantity}\hlstd{(}\hlnum{1}\hlstd{),}\hlkwd{percent_quantity}\hlstd{(}\hlnum{10}\hlstd{),}\hlkwd{percent_quantity}\hlstd{(}\hlnum{100}\hlstd{)))} \hlopt{%>%}
+  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"Proportion of observation having equal or less than the stated Quantity"}\hlstd{,}
+         \hlkwc{label} \hlstd{=} \hlstr{"tab:pquantities"}\hlstd{,}
+         \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{,}
+         \hlkwc{floating}\hlstd{=}\hlnum{TRUE}\hlstd{,}
+         \hlkwc{type}\hlstd{=}\hlstr{"latex"}\hlstd{,}
+         \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
+\end{alltt}
+\end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Mon May 11 14:29:59 2020
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & Quantity & ObservationProportion \\ 
+  \hline
+1 & $<$=1 & 76.17\% \\ 
+  2 & $<$=10 & 96.18\% \\ 
+  3 & $<$=100 & 99.68\% \\ 
+   \hline
+\end{tabular}
+\caption{Proportion of observation having equal or less than the stated Quantity} 
+\label{tab:pquantities}
+\end{table}
+
+
+Looking further into the distribution, 99.6\% of all entries have observed quantities below 100, 96\% as 10 or fewer and 76\% as 1 item observed, suggesting that the vast majority of entries are citizen science entries. Interestingly some quantities are marked as 0, and there are a few observations with large quantities observed, possibly as a result of organised or research activity. In particular there are 5 observations with quantities of $>10,000$ recorded in 2012, 2013, 2015 and 2019. It was decided not to exclude these high quantity observations as it would exclude a wealth of information gathered by organised groups or studies. Instead for the majority of this report, the count of observations is deemed to be a fairer indicator of density, rather than the quantity which is influenced heavily by the high quantity counts.
 
 \pagebreak
 \subsection{Categorisation}
@@ -521,7 +564,7 @@ It is worth noting that of the 8 material categories, one is an "Other" category
          \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 11:58:39 2020
+% Mon May 11 14:29:59 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rl}
@@ -567,7 +610,7 @@ A data quality check performed on assessing the debris subcategories were unique
 \end{knitrout}
 
 
-Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate for example where an observation had "Balloon" recorded in the description. This raises the question of why these items were not classified as "Other" materials and wrongly labelled as Rubber Gloves, which is perhaps reflective of the inconsistencies and unreliability of citizen science data gathering. 
+Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate, for example where an observation had "Balloon" recorded in the description which is quite clearly not a glove. This raised the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, which is perhaps a downside and reflective of the inconsistencies which can occur in citizen science data gathering. 
 
 \begin{kframe}
 \begin{alltt}
@@ -576,7 +619,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
   \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{)} \hlopt{%>%}
   \hlkwd{group_by}\hlstd{(`Material Description`)} \hlopt{%>%}
   \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{sum}\hlstd{(Quantity)))} \hlopt{%>%}
-  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"some caption"}\hlstd{,}
+  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"Material categorisation of Rubber Gloves"}\hlstd{,}
          \hlkwc{label} \hlstd{=} \hlstr{"tab:2"}\hlstd{,}
          \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{,}
          \hlkwc{floating}\hlstd{=}\hlnum{TRUE}\hlstd{,}
@@ -584,7 +627,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
          \hlkwc{table.placement}\hlstd{=}\hlstr{"h"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 11:58:40 2020
+% Mon May 11 14:29:59 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlr}
@@ -595,7 +638,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
   2 & RUBBER &  89 \\ 
    \hline
 \end{tabular}
-\caption{some caption} 
+\caption{Material categorisation of Rubber Gloves} 
 \label{tab:2}
 \end{table}
 \begin{kframe}\begin{alltt}
@@ -603,7 +646,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
 \hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(`Material Description`, ItemName, Description)} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{,} \hlopt{!}\hlkwd{is.na}\hlstd{(Description))} \hlopt{%>%}
   \hlkwd{distinct}\hlstd{()} \hlopt{%>%}
-  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"some caption"}\hlstd{,}
+  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"Descriptions of Rubber Glove items"}\hlstd{,}
          \hlkwc{label} \hlstd{=} \hlstr{"tab:3"}\hlstd{,}
          \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{,}
          \hlkwc{floating}\hlstd{=}\hlnum{TRUE}\hlstd{,}
@@ -611,7 +654,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
          \hlkwc{table.placement}\hlstd{=}\hlstr{"h"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 11:58:40 2020
+% Mon May 11 14:29:59 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
@@ -637,7 +680,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
   17 & PLASTIC & Rubber Gloves & Balloon \\ 
    \hline
 \end{tabular}
-\caption{some caption} 
+\caption{Descriptions of Rubber Glove items} 
 \label{tab:3}
 \end{table}
 
@@ -648,7 +691,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{# Line chart showing categorisation of Rubber Glover over time  }
+\hlcom{# Line chart showing categorisation of Rubber Gloves over time  }
 \hlstd{data} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Rubber Gloves"}\hlstd{)} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{months} \hlstd{=} \hlkwd{floor_date}\hlstd{(Time,} \hlstr{'month'}\hlstd{))} \hlopt{%>%}
@@ -662,7 +705,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
           \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-14-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-16-1} 
 
 \end{knitrout}
 \caption {Categorisation of Rubber Glover over Time}
@@ -670,7 +713,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
 \end {center}
 \end {figure}
 
-However when the Rubber Glove categorisation was considered over time, it became apparent that in September 2019, the first use of "Rubber" to classify Rubber Gloves appeared as did the the last categorisation as "Plastic" at the same time. This suggests that the material classification was changed at this time, and suggested to the authors that the historically classified Rubber Gloves should be reclassified as Rubber for consistency in comparison. \hl{we should probably change all Rubber Gloves to "Rubber" to make them consistent or explain why we didn't} \\
+However when the Rubber Glove categorisation was considered over time, it became apparent that in September 2019, the first use of "Rubber" to classify Rubber Gloves appeared as did the the last categorisation as "Plastic" at the same time. This suggests that the material classification was potentially changed at this time, which explains the two material categories and is not in fact an indicator of poor quality data.\\
 
 
 \pagebreak
@@ -704,13 +747,19 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 \hlcom{# Plastic bags and Styrofoam packaging:12, 13}
 \hlcom{# Fragments: 5, 23, 24,25}
 
+\hlstd{plastic} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(ItemID, ItemName, category)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'plastic' not found}}\begin{alltt}
 \hlstd{recategorise} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
   \hlstd{out} \hlkwb{=} \hlstr{""}
-  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{6}\hlstd{,}\hlnum{22}\hlstd{))\{out} \hlkwb{=} \hlstr{"Cigarette related waste"}\hlstd{\}}
-  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{7}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{10}\hlstd{,}\hlnum{17}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{11}\hlstd{)) out} \hlkwb{=} \hlstr{"Food related waste"}
-  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{8}\hlstd{,}\hlnum{14}\hlstd{,}\hlnum{15}\hlstd{,}\hlnum{16}\hlstd{,}\hlnum{18}\hlstd{,}\hlnum{19}\hlstd{,}\hlnum{21}\hlstd{,}\hlnum{20}\hlstd{)) out} \hlkwb{=} \hlstr{"Other"}
-  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{13}\hlstd{)) out} \hlkwb{=} \hlstr{"Plastic bags and Styrofoam packaging"}
-  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{24}\hlstd{,}\hlnum{25}\hlstd{)) out} \hlkwb{=} \hlstr{"Fragments"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,}\hlnum{15}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{22}\hlstd{))\{out} \hlkwb{=} \hlstr{"Cigarette related waste"}\hlstd{\}}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{6}\hlstd{,}\hlnum{11}\hlstd{,}\hlnum{8}\hlstd{,}\hlnum{5}\hlstd{,}\hlnum{10}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{14}\hlstd{)) out} \hlkwb{=} \hlstr{"Food related waste"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{17}\hlstd{,}\hlnum{7}\hlstd{,}\hlnum{13}\hlstd{,}\hlnum{21}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{16}\hlstd{,}\hlnum{20}\hlstd{,}\hlnum{19}\hlstd{)) out} \hlkwb{=} \hlstr{"Other"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{18}\hlstd{)) out} \hlkwb{=} \hlstr{"Plastic bags and Styrofoam packaging"}
+  \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{23}\hlstd{,}\hlnum{24}\hlstd{,}\hlnum{25}\hlstd{)) out} \hlkwb{=} \hlstr{"Fragments"}
   \hlkwa{if}\hlstd{(out} \hlopt{==} \hlstr{""}\hlstd{)} \hlkwd{stop}\hlstd{(}\hlkwd{paste}\hlstd{(}\hlstr{"Error in recategorise:"}\hlstd{, x))}
   \hlkwd{return}\hlstd{(out)}
 \hlstd{\}}
@@ -728,16 +777,6 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 \hlstd{plastic} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
   \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
   \hlkwd{full_join}\hlstd{(plastic_types,} \hlkwc{by} \hlstd{=} \hlstr{"ItemID"}\hlstd{)}
-
-\hlstd{ordered_levels} \hlkwb{<-} \hlstd{plastic} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(category)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{totObs} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
-  \hlkwd{ungroup}\hlstd{()} \hlopt{%>%}
-  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(totObs))} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(category)} \hlopt{%$%}
-  \hlstd{category}
-\hlstd{plastic}\hlopt{$}\hlstd{category} \hlkwb{<-} \hlkwd{factor}\hlstd{(plastic}\hlopt{$}\hlstd{category,} \hlkwc{levels} \hlstd{= ordered_levels)}
-\hlkwd{rm}\hlstd{(ordered_levels)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -766,7 +805,7 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Category"}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-18-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
 
 \end{knitrout}
 \caption {Relative frequencies of observed plastic waste by category}
@@ -816,7 +855,7 @@ After cleaning and recategorisation of the data, it was analysed to determine ho
     \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-19-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-21-1} 
 
 \end{knitrout}
 \caption {Observations of plastic debris v all debris}
@@ -828,34 +867,6 @@ In this chart we see peaks and troughs in the number of observations - this is i
 
 
 Per the data, we see an increase in debris observed over time. Caution must be exercised in interpreting this information, as this increase may be reflective indeed of increased pollution levels, but it could also be because of increased activity in the citizen science project as it matures and gains a larger user base.
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{#Linechart quantity of debris per year}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{year} \hlstd{=} \hlkwd{year}\hlstd{(Time))} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{quan} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= quan))} \hlopt{+}
-    \hlkwd{geom_col}\hlstd{()} \hlopt{+}
-    \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{breaks} \hlstd{=} \hlnum{2012}\hlopt{:}\hlnum{2019}\hlstd{)} \hlopt{+}
-    \hlkwd{xlab}\hlstd{(}\hlstr{"Year"}\hlstd{)} \hlopt{+}
-    \hlkwd{ylab}\hlstd{(}\hlstr{"Quantity"}\hlstd{)} \hlopt{+}
-    \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= scales}\hlopt{::}\hlkwd{label_number_si}\hlstd{(}\hlkwc{accuracy} \hlstd{=} \hlnum{1}\hlstd{))} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-          \hlkwc{panel.grid.minor.x} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
-
-\end{knitrout}
-\caption {Quantity of debris per year}
-\label{figD}
-\end {center}
-\end {figure}
 
 \begin{figure}[H] 
 \begin{center}
@@ -884,7 +895,7 @@ Per the data, we see an increase in debris observed over time. Caution must be e
           \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-21-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-22-1} 
 
 \end{knitrout}
 \caption {Average Daily Observations by Year}
@@ -920,7 +931,7 @@ As we see in the chart above, an increase in the number of average observations 
           \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-22-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-23-1} 
 
 \end{knitrout}
 \caption {Proportion of Debris by Material Types}
@@ -956,7 +967,7 @@ Analysis of the poportions of pollutant materials identifies that plastic is the
         \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-23-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-24-1} 
 
 \end{knitrout}
 \caption {Trend of Plastic as a proportion of Total Debris}
@@ -986,7 +997,7 @@ When considering the charts above, it can be determined that even as total debri
           \hlkwc{axis.title.y} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-24-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-25-1} 
 
 \end{knitrout}
 \caption {Proportion of Plastic Items Over Time}
@@ -1016,7 +1027,7 @@ When considering the charts above, it can be determined that even as total debri
         \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-25-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-26-1} 
 
 \end{knitrout}
 \caption {Trend of Plastic Proportions by CCI Categories}
@@ -1046,7 +1057,7 @@ When considering the charts above, it can be determined that even as total debri
           \hlkwc{axis.title.y} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-26-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-27-1} 
 
 \end{knitrout}
 \caption {Proportion of Plastic Items Over Time}
@@ -1079,7 +1090,7 @@ As these charts consider the proportion of the subcategory item of total plastic
         \hlkwc{plot.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{10}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-27-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-28-1} 
 \begin{kframe}\begin{alltt}
     \hlcom{#coord_flip()}
 \end{alltt}
@@ -1140,7 +1151,7 @@ The most populated material class is Plastic. Note that this does not necessaril
         \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-29-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-30-1} 
 
 \end{knitrout}
 \caption {Top 15 Debris Items Observed between 2012 and 2019}
@@ -1151,75 +1162,6 @@ The most populated material class is Plastic. Note that this does not necessaril
 
 Does this align with the other studies discussed in \hyperref[research]{Section 2} where the main items identified were plastic bags, and in one study specifically from India which found cigarettes was actually their smallest pollutant at 5.5\% \cite{KUMAR2016}. 
 
-
-
-
-\pagebreak
-\subsection{Location-Driven Pollution}
-
-Here we see that the dataset is global, yet with a heavy influence in America. We also see that while most observed locations are on the coastline, some make reference to oceanic bodies, and some are inland, which would account for pollution also observed in rivers and freshwater marine environments like lakes and natural reservoirs.
-
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Map of all observed locations}
-\hlstd{world} \hlkwb{<-} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{)}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(Latitude, Longitude)} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{()} \hlopt{+}
-    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
-    \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude),} \hlkwc{bins} \hlstd{=} \hlnum{50}\hlstd{)} \hlopt{+}
-    \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{"log"}\hlstd{,} \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{50}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{5000}\hlstd{,} \hlnum{50000}\hlstd{))} \hlopt{+}
-    \hlkwd{theme_void}\hlstd{()} \hlopt{+}
-    \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observations"}\hlstd{))} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{plot.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{10}\hlstd{),}
-      \hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
-      \hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-      \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-      \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-30-1} 
-
-\end{knitrout}
-
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{#columnchart of debris locations}
-\hlstd{topLocations} \hlkwb{<-} \hlstd{data} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(Location)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{Observed} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(Observed))} \hlopt{%>%}
-  \hlkwd{top_n}\hlstd{(}\hlnum{15}\hlstd{,Observed)}
-
-\hlstd{data} \hlopt{%>%}
-  \hlcom{#filter(Location %in% topLocations$Location) %>% }
-  \hlkwd{group_by}\hlstd{(Location, `Material Description`)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{Observed} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(Observed))} \hlopt{%>%}
-  \hlkwd{head}\hlstd{(}\hlnum{100}\hlstd{)} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Location,} \hlkwc{y} \hlstd{= Observed,} \hlkwc{fill} \hlstd{= `Material Description`))} \hlopt{+}
-    \hlkwd{geom_col}\hlstd{(}\hlkwc{colour} \hlstd{=} \hlstr{"black"}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{0.2}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"fill"}\hlstd{)} \hlopt{+}
-    \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels}\hlstd{=scales}\hlopt{::}\hlstd{percent,} \hlkwc{name}\hlstd{=}\hlstr{""}\hlstd{)} \hlopt{+}
-    \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
-          \hlkwc{axis.text.x}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{angle}\hlstd{=}\hlnum{45}\hlstd{,} \hlkwc{hjust}\hlstd{=}\hlnum{1}\hlstd{),}
-          \hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-          \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-          \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-31-1} 
-
-\end{knitrout}
-\caption {Debris by location}
-\label{figG}
-\end {center}
-\end {figure}
 
 
 \pagebreak
@@ -1251,7 +1193,7 @@ An interesting pattern which emerged when conducting exploratory analysis on the
       \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-32-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-31-1} 
 
 \end{knitrout}
 \caption {Firework debris 2012-2019}
@@ -1259,9 +1201,9 @@ An interesting pattern which emerged when conducting exploratory analysis on the
 \end {center}
 \end {figure}
 
-Given that it is known the dataset is heavily American influence, a theory emerged that the spikes of observed debris were possibly related to American 4th of July celebrations. Looking at the locations of the firework observations certainly seemed to support that. Interestingly, no spikes are observed in January which might suggest New years' celebrations, or in November for Bonfire Night celebrations on the 5th of November in the UK.\\
+Given that it is known the dataset carries a heavy North American influence, a theory emerged that the peaks of observed debris were possibly related to American 4th of July celebrations. Looking at the locations of the firework observations in thevisualisation below certainly seemed to support that as firework related observations were made mostly in North America with a small sample in the United Kingdom. Interestingly, no spikes are observed in January which might suggest New years' celebrations, or in November for Bonfire Night celebrations on the 5th of November in the UK.\\
 
-This gives rise to the idea that plastic pollution while sometimes blamed to be the effect of manufacturing processes, can also be largely driven by the disposable behaviours which humans encourage in these one off-events, where the items are not intended for repeated use. Used once and discarded, sadly finding its way into marine environments.
+This gives rise to the idea that plastic pollution while sometimes blamed to be the effect of manufacturing processes, can also be largely driven by the disposable behaviours which humans encourage in these one off-events. Where the items are not intended for repeated use, used once and discarded, and eventually becoming pollutants in marine environments.
 
 
 \begin{figure}[H] 
@@ -1285,7 +1227,7 @@ This gives rise to the idea that plastic pollution while sometimes blamed to be 
       \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-33-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-32-1} 
 
 \end{knitrout}
 
@@ -1298,9 +1240,9 @@ This gives rise to the idea that plastic pollution while sometimes blamed to be 
 
 \pagebreak
 \section{Predictive Modelling}
-Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to give more accurate predictions of expected pollution levels which can be used as a base model to assess the effectiveness of pollution reducing initiatives introduced.
+Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to give more accurate predictions of expected pollution levels which can be used as a base model to assess the effectiveness of pollution reducing initiatives introduced by various organisations.
 
-\subsection{Description of Model}
+\subsection{The Model}
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1374,7 +1316,7 @@ Given the variability of plastic pollution trends given event-driven and locatio
   \hlkwd{theme}\hlstd{(}\hlkwc{legend.text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{face}\hlstd{=}\hlstr{"bold"}\hlstd{)))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-35-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-34-1} 
 
 \end{knitrout}
 \caption {Portion of plastic}
@@ -1423,18 +1365,18 @@ In this graphical representation of the relative frequency of the 5 different ca
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.06059 -0.02546 -0.00721  0.01012  0.20490 
+## -0.46278 -0.08200  0.01011  0.08529  0.39200 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)   
-## (Intercept) -15.866832   4.775446  -3.323  0.00146 **
-## year          0.007910   0.002369   3.338  0.00139 **
+##               Estimate Std. Error t value         Pr(>|t|)    
+## (Intercept) 131.968708  15.355334   8.594 0.00000000000164 ***
+## year         -0.065303   0.007618  -8.572 0.00000000000180 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.04331 on 66 degrees of freedom
-## Multiple R-squared:  0.1444,	Adjusted R-squared:  0.1315 
-## F-statistic: 11.14 on 1 and 66 DF,  p-value: 0.00139
+## Residual standard error: 0.1529 on 69 degrees of freedom
+## Multiple R-squared:  0.5157,	Adjusted R-squared:  0.5087 
+## F-statistic: 73.48 on 1 and 69 DF,  p-value: 0.0000000000018
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1448,20 +1390,20 @@ In this graphical representation of the relative frequency of the 5 different ca
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.04720 0.06301 0.07092 0.07714 0.09465 0.10256
+##  0.1225  0.2531  0.3837  0.3706  0.4490  0.5796
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsCigrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Cigrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Cigrel))}
 \hlkwd{head}\hlstd{(actuals_predsCigrel)}
 \end{alltt}
 \begin{verbatim}
-##      actuals predicteds
-## 1 0.05109361 0.04719559
-## 2 0.05814490 0.04719559
-## 3 0.03971631 0.04719559
-## 4 0.03750621 0.05510514
-## 5 0.01202405 0.05510514
-## 6 0.05699357 0.05510514
+##     actuals predicteds
+## 1 0.6937023  0.5796065
+## 2 0.3334728  0.5796065
+## 3 0.3284007  0.5143038
+## 4 0.4283030  0.5143038
+## 5 0.8405561  0.5143038
+## 6 0.3343373  0.5143038
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsCigrel)}
@@ -1476,22 +1418,22 @@ In this graphical representation of the relative frequency of the 5 different ca
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:20 2020
+% Mon May 11 14:31:00 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
   \hline
  & actuals & predicteds \\ 
   \hline
-actuals & 1.00 & 0.54 \\ 
-  predicteds & 0.54 & 1.00 \\ 
+actuals & 1.00 & 0.64 \\ 
+  predicteds & 0.64 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
 \begin{kframe}\begin{alltt}
 \hlstd{min_max_accuracy}
 \end{alltt}
-\end{kframe}[1] 0.7259542
+\end{kframe}[1] 0.6162189
 
 
 
@@ -1519,18 +1461,18 @@ actuals & 1.00 & 0.54 \\
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.50287 -0.07168 -0.00561  0.10218  0.34829 
+## -0.19587 -0.05990  0.00038  0.05769  0.33024 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value        Pr(>|t|)    
-## (Intercept) 118.166588  15.395217   7.676 0.0000000000531 ***
-## year         -0.058414   0.007638  -7.647 0.0000000000600 ***
+##              Estimate Std. Error t value     Pr(>|t|)    
+## (Intercept) -72.05047   11.04503  -6.523 0.0000000113 ***
+## year          0.03590    0.00548   6.550 0.0000000102 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1541 on 74 degrees of freedom
-## Multiple R-squared:  0.4414,	Adjusted R-squared:  0.4339 
-## F-statistic: 58.48 on 1 and 74 DF,  p-value: 0.00000000005998
+## Residual standard error: 0.1002 on 66 degrees of freedom
+## Multiple R-squared:  0.3939,	Adjusted R-squared:  0.3848 
+## F-statistic:  42.9 on 1 and 66 DF,  p-value: 0.00000001015
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1544,20 +1486,20 @@ actuals & 1.00 & 0.54 \\
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.2292  0.3314  0.4921  0.4395  0.5213  0.6381
+##  0.1703  0.2421  0.2780  0.3062  0.3857  0.4216
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsFoodrel} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Foodrel}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Foodrel))}
 \hlkwd{head}\hlstd{(actuals_predsFoodrel)}
 \end{alltt}
 \begin{verbatim}
-##     actuals predicteds
-## 1 0.9761681  0.6381043
-## 2 0.6351528  0.5796905
-## 3 0.5822665  0.5796905
-## 4 0.7911040  0.5796905
-## 5 0.4837153  0.5212767
-## 6 0.5395366  0.5212767
+##      actuals predicteds
+## 1 0.18320210  0.1703163
+## 2 0.28057222  0.1703163
+## 3 0.27281324  0.1703163
+## 4 0.16530055  0.2062113
+## 5 0.07924182  0.2062113
+## 6 0.14908896  0.2062113
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFoodrel)}
@@ -1572,22 +1514,22 @@ actuals & 1.00 & 0.54 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:21 2020
+% Mon May 11 14:31:01 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
   \hline
  & actuals & predicteds \\ 
   \hline
-actuals & 1.00 & 0.85 \\ 
-  predicteds & 0.85 & 1.00 \\ 
+actuals & 1.00 & 0.62 \\ 
+  predicteds & 0.62 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
 \begin{kframe}\begin{alltt}
 \hlkwd{print}\hlstd{(min_max_accuracy)}
 \end{alltt}
-\end{kframe}[1] 0.8523448
+\end{kframe}[1] 0.7779188
 
 
 
@@ -1614,18 +1556,18 @@ actuals & 1.00 & 0.85 \\
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.07328 -0.03075 -0.01469  0.01405  0.36377 
+## -0.23516 -0.09815 -0.02537  0.04237  0.66788 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)   
-## (Intercept) -21.074627   6.678746  -3.155  0.00237 **
-## year          0.010490   0.003314   3.165  0.00230 **
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -60.891268  16.153968  -3.769 0.000341 ***
+## year          0.030346   0.008015   3.786 0.000323 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.06143 on 69 degrees of freedom
-## Multiple R-squared:  0.1268,	Adjusted R-squared:  0.1142 
-## F-statistic: 10.02 on 1 and 69 DF,  p-value: 0.002305
+## Residual standard error: 0.1486 on 69 degrees of freedom
+## Multiple R-squared:  0.172,	Adjusted R-squared:   0.16 
+## F-statistic: 14.33 on 1 and 69 DF,  p-value: 0.0003231
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1639,20 +1581,20 @@ actuals & 1.00 & 0.85 \\
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.03035 0.05133 0.07231 0.06812 0.09329 0.10378
+##  0.1643  0.2250  0.2857  0.2735  0.3464  0.3767
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsFrag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Frag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Frag))}
 \hlkwd{head}\hlstd{(actuals_predsFrag)}
 \end{alltt}
 \begin{verbatim}
-##        actuals predicteds
-## 1 0.0006645432 0.03035393
-## 2 0.0365704287 0.03035393
-## 3 0.0420180954 0.03035393
-## 4 0.0553760960 0.03035393
-## 5 0.0240641711 0.03035393
-## 6 0.0239271782 0.04084348
+##      actuals predicteds
+## 1 0.01329086  0.1642836
+## 2 0.12020997  0.1642836
+## 3 0.13356847  0.1642836
+## 4 0.07706507  0.1642836
+## 5 0.07647059  0.1642836
+## 6 0.54772432  0.1946293
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsFrag)}
@@ -1667,22 +1609,22 @@ actuals & 1.00 & 0.85 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:22 2020
+% Mon May 11 14:31:02 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
   \hline
  & actuals & predicteds \\ 
   \hline
-actuals & 1.00 & 0.50 \\ 
-  predicteds & 0.50 & 1.00 \\ 
+actuals & 1.00 & 0.57 \\ 
+  predicteds & 0.57 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
 \begin{kframe}\begin{alltt}
 \hlkwd{print}\hlstd{(min_max_accuracy)}
 \end{alltt}
-\end{kframe}[1] 0.5303913
+\end{kframe}[1] 0.637178
 
 
 
@@ -1709,18 +1651,16 @@ actuals & 1.00 & 0.50 \\
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.131735 -0.041328 -0.005655  0.035206  0.134108 
+## -0.039992 -0.013652 -0.005996  0.009779  0.124826 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value    Pr(>|t|)    
-## (Intercept) -33.991092   6.112772  -5.561 0.000000473 ***
-## year          0.016938   0.003033   5.585 0.000000430 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  2.442102   2.789048   0.876    0.384
+## year        -0.001191   0.001384  -0.861    0.392
 ## 
-## Residual standard error: 0.06088 on 69 degrees of freedom
-## Multiple R-squared:  0.3113,	Adjusted R-squared:  0.3013 
-## F-statistic: 31.19 on 1 and 69 DF,  p-value: 0.0000004296
+## Residual standard error: 0.02791 on 74 degrees of freedom
+## Multiple R-squared:  0.009914,	Adjusted R-squared:  -0.003466 
+## F-statistic: 0.741 on 1 and 74 DF,  p-value: 0.3921
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1734,20 +1674,20 @@ actuals & 1.00 & 0.50 \\
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.08807 0.12195 0.13889 0.14228 0.17276 0.20664
+## 0.03717 0.03926 0.04253 0.04146 0.04313 0.04551
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsOther} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Other}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Other))}
 \hlkwd{head}\hlstd{(actuals_predsOther)}
 \end{alltt}
 \begin{verbatim}
-##      actuals predicteds
-## 1 0.05367366 0.08807451
-## 2 0.13682008 0.08807451
-## 3 0.26636312 0.10501246
-## 4 0.10336403 0.10501246
-## 5 0.05515197 0.10501246
-## 6 0.14156627 0.10501246
+##        actuals predicteds
+## 1 0.0008478654 0.04551259
+## 2 0.0279446331 0.04432144
+## 3 0.0421825813 0.04432144
+## 4 0.0500267953 0.04432144
+## 5 0.0784077201 0.04313029
+## 6 0.0350811369 0.04313029
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsOther)}  \hlcom{# 5.31%}
@@ -1762,22 +1702,22 @@ actuals & 1.00 & 0.50 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:22 2020
+% Mon May 11 14:31:02 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
   \hline
  & actuals & predicteds \\ 
   \hline
-actuals & 1.00 & 0.50 \\ 
-  predicteds & 0.50 & 1.00 \\ 
+actuals & 1.00 & 0.14 \\ 
+  predicteds & 0.14 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
 \begin{kframe}\begin{alltt}
 \hlkwd{print}\hlstd{(min_max_accuracy)}
 \end{alltt}
-\end{kframe}[1] 0.7441029
+\end{kframe}[1] 0.726022
 
 
 
@@ -1803,19 +1743,17 @@ actuals & 1.00 & 0.50 \\
 ## lm(formula = freq ~ year, data = train_Plbag)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.31838 -0.09726 -0.02112  0.05326  0.66454 
+##       Min        1Q    Median        3Q       Max 
+## -0.051045 -0.021221 -0.007823  0.007081  0.149541 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)   
-## (Intercept) -53.792345  16.802490  -3.201  0.00204 **
-## year          0.026822   0.008336   3.217  0.00194 **
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept) -1.0334621  3.6978320  -0.279    0.781
+## year         0.0005404  0.0018346   0.295    0.769
 ## 
-## Residual standard error: 0.1608 on 72 degrees of freedom
-## Multiple R-squared:  0.1257,	Adjusted R-squared:  0.1136 
-## F-statistic: 10.35 on 1 and 72 DF,  p-value: 0.001939
+## Residual standard error: 0.03539 on 72 degrees of freedom
+## Multiple R-squared:  0.001204,	Adjusted R-squared:  -0.01267 
+## F-statistic: 0.08677 on 1 and 72 DF,  p-value: 0.7692
 \end{verbatim}
 \begin{alltt}
 \hlkwd{print}\hlstd{(}\hlstr{"PREDICTION"}\hlstd{)}
@@ -1829,7 +1767,7 @@ actuals & 1.00 & 0.50 \\
 \end{alltt}
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.1732  0.2000  0.2536  0.2609  0.3341  0.3609
+## 0.05386 0.05440 0.05549 0.05563 0.05711 0.05765
 \end{verbatim}
 \begin{alltt}
 \hlstd{actuals_predsPlbag} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{cbind}\hlstd{(}\hlkwc{actuals}\hlstd{=test_Plbag}\hlopt{$}\hlstd{freq,} \hlkwc{predicteds}\hlstd{=pred_Plbag))}
@@ -1837,12 +1775,12 @@ actuals & 1.00 & 0.50 \\
 \end{alltt}
 \begin{verbatim}
 ##      actuals predicteds
-## 1 0.12998318  0.1731621
-## 2 0.14728033  0.1731621
-## 3 0.08181818  0.1731621
-## 4 0.13607595  0.1731621
-## 5 0.28635887  0.1999839
-## 6 0.06939979  0.1999839
+## 1 0.01901836 0.05386390
+## 2 0.10543933 0.05386390
+## 3 0.07005348 0.05386390
+## 4 0.04430380 0.05386390
+## 5 0.03557188 0.05440432
+## 6 0.02274920 0.05440432
 \end{verbatim}
 \begin{alltt}
 \hlstd{correlation_accuracy} \hlkwb{<-} \hlkwd{cor}\hlstd{(actuals_predsPlbag)}
@@ -1857,22 +1795,22 @@ actuals & 1.00 & 0.50 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:23 2020
+% Mon May 11 14:31:03 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
   \hline
  & actuals & predicteds \\ 
   \hline
-actuals & 1.00 & 0.35 \\ 
-  predicteds & 0.35 & 1.00 \\ 
+actuals & 1.00 & -0.14 \\ 
+  predicteds & -0.14 & 1.00 \\ 
    \hline
 \end{tabular}
 \end{table}
 \begin{kframe}\begin{alltt}
 \hlkwd{print}\hlstd{(min_max_accuracy)}
 \end{alltt}
-\end{kframe}[1] 0.6623657
+\end{kframe}[1] 0.6891403
 
 
 
@@ -1901,7 +1839,7 @@ actuals & 1.00 & 0.35 \\
 \hlkwd{xtable}\hlstd{(score_table1)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:24 2020
+% Mon May 11 14:31:04 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllrlr}
@@ -1920,7 +1858,7 @@ actuals & 1.00 & 0.35 \\
 \hlkwd{xtable}\hlstd{(score_table2)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:24 2020
+% Mon May 11 14:31:04 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlrr}
@@ -1958,7 +1896,7 @@ MinMax indicates how far off the model's prediction is. For a perfect model, thi
 \hlstd{min_max_accuracy}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6623657
+## [1] 0.6891403
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1992,36 +1930,14 @@ time. This could hugely impact a created model especially given that in the data
 
 
 \pagebreak
-\section{Discussion}
+\section{Conclusion and Future Work}
 
-It was noted that the main system for reporting debris was used by large scale clobes. This means that data is not a continuous and even flow so during events such as international beach cleanup day there may be more data in the respective month. Since these events aim mostly to cleanup after big social events extra effort might have been made to retrive entertainment based debris such as fireworks, food packaging and six pack rings.The decrease in cigarette waste was theorised to be in corelation with a decreasing smoking rate however the cigarette waste was not the direct focus of this paper so that avenue of inquiry was not followed.
+As indicated by Jambeck et al.\cite{JAMBECK2015} 4-12 million tons of plastic waste generated worldwide will enter the marine ecosystem every year. Our results shows that there is no change in the percentage of marine debris that were recorded as plastic over time. However the recorded data are not in the same frequency every year and depend on the beach clean upsand national initiatives. Since these events aim mostly to clean-ups after big social events extra effort might have been made to retrieve entertainment based debris such as fireworks, food packaging and six pack rings. Our results confirm the fact that plastic is the most abundant litter in the marine environment globally. Plastic was included in the 68\% of the observations recorded and it made up of over 70\% of the quantity of debris that was recorded. Our results also indicate the successful use of citizen science projects to monitor marine pollution. There are various ways citizen science projects have been used for and here we focused on distribution and composition of marine litter on a global scale. Identifying the amount and type of debris can help in identifying the sources of pollution. This can then aid to find out ways to reduce the source in the first place. Event driven pollution such as fireworks also plays a role in marine pollution and this can be reduced by raising awareness amongst the public and trying to find more sustainable ways of celebrating events. The fact that plastic composition does not change over time is also quite alarming. Although there have been a lot of awareness programmes in the last decades, more needs to be done to see these changes that can reduce the damage done by plastic pollution.  \\
+Future work can include looking at the marine pollution debris in smaller scale by regions. Each region is different and there are various factors that can affect the data observations such as the frequency of data submissions are not at the same time everywhere.  Since MDT is more focused on North America, this opportunity might be used to educate about it in other regions of the world. Although we will never be able to identify the real sources of pollution, it can help in raising awareness of the damage done by plastic pollution in the marine environment and make the public more environmentally conscious. Regulations to discourage single use plastic items and smoking in public places have been enforced in many countries. It would be interesting to look at the effect these are having on the marine debris pollution worldwide. However, more time and data will be required to see the change at a global scale. \\
 
+Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\  
 
-
-
-
-
-\section{Conclusion and Future Work}\label{cdsmote1}
-
-Roshi's text below\\
-4. Conclusion and Future WorkFrom our results and previous literature, it can clearly be seen that plastic is the mostabundant litter in the marine environment globally. Plastic was included in the 68\% of theobservations recorded and it made up of over 70\% of the quantity of debris that was recorded.Our results also indicate the successful use of citizen science projects to monitor marinepollution. There are various ways citizen science projects have been used for and here wefocused on distribution and composition of marine litter on a global scale. Identifying theamount and type of debris can help in identifying the sources of pollution. This can then helpeveryone to find out ways to reduce the source in the first place. We confirm the findings thatplastic is the main polluter in the marine environment and more needs to be done to reducethe plastic waste. Event driven pollution such as fireworks also plays a role in marinepollution and this can be reduced by raising awareness amongst the public and trying to findmore sustainable ways of celebrating events. The fact that plastic composition does notchange over time is also quite alarming. Although there have been a lot of awarenessprogrammes in the last decades, more needs to be done to see these changes that can reducethe damage done by plastic pollution.  \\
-
-Future work can include looking at the marine pollution debris in smaller scale by regions.Each region is different and there are various factors that can affect the data observationssuch as the frequency of data submissions are not at the same time everywhere.  Since MDTis more focused on North America, this opportunity might be used to educate about it in otherregions of the world. Although we will never be able to identify the real sources of pollution,it can help in raising awareness of the damage done by plastic pollution in the marineenvironment and make the public more environmentally conscious. Regulations to discouragesingle used plastic items and smoking in public places have been enforced in many countries.It would be interesting to look at the effect these are having on the marine debris pollutionworldwide. However, more time and data will be required to see the change at a global scale. \\
-
-Lots of beach clean ups and litter collections are done in the beaches worldwide to estimatethe marine pollution. However, the majority (70\%) of the marine debris are not on the surfacebut on the seafloor  (UNEP, 2005).  More research and studies are needed to accuratelyestimate the pollution in our oceans. Although marine pollution is a global issue, more needto be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are   essential for efficient management of marine plasticpollution. \\
-
-\hl{reference: United Nations Environment Programme (2005). Annual Evaluation Report.}
-
-
-%-H0 true
-Our hypothesis stands/does not stand.\\
-The hypothesis H0 stands. This is evidence as to a change in the percentage of marine debris being plastic in origin that can be observed in results such as in figure 4 which shows how the change in plastic quantity mirrors the change in overall debris quantity.  
-Future work might involve continuing to study corelations similar to the fireworks/july corelation that was discussed in section 4.3. Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observtion of cigarette debris which had been observed over the years to see if there is a corollation there which was hypothosised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specific times such as world cleanup day in order to get a more rounded dataset.   \\  
-
-%-H1 true
-Our hypothesis stands/does not stand.\\
-The hypothesis H1 stands. This is evidence as to no change in the percentage of marine debris being plastic in origin that can be observed in results such as in figure 4 which shows how the change in plastic quantity mirrors the change in overall debris quantity.  
-Future work might involve continuing to study corelations similar to the fireworks/july corelation that was discussed in section 4.3. Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observtion of cigarette debris which had been observed over the years to see if there is a corollation there which was hypothosised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specific times such as world cleanup day in order to get a more rounded dataset.\\     
+Lots of beach clean ups and litter collections are done in the beaches worldwide to estimate the marine pollution. However, the majority (70\%) of the marine debris are not on the surface but on the seafloor. More research and studies are needed to accurately estimate the pollution in our oceans. Although marine pollution is a global issue, more needs to be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are   essential for efficient management of marine plastic pollution. \\
 
 
 \pagebreak
@@ -2039,7 +1955,7 @@ In March 2020, the outbreak of the global Covid-19 pandemic and resulting lockdo
 The group operated on a cyclical "divide and conquer" approch. In the weekly meetings, the scope for the week was agreed then divided into parts for group members to volunteer and adopt, working on it in the week. At the next meeting, the work was consolidated with individuals briefly presenting what they had achieved in the week, or what they may have found difficulty progressing. The newly converged scope was then again divided for the next week, so the cycle repeats ensuring each individual had a clear task for the week ahead and the whole group retained an awareness of what other work was being done and who was doing it. The discussions of each weekly meeting were also documented and hosted on the shared Github for all members to reference. This approach ensured there was continous progress throughout the project timeline while also allowing individuals the flexibility to manage their time around all other personal and professional commitments. \\
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:36 2020
+% Mon May 11 14:31:16 2020
 \begin{table}[H]
 \centering
 \caption{Record of Team Meetings} 
@@ -2078,7 +1994,7 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 12:00:37 2020
+% Mon May 11 14:31:17 2020
 \begin{table}[H]
 \centering
 \caption{Peer Assessment out of 100} 
@@ -2099,20 +2015,265 @@ Alex & 100 & 100 & 100 & 100 & 100 \\
 
 The \hyperref[tab:two]{Peer Assessment Table} presents the peer and self assement scores for all five of Group 2's members.\\
 
-Alex\\
-
-Georgios: For this project I have searched over initial datasets to be used. I have reviewed literature and contributed in writing down the Research part of the report and in creating and assessing the linear regression models.\\
-
-Karen: acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. \\
-
-Roshi\\
-
-Stuart\\
-
+The tasks of the project was shared justly across the members of the group. Alex Aided in the research of appropriate papers for the project and writing sections for the final report. Georgios sourced for datasets, reviewed literature, wrote for the final report and lead in creating and assessing the linear regression model.Karen acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. Roshi acted as lead for finding relevant literatures for the study, writing sections and editing the final report. Stuart sourced the dataset and lead in the exploratory data analysis, producing visualisations for the final report.\\
 
 
 \pagebreak
 \section*{References}\label{pubs}
 \printbibliography[heading=none]
+
+
+\begin{kframe}
+\begin{alltt}
+
+
+\hlcom{#```\{r\}}
+dataModel <- \hlkwd{list.files}(path = \hlstr{"data/debris/"}, full.names = TRUE) %>%
+  \hlkwd{lapply}(FUN = read_csv, col_types = \hlstr{"ififidddddcfcif"}) %>%
+  \hlkwd{reduce}(rbind)
+dataModel$Time <- data$Timestamp %>%
+  \hlkwd{parse_datetime}(format = \hlstr{"%Y%m%d%H%M%S"})
+dataModel$Timestamp <- NULL
+dataModel <- dataModel %>% \hlkwd{select}(-ListID,-ListName)
+plastic_ordered <- dataModel %>% 
+  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
+  \hlkwd{select}(ItemName, Quantity) %>% 
+  \hlkwd{group_by}(ItemName) %>% 
+  \hlkwd{summarise}(Total = \hlkwd{sum}(Quantity)) %>% 
+  \hlkwd{arrange}(\hlkwd{desc}(Total))
+dataModel$ItemName <- \hlkwd{factor}(dataModel$ItemName, plastic_ordered$ItemName)
+recategorise2 <- \hlkwd{function}(x)\{
+  out = \hlstr{""}
+  \hlkwd{if}(x %in% \hlkwd{c}(1,4,6,22))\{out = \hlstr{"Cigarette related waste"}\}
+  \hlkwd{if}(x %in% \hlkwd{c}(2,3,7,9,10,17,23,11)) out = \hlstr{"Food related waste"}
+  \hlkwd{if}(x %in% \hlkwd{c}(8,14,15,16,18,19,21,20)) out = \hlstr{"Other"}
+  \hlkwd{if}(x %in% \hlkwd{c}(12,13)) out = \hlstr{"Plastic bags and Styrofoam packaging"}
+  \hlkwd{if}(x %in% \hlkwd{c}(5,23,24,25)) out = \hlstr{"Fragments"}
+  \hlkwd{if}(out == \hlstr{""}) \hlkwd{stop}(\hlkwd{paste}(\hlstr{"Error in recategorise:"}, x))
+  \hlkwd{return}(out)
+\}
+plastic_typesModel <- dataModel %>% 
+  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
+  \hlkwd{select}(ItemName, ItemID) %>% 
+  \hlkwd{distinct}() %>% 
+  \hlkwd{mutate}(label = 1:\hlkwd{n}()) %>% 
+  \hlkwd{mutate}(category = purrr::\hlkwd{map}(label, recategorise2)) %>%
+  \hlkwd{mutate}(category = \hlkwd{as_factor}(\hlkwd{as.character}(category))) %>% 
+  \hlkwd{select}(ItemID, category)
+plasticModel <- dataModel %>% 
+  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
+  \hlkwd{full_join}(plastic_types, by = \hlstr{"ItemID"})
+plasticN <- plasticModel %>% 
+  \hlkwd{mutate}(month = \hlkwd{month}(Time, label = FALSE), 
+         year = \hlkwd{as.integer}(\hlkwd{year}(Time))) %>% 
+  \hlkwd{filter}(year > 2010) %>% 
+  \hlkwd{group_by}(month, year, category) %>%
+  \hlkwd{summarise}(`Total Quantity` = \hlkwd{sum}(Quantity)) %>% 
+  \hlkwd{ggplot}(\hlkwd{aes}(x = month, y = `Total Quantity`, fill = category)) +
+    \hlkwd{geom_col}(colour = \hlstr{"black"}, size = 0.2, position = \hlstr{"fill"}) +
+    \hlkwd{facet_wrap}(~year, nrow = 2) +
+    \hlkwd{scale_fill_viridis}(discrete = TRUE, option = \hlstr{"plasma"}) +
+    \hlkwd{xlab}(\hlstr{"Month"}) +
+    \hlkwd{ylab}(\hlstr{"Proportion of Items"}) +
+    \hlkwd{ggtitle}(\hlstr{"Rel. frequencies of observed plastic waste by category"}) +
+    \hlkwd{scale_x_continuous}(breaks = 1:12) +
+    \hlkwd{theme}(panel.grid.major.x = \hlkwd{element_blank}(),
+          panel.grid.minor.x = \hlkwd{element_blank}()) +
+    \hlkwd{guides}(fill=\hlkwd{guide_legend}(title=\hlstr{"Category"}))
+\hlcom{#```}
+
+\hlcom{#```\{r\}}
+\hlkwd{library}(dplyr)
+df12N <- plasticN  %>%
+  \hlkwd{filter}(year == 2012) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df13N <- plasticN  %>%
+  \hlkwd{filter}(year == 2013) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df14N <- plasticN  %>%
+  \hlkwd{filter}(year == 2014) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df15N <- plasticN  %>%
+  \hlkwd{filter}(year == 2015) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df16N <- plasticN  %>%
+  \hlkwd{filter}(year == 2016) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df17N <- plasticN  %>%
+  \hlkwd{filter}(year == 2017) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
+df18N <- plasticN  %>%
+  \hlkwd{filter}(year == 2018) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`)) 
+df19N <- plasticN  %>%
+  \hlkwd{filter}(year == 2019) %>% 
+  \hlkwd{group_by}(year, month) %>%
+  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`)) 
+dfTotN <- \hlkwd{rbind}(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+\hlcom{# plot for observing the data}
+(time_plotfr2N <- \hlkwd{ggplot}(dfTotN, \hlkwd{aes}(x = year, y = freq, color=category, fill = category)) +
+  \hlkwd{geom_smooth}(method=\hlstr{"lm"}, level=0.95) +
+  \hlkwd{theme_bw}() + 
+  \hlkwd{xlab}(\hlstr{"Years"}) +
+  \hlkwd{ylab}(\hlstr{"relative frequency"}) +
+  \hlkwd{ggtitle}(\hlstr{"portion of plastic"}) + 
+  \hlkwd{expand_limits}(y=0) +
+  \hlkwd{scale_y_continuous}() + 
+  \hlkwd{scale_x_continuous}()+
+  \hlkwd{theme}(legend.position=\hlstr{"bottom"})+
+  \hlkwd{theme}(legend.text = \hlkwd{element_text}(size=5, face=\hlstr{"bold"})))
+\hlcom{#```}
+
+
+
+\hlcom{#We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and "Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see what is the actual case.}
+
+\hlcom{#```\{r\}}
+\hlcom{# create train and test set}
+n <- \hlkwd{nrow}(dfTotN)  \hlcom{# Number of observations}
+ntrain <- \hlkwd{round}(n*0.75)  \hlcom{# 75% for training set}
+\hlkwd{set.seed}(314)    \hlcom{# Set seed for reproducible results}
+tindex <- \hlkwd{sample}(n, ntrain)   \hlcom{# Create a random index}
+train_dfTotN <- dfTotN[tindex,]   \hlcom{# Create training set}
+test_dfTotN <- dfTotN[-tindex,]
+\hlcom{# modelling for category "Cigarette related waste"}
+train_Cigrel <- train_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Cigarette related waste"}) %>% 
+  \hlkwd{group_by}(year)
+test_Cigrel <- test_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Cigarette related waste"}) %>% 
+  \hlkwd{group_by}(year)
+\hlkwd{set.seed}(1234)
+train_Cigrel.modelN <- \hlkwd{lm}(freq ~ year, data = train_Cigrel)
+\hlkwd{summary}(train_Cigrel.modelN)
+\hlkwd{print}(\hlstr{"PREDICTION"})
+pred_Cigrel <- \hlkwd{predict}(train_Cigrel.modelN, test_Cigrel)
+\hlkwd{summary}(pred_Cigrel)
+actuals_predsCigrel <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Cigrel$freq, predicteds=pred_Cigrel)) 
+\hlkwd{head}(actuals_predsCigrel)
+correlation_accuracy <- \hlkwd{cor}(actuals_predsCigrel)
+min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsCigrel, 1, min) / \hlkwd{apply}(actuals_predsCigrel, 1, max))  
+correlation_accuracy
+min_max_accuracy
+\hlcom{#```}
+
+
+\hlcom{#```\{r\}}
+\hlcom{# modelling for category "Food related waste"}
+train_Foodrel <- train_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Food related waste"}) %>% 
+  \hlkwd{group_by}(year)
+test_Foodrel <- test_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Food related waste"}) %>% 
+  \hlkwd{group_by}(year)
+\hlkwd{set.seed}(1234)
+train_Foodrel.modelN <- \hlkwd{lm}(freq ~ year, data = train_Foodrel)
+\hlkwd{summary}(train_Foodrel.modelN)
+\hlkwd{print}(\hlstr{"PREDICTION"})
+pred_Foodrel <- \hlkwd{predict}(train_Foodrel.modelN, test_Foodrel)
+\hlkwd{summary}(pred_Foodrel)
+actuals_predsFoodrel <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Foodrel$freq, predicteds=pred_Foodrel)) 
+\hlkwd{head}(actuals_predsFoodrel)
+correlation_accuracy <- \hlkwd{cor}(actuals_predsFoodrel)  
+min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsFoodrel, 1, min) / \hlkwd{apply}(actuals_predsFoodrel, 1, max))  
+correlation_accuracy
+min_max_accuracy
+\hlcom{#```}
+
+
+\hlcom{#```\{r\}}
+\hlcom{# modelling for category "Fragments"}
+train_Frag <- train_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Fragments"}) %>% 
+  \hlkwd{group_by}(year)
+test_Frag <- test_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Fragments"}) %>% 
+  \hlkwd{group_by}(year)
+\hlkwd{set.seed}(1234)
+train_Frag.modelN <- \hlkwd{lm}(freq ~ year, data = train_Frag)
+\hlkwd{summary}(train_Frag.modelN)
+\hlkwd{print}(\hlstr{"PREDICTION"})
+pred_Frag <- \hlkwd{predict}(train_Frag.modelN, test_Frag)
+\hlkwd{summary}(pred_Frag)
+actuals_predsFrag <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Frag$freq, predicteds=pred_Frag)) 
+\hlkwd{head}(actuals_predsFrag)
+correlation_accuracy <- \hlkwd{cor}(actuals_predsFrag)  
+min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsFrag, 1, min) / \hlkwd{apply}(actuals_predsFrag, 1, max))  
+correlation_accuracy
+min_max_accuracy
+\hlcom{#```}
+
+
+\hlcom{#```\{r\}}
+\hlcom{# modelling for category "Other"}
+train_Other <- train_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Other"}) %>% 
+  \hlkwd{group_by}(year)
+test_Other <- test_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Other"}) %>% 
+  \hlkwd{group_by}(year)
+\hlkwd{set.seed}(1234)
+train_Other.modelN <- \hlkwd{lm}(freq ~ year, data = train_Other)
+\hlkwd{summary}(train_Other.modelN)
+\hlkwd{print}(\hlstr{"PREDICTION"})
+pred_Other <- \hlkwd{predict}(train_Other.modelN, test_Other)
+\hlkwd{summary}(pred_Other)
+actuals_predsOther <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Other$freq, predicteds=pred_Other)) 
+\hlkwd{head}(actuals_predsOther)
+correlation_accuracy <- \hlkwd{cor}(actuals_predsOther)  \hlcom{# 5.31%}
+min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsOther, 1, min) / \hlkwd{apply}(actuals_predsOther, 1, max))  
+correlation_accuracy
+min_max_accuracy
+\hlcom{#```}
+
+
+\hlcom{#```\{r\}}
+\hlcom{# modelling for category "Plastic bags and Styrofoam packaging"}
+train_Plbag <- train_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Plastic bags and Styrofoam packaging"}) %>% 
+  \hlkwd{group_by}(year)
+test_Plbag <- test_dfTotN %>% 
+  \hlkwd{filter}(category==\hlstr{"Plastic bags and Styrofoam packaging"}) %>% 
+  \hlkwd{group_by}(year)
+\hlkwd{set.seed}(1234)
+train_Plbag.modelN <- \hlkwd{lm}(freq ~ year, data = train_Plbag)
+\hlkwd{summary}(train_Plbag.modelN)
+\hlkwd{print}(\hlstr{"PREDICTION"})
+pred_Plbag <- \hlkwd{predict}(train_Plbag.modelN, test_Plbag)
+\hlkwd{summary}(pred_Plbag)
+actuals_predsPlbag <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
+\hlkwd{head}(actuals_predsPlbag)
+correlation_accuracy <- \hlkwd{cor}(actuals_predsPlbag) 
+min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsPlbag, 1, min) / \hlkwd{apply}(actuals_predsPlbag, 1, max))  
+correlation_accuracy
+min_max_accuracy
+\hlcom{#```}
+
+\hlcom{#```\{r\}}
+plastic_category <-\hlkwd{c}(\hlstr{"cigarette related waste"}, \hlstr{"food related waste"},\hlstr{"Fragments"}, 
+                      \hlstr{"Other"},\hlstr{"Plastic bags and Styrofoam packaging"} )
+slope_scores <- \hlkwd{c}(-0.063,0.038, 0.034, 0.000, 0.001)
+slope_interpretation <-\hlkwd{c}(\hlstr{"downward"}, \hlstr{"upward"}, \hlstr{"upward"}, \hlstr{"steady"}, \hlstr{"steady"})
+p_value<-\hlkwd{c}(\hlstr{"<0.05"},\hlstr{"<0.05"},\hlstr{"<0.05"}, \hlstr{">0.05"},\hlstr{">0.05"})
+adjRsquared <- \hlkwd{c}(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
+corr_accuracy<-\hlkwd{c}(0.83, 0.50, 0.41, -0.36,-0.12)
+min_max_Acc<-\hlkwd{c}(0.78,0.77,0.69, 0.64 ,0.61)
+score_table1 <- \hlkwd{data.frame}(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
+score_table2 <- \hlkwd{data.frame}(plastic_category, corr_accuracy, min_max_Acc)
+score_table1
+score_table2
+```
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: attempt to use zero-length variable name}}\end{kframe}
+
 
 \end{document}

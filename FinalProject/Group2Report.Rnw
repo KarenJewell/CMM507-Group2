@@ -176,7 +176,7 @@ As discussed before, observations not following a standard protocol with proper 
 
 \subsection{Data Description}\label{dataset}
 
-The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (\url{www.marinedebris.engr.uga.edu}) on \hl{what was the date of download?}. The dataset is composed of 363,368 global observations from the start of the program in 2010, to the latest available date at the time of download. \\
+The data used in this report was gathered using secondary data collection methods only. The authors did not collect or create any new data using primary methods. The data was downloaded from the Marine Debris Tracker website (\url{www.marinedebris.engr.uga.edu}) on 19 February 2020. The dataset is composed of 363,368 global observations from the start of the program in 2010, to the latest available date at the time of download. \\
 
 As discussed in the section before, the MDT is a citizen science project where organisations or individuals can record observations of marine debris using a mobile phone application. \cite{JAMBECK2015B} The user records the observation using a structured form, and chooses the category of debris from a list provided but there are also multiple available fields to populate, including non-mandatory fields and some allowing free text entry. An example of a non-mandatory field are "Lists" which are customisable groupings usually for organisations to group their own collection of records.The table below describes the structure of the data. 
 
@@ -287,7 +287,31 @@ data %>%
          table.placement = "H")
 @
 
-It is difficult to determine exactly how many global locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. 
+It is difficult to determine exactly how many global locations are observed in this dataset as it is the combination of \textbf{Longitude}, \textbf{Latitude}, \textbf{Altitude} and/or \textbf{Location} which determines the global position of the observation. Yet in \hyperref[fig1]{Figure 1} it is evident that the dataset is global, yet with a heavy influence of observations recorded in North America. It is also possible to identify that while most observed locations are on the coastline, some make reference to the middle of oceans and some are inland, which would account for pollution also observed in rivers and freshwater marine environments like lakes and natural reservoirs.
+
+\begin{figure}[H] 
+\begin{center}
+<<fig.height=3>>=
+# Map of all observed locations
+world <- map_data("world")
+data %>% 
+  select(Latitude, Longitude) %>% 
+  ggplot() +
+    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
+    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
+    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
+    theme_void() +
+    guides(fill=guide_legend(title="Observations")) +
+    theme(plot.title = element_text(size=10),
+      text = element_text(size=8),
+      panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(),
+      legend.position = "bottom")
+@
+\caption {Observations by location}
+\label{figG}
+\end {center}
+\end {figure}
 
 
 \pagebreak
@@ -306,22 +330,21 @@ data %>%
   summarise(density = n()) %>%
   ggplot(aes(x=Quantity, y=density)) + 
     geom_point() +
-    scale_x_continuous(trans = 'log10') +
+    scale_x_continuous(trans = 'log10', name='Quantity Recorded in Observation') +
+    scale_y_continuous(name='Number of Observations') +
     theme_bw() +
-    theme(panel.grid.major = element_blank(), 
+    theme(text = element_text(size=8),
+          panel.grid.major = element_blank(), 
           panel.grid.minor = element_blank())
 @
-\caption {Quantities Distribution}
-\label{figE1}
+\caption {Distribution of quantities recorded by number of observations recording them}
+\label{fig2}
 \end {center}
 \end {figure}
 
+\hyperref[fig2]{Figure 2} demonstrates the variance in the quantities by each observation in the dataset, and the frequency at which those quantities were recorded. It is easy to see the right-skew which indicates that the vast majority of the 300 thousand observations recorded quantities of  0 to 10, yet the minority record quantities varying between 10 and 100,000.\\
+
 <<results='asis'>>=
-# Distribution of Quantities
-data %>%
-  select(Quantity) %>%
-  summary()
- 
 # Identifying observations with the largest 10 quantities
 data %>%
   mutate(Year = as.integer(year(Time))) %>%
@@ -331,17 +354,29 @@ data %>%
   xtable(caption = "Observations with the 10 largest quantities", 
          label = "tab:top10quantities", 
          caption.placement = "top",
-         align = "lp{2cm}p{2cm}lp{7cm}l",
+         align = "lp{1.5cm}p{2.5cm}lp{7cm}l",
          floating=TRUE, 
          type="latex", 
          table.placement="H")
-
-length(data$Quantity[data$Quantity<=100])/length(data$Quantity)
-length(data$Quantity[data$Quantity<=10])/length(data$Quantity)
-length(data$Quantity[data$Quantity<=1])/length(data$Quantity)
 @
 
-\hl{any ideas how to present the above \% a bit better?} 99.6\% of all entries have observed quantities below 100, 96\% as 10 or fewer and 76\% as 1 item observed, suggesting that the vast majority of entries are citizen science entries. Interestingly some quantities are marked as 0, and there are a few observations with large quantities observed, possibly as a result of organised or research activity. In particular there are 5 observations with quantities of $>10,000$ recorded in 2012, 2013, 2015 and 2019. It was decided not to exclude these high quantity observations as it would exclude a wealth of information gathered by organised groups or studies. Instead for the majority of this report, the count of observations is deemed to be a fairer indicator of density, rather than the quantity which is influenced heavily by the high quantity counts.
+<<results='asis'>>=
+# Identifying quantity percentiles
+percent_quantity <- 
+  function(x){paste0(signif(length(data$Quantity[data$Quantity<=x])
+                            /length(data$Quantity)*100, digits = 4), "%")}
+
+tibble(Quantity = c("<=1","<=10","<=100"), 
+       ObservationProportion = c(percent_quantity(1),percent_quantity(10),percent_quantity(100))) %>%
+  xtable(caption = "Proportion of observation having equal or less than the stated Quantity", 
+         label = "tab:pquantities", 
+         caption.placement = "top",
+         floating=TRUE, 
+         type="latex", 
+         table.placement="H")
+@
+
+Looking further into the distribution, 99.6\% of all entries have observed quantities below 100, 96\% as 10 or fewer and 76\% as 1 item observed, suggesting that the vast majority of entries are citizen science entries. Interestingly some quantities are marked as 0, and there are a few observations with large quantities observed, possibly as a result of organised or research activity. In particular there are 5 observations with quantities of $>10,000$ recorded in 2012, 2013, 2015 and 2019. It was decided not to exclude these high quantity observations as it would exclude a wealth of information gathered by organised groups or studies. Instead for the majority of this report, the count of observations is deemed to be a fairer indicator of density, rather than the quantity which is influenced heavily by the high quantity counts.
 
 \pagebreak
 \subsection{Categorisation}
@@ -375,7 +410,7 @@ data %>%
 @
 
 
-Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate for example where an observation had "Balloon" recorded in the description. This raises the question of why these items were not classified as "Other" materials and wrongly labelled as Rubber Gloves, which is perhaps reflective of the inconsistencies and unreliability of citizen science data gathering. 
+Further investigation into the categorisation of Rubber Gloves revealed that the majority of Rubber Glove items were classified as plastic rather than rubber. When the observation descriptions were considered however, it revealed that the categorisations may be innaccurate, for example where an observation had "Balloon" recorded in the description which is quite clearly not a glove. This raised the question of why these items were not classified as "Other" materials but wrongly labelled as Rubber Gloves, which is perhaps a downside and reflective of the inconsistencies which can occur in citizen science data gathering. 
 
 <<results='asis'>>=
 # Checking material categorisation of Rubber Gloves
@@ -383,7 +418,7 @@ data %>% select(`Material Description`, ItemName, Quantity) %>%
   filter(ItemName == "Rubber Gloves") %>% 
   group_by(`Material Description`) %>% 
   summarise(Quantity = as.integer(sum(Quantity))) %>%
-  xtable(caption = "some caption", 
+  xtable(caption = "Material categorisation of Rubber Gloves", 
          label = "tab:2", 
          caption.placement = "top",
          floating=TRUE, 
@@ -395,7 +430,7 @@ data %>% select(`Material Description`, ItemName, Quantity) %>%
 data %>% select(`Material Description`, ItemName, Description) %>%
   filter(ItemName == "Rubber Gloves", !is.na(Description)) %>%
   distinct() %>%
-  xtable(caption = "some caption", 
+  xtable(caption = "Descriptions of Rubber Glove items", 
          label = "tab:3", 
          caption.placement = "top",
          floating=TRUE, 
@@ -407,7 +442,7 @@ data %>% select(`Material Description`, ItemName, Description) %>%
 \begin{figure}[H] 
 \begin{center}
 <<>>=
-# Line chart showing categorisation of Rubber Glover over time  
+# Line chart showing categorisation of Rubber Gloves over time  
 data %>% 
   filter(ItemName == "Rubber Gloves") %>%
   mutate(months = floor_date(Time, 'month')) %>% 
@@ -425,7 +460,7 @@ data %>%
 \end {center}
 \end {figure}
 
-However when the Rubber Glove categorisation was considered over time, it became apparent that in September 2019, the first use of "Rubber" to classify Rubber Gloves appeared as did the the last categorisation as "Plastic" at the same time. This suggests that the material classification was changed at this time, and suggested to the authors that the historically classified Rubber Gloves should be reclassified as Rubber for consistency in comparison. \hl{we should probably change all Rubber Gloves to "Rubber" to make them consistent or explain why we didn't} \\
+However when the Rubber Glove categorisation was considered over time, it became apparent that in September 2019, the first use of "Rubber" to classify Rubber Gloves appeared as did the the last categorisation as "Plastic" at the same time. This suggests that the material classification was potentially changed at this time, which explains the two material categories and is not in fact an indicator of poor quality data.\\
 
 
 \pagebreak
@@ -481,13 +516,16 @@ data %>%
 # Plastic bags and Styrofoam packaging:12, 13
 # Fragments: 5, 23, 24,25
 
+plastic %>%
+  select(ItemID, ItemName, category)
+
 recategorise <- function(x){
   out = ""
-  if(x %in% c(1,4,6,22)){out = "Cigarette related waste"}
-  if(x %in% c(2,3,7,9,10,17,23,11)) out = "Food related waste"
-  if(x %in% c(8,14,15,16,18,19,21,20)) out = "Other"
-  if(x %in% c(12,13)) out = "Plastic bags and Styrofoam packaging"
-  if(x %in% c(5,23,24,25)) out = "Fragments"
+  if(x %in% c(3,15,9,22)){out = "Cigarette related waste"}
+  if(x %in% c(6,11,8,5,10,4,23,14)) out = "Food related waste"
+  if(x %in% c(17,7,13,21,1,16,20,19)) out = "Other"
+  if(x %in% c(2,18)) out = "Plastic bags and Styrofoam packaging"
+  if(x %in% c(12,23,24,25)) out = "Fragments"
   if(out == "") stop(paste("Error in recategorise:", x))
   return(out)
 }
@@ -506,15 +544,6 @@ plastic <- data %>%
   filter(`Material Description` == "PLASTIC") %>% 
   full_join(plastic_types, by = "ItemID")
 
-ordered_levels <- plastic %>%
-  group_by(category) %>% 
-  summarise(totObs = sum(Quantity)) %>% 
-  ungroup() %>% 
-  arrange(desc(totObs)) %>% 
-  select(category) %$%
-  category
-plastic$category <- factor(plastic$category, levels = ordered_levels)
-rm(ordered_levels)
 @
 
 \begin{figure}[H]
@@ -592,28 +621,6 @@ In this chart we see peaks and troughs in the number of observations - this is i
 
 
 Per the data, we see an increase in debris observed over time. Caution must be exercised in interpreting this information, as this increase may be reflective indeed of increased pollution levels, but it could also be because of increased activity in the citizen science project as it matures and gains a larger user base.
-
-\begin{figure}[H] 
-\begin{center}
-<<>>=
-#Linechart quantity of debris per year
-data %>% 
-  mutate(year = year(Time)) %>% 
-  group_by(year) %>% 
-  summarise(quan = sum(Quantity)) %>% 
-  ggplot(aes(x = year, y = quan)) +
-    geom_col() +
-    scale_x_continuous(breaks = 2012:2019) +
-    xlab("Year") +
-    ylab("Quantity") +
-    scale_y_continuous(labels = scales::label_number_si(accuracy = 1)) +
-    theme(panel.grid.major.x = element_blank(),
-          panel.grid.minor.x = element_blank())
-@
-\caption {Quantity of debris per year}
-\label{figD}
-\end {center}
-\end {figure}
 
 \begin{figure}[H] 
 \begin{center}
@@ -860,64 +867,6 @@ Does this align with the other studies discussed in \hyperref[research]{Section 
 
 
 
-
-\pagebreak
-\subsection{Location-Driven Pollution}
-
-Here we see that the dataset is global, yet with a heavy influence in America. We also see that while most observed locations are on the coastline, some make reference to oceanic bodies, and some are inland, which would account for pollution also observed in rivers and freshwater marine environments like lakes and natural reservoirs.
-
-<<fig.height=3>>=
-# Map of all observed locations
-world <- map_data("world")
-data %>% 
-  select(Latitude, Longitude) %>% 
-  ggplot() +
-    geom_polygon(data = map_data("world"), aes(x = long, y = lat, group = group), fill = "grey", alpha = 0.5) +
-    geom_hex(aes(x = Longitude, y = Latitude), bins = 50) +
-    scale_fill_viridis(trans = "log", breaks = c(5, 50, 500, 5000, 50000)) +
-    theme_void() +
-    guides(fill=guide_legend(title="Observations")) +
-    theme(plot.title = element_text(size=10),
-      text = element_text(size=8),
-      panel.grid.major = element_blank(), 
-      panel.grid.minor = element_blank(),
-      legend.position = "bottom")
-@
-
-
-\begin{figure}[H] 
-\begin{center}
-<<>>=
-#columnchart of debris locations
-topLocations <- data %>% 
-  group_by(Location) %>% 
-  summarise(Observed = n()) %>% 
-  arrange(desc(Observed)) %>% 
-  top_n(15,Observed)
-
-data %>% 
-  #filter(Location %in% topLocations$Location) %>% 
-  group_by(Location, `Material Description`) %>% 
-  summarise(Observed = n()) %>% 
-  arrange(desc(Observed)) %>% 
-  head(100) %>%
-  ggplot(aes(x = Location, y = Observed, fill = `Material Description`)) +
-    geom_col(colour = "black", size = 0.2, position = "fill") +
-    scale_y_continuous(labels=scales::percent, name="") +
-    theme_bw() +
-    theme(text = element_text(size=8),
-          axis.text.x=element_text(angle=45, hjust=1),
-          panel.grid.major = element_blank(), 
-          panel.grid.minor = element_blank(),
-          legend.position = "bottom")
-
-@
-\caption {Debris by location}
-\label{figG}
-\end {center}
-\end {figure}
-
-
 \pagebreak
 \subsection{Event-Driven Pollution}
 
@@ -949,9 +898,9 @@ data %>%
 \end {center}
 \end {figure}
 
-Given that it is known the dataset is heavily American influence, a theory emerged that the spikes of observed debris were possibly related to American 4th of July celebrations. Looking at the locations of the firework observations certainly seemed to support that. Interestingly, no spikes are observed in January which might suggest New years' celebrations, or in November for Bonfire Night celebrations on the 5th of November in the UK.\\
+Given that it is known the dataset carries a heavy North American influence, a theory emerged that the peaks of observed debris were possibly related to American 4th of July celebrations. Looking at the locations of the firework observations in thevisualisation below certainly seemed to support that as firework related observations were made mostly in North America with a small sample in the United Kingdom. Interestingly, no spikes are observed in January which might suggest New years' celebrations, or in November for Bonfire Night celebrations on the 5th of November in the UK.\\
 
-This gives rise to the idea that plastic pollution while sometimes blamed to be the effect of manufacturing processes, can also be largely driven by the disposable behaviours which humans encourage in these one off-events, where the items are not intended for repeated use. Used once and discarded, sadly finding its way into marine environments.
+This gives rise to the idea that plastic pollution while sometimes blamed to be the effect of manufacturing processes, can also be largely driven by the disposable behaviours which humans encourage in these one off-events. Where the items are not intended for repeated use, used once and discarded, and eventually becoming pollutants in marine environments.
 
 
 \begin{figure}[H] 
@@ -982,9 +931,9 @@ data %>%
 
 \pagebreak
 \section{Predictive Modelling}
-Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to give more accurate predictions of expected pollution levels which can be used as a base model to assess the effectiveness of pollution reducing initiatives introduced.
+Given the variability of plastic pollution trends given event-driven and location-driven pollution as explored earlier in this report, the authors of this report built a model to give more accurate predictions of expected pollution levels which can be used as a base model to assess the effectiveness of pollution reducing initiatives introduced by various organisations.
 
-\subsection{Description of Model}
+\subsection{The Model}
 
 <<>>=
 
@@ -1299,36 +1248,14 @@ time. This could hugely impact a created model especially given that in the data
 
 
 \pagebreak
-\section{Discussion}
+\section{Conclusion and Future Work}
 
-It was noted that the main system for reporting debris was used by large scale clobes. This means that data is not a continuous and even flow so during events such as international beach cleanup day there may be more data in the respective month. Since these events aim mostly to cleanup after big social events extra effort might have been made to retrive entertainment based debris such as fireworks, food packaging and six pack rings.The decrease in cigarette waste was theorised to be in corelation with a decreasing smoking rate however the cigarette waste was not the direct focus of this paper so that avenue of inquiry was not followed.
+As indicated by Jambeck et al.\cite{JAMBECK2015} 4-12 million tons of plastic waste generated worldwide will enter the marine ecosystem every year. Our results shows that there is no change in the percentage of marine debris that were recorded as plastic over time. However the recorded data are not in the same frequency every year and depend on the beach clean upsand national initiatives. Since these events aim mostly to clean-ups after big social events extra effort might have been made to retrieve entertainment based debris such as fireworks, food packaging and six pack rings. Our results confirm the fact that plastic is the most abundant litter in the marine environment globally. Plastic was included in the 68\% of the observations recorded and it made up of over 70\% of the quantity of debris that was recorded. Our results also indicate the successful use of citizen science projects to monitor marine pollution. There are various ways citizen science projects have been used for and here we focused on distribution and composition of marine litter on a global scale. Identifying the amount and type of debris can help in identifying the sources of pollution. This can then aid to find out ways to reduce the source in the first place. Event driven pollution such as fireworks also plays a role in marine pollution and this can be reduced by raising awareness amongst the public and trying to find more sustainable ways of celebrating events. The fact that plastic composition does not change over time is also quite alarming. Although there have been a lot of awareness programmes in the last decades, more needs to be done to see these changes that can reduce the damage done by plastic pollution.  \\
+Future work can include looking at the marine pollution debris in smaller scale by regions. Each region is different and there are various factors that can affect the data observations such as the frequency of data submissions are not at the same time everywhere.  Since MDT is more focused on North America, this opportunity might be used to educate about it in other regions of the world. Although we will never be able to identify the real sources of pollution, it can help in raising awareness of the damage done by plastic pollution in the marine environment and make the public more environmentally conscious. Regulations to discourage single use plastic items and smoking in public places have been enforced in many countries. It would be interesting to look at the effect these are having on the marine debris pollution worldwide. However, more time and data will be required to see the change at a global scale. \\
 
+Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\  
 
-
-
-
-
-\section{Conclusion and Future Work}\label{cdsmote1}
-
-Roshi's text below\\
-4. Conclusion and Future WorkFrom our results and previous literature, it can clearly be seen that plastic is the mostabundant litter in the marine environment globally. Plastic was included in the 68\% of theobservations recorded and it made up of over 70\% of the quantity of debris that was recorded.Our results also indicate the successful use of citizen science projects to monitor marinepollution. There are various ways citizen science projects have been used for and here wefocused on distribution and composition of marine litter on a global scale. Identifying theamount and type of debris can help in identifying the sources of pollution. This can then helpeveryone to find out ways to reduce the source in the first place. We confirm the findings thatplastic is the main polluter in the marine environment and more needs to be done to reducethe plastic waste. Event driven pollution such as fireworks also plays a role in marinepollution and this can be reduced by raising awareness amongst the public and trying to findmore sustainable ways of celebrating events. The fact that plastic composition does notchange over time is also quite alarming. Although there have been a lot of awarenessprogrammes in the last decades, more needs to be done to see these changes that can reducethe damage done by plastic pollution.  \\
-
-Future work can include looking at the marine pollution debris in smaller scale by regions.Each region is different and there are various factors that can affect the data observationssuch as the frequency of data submissions are not at the same time everywhere.  Since MDTis more focused on North America, this opportunity might be used to educate about it in otherregions of the world. Although we will never be able to identify the real sources of pollution,it can help in raising awareness of the damage done by plastic pollution in the marineenvironment and make the public more environmentally conscious. Regulations to discouragesingle used plastic items and smoking in public places have been enforced in many countries.It would be interesting to look at the effect these are having on the marine debris pollutionworldwide. However, more time and data will be required to see the change at a global scale. \\
-
-Lots of beach clean ups and litter collections are done in the beaches worldwide to estimatethe marine pollution. However, the majority (70\%) of the marine debris are not on the surfacebut on the seafloor  (UNEP, 2005).  More research and studies are needed to accuratelyestimate the pollution in our oceans. Although marine pollution is a global issue, more needto be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are   essential for efficient management of marine plasticpollution. \\
-
-\hl{reference: United Nations Environment Programme (2005). Annual Evaluation Report.}
-
-
-%-H0 true
-Our hypothesis stands/does not stand.\\
-The hypothesis H0 stands. This is evidence as to a change in the percentage of marine debris being plastic in origin that can be observed in results such as in figure 4 which shows how the change in plastic quantity mirrors the change in overall debris quantity.  
-Future work might involve continuing to study corelations similar to the fireworks/july corelation that was discussed in section 4.3. Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observtion of cigarette debris which had been observed over the years to see if there is a corollation there which was hypothosised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specific times such as world cleanup day in order to get a more rounded dataset.   \\  
-
-%-H1 true
-Our hypothesis stands/does not stand.\\
-The hypothesis H1 stands. This is evidence as to no change in the percentage of marine debris being plastic in origin that can be observed in results such as in figure 4 which shows how the change in plastic quantity mirrors the change in overall debris quantity.  
-Future work might involve continuing to study corelations similar to the fireworks/july corelation that was discussed in section 4.3. Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observtion of cigarette debris which had been observed over the years to see if there is a corollation there which was hypothosised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specific times such as world cleanup day in order to get a more rounded dataset.\\     
+Lots of beach clean ups and litter collections are done in the beaches worldwide to estimate the marine pollution. However, the majority (70\%) of the marine debris are not on the surface but on the seafloor. More research and studies are needed to accurately estimate the pollution in our oceans. Although marine pollution is a global issue, more needs to be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are   essential for efficient management of marine plastic pollution. \\
 
 
 \pagebreak
@@ -1408,20 +1335,262 @@ print(xtable(dfs,
 
 The \hyperref[tab:two]{Peer Assessment Table} presents the peer and self assement scores for all five of Group 2's members.\\
 
-Alex\\
-
-Georgios: For this project I have searched over initial datasets to be used. I have reviewed literature and contributed in writing down the Research part of the report and in creating and assessing the linear regression models.\\
-
-Karen: acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. \\
-
-Roshi\\
-
-Stuart\\
-
+The tasks of the project was shared justly across the members of the group. Alex Aided in the research of appropriate papers for the project and writing sections for the final report. Georgios sourced for datasets, reviewed literature, wrote for the final report and lead in creating and assessing the linear regression model.Karen acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. Roshi acted as lead for finding relevant literatures for the study, writing sections and editing the final report. Stuart sourced the dataset and lead in the exploratory data analysis, producing visualisations for the final report.\\
 
 
 \pagebreak
 \section*{References}\label{pubs}
 \printbibliography[heading=none]
+
+
+<<results='asis'>>=
+
+
+#```{r}
+dataModel <- list.files(path = "data/debris/", full.names = TRUE) %>%
+  lapply(FUN = read_csv, col_types = "ififidddddcfcif") %>%
+  reduce(rbind)
+dataModel$Time <- data$Timestamp %>%
+  parse_datetime(format = "%Y%m%d%H%M%S")
+dataModel$Timestamp <- NULL
+dataModel <- dataModel %>% select(-ListID,-ListName)
+plastic_ordered <- dataModel %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, Quantity) %>% 
+  group_by(ItemName) %>% 
+  summarise(Total = sum(Quantity)) %>% 
+  arrange(desc(Total))
+dataModel$ItemName <- factor(dataModel$ItemName, plastic_ordered$ItemName)
+recategorise2 <- function(x){
+  out = ""
+  if(x %in% c(1,4,6,22)){out = "Cigarette related waste"}
+  if(x %in% c(2,3,7,9,10,17,23,11)) out = "Food related waste"
+  if(x %in% c(8,14,15,16,18,19,21,20)) out = "Other"
+  if(x %in% c(12,13)) out = "Plastic bags and Styrofoam packaging"
+  if(x %in% c(5,23,24,25)) out = "Fragments"
+  if(out == "") stop(paste("Error in recategorise:", x))
+  return(out)
+}
+plastic_typesModel <- dataModel %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  select(ItemName, ItemID) %>% 
+  distinct() %>% 
+  mutate(label = 1:n()) %>% 
+  mutate(category = purrr::map(label, recategorise2)) %>%
+  mutate(category = as_factor(as.character(category))) %>% 
+  select(ItemID, category)
+plasticModel <- dataModel %>% 
+  filter(`Material Description` == "PLASTIC") %>% 
+  full_join(plastic_types, by = "ItemID")
+plasticN <- plasticModel %>% 
+  mutate(month = month(Time, label = FALSE), 
+         year = as.integer(year(Time))) %>% 
+  filter(year > 2010) %>% 
+  group_by(month, year, category) %>%
+  summarise(`Total Quantity` = sum(Quantity)) %>% 
+  ggplot(aes(x = month, y = `Total Quantity`, fill = category)) +
+    geom_col(colour = "black", size = 0.2, position = "fill") +
+    facet_wrap(~year, nrow = 2) +
+    scale_fill_viridis(discrete = TRUE, option = "plasma") +
+    xlab("Month") +
+    ylab("Proportion of Items") +
+    ggtitle("Rel. frequencies of observed plastic waste by category") +
+    scale_x_continuous(breaks = 1:12) +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) +
+    guides(fill=guide_legend(title="Category"))
+#```
+
+#```{r}
+library(dplyr)
+df12N <- plasticN  %>%
+  filter(year == 2012) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df13N <- plasticN  %>%
+  filter(year == 2013) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df14N <- plasticN  %>%
+  filter(year == 2014) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df15N <- plasticN  %>%
+  filter(year == 2015) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df16N <- plasticN  %>%
+  filter(year == 2016) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df17N <- plasticN  %>%
+  filter(year == 2017) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`))
+df18N <- plasticN  %>%
+  filter(year == 2018) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+df19N <- plasticN  %>%
+  filter(year == 2019) %>% 
+  group_by(year, month) %>%
+  mutate(freq = `Total Quantity` / sum(`Total Quantity`)) 
+dfTotN <- rbind(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
+# plot for observing the data
+(time_plotfr2N <- ggplot(dfTotN, aes(x = year, y = freq, color=category, fill = category)) +
+  geom_smooth(method="lm", level=0.95) +
+  theme_bw() + 
+  xlab("Years") +
+  ylab("relative frequency") +
+  ggtitle("portion of plastic") + 
+  expand_limits(y=0) +
+  scale_y_continuous() + 
+  scale_x_continuous()+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(size=5, face="bold")))
+#```
+
+
+
+#We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and "Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see what is the actual case.
+
+#```{r}
+# create train and test set
+n <- nrow(dfTotN)  # Number of observations
+ntrain <- round(n*0.75)  # 75% for training set
+set.seed(314)    # Set seed for reproducible results
+tindex <- sample(n, ntrain)   # Create a random index
+train_dfTotN <- dfTotN[tindex,]   # Create training set
+test_dfTotN <- dfTotN[-tindex,]
+# modelling for category "Cigarette related waste"
+train_Cigrel <- train_dfTotN %>% 
+  filter(category=="Cigarette related waste") %>% 
+  group_by(year)
+test_Cigrel <- test_dfTotN %>% 
+  filter(category=="Cigarette related waste") %>% 
+  group_by(year)
+set.seed(1234)
+train_Cigrel.modelN <- lm(freq ~ year, data = train_Cigrel)
+summary(train_Cigrel.modelN)
+print("PREDICTION")
+pred_Cigrel <- predict(train_Cigrel.modelN, test_Cigrel)
+summary(pred_Cigrel)
+actuals_predsCigrel <- data.frame(cbind(actuals=test_Cigrel$freq, predicteds=pred_Cigrel)) 
+head(actuals_predsCigrel)
+correlation_accuracy <- cor(actuals_predsCigrel)
+min_max_accuracy <- mean(apply(actuals_predsCigrel, 1, min) / apply(actuals_predsCigrel, 1, max))  
+correlation_accuracy
+min_max_accuracy
+#```
+
+
+#```{r}
+# modelling for category "Food related waste"
+train_Foodrel <- train_dfTotN %>% 
+  filter(category=="Food related waste") %>% 
+  group_by(year)
+test_Foodrel <- test_dfTotN %>% 
+  filter(category=="Food related waste") %>% 
+  group_by(year)
+set.seed(1234)
+train_Foodrel.modelN <- lm(freq ~ year, data = train_Foodrel)
+summary(train_Foodrel.modelN)
+print("PREDICTION")
+pred_Foodrel <- predict(train_Foodrel.modelN, test_Foodrel)
+summary(pred_Foodrel)
+actuals_predsFoodrel <- data.frame(cbind(actuals=test_Foodrel$freq, predicteds=pred_Foodrel)) 
+head(actuals_predsFoodrel)
+correlation_accuracy <- cor(actuals_predsFoodrel)  
+min_max_accuracy <- mean(apply(actuals_predsFoodrel, 1, min) / apply(actuals_predsFoodrel, 1, max))  
+correlation_accuracy
+min_max_accuracy
+#```
+
+
+#```{r}
+# modelling for category "Fragments"
+train_Frag <- train_dfTotN %>% 
+  filter(category=="Fragments") %>% 
+  group_by(year)
+test_Frag <- test_dfTotN %>% 
+  filter(category=="Fragments") %>% 
+  group_by(year)
+set.seed(1234)
+train_Frag.modelN <- lm(freq ~ year, data = train_Frag)
+summary(train_Frag.modelN)
+print("PREDICTION")
+pred_Frag <- predict(train_Frag.modelN, test_Frag)
+summary(pred_Frag)
+actuals_predsFrag <- data.frame(cbind(actuals=test_Frag$freq, predicteds=pred_Frag)) 
+head(actuals_predsFrag)
+correlation_accuracy <- cor(actuals_predsFrag)  
+min_max_accuracy <- mean(apply(actuals_predsFrag, 1, min) / apply(actuals_predsFrag, 1, max))  
+correlation_accuracy
+min_max_accuracy
+#```
+
+
+#```{r}
+# modelling for category "Other"
+train_Other <- train_dfTotN %>% 
+  filter(category=="Other") %>% 
+  group_by(year)
+test_Other <- test_dfTotN %>% 
+  filter(category=="Other") %>% 
+  group_by(year)
+set.seed(1234)
+train_Other.modelN <- lm(freq ~ year, data = train_Other)
+summary(train_Other.modelN)
+print("PREDICTION")
+pred_Other <- predict(train_Other.modelN, test_Other)
+summary(pred_Other)
+actuals_predsOther <- data.frame(cbind(actuals=test_Other$freq, predicteds=pred_Other)) 
+head(actuals_predsOther)
+correlation_accuracy <- cor(actuals_predsOther)  # 5.31%
+min_max_accuracy <- mean(apply(actuals_predsOther, 1, min) / apply(actuals_predsOther, 1, max))  
+correlation_accuracy
+min_max_accuracy
+#```
+
+
+#```{r}
+# modelling for category "Plastic bags and Styrofoam packaging"
+train_Plbag <- train_dfTotN %>% 
+  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+  group_by(year)
+test_Plbag <- test_dfTotN %>% 
+  filter(category=="Plastic bags and Styrofoam packaging") %>% 
+  group_by(year)
+set.seed(1234)
+train_Plbag.modelN <- lm(freq ~ year, data = train_Plbag)
+summary(train_Plbag.modelN)
+print("PREDICTION")
+pred_Plbag <- predict(train_Plbag.modelN, test_Plbag)
+summary(pred_Plbag)
+actuals_predsPlbag <- data.frame(cbind(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
+head(actuals_predsPlbag)
+correlation_accuracy <- cor(actuals_predsPlbag) 
+min_max_accuracy <- mean(apply(actuals_predsPlbag, 1, min) / apply(actuals_predsPlbag, 1, max))  
+correlation_accuracy
+min_max_accuracy
+#```
+
+#```{r}
+plastic_category <-c("cigarette related waste", "food related waste","Fragments", 
+                      "Other","Plastic bags and Styrofoam packaging" )
+slope_scores <- c(-0.063,0.038, 0.034, 0.000, 0.001)
+slope_interpretation <-c("downward", "upward", "upward", "steady", "steady")
+p_value<-c("<0.05","<0.05","<0.05", ">0.05",">0.05")
+adjRsquared <- c(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
+corr_accuracy<-c(0.83, 0.50, 0.41, -0.36,-0.12)
+min_max_Acc<-c(0.78,0.77,0.69, 0.64 ,0.61)
+score_table1 <- data.frame(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
+score_table2 <- data.frame(plastic_category, corr_accuracy, min_max_Acc)
+score_table1
+score_table2
+```
+
+@
+
 
 \end{document}

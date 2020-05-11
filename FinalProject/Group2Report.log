@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  11 MAY 2020 12:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7380 64-bit) (preloaded format=pdflatex 2020.4.7)  11 MAY 2020 14:31
 entering extended mode
 **./Group2Report.tex
 (Group2Report.tex
@@ -1112,9 +1112,6 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 \@quotereset=\count445
  (Group2Report.aux
 
-LaTeX Warning: Label `figE1' multiply defined.
-
-
 LaTeX Warning: Label `figF' multiply defined.
 
 
@@ -1366,197 +1363,251 @@ Package xcolor Warning: Incompatible color definition on input line 372.
 
 Package xcolor Warning: Incompatible color definition on input line 372.
 
-[7]
 
-Package xcolor Warning: Incompatible color definition on input line 413.
+Package xcolor Warning: Incompatible color definition on input line 407.
 
-<figure/unnamed-chunk-9-1.pdf, id=261, 433.62pt x 180.675pt>
+
+Overfull \hbox (54.719pt too wide) in paragraph at lines 414--414
+[]    []\OT1/lmtt/b/n/9 geom_polygon[][]\OT1/lmtt/m/n/9 ([][]data[] []=[] []\OT
+1/lmtt/b/n/9 map_data[][]\OT1/lmtt/m/n/9 ([][]"world"[][]),[] []\OT1/lmtt/b/n/9
+ aes[][]\OT1/lmtt/m/n/9 ([][]x[] []= long,[] []y[] []= lat,[] []group[] []= gro
+up),[] []fill[] []=[] []"grey"[][],[] []alpha[] []=[] []0.5[][])[] []+[][] 
+ []
+
+<figure/unnamed-chunk-9-1.pdf, id=248, 433.62pt x 216.81pt>
 File: figure/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 429.
+Package pdftex.def Info: figure/unnamed-chunk-9-1.pdf  used on input line 426.
+(pdftex.def)             Requested size: 469.75499pt x 234.88904pt.
+[7]
+Overfull \vbox (25.22147pt too high) has occurred while \output is active []
+
+
+[8 <./figure/unnamed-chunk-9-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 443.
+
+<figure/unnamed-chunk-10-1.pdf, id=269, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 461.
+
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[8]
 
-Package xcolor Warning: Incompatible color definition on input line 437.
+Underfull \hbox (badness 10000) in paragraph at lines 469--470
 
-
-Package xcolor Warning: Incompatible color definition on input line 444.
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 444.
-
-
-Package xcolor Warning: Incompatible color definition on input line 451.
+Package xcolor Warning: Incompatible color definition on input line 471.
 
 LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 
-461.
-LaTeX Font Info:    No file OMSlmtt.fd. on input line 461.
+482.
+LaTeX Font Info:    No file OMSlmtt.fd. on input line 482.
 
 LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 461.
+(Font)              for symbol `textbraceleft' on input line 482.
 
 
-Package xcolor Warning: Incompatible color definition on input line 466.
+Package xcolor Warning: Incompatible color definition on input line 487.
 
 
-Package xcolor Warning: Incompatible color definition on input line 466.
+Package xcolor Warning: Incompatible color definition on input line 487.
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 475--475
+Overfull \vbox (0.55644pt too high) detected at line 487
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 487.
+
+[9 <./figure/unnamed-chunk-10-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 487.
+
+
+Package xcolor Warning: Incompatible color definition on input line 487.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 493--493
+[]|\OT1/lmr/m/n/10 Material
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 493--493
+\OT1/lmr/m/n/10 De-scrip-
+ []
+
+
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 496--496
+[]|\OT1/lmr/m/n/10 PLASTIC| 
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 496--496
 \OT1/lmr/m/n/10 over the course of 116 non con-sec-u-tive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--477
-[]|\OT1/lmr/m/n/10 Plastic or
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 497--497
+[]|\OT1/lmr/m/n/10 PLASTIC| 
  []
 
 
-Underfull \hbox (badness 6204) in paragraph at lines 477--477
-\OT1/lmr/m/n/10 Foam Frag-
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 498--498
+[]|\OT1/lmr/m/n/10 PLASTIC| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 483--483
-[]|\OT1/lmr/m/n/10 Plastic or
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 499--499
+[]|\OT1/lmr/m/n/10 PLASTIC| 
  []
 
 
-Underfull \hbox (badness 6204) in paragraph at lines 483--483
-\OT1/lmr/m/n/10 Foam Frag-
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 500--500
+[]|\OT1/lmr/m/n/10 PLASTIC| 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 489.
-
-[9 <./figure/unnamed-chunk-9-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 492.
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 501--501
+[]|\OT1/lmr/m/n/10 PLASTIC| 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 492.
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 502--502
+[]|\OT1/lmr/m/n/10 PLASTIC| 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 493.
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 503--503
+[]|\OT1/lmr/m/n/10 PLASTIC| 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 496.
+Overfull \hbox (1.48686pt too wide) in paragraph at lines 504--504
+[]|\OT1/lmr/m/n/10 PLASTIC| 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 496.
+Package xcolor Warning: Incompatible color definition on input line 512.
 
 
-Package xcolor Warning: Incompatible color definition on input line 497.
+Overfull \hbox (60.49347pt too wide) in paragraph at lines 520--520
+[]       []\OT1/lmtt/m/n/10 ObservationProportion[] []=[] []\OT1/lmtt/b/n/10 c[
+][]\OT1/lmtt/m/n/10 ([][]\OT1/lmtt/b/n/10 percent_quantity[][]\OT1/lmtt/m/n/10 
+([][]1[][]),[][]\OT1/lmtt/b/n/10 percent_quantity[][]\OT1/lmtt/m/n/10 ([][]10[]
+[]),[][]\OT1/lmtt/b/n/10 percent_quantity[][]\OT1/lmtt/m/n/10 ([][]100[][])))[]
+ []%>%[][] 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 500.
+Overfull \hbox (18.49359pt too wide) in paragraph at lines 521--521
+[]  []\OT1/lmtt/b/n/10 xtable[][]\OT1/lmtt/m/n/10 ([][]caption[] []=[] []"Propo
+rtion of observation having equal or less than the stated Quantity"[][],[][] 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 500.
-
-[10]
-
-Package xcolor Warning: Incompatible color definition on input line 510.
+Package xcolor Warning: Incompatible color definition on input line 528.
 
 
-Package xcolor Warning: Incompatible color definition on input line 523.
+Package xcolor Warning: Incompatible color definition on input line 528.
+
+[10] [11]
+
+Package xcolor Warning: Incompatible color definition on input line 553.
 
 
-Package xcolor Warning: Incompatible color definition on input line 523.
+Package xcolor Warning: Incompatible color definition on input line 566.
 
 
-Package xcolor Warning: Incompatible color definition on input line 550.
+Package xcolor Warning: Incompatible color definition on input line 566.
 
 
-Package xcolor Warning: Incompatible color definition on input line 572.
-
-[11]
-
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 593.
 
 
-Package xcolor Warning: Incompatible color definition on input line 586.
+Package xcolor Warning: Incompatible color definition on input line 615.
 
-
-Package xcolor Warning: Incompatible color definition on input line 601.
-
-
-Package xcolor Warning: Incompatible color definition on input line 613.
-
-
-Package xcolor Warning: Incompatible color definition on input line 613.
-
-
-Package xcolor Warning: Incompatible color definition on input line 649.
-
-<figure/unnamed-chunk-14-1.pdf, id=290, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-14-1.pdf  used on input line 665.
-
-(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 673--674
 
- []
-
-[13 <./figure/unnamed-chunk-14-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 679--680
-
- []
+Package xcolor Warning: Incompatible color definition on input line 629.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 681--682
-
- []
+Package xcolor Warning: Incompatible color definition on input line 629.
 
 
-Package xcolor Warning: Incompatible color definition on input line 697.
+Package xcolor Warning: Incompatible color definition on input line 644.
 
 
-Package xcolor Warning: Incompatible color definition on input line 748.
-
-<figure/unnamed-chunk-18-1.pdf, id=309, 433.62pt x 289.08pt>
-File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-18-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-18-1.pdf  used on input line 769.
-
-(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
-[14] [15 <./figure/unnamed-chunk-18-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 801--802
-
- []
+Package xcolor Warning: Incompatible color definition on input line 656.
 
 
-Package xcolor Warning: Incompatible color definition on input line 806.
+Package xcolor Warning: Incompatible color definition on input line 656.
 
-<figure/unnamed-chunk-19-1.pdf, id=326, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-19-1.pdf  used on input line 819.
+
+Package xcolor Warning: Incompatible color definition on input line 692.
+
+<figure/unnamed-chunk-16-1.pdf, id=299, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-16-1.pdf  used on input line 708.
 
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 716--717
 
-Underfull \hbox (badness 10000) in paragraph at lines 827--828
+ []
+
+[14 <./figure/unnamed-chunk-16-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 722--723
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 835.
+Underfull \hbox (badness 10000) in paragraph at lines 724--725
 
-<figure/unnamed-chunk-20-1.pdf, id=327, 433.62pt x 180.675pt>
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 740.
+
+
+Package xcolor Warning: Incompatible color definition on input line 755.
+
+
+Package xcolor Warning: Incompatible color definition on input line 787.
+
+<figure/unnamed-chunk-20-1.pdf, id=318, 433.62pt x 289.08pt>
 File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-20-1.pdf  used on input line 852.
+Package pdftex.def Info: figure/unnamed-chunk-20-1.pdf  used on input line 808.
+
+(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
+[15] [16 <./figure/unnamed-chunk-20-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 840--841
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 845.
+
+<figure/unnamed-chunk-21-1.pdf, id=335, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-21-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-21-1.pdf  used on input line 858.
 
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[16 <./figure/unnamed-chunk-19-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 863.
+Underfull \hbox (badness 10000) in paragraph at lines 866--867
+
+ []
 
 
-Overfull \hbox (198.03122pt too wide) in paragraph at lines 868--868
+Package xcolor Warning: Incompatible color definition on input line 874.
+
+
+Overfull \hbox (198.03122pt too wide) in paragraph at lines 879--879
 []  []\OT1/lmtt/b/n/9 full_join[][]\OT1/lmtt/m/n/9 ([][]\OT1/lmtt/b/n/9 tibble[
 ][]\OT1/lmtt/m/n/9 ([][]Date[] []=[] []\OT1/lmtt/b/n/9 full_seq[][]\OT1/lmtt/m/
 n/9 ([][]\OT1/lmtt/b/n/9 c[][]\OT1/lmtt/m/n/9 ([][]\OT1/lmtt/b/n/9 min[][]\OT1/
@@ -1566,170 +1617,143 @@ t/m/n/9 (data[][]$[][]Time))),[] []period[] []=[] []1[][])),[] []by[] []=[] []"
 Date"[][])[] []%>%[] []\OT1/lmtt/m/it/9 # Check for any missing days[][] 
  []
 
-<figure/unnamed-chunk-21-1.pdf, id=338, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-21-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-21-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-21-1.pdf  used on input line 887.
-
-(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[17 <./figure/unnamed-chunk-20-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 895--896
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 897--898
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 903.
-
-<figure/unnamed-chunk-22-1.pdf, id=349, 433.62pt x 180.675pt>
+<figure/unnamed-chunk-22-1.pdf, id=336, 433.62pt x 180.675pt>
 File: figure/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-22-1.pdf  used on input line 923.
+Package pdftex.def Info: figure/unnamed-chunk-22-1.pdf  used on input line 898.
 
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[18 <./figure/unnamed-chunk-21-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 939.
-
-<figure/unnamed-chunk-23-1.pdf, id=361, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-23-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-23-1.pdf  used on input line 959.
-
-(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[19 <./figure/unnamed-chunk-22-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 967--968
+[17 <./figure/unnamed-chunk-21-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 906--907
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 972.
+Underfull \hbox (badness 10000) in paragraph at lines 908--909
 
-<figure/unnamed-chunk-24-1.pdf, id=373, 433.62pt x 289.08pt>
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 914.
+
+<figure/unnamed-chunk-23-1.pdf, id=347, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-23-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-23-1.pdf  used on input line 934.
+
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[18 <./figure/unnamed-chunk-22-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 950.
+
+<figure/unnamed-chunk-24-1.pdf, id=359, 433.62pt x 180.675pt>
 File: figure/unnamed-chunk-24-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-24-1.pdf  used on input line 989.
+Package pdftex.def Info: figure/unnamed-chunk-24-1.pdf  used on input line 970.
 
-(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
-[20 <./figure/unnamed-chunk-23-1.pdf>]
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[19 <./figure/unnamed-chunk-23-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 978--979
 
-Package xcolor Warning: Incompatible color definition on input line 1000.
+ []
 
-<figure/unnamed-chunk-25-1.pdf, id=384, 433.62pt x 180.675pt>
+
+Package xcolor Warning: Incompatible color definition on input line 983.
+
+<figure/unnamed-chunk-25-1.pdf, id=370, 433.62pt x 289.08pt>
 File: figure/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-25-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-25-1.pdf  used on input line 1019
+Package pdftex.def Info: figure/unnamed-chunk-25-1.pdf  used on input line 1000
 .
-(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[21 <./figure/unnamed-chunk-24-1.pdf>]
+(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
+[20 <./figure/unnamed-chunk-24-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1030.
+Package xcolor Warning: Incompatible color definition on input line 1011.
 
-<figure/unnamed-chunk-26-1.pdf, id=395, 433.62pt x 433.62pt>
+<figure/unnamed-chunk-26-1.pdf, id=381, 433.62pt x 180.675pt>
 File: figure/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-26-1.pdf  used on input line 1049
+Package pdftex.def Info: figure/unnamed-chunk-26-1.pdf  used on input line 1030
+.
+(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[21 <./figure/unnamed-chunk-25-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1041.
+
+<figure/unnamed-chunk-27-1.pdf, id=392, 433.62pt x 433.62pt>
+File: figure/unnamed-chunk-27-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-27-1.pdf  used on input line 1060
 .
 (pdftex.def)             Requested size: 469.75499pt x 469.7781pt.
-[22 <./figure/unnamed-chunk-25-1.pdf>]
+[22 <./figure/unnamed-chunk-26-1.pdf>]
 Overfull \vbox (28.59811pt too high) has occurred while \output is active []
 
 
-[23 <./figure/unnamed-chunk-26-1.pdf>] [24]
+[23 <./figure/unnamed-chunk-27-1.pdf>] [24]
 
-Package xcolor Warning: Incompatible color definition on input line 1067.
+Package xcolor Warning: Incompatible color definition on input line 1078.
 
-<figure/unnamed-chunk-27-1.pdf, id=420, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-27-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-27-1.pdf  used on input line 1082
+<figure/unnamed-chunk-28-1.pdf, id=417, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-28-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-28-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-28-1.pdf  used on input line 1093
 .
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1099.
+Package xcolor Warning: Incompatible color definition on input line 1110.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1123.
+Package xcolor Warning: Incompatible color definition on input line 1134.
 
-<figure/unnamed-chunk-29-1.pdf, id=421, 433.62pt x 289.08pt>
-File: figure/unnamed-chunk-29-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-29-1.pdf  used on input line 1143
-.
-(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
-[25 <./figure/unnamed-chunk-27-1.pdf>] [26 <./figure/unnamed-chunk-29-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 1163.
-
-
-Overfull \hbox (54.719pt too wide) in paragraph at lines 1170--1170
-[]    []\OT1/lmtt/b/n/9 geom_polygon[][]\OT1/lmtt/m/n/9 ([][]data[] []=[] []\OT
-1/lmtt/b/n/9 map_data[][]\OT1/lmtt/m/n/9 ([][]"world"[][]),[] []\OT1/lmtt/b/n/9
- aes[][]\OT1/lmtt/m/n/9 ([][]x[] []= long,[] []y[] []= lat,[] []group[] []= gro
-up),[] []fill[] []=[] []"grey"[][],[] []alpha[] []=[] []0.5[][])[] []+[][] 
- []
-
-<figure/unnamed-chunk-30-1.pdf, id=446, 433.62pt x 216.81pt>
+<figure/unnamed-chunk-30-1.pdf, id=418, 433.62pt x 289.08pt>
 File: figure/unnamed-chunk-30-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-30-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-30-1.pdf  used on input line 1182
+Package pdftex.def Info: figure/unnamed-chunk-30-1.pdf  used on input line 1154
 .
-(pdftex.def)             Requested size: 469.75499pt x 234.88904pt.
+(pdftex.def)             Requested size: 469.75499pt x 313.1854pt.
+[25 <./figure/unnamed-chunk-28-1.pdf>] [26 <./figure/unnamed-chunk-30-1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1170--1171
 
-Package xcolor Warning: Incompatible color definition on input line 1190.
+ []
 
-<figure/unnamed-chunk-31-1.pdf, id=447, 433.62pt x 180.675pt>
+
+Package xcolor Warning: Incompatible color definition on input line 1175.
+
+<figure/unnamed-chunk-31-1.pdf, id=443, 433.62pt x 180.675pt>
 File: figure/unnamed-chunk-31-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-31-1.pdf  used on input line 1216
+Package pdftex.def Info: figure/unnamed-chunk-31-1.pdf  used on input line 1196
 .
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-[27 <./figure/unnamed-chunk-30-1.pdf>] [28 <./figure/unnamed-chunk-31-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1228--1229
+
+Underfull \hbox (badness 10000) in paragraph at lines 1204--1205
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1233.
-
-<figure/unnamed-chunk-32-1.pdf, id=469, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-32-1.pdf  used on input line 1254
-.
-(pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1262--1263
-
- []
+Package xcolor Warning: Incompatible color definition on input line 1212.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1270.
-
-
-Overfull \hbox (54.719pt too wide) in paragraph at lines 1277--1277
+Overfull \hbox (54.719pt too wide) in paragraph at lines 1219--1219
 []    []\OT1/lmtt/b/n/9 geom_polygon[][]\OT1/lmtt/m/n/9 ([][]data[] []=[] []\OT
 1/lmtt/b/n/9 map_data[][]\OT1/lmtt/m/n/9 ([][]"world"[][]),[] []\OT1/lmtt/b/n/9
  aes[][]\OT1/lmtt/m/n/9 ([][]x[] []= long,[] []y[] []= lat,[] []group[] []= gro
 up),[] []fill[] []=[] []"grey"[][],[] []alpha[] []=[] []0.5[][])[] []+[][] 
  []
 
-<figure/unnamed-chunk-33-1.pdf, id=470, 433.62pt x 216.81pt>
-File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-33-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-33-1.pdf  used on input line 1288
+<figure/unnamed-chunk-32-1.pdf, id=444, 433.62pt x 216.81pt>
+File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-32-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-32-1.pdf  used on input line 1230
 .
 (pdftex.def)             Requested size: 469.75499pt x 234.88904pt.
-[29 <./figure/unnamed-chunk-32-1.pdf>] [30 <./figure/unnamed-chunk-33-1.pdf>]
+[27 <./figure/unnamed-chunk-31-1.pdf>] [28 <./figure/unnamed-chunk-32-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1306.
+Package xcolor Warning: Incompatible color definition on input line 1248.
 
 
-Overfull \hbox (78.34395pt too wide) in paragraph at lines 1309--1309
+Overfull \hbox (78.34395pt too wide) in paragraph at lines 1251--1251
 []  []\OT1/lmtt/b/n/9 mutate[][]\OT1/lmtt/m/n/9 ([][]month[] []=[] []\OT1/lmtt/
 b/n/9 month[][]\OT1/lmtt/m/n/9 (Time,[] []label[] []=[] []FALSE[][]),[] []year[
 ] []=[] []\OT1/lmtt/b/n/9 as.integer[][]\OT1/lmtt/m/n/9 ([][]\OT1/lmtt/b/n/9 ye
@@ -1738,315 +1762,457 @@ tt/m/n/9 (year, category, month)[] []%>%[][]
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1362.
+Package xcolor Warning: Incompatible color definition on input line 1304.
 
-<figure/unnamed-chunk-35-1.pdf, id=493, 433.62pt x 180.675pt>
-File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-35-1.pdf>
-Package pdftex.def Info: figure/unnamed-chunk-35-1.pdf  used on input line 1377
+<figure/unnamed-chunk-34-1.pdf, id=467, 433.62pt x 180.675pt>
+File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-34-1.pdf>
+Package pdftex.def Info: figure/unnamed-chunk-34-1.pdf  used on input line 1319
 .
 (pdftex.def)             Requested size: 469.75499pt x 195.74086pt.
+[29]
+
+Package xcolor Warning: Incompatible color definition on input line 1331.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1345.
+
+[30 <./figure/unnamed-chunk-34-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1416.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1433.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1441.
+
 [31]
 
-Package xcolor Warning: Incompatible color definition on input line 1389.
+Package xcolor Warning: Incompatible color definition on input line 1512.
+
+[32]
+
+Package xcolor Warning: Incompatible color definition on input line 1516.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1403.
-
-[32 <./figure/unnamed-chunk-35-1.pdf>]
-
-Package xcolor Warning: Incompatible color definition on input line 1474.
+Package xcolor Warning: Incompatible color definition on input line 1516.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1478.
+Package xcolor Warning: Incompatible color definition on input line 1529.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1478.
+Package xcolor Warning: Incompatible color definition on input line 1532.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1491.
+Package xcolor Warning: Incompatible color definition on input line 1532.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1494.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1494.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1499.
+Package xcolor Warning: Incompatible color definition on input line 1537.
 
 [33]
 
-Package xcolor Warning: Incompatible color definition on input line 1570.
+Package xcolor Warning: Incompatible color definition on input line 1607.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1611.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1611.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1624.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1627.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1627.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1632.
 
 [34]
 
-Package xcolor Warning: Incompatible color definition on input line 1574.
+Package xcolor Warning: Incompatible color definition on input line 1700.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1574.
+Package xcolor Warning: Incompatible color definition on input line 1704.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1587.
+Package xcolor Warning: Incompatible color definition on input line 1704.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1590.
+Package xcolor Warning: Incompatible color definition on input line 1717.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1590.
+Package xcolor Warning: Incompatible color definition on input line 1720.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1595.
+Package xcolor Warning: Incompatible color definition on input line 1720.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1725.
 
 [35]
 
-Package xcolor Warning: Incompatible color definition on input line 1665.
+Package xcolor Warning: Incompatible color definition on input line 1793.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1669.
+Package xcolor Warning: Incompatible color definition on input line 1797.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1669.
+Package xcolor Warning: Incompatible color definition on input line 1797.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1682.
+Package xcolor Warning: Incompatible color definition on input line 1810.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1685.
+Package xcolor Warning: Incompatible color definition on input line 1813.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1685.
+Package xcolor Warning: Incompatible color definition on input line 1813.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1690.
-
-[36]
-
-Package xcolor Warning: Incompatible color definition on input line 1760.
+Package xcolor Warning: Incompatible color definition on input line 1818.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1764.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1764.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1777.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1780.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1780.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1785.
-
-[37]
-
-Package xcolor Warning: Incompatible color definition on input line 1855.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1859.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1859.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1872.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1875.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1875.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1880.
-
-
-Overfull \hbox (7.46909pt too wide) in paragraph at lines 1892--1892
+Overfull \hbox (7.46909pt too wide) in paragraph at lines 1830--1830
 [][]\OT1/lmtt/m/n/9 score_table1[] []<-[] []\OT1/lmtt/b/n/9 data.frame[][]\OT1/
 lmtt/m/n/9 (plastic_category, p_value,slope_scores, slope_interpretation, adjRs
 quared)[][] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1899.
+Package xcolor Warning: Incompatible color definition on input line 1837.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1903.
+Package xcolor Warning: Incompatible color definition on input line 1841.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1903.
+Package xcolor Warning: Incompatible color definition on input line 1841.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1919.
+Package xcolor Warning: Incompatible color definition on input line 1857.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1860.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1860.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1881--1882
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1883--1884
+
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1888
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1889--1891
+
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1894.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1904--1906
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1908--1909
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1910--1911
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1912--1914
+
+ []
+
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 1915--1916
+
+ []
 
 [38]
-
-Package xcolor Warning: Incompatible color definition on input line 1922.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1922.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1943--1944
+Underfull \hbox (badness 10000) in paragraph at lines 1935--1937
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1945--1946
+Underfull \hbox (badness 10000) in paragraph at lines 1938--1939
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1947--1950
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1951--1953
-
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 1956.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1966--1968
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1970--1971
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1972--1973
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1941
 
  []
 
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 1974--1976
+Underfull \hbox (badness 10000) in paragraph at lines 1946--1947
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1977--1978
-
- []
-
-[40]
-Underfull \hbox (badness 10000) in paragraph at lines 2006--2008
+Underfull \hbox (badness 10000) in paragraph at lines 1948--1949
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2009--2010
+Underfull \hbox (badness 10000) in paragraph at lines 1950--1951
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2011--2012
+Underfull \hbox (badness 10000) in paragraph at lines 1955--1956
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2017--2020
-
- []
-
-[41]
-Underfull \hbox (badness 10000) in paragraph at lines 2022--2025
-
- []
-
-[42]
-Underfull \hbox (badness 10000) in paragraph at lines 2030--2031
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2032--2033
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2034--2035
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2039--2040
-
- []
-
-
-Underfull \hbox (badness 1205) in paragraph at lines 2051--2051
+Underfull \hbox (badness 1205) in paragraph at lines 1967--1967
 []|\OT1/lmr/m/n/10 Group For-ma-tion: set up com-mu-ni-ca-tion
  []
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 2052--2052
+Underfull \hbox (badness 2213) in paragraph at lines 1968--1968
 []|\OT1/lmr/m/n/10 Agreed topic of "Plas-tic Pol-lu-tion", dis-
  []
 
 
-Underfull \hbox (badness 1527) in paragraph at lines 2066--2066
+Underfull \hbox (badness 1527) in paragraph at lines 1982--1982
 []|\OT1/lmr/m/n/10 Reviewed course-work guide-lines to en-sure
  []
 
 
-Overfull \hbox (31.92854pt too wide) in paragraph at lines 2047--2071
+Overfull \hbox (31.92854pt too wide) in paragraph at lines 1963--1987
  [][] 
  []
 
-[43]
-Underfull \hbox (badness 10000) in paragraph at lines 2100--2101
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 2016--2017
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2102--2103
+Underfull \hbox (badness 10000) in paragraph at lines 2018--2019
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2104--2105
-
- []
-
-[44]
-Underfull \hbox (badness 10000) in paragraph at lines 2106--2107
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2108--2109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2111
-
- []
-
-[45] [46]
+[41] [42] [43]
 
 Package biblatex Warning: No driver for entry type ''.
-(biblatex)                Using fallback driver on input line 2116.
+(biblatex)                Using fallback driver on input line 2023.
 
-[47] [48]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2118.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2118.
+[44]
+
+Package xcolor Warning: Incompatible color definition on input line 2026.
+
+
+LaTeX Font Warning: Font shape `OMS/lmtt/m/it' undefined
+(Font)              using `OMS/lmtt/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 2030.
+
+
+Overfull \hbox (13.2436pt too wide) in paragraph at lines 2121--2121
+[]\OT1/lmtt/m/n/10 (time_plotfr2N <- []\OT1/lmtt/b/n/10 ggplot[]\OT1/lmtt/m/n/1
+0 (dfTotN, []\OT1/lmtt/b/n/10 aes[]\OT1/lmtt/m/n/10 (x = year, y = freq, color=
+category, fill = category)) +[] 
+ []
+
+
+Overfull \hbox (1789.47456pt too wide) in paragraph at lines 2136--2136
+[][]\OT1/lmtt/m/it/10 #We see here a graphical representation of the relative f
+requency of the 5 different categories of plastic debris over the years. The hi
+nt we are getting here is that "Cigarette realted waste, "Food related waste", 
+"Fragments" seem to experiance some change, whereas "Other" and "Plastic bags a
+nd styrofoam packaging" seem to remain steady. We go on and create a model and 
+test it on untrained data to see what is the actual case.[][] 
+ []
+
+
+Overfull \hbox (2.74364pt too wide) in paragraph at lines 2159--2159
+[]\OT1/lmtt/m/n/10 actuals_predsCigrel <- []\OT1/lmtt/b/n/10 data.frame[]\OT1/l
+mtt/m/n/10 ([]\OT1/lmtt/b/n/10 cbind[]\OT1/lmtt/m/n/10 (actuals=test_Cigrel$fre
+q, predicteds=pred_Cigrel))[] 
+ []
+
+
+Overfull \hbox (39.49353pt too wide) in paragraph at lines 2162--2162
+[]\OT1/lmtt/m/n/10 min_max_accuracy <- []\OT1/lmtt/b/n/10 mean[]\OT1/lmtt/m/n/1
+0 ([]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsCigrel, 1, min) / [
+]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsCigrel, 1, max))[] 
+ []
+
+
+Overfull \hbox (18.49359pt too wide) in paragraph at lines 2182--2182
+[]\OT1/lmtt/m/n/10 actuals_predsFoodrel <- []\OT1/lmtt/b/n/10 data.frame[]\OT1/
+lmtt/m/n/10 ([]\OT1/lmtt/b/n/10 cbind[]\OT1/lmtt/m/n/10 (actuals=test_Foodrel$f
+req, predicteds=pred_Foodrel))[] 
+ []
+
+
+Overfull \hbox (49.9935pt too wide) in paragraph at lines 2185--2185
+[]\OT1/lmtt/m/n/10 min_max_accuracy <- []\OT1/lmtt/b/n/10 mean[]\OT1/lmtt/m/n/1
+0 ([]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsFoodrel, 1, min) / 
+[]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsFoodrel, 1, max))[] 
+ []
+
+
+Overfull \hbox (18.49359pt too wide) in paragraph at lines 2208--2208
+[]\OT1/lmtt/m/n/10 min_max_accuracy <- []\OT1/lmtt/b/n/10 mean[]\OT1/lmtt/m/n/1
+0 ([]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsFrag, 1, min) / []\
+OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsFrag, 1, max))[] 
+ []
+
+
+Overfull \hbox (28.99356pt too wide) in paragraph at lines 2231--2231
+[]\OT1/lmtt/m/n/10 min_max_accuracy <- []\OT1/lmtt/b/n/10 mean[]\OT1/lmtt/m/n/1
+0 ([]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsOther, 1, min) / []
+\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsOther, 1, max))[] 
+ []
+
+
+Overfull \hbox (28.99356pt too wide) in paragraph at lines 2254--2254
+[]\OT1/lmtt/m/n/10 min_max_accuracy <- []\OT1/lmtt/b/n/10 mean[]\OT1/lmtt/m/n/1
+0 ([]\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsPlbag, 1, min) / []
+\OT1/lmtt/b/n/10 apply[]\OT1/lmtt/m/n/10 (actuals_predsPlbag, 1, max))[] 
+ []
+
+
+Overfull \hbox (60.49347pt too wide) in paragraph at lines 2268--2268
+[]\OT1/lmtt/m/n/10 score_table1 <- []\OT1/lmtt/b/n/10 data.frame[]\OT1/lmtt/m/n
+/10 (plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
+[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[45]
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[46]
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[47]
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[48]
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 2276
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[49]
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2276.
+
+[50]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2279.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2279.
  (Group2Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2118.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2118.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2279.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2279.
 
 Package rerunfilecheck Info: File `Group2Report.out' has not changed.
-(rerunfilecheck)             Checksum: B2E818FCB4088C4D12EC82DB489A05B7;1601.
+(rerunfilecheck)             Checksum: 8D1D82CFF0CDABBB6111BB073147B498;1469.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2057,22 +2223,22 @@ LaTeX Warning: There were multiply-defined labels.
 Package logreq Info: Writing requests to 'Group2Report.run.xml'.
 \openout1 = `Group2Report.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2118.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2279.
  ) 
 Here is how much of TeX's memory you used:
- 27360 strings out of 480931
- 531507 string characters out of 2899796
- 1237529 words of memory out of 3000000
- 42542 multiletter control sequences out of 15000+200000
- 579828 words of font info for 61 fonts, out of 3000000 for 9000
+ 27348 strings out of 480931
+ 531063 string characters out of 2899796
+ 1259683 words of memory out of 3000000
+ 42531 multiletter control sequences out of 15000+200000
+ 580135 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,10n,96p,1692b,1339s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmsc.
-enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.
-enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
-hsy.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm
--mathit.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
-m/lm-ts1.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
+ 68i,10n,96p,1790b,1339s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.e
+nc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmsc
+.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm
+.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ma
+thsy.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-mathit.enc}{C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
 lm/lm-rmtt.enc}<C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/kalyj/AppData/Local/Programs/
@@ -2091,9 +2257,9 @@ fb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt
 10.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
 lmtt9.pfb><C:/Users/kalyj/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 lm/lmtti10.pfb>
-Output written on Group2Report.pdf (48 pages, 1547116 bytes).
+Output written on Group2Report.pdf (50 pages, 1540986 bytes).
 PDF statistics:
- 765 PDF objects out of 1000 (max. 8388607)
+ 759 PDF objects out of 1000 (max. 8388607)
  147 named destinations out of 1000 (max. 500000)
- 407 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 381 words of extra memory for PDF output out of 10000 (max. 10000000)
 
