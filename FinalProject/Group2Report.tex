@@ -370,7 +370,7 @@ Assessing the dataset for unique items it was observed that there are 8 material
          \hlkwc{table.placement} \hlstd{=} \hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:34 2020
+% Mon May 11 15:32:20 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlr}
@@ -411,7 +411,9 @@ It is difficult to determine exactly how many global locations are observed in t
 \hlstd{data} \hlopt{%>%}
   \hlkwd{select}\hlstd{(Latitude, Longitude)} \hlopt{%>%}
   \hlkwd{ggplot}\hlstd{()} \hlopt{+}
-    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),}
+                 \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),}
+                 \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
     \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude),} \hlkwc{bins} \hlstd{=} \hlnum{50}\hlstd{)} \hlopt{+}
     \hlkwd{scale_fill_viridis}\hlstd{(}\hlkwc{trans} \hlstd{=} \hlstr{"log"}\hlstd{,} \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{50}\hlstd{,} \hlnum{500}\hlstd{,} \hlnum{5000}\hlstd{,} \hlnum{50000}\hlstd{))} \hlopt{+}
     \hlkwd{theme_void}\hlstd{()} \hlopt{+}
@@ -485,7 +487,7 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
          \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:58 2020
+% Mon May 11 15:32:38 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{lp{1.5cm}p{2.5cm}lp{7cm}l}
@@ -517,8 +519,11 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
                             \hlopt{/}\hlkwd{length}\hlstd{(data}\hlopt{$}\hlstd{Quantity)}\hlopt{*}\hlnum{100}\hlstd{,} \hlkwc{digits} \hlstd{=} \hlnum{4}\hlstd{),} \hlstr{"%"}\hlstd{)\}}
 
 \hlkwd{tibble}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"<=1"}\hlstd{,}\hlstr{"<=10"}\hlstd{,}\hlstr{"<=100"}\hlstd{),}
-       \hlkwc{ObservationProportion} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{percent_quantity}\hlstd{(}\hlnum{1}\hlstd{),}\hlkwd{percent_quantity}\hlstd{(}\hlnum{10}\hlstd{),}\hlkwd{percent_quantity}\hlstd{(}\hlnum{100}\hlstd{)))} \hlopt{%>%}
-  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=} \hlstr{"Proportion of observation having equal or less than the stated Quantity"}\hlstd{,}
+       \hlkwc{ObservationProportion} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{percent_quantity}\hlstd{(}\hlnum{1}\hlstd{),}
+                                 \hlkwd{percent_quantity}\hlstd{(}\hlnum{10}\hlstd{),}
+                                 \hlkwd{percent_quantity}\hlstd{(}\hlnum{100}\hlstd{)))} \hlopt{%>%}
+  \hlkwd{xtable}\hlstd{(}\hlkwc{caption} \hlstd{=}
+           \hlstr{"Proportion of observation having equal or less than the stated Quantity"}\hlstd{,}
          \hlkwc{label} \hlstd{=} \hlstr{"tab:pquantities"}\hlstd{,}
          \hlkwc{caption.placement} \hlstd{=} \hlstr{"top"}\hlstd{,}
          \hlkwc{floating}\hlstd{=}\hlnum{TRUE}\hlstd{,}
@@ -526,7 +531,7 @@ In exploring the dataset, it was noted that there was a highly skewed distributi
          \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:59 2020
+% Mon May 11 15:32:39 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rll}
@@ -564,7 +569,7 @@ It is worth noting that of the 8 material categories, one is an "Other" category
          \hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:59 2020
+% Mon May 11 15:32:39 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rl}
@@ -627,7 +632,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
          \hlkwc{table.placement}\hlstd{=}\hlstr{"h"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:59 2020
+% Mon May 11 15:32:39 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlr}
@@ -654,7 +659,7 @@ Further investigation into the categorisation of Rubber Gloves revealed that the
          \hlkwc{table.placement}\hlstd{=}\hlstr{"h"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:29:59 2020
+% Mon May 11 15:32:39 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
@@ -721,19 +726,17 @@ However when the Rubber Glove categorisation was considered over time, it became
 
 The \textbf{ItemName} subcategories of the Plastic type were recategorised following the CCI protocol to allow for consistency and comparability across studies as has been discussed in \hyperref[research]{Section 2}.\\
 
-\hl{show original categories?}\\
+25 \textbf{ItemNames} were recategorised as below:
+\begin{itemize}
+\item "Cigarettes", "Cigarette or tobacco packaging" and "Cigar Tips" as: Cigarette related waste
+\item "Straws", "Bottle or Container Caps", "Food Wrappers", "Beverage Bottles", "Foam or Plastic Cups", "Six-pack rings", "Hard plastic fragments" and "Plastic utensils" as: Food related waste
+\item "Toys (plastic", "Ballons - Mylar", "Personal care products", "Other jugs or Containers", "Fireworks", "Chemicals and chemical containers", "Non-food related plastic packaging" and "Rubber Gloves" as: Non food related waste
+\item "Plastic Bags" and "Styrofoam packaging" as: Plastic bags and Styrofoam packaging
+\item "Plastic or Foam Fragments", "Hard plastic fragments", "Foam fragments" and "Film Fragments" as: Fragments
+\end{itemize}
 
 
 
-
-
-\begin{figure}[H] 
-\begin{center}
-
-\caption {Debris by categorisation}
-\label{figE}
-\end {center}
-\end {figure}
 
 
 \begin{knitrout}\small
@@ -747,12 +750,6 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 \hlcom{# Plastic bags and Styrofoam packaging:12, 13}
 \hlcom{# Fragments: 5, 23, 24,25}
 
-\hlstd{plastic} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(ItemID, ItemName, category)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'plastic' not found}}\begin{alltt}
 \hlstd{recategorise} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
   \hlstd{out} \hlkwb{=} \hlstr{""}
   \hlkwa{if}\hlstd{(x} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,}\hlnum{15}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{22}\hlstd{))\{out} \hlkwb{=} \hlstr{"Cigarette related waste"}\hlstd{\}}
@@ -805,7 +802,7 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Category"}\hlstd{))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-19-1} 
 
 \end{knitrout}
 \caption {Relative frequencies of observed plastic waste by category}
@@ -814,7 +811,7 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 \end {figure}
 
 
-
+These charts display the proportion of plastic debris using the new categories, and in having a smaller variety of categories makes it easier to identify changes over the period.
 
 
 
@@ -839,6 +836,10 @@ The \textbf{ItemName} subcategories of the Plastic type were recategorised follo
 % The key variable in this section is TIME (Years, Months)
 After cleaning and recategorisation of the data, it was analysed to determine how pollutant proportions change over time.\\
 
+
+
+Per the data, an increase can be seen in debris observed over time. However, caution must be exercised in interpreting this information, as this increase may be reflective indeed of increased pollution levels, but it could also be because of increased activity in the citizen science project as it matures and gains a larger user base.\\
+
 \begin{figure}[H] 
 \begin{center}
 \begin{knitrout}\small
@@ -855,7 +856,7 @@ After cleaning and recategorisation of the data, it was analysed to determine ho
     \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-21-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-20-1} 
 
 \end{knitrout}
 \caption {Observations of plastic debris v all debris}
@@ -863,10 +864,8 @@ After cleaning and recategorisation of the data, it was analysed to determine ho
 \end {center}
 \end {figure}
 
-In this chart we see peaks and troughs in the number of observations - this is indicative of an increase in user activity. Seeing the peak in 2013 - that's not to say pollution suddenly increased in one period and disappeared, but monitoring activity spiked in that period. \hl{do we know why?} We see more of these spikes in 2017, 2018 and 2019 but generally it is an increasing trend in monitoring activity.\\
+In this chart we see peaks and troughs in the number of observations which is indicative of change in the rate of user activity. Seeing the peak in 2013 and more of these spikes in 2017, 2018 and 2019, but generally it is an increasing trend in monitoring activity.\\
 
-
-Per the data, we see an increase in debris observed over time. Caution must be exercised in interpreting this information, as this increase may be reflective indeed of increased pollution levels, but it could also be because of increased activity in the citizen science project as it matures and gains a larger user base.
 
 \begin{figure}[H] 
 \begin{center}
@@ -876,7 +875,9 @@ Per the data, we see an increase in debris observed over time. Caution must be e
 \hlcom{# Column plot of average daily observations by year}
 \hlstd{data} \hlopt{%>%}
   \hlkwd{mutate}\hlstd{(}\hlkwc{Date} \hlstd{=} \hlkwd{date}\hlstd{(Time))} \hlopt{%>%}
-  \hlkwd{full_join}\hlstd{(}\hlkwd{tibble}\hlstd{(}\hlkwc{Date} \hlstd{=} \hlkwd{full_seq}\hlstd{(}\hlkwd{c}\hlstd{(}\hlkwd{min}\hlstd{(}\hlkwd{date}\hlstd{(data}\hlopt{$}\hlstd{Time)),} \hlkwd{max}\hlstd{(}\hlkwd{date}\hlstd{(data}\hlopt{$}\hlstd{Time))),} \hlkwc{period} \hlstd{=} \hlnum{1}\hlstd{)),} \hlkwc{by} \hlstd{=} \hlstr{"Date"}\hlstd{)} \hlopt{%>%} \hlcom{# Check for any missing days}
+  \hlkwd{full_join}\hlstd{(}\hlkwd{tibble}\hlstd{(}\hlkwc{Date} \hlstd{=} \hlkwd{full_seq}\hlstd{(}\hlkwd{c}\hlstd{(}\hlkwd{min}\hlstd{(}\hlkwd{date}\hlstd{(data}\hlopt{$}\hlstd{Time)),}
+                                     \hlkwd{max}\hlstd{(}\hlkwd{date}\hlstd{(data}\hlopt{$}\hlstd{Time))),}
+                                   \hlkwc{period} \hlstd{=} \hlnum{1}\hlstd{)),} \hlkwc{by} \hlstd{=} \hlstr{"Date"}\hlstd{)} \hlopt{%>%}
   \hlkwd{group_by}\hlstd{(Date)} \hlopt{%>%}
   \hlkwd{summarise}\hlstd{(}\hlkwc{Observations} \hlstd{=} \hlkwd{length}\hlstd{(LogID))} \hlopt{%>%}
   \hlkwd{ungroup}\hlstd{()} \hlopt{%>%}
@@ -895,7 +896,7 @@ Per the data, we see an increase in debris observed over time. Caution must be e
           \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-22-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-21-1} 
 
 \end{knitrout}
 \caption {Average Daily Observations by Year}
@@ -903,9 +904,7 @@ Per the data, we see an increase in debris observed over time. Caution must be e
 \end {center}
 \end {figure}
 
-As we see in the chart above, an increase in the number of average observations per day lends support to the theory that the increase in observations is factored by increase in citizen science monitoring activity. That's not to say pollution has not also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
-
-\hl{can we put the above two charts together, side by side or top/bottom?}\\
+Looking at the increasing number of average observations per day lends support to the theory that the increase in quantity observations is factored by increase in citizen science monitoring activity. That's not to say pollution has not also increased in this period, but it would be inaccurate to not account for the increase in monitoring activity.\\
 
 
 \begin{figure}[H] 
@@ -931,7 +930,7 @@ As we see in the chart above, an increase in the number of average observations 
           \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-23-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-22-1} 
 
 \end{knitrout}
 \caption {Proportion of Debris by Material Types}
@@ -962,12 +961,13 @@ Analysis of the poportions of pollutant materials identifies that plastic is the
   \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Year,} \hlkwc{y} \hlstd{= prop))} \hlopt{+}
   \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels}\hlstd{=scales}\hlopt{::}\hlstd{percent,} \hlkwc{name}\hlstd{=}\hlstr{""}\hlstd{,} \hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{))} \hlopt{+}
   \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
-  \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
+  \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
+        \hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
         \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
         \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-24-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-23-1} 
 
 \end{knitrout}
 \caption {Trend of Plastic as a proportion of Total Debris}
@@ -976,64 +976,6 @@ Analysis of the poportions of pollutant materials identifies that plastic is the
 \end {figure}
 
 When considering the charts above, it can be determined that even as total debris observations increase, so do plastic observations which means plastics remain a consistently common feature of the observed derbis over time.\\
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Facet of categories}
-\hlstd{plastic} \hlopt{%>%}
-  \hlkwd{filter}\hlstd{(`Material Description`} \hlopt{==} \hlstr{"PLASTIC"}\hlstd{)} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(} \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(year, category)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{total} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{prop} \hlstd{= total} \hlopt{/} \hlkwd{sum}\hlstd{(total),}\hlkwc{lab}\hlstd{=scales}\hlopt{::}\hlkwd{percent}\hlstd{(prop))} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= year,} \hlkwc{y} \hlstd{= prop))} \hlopt{+}
-    \hlkwd{geom_line}\hlstd{()} \hlopt{+}
-    \hlkwd{facet_wrap}\hlstd{(}\hlopt{~}\hlstd{category,} \hlkwc{nrow} \hlstd{=} \hlnum{2}\hlstd{)} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{axis.text.y} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-          \hlkwc{axis.title.x} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-          \hlkwc{axis.title.y} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-25-1} 
-
-\end{knitrout}
-\caption {Proportion of Plastic Items Over Time}
-\label{figF3}
-\end {center}
-\end {figure}
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Line chart of CCI categorised plastics}
-\hlstd{plastic} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{Year} \hlstd{= lubridate}\hlopt{::}\hlkwd{year}\hlstd{(Time))} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(Year, category)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{total} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{prop} \hlstd{= total} \hlopt{/} \hlkwd{sum}\hlstd{(total),}\hlkwc{lab}\hlstd{=scales}\hlopt{::}\hlkwd{percent}\hlstd{(prop))} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Year,} \hlkwc{y} \hlstd{= prop,} \hlkwc{color} \hlstd{= category,} \hlkwc{label} \hlstd{= lab))}\hlopt{+}
-  \hlcom{#geom_text(color = "black") + }
-  \hlkwd{geom_line}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Year,} \hlkwc{y} \hlstd{= prop,} \hlkwc{color} \hlstd{= category))}\hlopt{+}
-  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Year,} \hlkwc{y} \hlstd{= prop,} \hlkwc{color} \hlstd{= category))} \hlopt{+}
-  \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels}\hlstd{=scales}\hlopt{::}\hlstd{percent,} \hlkwc{name}\hlstd{=}\hlstr{""}\hlstd{,} \hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{))} \hlopt{+}
-  \hlkwd{theme_bw}\hlstd{()} \hlopt{+}
-  \hlkwd{theme}\hlstd{(}\hlkwc{panel.grid.major} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-        \hlkwc{panel.grid.minor} \hlstd{=} \hlkwd{element_blank}\hlstd{(),}
-        \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-26-1} 
-
-\end{knitrout}
-\caption {Trend of Plastic Proportions by CCI Categories}
-\label{figF}
-\end {center}
-\end {figure}
 
 \begin{figure}[H] 
 \begin{center}
@@ -1057,7 +999,7 @@ When considering the charts above, it can be determined that even as total debri
           \hlkwc{axis.title.y} \hlstd{=} \hlkwd{element_blank}\hlstd{())}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-27-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-24-1} 
 
 \end{knitrout}
 \caption {Proportion of Plastic Items Over Time}
@@ -1067,102 +1009,6 @@ When considering the charts above, it can be determined that even as total debri
 
 
 As these charts consider the proportion of the subcategory item of total plastics, it is important to note that the increase in Plastic or Foam fragments and Food Wrappers might be attributed actually to a decrease in other subcategories such as Cigarettes. Essentially, not that these items are becoming increasingly common, but that the share between them is levelling. Considering the discussions above, it should be recalled that all debris and plastic are being increasingly observed, so a decrease in a subcategory item is welcomed yet more must be done. To explain the decrease, it is possible that better waste management practices for cigarettes have been put into place, for example the introduction of penalties for literring cigarette butts or installing better cigarette butt collection points in high activity areas, resulting the decrease of observations witnessed here. It could however also be influenced by changes in social patterns such as persons smoking less or moving to reusable portable vaping devices which result is the lower consumption of single-use cigarettes and the resulting debris. Eitherway, being able to view key subcategories like this allows researchers to identify where to focus their efforts to ultimately achieve the aim of reducing pollution. 
-
-\pagebreak
-\subsection {Distribution of observed debris:}
-% The key variable in this section is PROPORTIONS %
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Column chart of Debris Quantity by Material Type}
-\hlstd{data} \hlopt{%>%} \hlkwd{select}\hlstd{(Description,`Material Description`)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(`Material Description`)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{Observed} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{reorder}\hlstd{(`Material Description`,} \hlopt{-}\hlstd{Observed),} \hlkwc{y} \hlstd{= Observed))} \hlopt{+}
-    \hlkwd{geom_col}\hlstd{()} \hlopt{+}
-    \hlkwd{ylab}\hlstd{(}\hlstr{"Total observed"}\hlstd{)} \hlopt{+}
-    \hlkwd{xlab}\hlstd{(}\hlstr{"Material"}\hlstd{)} \hlopt{+}
-    \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
-        \hlkwc{axis.text.x}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{angle}\hlstd{=}\hlnum{45}\hlstd{,} \hlkwc{hjust}\hlstd{=}\hlnum{1}\hlstd{),}
-        \hlkwc{plot.title} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{10}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-28-1} 
-\begin{kframe}\begin{alltt}
-    \hlcom{#coord_flip()}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-\caption {Material Quantities}
-\label{figC}
-\end {center}
-\end {figure}
-
-The most populated material class is Plastic. Note that this does not necessarily mean that plastic is the largest quantity of debris, just that the individual number of items categorised is largest.
-
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Treemap of debris categories}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(`Material Description`, ItemName, Quantity)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{Quantity} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))} \hlopt{%>%}
-  \hlkwd{treemap}\hlstd{(}\hlkwc{index} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"Material Description"}\hlstd{,} \hlstr{"ItemName"}\hlstd{),}
-          \hlkwc{vSize} \hlstd{=} \hlstr{"Quantity"}\hlstd{,} \hlkwc{draw} \hlstd{=} \hlnum{TRUE}\hlstd{)} \hlkwb{->} \hlstd{tm}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-\caption {Debris categorisation}
-\label{figI}
-\end {center}
-\end {figure}
-
-
-
-
-
-\begin{figure}[H] 
-\begin{center}
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{#bar of debris categories}
-\hlstd{data} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
-  \hlkwd{group_by}\hlstd{(`Material Description`, ItemName)} \hlopt{%>%}
-  \hlkwd{summarise}\hlstd{(}\hlkwc{Observed} \hlstd{=} \hlkwd{n}\hlstd{())} \hlopt{%>%}
-  \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(Observed))} \hlopt{%>%}
-  \hlkwd{head}\hlstd{(}\hlnum{15}\hlstd{)} \hlopt{%>%}
-  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=}\hlkwd{reorder}\hlstd{(`ItemName`,} \hlopt{-}\hlstd{Observed),} \hlkwc{y}\hlstd{=Observed,} \hlkwc{fill}\hlstd{=`Material Description`))} \hlopt{+}
-  \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat}\hlstd{=}\hlstr{"identity"}\hlstd{)} \hlopt{+}
-  \hlkwd{xlab}\hlstd{(}\hlstr{"Debris"}\hlstd{)} \hlopt{+}
-  \hlkwd{ylab}\hlstd{(}\hlstr{""}\hlstd{)} \hlopt{+}
-  \hlcom{#coord_flip() +}
-  \hlkwd{theme}\hlstd{(}\hlkwc{text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{8}\hlstd{),}
-        \hlkwc{axis.text.x}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{angle}\hlstd{=}\hlnum{45}\hlstd{,} \hlkwc{hjust}\hlstd{=}\hlnum{1}\hlstd{),}
-        \hlkwc{legend.text}\hlstd{=}\hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{),}
-        \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-30-1} 
-
-\end{knitrout}
-\caption {Top 15 Debris Items Observed between 2012 and 2019}
-\label{figI2}
-\end {center}
-\end {figure}
-
-
-Does this align with the other studies discussed in \hyperref[research]{Section 2} where the main items identified were plastic bags, and in one study specifically from India which found cigarettes was actually their smallest pollutant at 5.5\% \cite{KUMAR2016}. 
-
-
 
 \pagebreak
 \subsection{Event-Driven Pollution}
@@ -1193,7 +1039,7 @@ An interesting pattern which emerged when conducting exploratory analysis on the
       \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-31-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-25-1} 
 
 \end{knitrout}
 \caption {Firework debris 2012-2019}
@@ -1216,7 +1062,9 @@ This gives rise to the idea that plastic pollution while sometimes blamed to be 
   \hlkwd{filter}\hlstd{(ItemName} \hlopt{==} \hlstr{"Fireworks"}\hlstd{)} \hlopt{%>%}
   \hlkwd{select}\hlstd{(Latitude, Longitude)} \hlopt{%>%}
   \hlkwd{ggplot}\hlstd{()} \hlopt{+}
-    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),} \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_polygon}\hlstd{(}\hlkwc{data} \hlstd{=} \hlkwd{map_data}\hlstd{(}\hlstr{"world"}\hlstd{),}
+                 \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= long,} \hlkwc{y} \hlstd{= lat,} \hlkwc{group} \hlstd{= group),}
+                 \hlkwc{fill} \hlstd{=} \hlstr{"grey"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
     \hlkwd{geom_hex}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Longitude,} \hlkwc{y} \hlstd{= Latitude))} \hlopt{+}
     \hlkwd{theme_void}\hlstd{()} \hlopt{+}
     \hlkwd{guides}\hlstd{(}\hlkwc{fill}\hlstd{=}\hlkwd{guide_legend}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Observed"}\hlstd{))} \hlopt{+}
@@ -1227,7 +1075,7 @@ This gives rise to the idea that plastic pollution while sometimes blamed to be 
       \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-32-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-26-1} 
 
 \end{knitrout}
 
@@ -1248,7 +1096,9 @@ Given the variability of plastic pollution trends given event-driven and locatio
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{plasticN} \hlkwb{<-} \hlstd{plastic} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{FALSE}\hlstd{),} \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}  \hlkwd{group_by}\hlstd{(year, category, month)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{month} \hlstd{=} \hlkwd{month}\hlstd{(Time,} \hlkwc{label} \hlstd{=} \hlnum{FALSE}\hlstd{),}
+         \hlkwc{year} \hlstd{=} \hlkwd{as.integer}\hlstd{(}\hlkwd{year}\hlstd{(Time)))} \hlopt{%>%}
+  \hlkwd{group_by}\hlstd{(year, category, month)} \hlopt{%>%}
   \hlkwd{summarise}\hlstd{(}\hlkwc{`Total Quantity`} \hlstd{=} \hlkwd{sum}\hlstd{(Quantity))}
 
 \hlcom{####}
@@ -1316,7 +1166,7 @@ Given the variability of plastic pollution trends given event-driven and locatio
   \hlkwd{theme}\hlstd{(}\hlkwc{legend.text} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{face}\hlstd{=}\hlstr{"bold"}\hlstd{)))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=1\linewidth]{figure/unnamed-chunk-34-1} 
+\includegraphics[width=1\linewidth]{figure/unnamed-chunk-28-1} 
 
 \end{knitrout}
 \caption {Portion of plastic}
@@ -1418,7 +1268,7 @@ In this graphical representation of the relative frequency of the 5 different ca
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:00 2020
+% Mon May 11 15:33:24 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
@@ -1514,7 +1364,7 @@ actuals & 1.00 & 0.64 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:01 2020
+% Mon May 11 15:33:25 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
@@ -1609,7 +1459,7 @@ actuals & 1.00 & 0.62 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:02 2020
+% Mon May 11 15:33:26 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
@@ -1702,7 +1552,7 @@ actuals & 1.00 & 0.57 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:02 2020
+% Mon May 11 15:33:27 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
@@ -1795,7 +1645,7 @@ actuals & 1.00 & 0.14 \\
 \hlkwd{print}\hlstd{(}\hlkwd{xtable}\hlstd{(correlation_accuracy),}\hlkwc{table.placement}\hlstd{=}\hlstr{"H"}\hlstd{)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:03 2020
+% Mon May 11 15:33:27 2020
 \begin{table}[H]
 \centering
 \begin{tabular}{rrr}
@@ -1820,12 +1670,12 @@ actuals & 1.00 & -0.14 \\
 \hlstd{plastic_category} \hlkwb{<-}\hlkwd{c}\hlstd{(}\hlstr{"cigarette related waste"}\hlstd{,} \hlstr{"food related waste"}\hlstd{,}\hlstr{"Fragments"}\hlstd{,}
                       \hlstr{"Other"}\hlstd{,}\hlstr{"Plastic bags and Styrofoam packaging"} \hlstd{)}
 
-\hlstd{slope_scores} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{0.063}\hlstd{,}\hlnum{0.038}\hlstd{,} \hlnum{0.034}\hlstd{,} \hlnum{0.000}\hlstd{,} \hlnum{0.001}\hlstd{)}
+\hlstd{slope_scores} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{0.065}\hlstd{,}\hlnum{0.036}\hlstd{,} \hlnum{0.030}\hlstd{,} \hlopt{-}\hlnum{0.001}\hlstd{,} \hlnum{0.001}\hlstd{)}
 \hlstd{slope_interpretation} \hlkwb{<-}\hlkwd{c}\hlstd{(}\hlstr{"downward"}\hlstd{,} \hlstr{"upward"}\hlstd{,} \hlstr{"upward"}\hlstd{,} \hlstr{"steady"}\hlstd{,} \hlstr{"steady"}\hlstd{)}
 \hlstd{p_value}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlstr{"<0.05"}\hlstd{,}\hlstr{"<0.05"}\hlstd{,}\hlstr{"<0.05"}\hlstd{,} \hlstr{">0.05"}\hlstd{,}\hlstr{">0.05"}\hlstd{)}
-\hlstd{adjRsquared} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0.4416}\hlstd{,} \hlnum{0.4324}\hlstd{,} \hlnum{0.2177}\hlstd{,}  \hlopt{-}\hlnum{0.0146}\hlstd{,} \hlopt{-}\hlnum{0.01195}\hlstd{)}
-\hlstd{corr_accuracy}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.83}\hlstd{,} \hlnum{0.50}\hlstd{,} \hlnum{0.41}\hlstd{,} \hlopt{-}\hlnum{0.36}\hlstd{,}\hlopt{-}\hlnum{0.12}\hlstd{)}
-\hlstd{min_max_Acc}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.78}\hlstd{,}\hlnum{0.77}\hlstd{,}\hlnum{0.69}\hlstd{,} \hlnum{0.64} \hlstd{,}\hlnum{0.61}\hlstd{)}
+\hlstd{adjRsquared} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0.51}\hlstd{,} \hlnum{0.38}\hlstd{,} \hlnum{0.16}\hlstd{,}  \hlopt{-}\hlnum{0.004}\hlstd{,} \hlopt{-}\hlnum{0.013}\hlstd{)}
+\hlstd{corr_accuracy}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.64}\hlstd{,} \hlnum{0.62}\hlstd{,} \hlnum{0.57}\hlstd{,} \hlnum{0.14}\hlstd{,}\hlopt{-}\hlnum{0.14}\hlstd{)}
+\hlstd{min_max_Acc}\hlkwb{<-}\hlkwd{c}\hlstd{(}\hlnum{0.61}\hlstd{,}\hlnum{0.78}\hlstd{,}\hlnum{0.64}\hlstd{,} \hlnum{0.73} \hlstd{,}\hlnum{0.69}\hlstd{)}
 
 \hlstd{score_table1} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)}
 \hlstd{score_table2} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(plastic_category, corr_accuracy, min_max_Acc)}
@@ -1839,17 +1689,17 @@ actuals & 1.00 & -0.14 \\
 \hlkwd{xtable}\hlstd{(score_table1)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:04 2020
+% Mon May 11 15:33:28 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllrlr}
   \hline
  & plastic\_category & p\_value & slope\_scores & slope\_interpretation & adjRsquared \\ 
   \hline
-1 & cigarette related waste & $<$0.05 & -0.06 & downward & 0.44 \\ 
-  2 & food related waste & $<$0.05 & 0.04 & upward & 0.43 \\ 
-  3 & Fragments & $<$0.05 & 0.03 & upward & 0.22 \\ 
-  4 & Other & $>$0.05 & 0.00 & steady & -0.01 \\ 
+1 & cigarette related waste & $<$0.05 & -0.06 & downward & 0.51 \\ 
+  2 & food related waste & $<$0.05 & 0.04 & upward & 0.38 \\ 
+  3 & Fragments & $<$0.05 & 0.03 & upward & 0.16 \\ 
+  4 & Other & $>$0.05 & -0.00 & steady & -0.00 \\ 
   5 & Plastic bags and Styrofoam packaging & $>$0.05 & 0.00 & steady & -0.01 \\ 
    \hline
 \end{tabular}
@@ -1858,18 +1708,18 @@ actuals & 1.00 & -0.14 \\
 \hlkwd{xtable}\hlstd{(score_table2)}
 \end{alltt}
 \end{kframe}% latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:04 2020
+% Mon May 11 15:33:28 2020
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlrr}
   \hline
  & plastic\_category & corr\_accuracy & min\_max\_Acc \\ 
   \hline
-1 & cigarette related waste & 0.83 & 0.78 \\ 
-  2 & food related waste & 0.50 & 0.77 \\ 
-  3 & Fragments & 0.41 & 0.69 \\ 
-  4 & Other & -0.36 & 0.64 \\ 
-  5 & Plastic bags and Styrofoam packaging & -0.12 & 0.61 \\ 
+1 & cigarette related waste & 0.64 & 0.61 \\ 
+  2 & food related waste & 0.62 & 0.78 \\ 
+  3 & Fragments & 0.57 & 0.64 \\ 
+  4 & Other & 0.14 & 0.73 \\ 
+  5 & Plastic bags and Styrofoam packaging & -0.14 & 0.69 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -1887,19 +1737,7 @@ A simple correlation between the actuals and predicted values can be used as a f
 A higher correlation accuracy implies that the actuals and predicted values have similar directional movement, that is, when the actuals values increase the predicted values also increase and vice-versa.\\
 
 MinMax Accuracy:\\
-MinMax indicates how far off the model's prediction is. For a perfect model, this measure is 1.0. The lower the measure, the worse the performance of the model based on out-of-sample performance.\hl{in this case our model is....?}\\
-
-
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{min_max_accuracy}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.6891403
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+MinMax indicates how far off the model's prediction is. For a perfect model, this measure is 1.0. The lower the measure, the worse the performance of the model based on out-of-sample performance.
 
 Adjusted R squared:\\
 R-Squared gives the proportion of variation in the dependent (response) variable that has been explained by this model. Adjusted R-Squared is formulated such that it penalises the number of terms of the model.\\
@@ -1907,14 +1745,15 @@ R-Squared gives the proportion of variation in the dependent (response) variable
 
 On scores of metrics:\\
 
-MinMax Accuracy is generally above 60\%, but never exceeds 78\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time. The correlation accuracy is really good for "cigarette related waste" category, but not that good for "food related waste" and "Fragments" categories, which implies that the predicted values do not always follow the true values observed in the same proportion. The categories "Other" and "Plastic bags and Styrofoam packaging", where p-value is worse, score negative values which is troublesome. The higher the adjusted R squared metric the better. What is alarming here regarding this metric measure is the model created to predict for the last two categories, since it receives negative values.\\
+MinMax Accuracy is generally above 60\%, but never exceeds 78\% for all cases, which means that the model does a moderate job in predicting accurately the relative frequency of each category over time. The correlation accuracy is really good for "cigarette related waste" category, but not that good for "food related waste" and "Fragments" categories, which implies that the predicted values do not always follow the true values observed in the same proportion. The categories "Other" and "Plastic bags and Styrofoam packaging", where p-value is worse, score extremely low and negative values, respectively, which is troublesome. The higher the adjusted R squared metric the better. What is alarming here regarding this metric measure is the model created to predict for the last two categories, since it receives negative values.\\
 
 In total we see that time is statistically significant in the change of proportions of certain categories
 of plastic waste: "cigarette related waste", "food related waste", "fragments", causing a downward, upward and upward movement respectively. This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" categories, where though the models predicts a stagnation, there does not seem to be enough statistical evidence backing the credibility of the predictions of these two models.\\
 
+
+In total we see that time is statistically significant in the change of proportions of certain categories of plastic waste: "cigarette related waste", "food related waste", "fragments", causing a downward, upward and upward movement respectively. This is not the case for the "Other" and "Plastic bags and Styrofoam packaging" categories, where though the models predicts a stagnation, there does not seem to be enough statistical evidence backing the credibility of the predictions of these two models.\\
+
 It is important to notice that since it is a linear regression model, there exist no hyper-parameters for tuning, therefore no cross-validation comes in play. Since, only one predictor is used any kind of stepwise elimination is redundant. So, evaluation relies on metrics used.\\
-
-
 
 
 
@@ -1924,25 +1763,28 @@ It is important to notice that since it is a linear regression model, there exis
 
 As seen in the study of debris in a Eastern Mediterranean coastal town \cite{PORTMAN2017} the variability of non-plastic litter composition should make us aware that the local context must be taken into account. Perhaps, given that non-plastic litter is a hugely varying category, this way of thinking could be expanded into the plastic debris category of "Other", given that it is inherently varied let alone in a dataset that gathers information over the entire world. In fact, this could in reverse explain the higher p-value, since high variation within the category studied would yield results of insufficient trustworthiness. 
 
-As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over
-time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is Northamerican centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorization biase in the data, since there is no proof of a single sampling protocol followed. We have already spotted one such occasion, rubber gloves, and taken care of it, but further study on it is needed.
+As mentioned in \cite{BROWNE2015} many intertidal sites seem to be transit areas for debris, with exports matching imports over time. This could hugely impact a created model especially given that in the dataset we used we didn't have such information available. It is also important to acknowledge that our dataset is North American centred which and given that it has information gathered over a period of 10 years we cannot be sure of categorisation bias in the data, since there is no proof of a single sampling protocol followed. 
 
 
 
 \pagebreak
 \section{Conclusion and Future Work}
 
-As indicated by Jambeck et al.\cite{JAMBECK2015} 4-12 million tons of plastic waste generated worldwide will enter the marine ecosystem every year. Our results shows that there is no change in the percentage of marine debris that were recorded as plastic over time. However the recorded data are not in the same frequency every year and depend on the beach clean upsand national initiatives. Since these events aim mostly to clean-ups after big social events extra effort might have been made to retrieve entertainment based debris such as fireworks, food packaging and six pack rings. Our results confirm the fact that plastic is the most abundant litter in the marine environment globally. Plastic was included in the 68\% of the observations recorded and it made up of over 70\% of the quantity of debris that was recorded. Our results also indicate the successful use of citizen science projects to monitor marine pollution. There are various ways citizen science projects have been used for and here we focused on distribution and composition of marine litter on a global scale. Identifying the amount and type of debris can help in identifying the sources of pollution. This can then aid to find out ways to reduce the source in the first place. Event driven pollution such as fireworks also plays a role in marine pollution and this can be reduced by raising awareness amongst the public and trying to find more sustainable ways of celebrating events. The fact that plastic composition does not change over time is also quite alarming. Although there have been a lot of awareness programmes in the last decades, more needs to be done to see these changes that can reduce the damage done by plastic pollution.  \\
+As indicated by Jambeck et al.\cite{JAMBECK2015} 4-12 million tons of plastic waste generated worldwide will enter the marine ecosystem every year. Our results shows that there is little change in the percentage of marine debris that were recorded as plastic over time. However the recorded data are not in the same frequency every year and depend on beach clean ups and other initiatives. Since these events aim mostly to clean-ups after big social events, extra effort might have been made to retrieve entertainment based debris such as fireworks, food packaging and six pack rings. \\
+
+The results in this report confirm the fact that plastic is the most abundant litter in the marine environment globally. Plastic was included in the 68\% of the observations recorded and it made up of over 70\% of the quantity of debris that was recorded. The results also indicate it is possible to successfully use citizen science projects to monitor marine pollution. There are various ways citizen science projects have been used for and here we focused on distribution and composition of marine litter on a global scale. Identifying the amount and type of debris can help in identifying the sources of pollution. This can then aid to find out ways to reduce the source in the first place. Event driven pollution such as fireworks also plays a role in marine pollution and this can be reduced by raising awareness amongst the public and trying to find more sustainable ways of celebrating events. The fact that plastic composition does not change over time is also quite alarming. Although there have been a lot of awareness programmes in the last decades, more needs to be done to see these changes that can reduce the damage done by plastic pollution.  \\
+
 Future work can include looking at the marine pollution debris in smaller scale by regions. Each region is different and there are various factors that can affect the data observations such as the frequency of data submissions are not at the same time everywhere.  Since MDT is more focused on North America, this opportunity might be used to educate about it in other regions of the world. Although we will never be able to identify the real sources of pollution, it can help in raising awareness of the damage done by plastic pollution in the marine environment and make the public more environmentally conscious. Regulations to discourage single use plastic items and smoking in public places have been enforced in many countries. It would be interesting to look at the effect these are having on the marine debris pollution worldwide. However, more time and data will be required to see the change at a global scale. \\
 
-Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\  
+Another line of study might be for example to compare the decreasing rate of cigarette use with the decreasing observation of cigarette debris which had been observed over the years to see if there is a correlation there which was hypothesised but never investigated due to not being within the direct inquiry of the report. It would also be useful to invest time and resources into a non-citizen science alternative to data collection, in order to avoid the large spikes in observations during specifictimes such as world clean-ups day in order to get a more rounded dataset.   \\  
 
-Lots of beach clean ups and litter collections are done in the beaches worldwide to estimate the marine pollution. However, the majority (70\%) of the marine debris are not on the surface but on the seafloor. More research and studies are needed to accurately estimate the pollution in our oceans. Although marine pollution is a global issue, more needs to be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are   essential for efficient management of marine plastic pollution. \\
+Lots of beach clean ups and litter collections are done in the beaches worldwide to estimate the marine pollution. However, the majority (70\%) of the marine debris are not on the surface but on the seafloor. More research and studies are needed to accurately estimate the pollution in our oceans. Although marine pollution is a global issue, more needs to be done locally to reduce the sources of the pollution. In addition, standardised monitoring protocol and global partnerships are essential for efficient management of marine plastic pollution. \\
 
 
 \pagebreak
 \section{Project Management}\label{mgt}
 \subsection{Tools and Technologies}
+
 Group 2 communicated primarily using a dedicated Slack channel, with project materials managed on a Github repository, and weekly 1 hour in-person meetings. Slack was useful for making announcements; threaded conversations for topics if someone had a question; polling features which were used to collect votes, for example on deciding the topic of the research; but perhaps most importantly the integration with Github meant the group was automatically notified every time there was an update available for project materials, keeping members up to date at all times. Git controls on github meant document integrity was also maintained and there were no issues with persons working on materials which had become outdated and needed manual extraction and merging.\\
 
 All project material used and the final report can be accessed from the \textit{\href{https://github.com/KarenJewell/CMM507Group2}{Public Github Repository}} \\
@@ -1955,7 +1797,7 @@ In March 2020, the outbreak of the global Covid-19 pandemic and resulting lockdo
 The group operated on a cyclical "divide and conquer" approch. In the weekly meetings, the scope for the week was agreed then divided into parts for group members to volunteer and adopt, working on it in the week. At the next meeting, the work was consolidated with individuals briefly presenting what they had achieved in the week, or what they may have found difficulty progressing. The newly converged scope was then again divided for the next week, so the cycle repeats ensuring each individual had a clear task for the week ahead and the whole group retained an awareness of what other work was being done and who was doing it. The discussions of each weekly meeting were also documented and hosted on the shared Github for all members to reference. This approach ensured there was continous progress throughout the project timeline while also allowing individuals the flexibility to manage their time around all other personal and professional commitments. \\
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:16 2020
+% Mon May 11 15:33:37 2020
 \begin{table}[H]
 \centering
 \caption{Record of Team Meetings} 
@@ -1992,9 +1834,10 @@ No & Date & Topic & Alex & Georgios & Karen & Roshi & Stuart \\
 
 \subsection{Peer Assessment}
 
+The Peer Assessment Table presents the peer and self assement scores for all five of Group 2's members.\\
 
 % latex table generated in R 3.6.1 by xtable 1.8-4 package
-% Mon May 11 14:31:17 2020
+% Mon May 11 15:33:38 2020
 \begin{table}[H]
 \centering
 \caption{Peer Assessment out of 100} 
@@ -2013,267 +1856,12 @@ Alex & 100 & 100 & 100 & 100 & 100 \\
 \end{table}
 
 
-The \hyperref[tab:two]{Peer Assessment Table} presents the peer and self assement scores for all five of Group 2's members.\\
 
-The tasks of the project was shared justly across the members of the group. Alex Aided in the research of appropriate papers for the project and writing sections for the final report. Georgios sourced for datasets, reviewed literature, wrote for the final report and lead in creating and assessing the linear regression model.Karen acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. Roshi acted as lead for finding relevant literatures for the study, writing sections and editing the final report. Stuart sourced the dataset and lead in the exploratory data analysis, producing visualisations for the final report.\\
+The tasks of the project were shared justly across the members of the group. Alex Aided in the research of appropriate papers for the project and writing sections for the final report. Georgios sourced for datasets, reviewed literature, wrote for the final report and lead in creating and assessing the linear regression model.Karen acted as a facillitator and document controller for the project, responsible for editing the final report and ensuring it compiled successfully. Roshi acted as lead for finding relevant literatures for the study, writing sections and editing the final report. Stuart sourced the dataset and lead in the exploratory data analysis, producing visualisations for the final report.\\
 
 
 \pagebreak
 \section*{References}\label{pubs}
 \printbibliography[heading=none]
-
-
-\begin{kframe}
-\begin{alltt}
-
-
-\hlcom{#```\{r\}}
-dataModel <- \hlkwd{list.files}(path = \hlstr{"data/debris/"}, full.names = TRUE) %>%
-  \hlkwd{lapply}(FUN = read_csv, col_types = \hlstr{"ififidddddcfcif"}) %>%
-  \hlkwd{reduce}(rbind)
-dataModel$Time <- data$Timestamp %>%
-  \hlkwd{parse_datetime}(format = \hlstr{"%Y%m%d%H%M%S"})
-dataModel$Timestamp <- NULL
-dataModel <- dataModel %>% \hlkwd{select}(-ListID,-ListName)
-plastic_ordered <- dataModel %>% 
-  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
-  \hlkwd{select}(ItemName, Quantity) %>% 
-  \hlkwd{group_by}(ItemName) %>% 
-  \hlkwd{summarise}(Total = \hlkwd{sum}(Quantity)) %>% 
-  \hlkwd{arrange}(\hlkwd{desc}(Total))
-dataModel$ItemName <- \hlkwd{factor}(dataModel$ItemName, plastic_ordered$ItemName)
-recategorise2 <- \hlkwd{function}(x)\{
-  out = \hlstr{""}
-  \hlkwd{if}(x %in% \hlkwd{c}(1,4,6,22))\{out = \hlstr{"Cigarette related waste"}\}
-  \hlkwd{if}(x %in% \hlkwd{c}(2,3,7,9,10,17,23,11)) out = \hlstr{"Food related waste"}
-  \hlkwd{if}(x %in% \hlkwd{c}(8,14,15,16,18,19,21,20)) out = \hlstr{"Other"}
-  \hlkwd{if}(x %in% \hlkwd{c}(12,13)) out = \hlstr{"Plastic bags and Styrofoam packaging"}
-  \hlkwd{if}(x %in% \hlkwd{c}(5,23,24,25)) out = \hlstr{"Fragments"}
-  \hlkwd{if}(out == \hlstr{""}) \hlkwd{stop}(\hlkwd{paste}(\hlstr{"Error in recategorise:"}, x))
-  \hlkwd{return}(out)
-\}
-plastic_typesModel <- dataModel %>% 
-  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
-  \hlkwd{select}(ItemName, ItemID) %>% 
-  \hlkwd{distinct}() %>% 
-  \hlkwd{mutate}(label = 1:\hlkwd{n}()) %>% 
-  \hlkwd{mutate}(category = purrr::\hlkwd{map}(label, recategorise2)) %>%
-  \hlkwd{mutate}(category = \hlkwd{as_factor}(\hlkwd{as.character}(category))) %>% 
-  \hlkwd{select}(ItemID, category)
-plasticModel <- dataModel %>% 
-  \hlkwd{filter}(`Material Description` == \hlstr{"PLASTIC"}) %>% 
-  \hlkwd{full_join}(plastic_types, by = \hlstr{"ItemID"})
-plasticN <- plasticModel %>% 
-  \hlkwd{mutate}(month = \hlkwd{month}(Time, label = FALSE), 
-         year = \hlkwd{as.integer}(\hlkwd{year}(Time))) %>% 
-  \hlkwd{filter}(year > 2010) %>% 
-  \hlkwd{group_by}(month, year, category) %>%
-  \hlkwd{summarise}(`Total Quantity` = \hlkwd{sum}(Quantity)) %>% 
-  \hlkwd{ggplot}(\hlkwd{aes}(x = month, y = `Total Quantity`, fill = category)) +
-    \hlkwd{geom_col}(colour = \hlstr{"black"}, size = 0.2, position = \hlstr{"fill"}) +
-    \hlkwd{facet_wrap}(~year, nrow = 2) +
-    \hlkwd{scale_fill_viridis}(discrete = TRUE, option = \hlstr{"plasma"}) +
-    \hlkwd{xlab}(\hlstr{"Month"}) +
-    \hlkwd{ylab}(\hlstr{"Proportion of Items"}) +
-    \hlkwd{ggtitle}(\hlstr{"Rel. frequencies of observed plastic waste by category"}) +
-    \hlkwd{scale_x_continuous}(breaks = 1:12) +
-    \hlkwd{theme}(panel.grid.major.x = \hlkwd{element_blank}(),
-          panel.grid.minor.x = \hlkwd{element_blank}()) +
-    \hlkwd{guides}(fill=\hlkwd{guide_legend}(title=\hlstr{"Category"}))
-\hlcom{#```}
-
-\hlcom{#```\{r\}}
-\hlkwd{library}(dplyr)
-df12N <- plasticN  %>%
-  \hlkwd{filter}(year == 2012) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df13N <- plasticN  %>%
-  \hlkwd{filter}(year == 2013) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df14N <- plasticN  %>%
-  \hlkwd{filter}(year == 2014) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df15N <- plasticN  %>%
-  \hlkwd{filter}(year == 2015) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df16N <- plasticN  %>%
-  \hlkwd{filter}(year == 2016) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df17N <- plasticN  %>%
-  \hlkwd{filter}(year == 2017) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`))
-df18N <- plasticN  %>%
-  \hlkwd{filter}(year == 2018) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`)) 
-df19N <- plasticN  %>%
-  \hlkwd{filter}(year == 2019) %>% 
-  \hlkwd{group_by}(year, month) %>%
-  \hlkwd{mutate}(freq = `Total Quantity` / \hlkwd{sum}(`Total Quantity`)) 
-dfTotN <- \hlkwd{rbind}(df12N, df13N, df14N, df15N, df16N, df17N, df18N, df19N)
-\hlcom{# plot for observing the data}
-(time_plotfr2N <- \hlkwd{ggplot}(dfTotN, \hlkwd{aes}(x = year, y = freq, color=category, fill = category)) +
-  \hlkwd{geom_smooth}(method=\hlstr{"lm"}, level=0.95) +
-  \hlkwd{theme_bw}() + 
-  \hlkwd{xlab}(\hlstr{"Years"}) +
-  \hlkwd{ylab}(\hlstr{"relative frequency"}) +
-  \hlkwd{ggtitle}(\hlstr{"portion of plastic"}) + 
-  \hlkwd{expand_limits}(y=0) +
-  \hlkwd{scale_y_continuous}() + 
-  \hlkwd{scale_x_continuous}()+
-  \hlkwd{theme}(legend.position=\hlstr{"bottom"})+
-  \hlkwd{theme}(legend.text = \hlkwd{element_text}(size=5, face=\hlstr{"bold"})))
-\hlcom{#```}
-
-
-
-\hlcom{#We see here a graphical representation of the relative frequency of the 5 different categories of plastic debris over the years. The hint we are getting here is that "Cigarette realted waste, "Food related waste", "Fragments" seem to experiance some change, whereas "Other" and "Plastic bags and styrofoam packaging" seem to remain steady. We go on and create a model and test it on untrained data to see what is the actual case.}
-
-\hlcom{#```\{r\}}
-\hlcom{# create train and test set}
-n <- \hlkwd{nrow}(dfTotN)  \hlcom{# Number of observations}
-ntrain <- \hlkwd{round}(n*0.75)  \hlcom{# 75% for training set}
-\hlkwd{set.seed}(314)    \hlcom{# Set seed for reproducible results}
-tindex <- \hlkwd{sample}(n, ntrain)   \hlcom{# Create a random index}
-train_dfTotN <- dfTotN[tindex,]   \hlcom{# Create training set}
-test_dfTotN <- dfTotN[-tindex,]
-\hlcom{# modelling for category "Cigarette related waste"}
-train_Cigrel <- train_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Cigarette related waste"}) %>% 
-  \hlkwd{group_by}(year)
-test_Cigrel <- test_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Cigarette related waste"}) %>% 
-  \hlkwd{group_by}(year)
-\hlkwd{set.seed}(1234)
-train_Cigrel.modelN <- \hlkwd{lm}(freq ~ year, data = train_Cigrel)
-\hlkwd{summary}(train_Cigrel.modelN)
-\hlkwd{print}(\hlstr{"PREDICTION"})
-pred_Cigrel <- \hlkwd{predict}(train_Cigrel.modelN, test_Cigrel)
-\hlkwd{summary}(pred_Cigrel)
-actuals_predsCigrel <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Cigrel$freq, predicteds=pred_Cigrel)) 
-\hlkwd{head}(actuals_predsCigrel)
-correlation_accuracy <- \hlkwd{cor}(actuals_predsCigrel)
-min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsCigrel, 1, min) / \hlkwd{apply}(actuals_predsCigrel, 1, max))  
-correlation_accuracy
-min_max_accuracy
-\hlcom{#```}
-
-
-\hlcom{#```\{r\}}
-\hlcom{# modelling for category "Food related waste"}
-train_Foodrel <- train_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Food related waste"}) %>% 
-  \hlkwd{group_by}(year)
-test_Foodrel <- test_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Food related waste"}) %>% 
-  \hlkwd{group_by}(year)
-\hlkwd{set.seed}(1234)
-train_Foodrel.modelN <- \hlkwd{lm}(freq ~ year, data = train_Foodrel)
-\hlkwd{summary}(train_Foodrel.modelN)
-\hlkwd{print}(\hlstr{"PREDICTION"})
-pred_Foodrel <- \hlkwd{predict}(train_Foodrel.modelN, test_Foodrel)
-\hlkwd{summary}(pred_Foodrel)
-actuals_predsFoodrel <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Foodrel$freq, predicteds=pred_Foodrel)) 
-\hlkwd{head}(actuals_predsFoodrel)
-correlation_accuracy <- \hlkwd{cor}(actuals_predsFoodrel)  
-min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsFoodrel, 1, min) / \hlkwd{apply}(actuals_predsFoodrel, 1, max))  
-correlation_accuracy
-min_max_accuracy
-\hlcom{#```}
-
-
-\hlcom{#```\{r\}}
-\hlcom{# modelling for category "Fragments"}
-train_Frag <- train_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Fragments"}) %>% 
-  \hlkwd{group_by}(year)
-test_Frag <- test_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Fragments"}) %>% 
-  \hlkwd{group_by}(year)
-\hlkwd{set.seed}(1234)
-train_Frag.modelN <- \hlkwd{lm}(freq ~ year, data = train_Frag)
-\hlkwd{summary}(train_Frag.modelN)
-\hlkwd{print}(\hlstr{"PREDICTION"})
-pred_Frag <- \hlkwd{predict}(train_Frag.modelN, test_Frag)
-\hlkwd{summary}(pred_Frag)
-actuals_predsFrag <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Frag$freq, predicteds=pred_Frag)) 
-\hlkwd{head}(actuals_predsFrag)
-correlation_accuracy <- \hlkwd{cor}(actuals_predsFrag)  
-min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsFrag, 1, min) / \hlkwd{apply}(actuals_predsFrag, 1, max))  
-correlation_accuracy
-min_max_accuracy
-\hlcom{#```}
-
-
-\hlcom{#```\{r\}}
-\hlcom{# modelling for category "Other"}
-train_Other <- train_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Other"}) %>% 
-  \hlkwd{group_by}(year)
-test_Other <- test_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Other"}) %>% 
-  \hlkwd{group_by}(year)
-\hlkwd{set.seed}(1234)
-train_Other.modelN <- \hlkwd{lm}(freq ~ year, data = train_Other)
-\hlkwd{summary}(train_Other.modelN)
-\hlkwd{print}(\hlstr{"PREDICTION"})
-pred_Other <- \hlkwd{predict}(train_Other.modelN, test_Other)
-\hlkwd{summary}(pred_Other)
-actuals_predsOther <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Other$freq, predicteds=pred_Other)) 
-\hlkwd{head}(actuals_predsOther)
-correlation_accuracy <- \hlkwd{cor}(actuals_predsOther)  \hlcom{# 5.31%}
-min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsOther, 1, min) / \hlkwd{apply}(actuals_predsOther, 1, max))  
-correlation_accuracy
-min_max_accuracy
-\hlcom{#```}
-
-
-\hlcom{#```\{r\}}
-\hlcom{# modelling for category "Plastic bags and Styrofoam packaging"}
-train_Plbag <- train_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Plastic bags and Styrofoam packaging"}) %>% 
-  \hlkwd{group_by}(year)
-test_Plbag <- test_dfTotN %>% 
-  \hlkwd{filter}(category==\hlstr{"Plastic bags and Styrofoam packaging"}) %>% 
-  \hlkwd{group_by}(year)
-\hlkwd{set.seed}(1234)
-train_Plbag.modelN <- \hlkwd{lm}(freq ~ year, data = train_Plbag)
-\hlkwd{summary}(train_Plbag.modelN)
-\hlkwd{print}(\hlstr{"PREDICTION"})
-pred_Plbag <- \hlkwd{predict}(train_Plbag.modelN, test_Plbag)
-\hlkwd{summary}(pred_Plbag)
-actuals_predsPlbag <- \hlkwd{data.frame}(\hlkwd{cbind}(actuals=test_Plbag$freq, predicteds=pred_Plbag)) 
-\hlkwd{head}(actuals_predsPlbag)
-correlation_accuracy <- \hlkwd{cor}(actuals_predsPlbag) 
-min_max_accuracy <- \hlkwd{mean}(\hlkwd{apply}(actuals_predsPlbag, 1, min) / \hlkwd{apply}(actuals_predsPlbag, 1, max))  
-correlation_accuracy
-min_max_accuracy
-\hlcom{#```}
-
-\hlcom{#```\{r\}}
-plastic_category <-\hlkwd{c}(\hlstr{"cigarette related waste"}, \hlstr{"food related waste"},\hlstr{"Fragments"}, 
-                      \hlstr{"Other"},\hlstr{"Plastic bags and Styrofoam packaging"} )
-slope_scores <- \hlkwd{c}(-0.063,0.038, 0.034, 0.000, 0.001)
-slope_interpretation <-\hlkwd{c}(\hlstr{"downward"}, \hlstr{"upward"}, \hlstr{"upward"}, \hlstr{"steady"}, \hlstr{"steady"})
-p_value<-\hlkwd{c}(\hlstr{"<0.05"},\hlstr{"<0.05"},\hlstr{"<0.05"}, \hlstr{">0.05"},\hlstr{">0.05"})
-adjRsquared <- \hlkwd{c}(0.4416, 0.4324, 0.2177,  -0.0146, -0.01195)
-corr_accuracy<-\hlkwd{c}(0.83, 0.50, 0.41, -0.36,-0.12)
-min_max_Acc<-\hlkwd{c}(0.78,0.77,0.69, 0.64 ,0.61)
-score_table1 <- \hlkwd{data.frame}(plastic_category, p_value,slope_scores, slope_interpretation, adjRsquared)
-score_table2 <- \hlkwd{data.frame}(plastic_category, corr_accuracy, min_max_Acc)
-score_table1
-score_table2
-```
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: attempt to use zero-length variable name}}\end{kframe}
-
 
 \end{document}
