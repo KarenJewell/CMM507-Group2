@@ -316,6 +316,40 @@
       \verb http://www.sciencedirect.com/science/article/pii/S0958166911000292
       \endverb
     \endentry
+    \entry{LAVERS2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=cc1ada4c63c47e175669ee32f706e49d}{%
+           family={Lavers},
+           familyi={L\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod}}}%
+        {{hash=84a71f25fbc90a4ffdf02bec7623ca70}{%
+           family={Bond},
+           familyi={B\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6bfb08d918b6b5549ef7616826627823}
+      \strng{fullhash}{6bfb08d918b6b5549ef7616826627823}
+      \strng{bibnamehash}{6bfb08d918b6b5549ef7616826627823}
+      \strng{authorbibnamehash}{6bfb08d918b6b5549ef7616826627823}
+      \strng{authornamehash}{6bfb08d918b6b5549ef7616826627823}
+      \strng{authorfullhash}{6bfb08d918b6b5549ef7616826627823}
+      \field{sortinit}{9}
+      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{month}{05}
+      \field{title}{Exceptional and rapid accumulation of anthropogenic debris on one of the world’s most remote and pristine islands}
+      \field{volume}{114}
+      \field{year}{2017}
+      \field{pages}{201619818}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1073/pnas.1619818114
+      \endverb
+    \endentry
     \entry{JAMBECK2015}{article}{}
       \name{author}{8}{}{%
         {{hash=1707830454dd1ceedcea7f8d4f66a688}{%
@@ -368,8 +402,8 @@
       \strng{authorbibnamehash}{9f69a2221ccd06079ad918ffa55240cb}
       \strng{authornamehash}{9f69a2221ccd06079ad918ffa55240cb}
       \strng{authorfullhash}{792170e071e35edb5f46472072f71cb5}
-      \field{sortinit}{9}
-      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Considerable progress has been made in determining the amount and location of plastic debris in our seas, but how much plastic actually enters them in the first place is more uncertain. Jambeck et al. combine available data on solid waste with a model that uses population density and economic status to estimate the amount of land-based plastic waste entering the ocean. Unless waste management practices are improved, the flux of plastics to the oceans could increase by an order of magnitude within the next decade.Science, this issue p. 768 Plastic debris in the marine environment is widely documented, but the quantity of plastic entering the ocean from waste generated on land is unknown. By linking worldwide data on solid waste, population density, and economic status, we estimated the mass of land-based plastic waste entering the ocean. We calculate that 275 million metric tons (MT) of plastic waste was generated in 192 coastal countries in 2010, with 4.8 to 12.7 million MT entering the ocean. Population size and the quality of waste management systems largely determine which countries contribute the greatest mass of uncaptured waste available to become plastic marine debris. Without waste management infrastructure improvements, the cumulative quantity of plastic waste available to enter the ocean from land is predicted to increase by an order of magnitude by 2025.}
@@ -773,8 +807,8 @@
       \strng{authorbibnamehash}{2e4df524165152d9461d092e298768ec}
       \strng{authornamehash}{2e4df524165152d9461d092e298768ec}
       \strng{authorfullhash}{cdec2e3f1aef6832c3fb83fda039f296}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Critical Reviews in Environmental Science and Technology}
@@ -1206,8 +1240,8 @@
       \strng{authorbibnamehash}{467b566cad9632945424d954924ce313}
       \strng{authornamehash}{467b566cad9632945424d954924ce313}
       \strng{authorfullhash}{af0e207892f60623b72aaf9aac073779}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2352-4855}
@@ -1307,6 +1341,57 @@
       \field{year}{2019}
       \verb{doi}
       \verb 10.13140/RG.2.2.34382.92483
+      \endverb
+    \endentry
+    \entry{ROY2012}{article}{}
+      \name{author}{6}{}{%
+        {{hash=74f2358dd1f6af7f9775a0ad2da17404}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Helen},
+           giveni={H\bibinitperiod}}}%
+        {{hash=d63e29e6452c93e23ab4d0b96b26db63}{%
+           family={Pocock},
+           familyi={P\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a0c61b467d4ecd1d080089fe9bfefdb3}{%
+           family={Preston},
+           familyi={P\bibinitperiod},
+           given={C.D.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b33f2565d4ac7c5c8ef240f63ab9aaea}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={D.B.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=78c18e407013c323c1557c885f3475c0}{%
+           family={Savage},
+           familyi={S\bibinitperiod},
+           given={Joanna},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8c5f0f8484071f35b13ce115ba71537c}{%
+           family={Tweddle},
+           familyi={T\bibinitperiod},
+           given={J.C.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{6dc0367535c00c8d258dd71dd086b958}
+      \strng{fullhash}{fd8bbf77fe388ef8a7ee020272792278}
+      \strng{bibnamehash}{6dc0367535c00c8d258dd71dd086b958}
+      \strng{authorbibnamehash}{6dc0367535c00c8d258dd71dd086b958}
+      \strng{authornamehash}{6dc0367535c00c8d258dd71dd086b958}
+      \strng{authorfullhash}{fd8bbf77fe388ef8a7ee020272792278}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Final Report on Behalf of UK-EOF}
+      \field{month}{01}
+      \field{title}{Understanding citizen science and environmental monitoring}
+      \field{year}{2012}
+      \verb{doi}
+      \verb 10.1002/9781118360989.ch6
       \endverb
     \endentry
     \entry{FORRESTER2015}{article}{}
@@ -1602,8 +1687,8 @@
       \strng{authorbibnamehash}{dd461c4e9d964ff872533870b59a43be}
       \strng{authornamehash}{dd461c4e9d964ff872533870b59a43be}
       \strng{authorfullhash}{dd461c4e9d964ff872533870b59a43be}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Computing in Science Engineering}
